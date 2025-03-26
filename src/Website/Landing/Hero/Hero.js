@@ -13,19 +13,48 @@ const Hero = () => {
   const paragraphRef = useRef(null);
   const buttonRef = useRef(null);
   const imageRef = useRef(null);
+  const bgRef = useRef(null);
+  const arrowRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline();
-    
-    tl.from(headingRef.current, { opacity: 0, y: 50, duration: 1, ease: "power3.out" })
-      .from(paragraphRef.current, { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" }, "-=0.5")
-      .from(buttonRef.current, { opacity: 0, scale: 0.8, duration: 0.6, ease: "back.out(1.7)" }, "-=0.4")
-      .from(imageRef.current, { opacity: 0, x: 100, duration: 1, ease: "power3.out" }, "-=0.5");
+
+    tl.from(bgRef.current, {
+      opacity: 0,
+      scale: 1.1,
+      duration: 1.2,
+      ease: "power2.out",
+    })
+      .from(
+        headingRef.current,
+        { opacity: 0, y: 50, duration: 1, ease: "power3.out" },
+        "-=1"
+      )
+      .from(
+        paragraphRef.current,
+        { opacity: 0, y: 30, duration: 0.8, ease: "power3.out" },
+        "-=0.5"
+      )
+      .from(
+        buttonRef.current,
+        { opacity: 0, scale: 0.8, duration: 0.6, ease: "back.out(1.7)" },
+        "-=0.4"
+      )
+      .from(
+        imageRef.current,
+        { opacity: 0, x: 100, duration: 1, ease: "power3.out" },
+        "-=0.5"
+      )
+      .from(
+        arrowRef.current,
+        { opacity: 0, x: -50, duration: 0.8, ease: "power3.out" },
+        "-=0.5"
+      );
   }, []);
 
   return (
     <div className="Hero" ref={heroRef}>
-      <div className="data container mx-auto">
+      <div className="data container mx-auto" ref={bgRef}>
         <div className="content" ref={contentRef}>
           <h2 ref={headingRef}>
             Take your time <br /> <span>and learn from anywhere</span>
@@ -36,11 +65,15 @@ const Hero = () => {
             dolor sit amet.
           </p>
           <div className="details">
-          <Link className="link" ref={buttonRef}>
-            <span>Learn more</span>
-            <MdOutlineKeyboardDoubleArrowRight className="icon"/>
-          </Link>
-           <img src={require('../../../images/heroArrow.png')} alt="" />
+            <Link className="link" ref={buttonRef}>
+              <span>Learn more</span>
+              <MdOutlineKeyboardDoubleArrowRight className="icon" />
+            </Link>
+            <img
+              src={require("../../../images/heroArrow.png")}
+              alt=""
+              ref={arrowRef}
+            />
           </div>
         </div>
         <div className="img" ref={imageRef}>
