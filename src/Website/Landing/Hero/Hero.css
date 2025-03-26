@@ -1,5 +1,6 @@
 .Hero {
   height: 100vh;
+  overflow: hidden;
   /* background-image: url('../../../images//HeroBg.png'); 
   background-repeat: no-repeat;
   background-position: center;

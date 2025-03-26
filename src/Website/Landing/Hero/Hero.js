@@ -1,38 +1,3 @@
-// import React from "react";
-// import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-// import image from "../../../images/Hero.svg";
-// import "./Hero.css";
-// import { Link } from "react-router-dom";
-// const Hero = () => {
-//   return (
-//     <div className="Hero">
-//       <div className="data">
-//         <div className="content">
-//           <h2>
-//             Take your time <br /> <span>and learn from anywhere</span>
-//           </h2>
-//           <p>
-//             Lorem ipsum dolor sit amet consectetur. Laoreet suspendisse facilisi
-//             vulputate ullamcorper nunc. Amet amet nunc varius vel Lorem ipsum
-//             dolor sit amet.
-//           </p>
-//           <Link className="link">
-//             <span>Learn more</span>
-//             <MdOutlineKeyboardDoubleArrowRight className="icon"/>
-//           </Link>
-//         </div>
-//         <div className="img">
-//           <img src={image} alt="image" />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Hero;
-
-
-
 import React, { useRef } from "react";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { gsap } from "gsap";
