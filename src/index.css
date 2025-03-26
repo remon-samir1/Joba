@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 :root{
+  --bg-color:#FAFAFA;
   --text-color :#30313E;
   --second-text-color :#656565;
   --main-color:#F15A24;
@@ -13,5 +14,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family:"Cairo", sans-serif;
+}
+body{
+  background-color: var(--bg-color);
 }
 

@@ -1,0 +1,79 @@
+.WhatweOffer {
+  /* height: 100vh; */
+  margin-top: 100px;
+}
+.WhatweOffer .header {
+  width: 100%;
+  height: 400px;
+  background-image: url("../../../images/arrow-Bg.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 90% 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.WhatweOffer .header p:first-child {
+  color: var(--main-color);
+  align-self: center;
+  font-size: 1.2rem;
+  margin-top: 40px;
+}
+.WhatweOffer .header p:last-child {
+  color: var(--text-color);
+  align-self: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 150px;
+}
+.WhatweOfferBox {
+  width: 280px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+  height: 280px;
+}
+.WhatweOfferBox .img {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--main-color);
+}
+
+
+.WhatweOfferBox .img img{
+  width: 30px;
+  height: 30px;
+}
+
+.WhatweOfferBox h3{
+  color: var(--text-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 30px;
+}
+.WhatweOfferBox p{
+  margin-top: 30px;
+  color: var(--second-text-color);
+}
+.WhatweOffer .boxes{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
+.WhatweOffer .content{
+  background-image: url('../../../images//whatOffer.png');
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
+  height: 70vh;
+ position: relative;
+ top: -140px;  
+
+}
