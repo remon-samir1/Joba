@@ -34,7 +34,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="NavBar" ref={navRef}>
+    <div className="NavBar mx-auto container" ref={navRef}>
       <div className="logo" ref={logoRef}>
         <Logo />
       </div>

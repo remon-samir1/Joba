@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <div className="Hero" ref={heroRef}>
-      <div className="data">
+      <div className="data container mx-auto">
         <div className="content" ref={contentRef}>
           <h2 ref={headingRef}>
             Take your time <br /> <span>and learn from anywhere</span>
@@ -35,10 +35,13 @@ const Hero = () => {
             vulputate ullamcorper nunc. Amet amet nunc varius vel Lorem ipsum
             dolor sit amet.
           </p>
+          <div className="details">
           <Link className="link" ref={buttonRef}>
             <span>Learn more</span>
             <MdOutlineKeyboardDoubleArrowRight className="icon"/>
           </Link>
+           <img src={require('../../../images/heroArrow.png')} alt="" />
+          </div>
         </div>
         <div className="img" ref={imageRef}>
           <img src={image} alt="image" />
