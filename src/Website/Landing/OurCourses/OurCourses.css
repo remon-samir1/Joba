@@ -1,0 +1,159 @@
+.OurCourses {
+}
+.OurCourses .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: -80px;
+}
+
+.OurCourses .header .texts {
+  line-height: 60px;
+}
+.OurCourses .header .texts p {
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+.OurCourses .header .texts h4 {
+  color: var(--text-color);
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+.OurCourses .header .texts h4 span {
+  color: var(--main-color);
+}
+.OurCourses .header .img {
+  width: 280px;
+  align-self: end;
+  height: 160px;
+}
+.OurCourses .header .filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.OurCourses .header .filters button {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+.OurCourses .header .filters button:hover {
+  color: var(--main-color);
+}
+.OurCourses .OurCoursesCard {
+  background-color: #fff;
+  border: 1px solid DDD;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 400px;
+  height: 550px;
+}
+.OurCourses .OurCoursesCard .img {
+  height: 50%;
+  width: 100%;
+  position: relative;
+}
+.OurCourses .OurCoursesCard .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 0px 20px 20px;
+}
+.OurCourses .OurCoursesCard .img .icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f15b248f;
+  padding: 10px;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+.OurCourses .OurCoursesCard .content .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.OurCourses .OurCoursesCard .content .details .detail {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  background-color: #f15b24db;
+ transition: 0.3s;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  font-weight: 300;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.OurCourses .OurCoursesCard .content .details .detail:hover{
+  box-shadow: 0 0 5px var(--main-color);
+  background-color: var(--main-color);
+}
+.OurCourses .OurCoursesCard .content .rating{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+.OurCourses .OurCoursesCard .content .rating .stars{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: -5px;
+}
+.OurCourses .OurCoursesCard .content .rating .stars .icon{
+  margin-left: -3px;
+   color: #f15a24;
+    width: max-content;
+  font-size: 1.9rem;
+
+}
+.OurCourses .OurCoursesCard .content .rating .stars .icon.half{
+  font-size: 1.7rem;
+}
+.OurCourses .OurCoursesCard .content .rating .review{
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.OurCourses .OurCoursesCard .content .title{
+  font-size: 1.5rem;
+  color: var(--text-color);
+  max-width: 75%;
+  margin-top: 20px;
+  font-weight: 600;
+}
+.OurCourses .OurCoursesCard .content .card-footer{
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.OurCourses .OurCoursesCard .content .card-footer .trainer{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+.OurCourses .OurCoursesCard .content .card-footer .trainer img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+}
+.OurCourses .OurCoursesCard .content .card-footer .trainer .name{
+  font-size: 1.1rem;
+}
+.OurCourses .OurCoursesCard .content .card-footer .price{
+  font-size: 1.1rem;
+
+}

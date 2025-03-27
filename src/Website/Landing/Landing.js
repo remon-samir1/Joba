@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Hero from './Hero/Hero';
 import AboutUs from './AboutUS/AboutUs';
 import WhatweOffer from './WhatweOffer/WhatweOffer';
+import OurCourses from './OurCourses/OurCourses';
 const Landing = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const Landing = () => {
       <Hero/>
       <AboutUs/>
       <WhatweOffer/>
+      <OurCourses/>
     </div>
   );
 }
