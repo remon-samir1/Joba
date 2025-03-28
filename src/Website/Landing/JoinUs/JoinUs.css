@@ -1,0 +1,74 @@
+.JoinUs{}
+.JoinUs .texts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  top: -110px;
+}
+.JoinUs .texts .header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.JoinUs .texts .header h5{
+  font-size: 1.1rem;
+
+}
+.JoinUs .texts p{
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+
+.JoinUs .JoinUsCard{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+  padding: 20px 30px;
+  background-color: #fff;
+  filter: drop-shadow(0 0 3px #f15b242a);
+  border-radius: 10px;
+  height: max-content;
+  width: 500px;
+}
+.JoinUs .JoinUsCard .content{
+display: flex;
+justify-content: start;
+align-items: start;
+flex-direction: column;
+height: 100%;
+}
+
+.JoinUs .JoinUsCard .content h4{
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+.JoinUs .JoinUsCard .content h4 span{
+  color: var(--main-color);
+}
+.JoinUs .JoinUsCard .content p{
+  font-size: 1.1rem;
+  color: var(--second-text-color);
+  margin-top: 50px;
+}
+.JoinUs .JoinUsCard .content .link{
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  width: 150px;
+  padding: 8px;
+  border-radius:8px ;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 30px;
+  transition: 0.7s;
+}
+.JoinUs .JoinUsCard .content .link:hover{
+  background-color: var(--main-color);
+  color: #fff;
+  box-shadow: 0 0 15px var(--main-color);
+}

@@ -1,44 +1,4 @@
-// import "./OurTeam.css";
-// import React from "react";
 
-// const OurTeam = () => {
-//   return (
-//     <div className="OurTeam">
-//       <div className="texts">
-//         <div className="header">
-//           <h5>Our team</h5>
-//           <img
-//             src={require("../../../images/orangeArrow.png")}
-//             alt=">>"
-//             loading="lazy"
-//           />
-//         </div>
-//         <p>Meet our professional instructors</p>
-//       </div>
-//       <div className="trainers">
-//       {[...Array(3)].map(()=>(
-//           <div className="trainer">
-//           <img
-//             src={require("../../../images/our-team.png")}
-//             alt="trainer"
-//             loading="lazy"
-//           />
-//           <img src={require('../../../images/Intersect.png')} loading="lazy" />
-//         </div>
-//       ))}
-//       </div>
-//       <div className="bg">
-//         <img
-//           src={require("../../../images/Our-team-bg.png")}
-//           alt="team"
-//           loading="lazy"
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default OurTeam;
 
 import "./OurTeam.css";
 import React, { useRef, useEffect } from "react";

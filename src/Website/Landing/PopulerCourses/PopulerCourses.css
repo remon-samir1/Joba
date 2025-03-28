@@ -33,6 +33,10 @@
   height: 330px;
   position: relative;
   border: 1px solid #ddd;
+  transition: 0.5s ease;
+}
+.PopulerCoursesCard:hover .icon{
+  box-shadow: 0 0 8px var(--main-color);
 }
 .PopulerCoursesCard .bg {
   width: 100%;
@@ -64,6 +68,7 @@
   left: 50%;
   transform: translate(-40%, -20%);
   padding: 20px;
+  transition: 0.5s;
 }
 .PopulerCoursesCard .icon img {
   width: 50px;
