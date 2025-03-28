@@ -8,6 +8,7 @@ import OurCourses from './OurCourses/OurCourses';
 import PopulerCourses from './PopulerCourses/PopulerCourses';
 import OurTeam from './OurTeam/OurTeam';
 import JoinUs from './JoinUs/JoinUs';
+import LatestBlogs from './LatestBlogs/LatestBlogs';
 const Landing = () => {
   return (
     <div>
@@ -19,6 +20,7 @@ const Landing = () => {
       <PopulerCourses />
       <OurTeam/>
       <JoinUs />
+      <LatestBlogs />
     </div>
   );
 }
