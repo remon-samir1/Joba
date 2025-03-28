@@ -86,6 +86,10 @@ const OurCourses = () => {
           />
         ))}
       </div>
+      <div className="flex justify-between items-center pr-7 mt-4">
+        <img src={require('../../../images/img1.png')} loading="lazy" />
+        <img src={require('../../../images/img2.png')} loading="lazy" />
+      </div>
     </div>
   );
 };

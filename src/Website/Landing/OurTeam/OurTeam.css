@@ -1,0 +1,61 @@
+.OurTeam{}
+.OurTeam .texts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.OurTeam .texts .header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.OurTeam .texts .header h5{
+  font-size: 1.1rem;
+
+}
+.OurTeam .texts p{
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.OurTeam .trainers{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+.OurTeam .trainers .trainer{
+  width: 320px;
+  height: 390px;
+  position: relative;
+  margin-top: 20px;
+} 
+.OurTeam .trainers .trainer img:first-child{
+width: 280px;
+height: 390px;
+
+  object-fit: cover;
+  border-radius: 35% 35%;
+}
+.OurTeam .trainers .trainer img:last-child{
+  position: absolute;
+  top: 157px;
+  width: 323px;
+  left: -20px;
+}
+.OurTeam .bg{
+  width: 100%;
+  position: relative;
+  top: -220px;
+  z-index: -1;
+  height: 400px;
+}
+.OurTeam .bg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

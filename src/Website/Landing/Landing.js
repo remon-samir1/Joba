@@ -5,6 +5,8 @@ import Hero from './Hero/Hero';
 import AboutUs from './AboutUS/AboutUs';
 import WhatweOffer from './WhatweOffer/WhatweOffer';
 import OurCourses from './OurCourses/OurCourses';
+import PopulerCourses from './PopulerCourses/PopulerCourses';
+import OurTeam from './OurTeam/OurTeam';
 const Landing = () => {
   return (
     <div>
@@ -13,6 +15,8 @@ const Landing = () => {
       <AboutUs/>
       <WhatweOffer/>
       <OurCourses/>
+      <PopulerCourses />
+      <OurTeam/>
     </div>
   );
 }
