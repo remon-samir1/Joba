@@ -36,7 +36,6 @@ const OurTeam = () => {
       scrollTrigger: {
         trigger: teamRef.current,
         start: "top -20%",
-        markers:true,
         toggleActions: "play none none reverse",
 
       },
