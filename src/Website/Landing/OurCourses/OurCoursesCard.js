@@ -48,7 +48,7 @@ const OurCoursesCard = () => {
             <span>112 students</span>
           </div>
           <div className="detail">
-            <Icon icon="streamline:class-lesson" width="14" height="14" />
+            <Icon icon="streamline:class-lesson" width="0.9rem" height="0.9rem" />
             <span>6 Lesson</span>
           </div>
         </div>
