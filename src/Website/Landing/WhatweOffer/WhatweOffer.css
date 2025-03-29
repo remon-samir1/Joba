@@ -81,4 +81,9 @@
   .WhatweOffer .boxes{
     gap: 15px;
   }
+
+  .WhatweOffer .header {
+  
+    background-size: 90% 70%;
+  }
 }
