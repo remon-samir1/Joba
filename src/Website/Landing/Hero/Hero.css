@@ -106,7 +106,8 @@
 
   }
   .Hero .data .content h2 span{
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    white-space: pre-wrap;
     
   }
   .Hero .data .content p{
@@ -116,7 +117,7 @@
 
   }
   .Hero .data .content .img img{
-width: 400px;
+width: 350px;
   }
   .Hero .data .content .details{
     width: 100vw;
