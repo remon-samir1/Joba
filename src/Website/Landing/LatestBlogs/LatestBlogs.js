@@ -19,12 +19,11 @@ const LatestBlogs = () => {
     gsap.from([textRef.current, boxesRef.current, linkRef.current], {
       opacity: 0,
       y: 50,
-      duration: 1,
       stagger: 0.2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top -20%",
+        start: "top 0%",
         toggleActions: "play none none reverse",
       },
     });

@@ -17,7 +17,6 @@ const OurCourses = () => {
     gsap.from(headerRef.current, {
       opacity: 0,
       y: -50,
-      duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: headerRef.current,

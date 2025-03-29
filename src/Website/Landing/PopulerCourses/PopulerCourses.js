@@ -69,11 +69,10 @@ const PopulerCourses = () => {
       opacity: 0,
       y: 50,
       stagger: 0.2,
-      duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 75%",
+        start: "top 85%",
         toggleActions: "play none none reverse",
 
       },

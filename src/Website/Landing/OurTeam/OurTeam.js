@@ -1,18 +1,13 @@
-
-
 import "./OurTeam.css";
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
 gsap.registerPlugin(ScrollTrigger);
-
 const OurTeam = () => {
   const teamRef = useRef(null);
   const headerRef = useRef(null);
   const trainersRef = useRef([]);
-
   useGSAP(() => {
     gsap.from(headerRef.current, {
       opacity: 0,
@@ -23,7 +18,6 @@ const OurTeam = () => {
         trigger: headerRef.current,
         start: "top 85%",
         toggleActions: "play none none reverse",
-
       },
     });
 
@@ -31,13 +25,11 @@ const OurTeam = () => {
       opacity: 0,
       y: 50,
       stagger: 0.2,
-      duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: teamRef.current,
-        start: "top -20%",
+        start: "top 0",
         toggleActions: "play none none reverse",
-
       },
     });
   }, []);
@@ -57,13 +49,20 @@ const OurTeam = () => {
       </div>
       <div className="trainers">
         {[...Array(3)].map((_, index) => (
-          <div ref={(el) => (trainersRef.current[index] = el)} key={index} className="trainer">
+          <div
+            ref={(el) => (trainersRef.current[index] = el)}
+            key={index}
+            className="trainer"
+          >
             <img
               src={require("../../../images/our-team.png")}
               alt="trainer"
               loading="lazy"
             />
-            <img src={require("../../../images/Intersect.png")} loading="lazy" />
+            <img
+              src={require("../../../images/Intersect.png")}
+              loading="lazy"
+            />
           </div>
         ))}
       </div>

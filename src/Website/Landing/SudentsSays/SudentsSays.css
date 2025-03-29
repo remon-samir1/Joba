@@ -1,0 +1,92 @@
+.SudentsSays{
+  height: 100vh;
+  background-image:url('../../../images//studentsSayBg.png') ;
+  background-color: #FFF2EC;
+  background-position: center;
+  background-size: contain;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  margin-top: 40px;
+  /* overflow: hidden; */
+}
+.SudentsSays .img{
+  display: flex;
+  justify-content: end;
+}
+.SudentsSays .img img{
+  width: 280px;
+  height: 450px;
+  border-radius: 50% / 30%;
+}
+.SudentsSays .content .header{
+  color: var(--text-color);
+font-size: 2rem;
+font-weight: 600;
+max-width: 350px;
+}
+.SudentsSays .content .text{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+  max-width: 450px;
+}
+.SudentsSays .content .text p{
+  color: var(--second-text-color);
+  font-size: 1.1rem;
+}
+.SudentsSays .content .text img:last-child{
+  align-self: flex-end;
+  transform: rotateY(180deg);
+}
+.SudentsSays .content .student{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 5px;
+}
+.SudentsSays .content .student p{
+font-weight: 500;
+font-size: 1.2rem;
+color:var(--text-color)
+}
+.SudentsSays .content .student span{
+font-weight: 500;
+font-size: 1rem;
+color:var(--text-color)
+}
+.SudentsSays .content .arrows{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.SudentsSays .content .arrow{
+  background-color: rgb(241, 90, 36,0.5);
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.SudentsSays .content .arrow:hover{
+  background-color: var(--main-color);
+}
+.SudentsSays .content .arrow img{
+  width: 30px;
+
+}
+.SudentsSays .content .arrow:last-child img{
+  transform: rotateY(180deg);
+}

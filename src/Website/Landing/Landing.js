@@ -9,6 +9,8 @@ import PopulerCourses from './PopulerCourses/PopulerCourses';
 import OurTeam from './OurTeam/OurTeam';
 import JoinUs from './JoinUs/JoinUs';
 import LatestBlogs from './LatestBlogs/LatestBlogs';
+import SudentsSays from './SudentsSays/SudentsSays';
+import Footer from '../../components/Footer/Footer';
 const Landing = () => {
   return (
     <div>
@@ -21,6 +23,8 @@ const Landing = () => {
       <OurTeam/>
       <JoinUs />
       <LatestBlogs />
+      <SudentsSays />
+      <Footer />
     </div>
   );
 }
