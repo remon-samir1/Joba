@@ -157,6 +157,12 @@
   .OurCourses {
     margin-top: 20px;
   }
+  .OurCourses .header .filters{
+    gap: 10px;
+  }
+  .OurCourses .boxes{
+    gap: 5px;
+  }
   .OurCourses .boxes .OurCoursesCard:nth-child(3){
     display: none;
   }
