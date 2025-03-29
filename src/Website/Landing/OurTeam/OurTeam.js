@@ -35,7 +35,8 @@ const OurTeam = () => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: teamRef.current,
-        start: "top 75%",
+        start: "top -20%",
+        markers:true,
         toggleActions: "play none none reverse",
 
       },

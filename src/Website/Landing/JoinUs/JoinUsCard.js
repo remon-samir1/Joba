@@ -67,7 +67,7 @@ const JoinUsCard = ({ title, image }) => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: cardRef.current,
-        start: "top 85%",
+        start: "top 50%",
         toggleActions: "play none none reverse",
       },
     });
