@@ -198,7 +198,7 @@
   }
   .OurCourses .OurCoursesCard {
     height: max-content;
-    min-width: 215px;
+    max-width: 300px;
 
   }
   .OurCourses .OurCoursesCard .content{
