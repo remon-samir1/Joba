@@ -11,7 +11,6 @@ const WhatweOffer = () => {
   const headerRef = useRef(null);
 
   useEffect(() => {
-    // أنيميشن العناوين
     gsap.fromTo(
       headerRef.current,
       { opacity: 0, y: 50 },
@@ -28,7 +27,6 @@ const WhatweOffer = () => {
       }
     );
 
-    // أنيميشن البوكسات
     gsap.fromTo(
       boxRefs.current,
       { opacity: 0, y: 50 },

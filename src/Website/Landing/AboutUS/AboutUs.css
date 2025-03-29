@@ -91,7 +91,7 @@ justify-content: center;
 }
 @media (max-width:769px) {
   .AboutUs{
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 20px;
   grid-template-columns:  1fr ;
 
@@ -121,4 +121,9 @@ justify-content: center;
     display: grid;
     gap: 15px;
     grid-template-columns: 1fr ;}
+
+    .AboutUs .data .link{
+      width: 80%;
+      margin:20px auto;
+    }
 }

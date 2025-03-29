@@ -16,8 +16,8 @@ const Landing = () => {
       {/* <NavBar/> */}
       <Hero/>
       <AboutUs/>
-      {/* <WhatweOffer/>
-      <OurCourses/>
+      <WhatweOffer/>
+      {/* <OurCourses/>
       <PopulerCourses />
       <OurTeam/>
       <JoinUs />

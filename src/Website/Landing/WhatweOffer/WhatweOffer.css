@@ -65,6 +65,7 @@
   justify-content: center;
   align-items: center;
   gap: 1vw;
+  flex-wrap: wrap;
 }
 .WhatweOffer .content{
   background-image: url('../../../images//whatOffer.png');
@@ -75,4 +76,9 @@
  position: relative;
  top: -140px;  
 
+}
+@media (max-width:768px) {
+  .WhatweOffer .boxes{
+    gap: 15px;
+  }
 }
