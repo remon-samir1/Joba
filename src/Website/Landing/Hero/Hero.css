@@ -80,21 +80,43 @@
 
 
 @media (max-width: 768px) {
+  .Hero .data{
+    margin: 0 auto;
+  }
   .Hero .data .img{
     display: none;
   }
   .Hero .data .content .img{
     /* display: block; */
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .Hero .data .content{
+    gap: 5px;
+  }
+  .Hero .data .content h2{
+    font-size: 2.5rem;
+    line-height: 60px;
+    margin: 0 20px;
+
+  }
+  .Hero .data .content h2 span{
+    font-size: 2.5rem;
+    
+  }
+  .Hero .data .content p{
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin: 0 20px;
+
+  }
   .Hero .data .content .img img{
-    width: 85%;
+width: 400px;
   }
   .Hero .data .content .details{
-    width: 100%;
+    width: 100vw;
     position: relative;
     margin: 30px 0;
   }

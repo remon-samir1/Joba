@@ -10,13 +10,12 @@ import OurTeam from './OurTeam/OurTeam';
 import JoinUs from './JoinUs/JoinUs';
 import LatestBlogs from './LatestBlogs/LatestBlogs';
 import SudentsSays from './SudentsSays/SudentsSays';
-import Footer from '../../components/Footer/Footer';
 const Landing = () => {
   return (
     <div>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Hero/>
-      <AboutUs/>
+      {/* <AboutUs/>
       <WhatweOffer/>
       <OurCourses/>
       <PopulerCourses />
@@ -24,7 +23,7 @@ const Landing = () => {
       <JoinUs />
       <LatestBlogs />
       <SudentsSays />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 }
