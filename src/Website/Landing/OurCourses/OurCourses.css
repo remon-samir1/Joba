@@ -169,6 +169,7 @@
   }
   .OurCourses .OurCoursesCard .content .details{
     margin-top: 10px;
+    gap: 5px;
   }
   .OurCourses .header .img {
     display: none;
@@ -182,11 +183,11 @@
   }
   .OurCourses .OurCoursesCard .content .details .detail {
     font-size: 0.7rem;
-    gap: 3px;
+    gap: 2px;
   }
   .OurCourses .OurCoursesCard .content .title {
     max-width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-top: 10px;
   }
   .OurCourses .OurCoursesCard {
@@ -202,9 +203,18 @@
     margin-top: 10px;
   }
   .OurCourses .OurCoursesCard .content .card-footer .trainer .name {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .OurCourses .OurCoursesCard .content .card-footer .price {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .OurCourses .OurCoursesCard .content .rating .stars .icon {
+
+    font-size: 1.6rem;
+  }
+  .OurCourses .OurCoursesCard .content .rating .stars .icon.half {
+    font-size: 1.4rem;
   }
 }
+
