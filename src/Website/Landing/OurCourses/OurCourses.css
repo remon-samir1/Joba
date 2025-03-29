@@ -154,6 +154,12 @@
 }
 
 @media (max-width: 769px) {
+  .OurCourses {
+    margin-top: 20px;
+  }
+  .OurCourses .boxes .OurCoursesCard:nth-child(3){
+    display: none;
+  }
   .OurCourses .header {
     justify-content: center;
     gap: 30px;
@@ -185,6 +191,7 @@
   }
   .OurCourses .OurCoursesCard {
     height: max-content;
+    min-width: 215px;
 
   }
   .OurCourses .OurCoursesCard .content{

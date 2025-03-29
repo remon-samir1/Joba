@@ -78,7 +78,7 @@ const OurCourses = () => {
         </div>
       </div>
       <div className="boxes flex justify-center items-center gap-6 px-3 ">
-        {[...Array(2)].map((_, index) => (
+        {[...Array(3)].map((_, index) => (
           <OurCoursesCard
             key={index}
             forwardRef={(el) => (cardsRef.current[index] = el)}
