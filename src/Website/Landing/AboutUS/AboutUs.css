@@ -123,7 +123,8 @@ justify-content: center;
     grid-template-columns: 1fr ;}
 
     .AboutUs .data .link{
-      width: 80%;
+      width: 90%;
+      border-radius: 30px;
       margin:20px auto;
     }
 }

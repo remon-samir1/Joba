@@ -38,7 +38,7 @@ const WhatweOffer = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".boxes",
-          start: "top 80%",
+          start: "top 90%",
           toggleActions: "play none none reverse",
         },
       }
