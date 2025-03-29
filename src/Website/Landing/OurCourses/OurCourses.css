@@ -216,5 +216,8 @@
   .OurCourses .OurCoursesCard .content .rating .stars .icon.half {
     font-size: 1.4rem;
   }
+  .OurCourses .OurCoursesCard .content .rating .review {
+    font-size: 0.8rem;
+  }
 }
 
