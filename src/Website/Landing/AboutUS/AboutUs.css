@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
+
 }
 .AboutUs .img{
 display: flex;
@@ -84,4 +85,40 @@ justify-content: center;
   font-size: 1.2rem;
   width: max-content;
   margin-top: 20px;
+}
+.AboutUs .responsive{
+  display: none;
+}
+@media (max-width:769px) {
+  .AboutUs{
+    margin-top: 20px;
+    padding: 20px;
+  grid-template-columns:  1fr ;
+
+  }
+  .AboutUs .img{
+    display: none;
+  }
+  .AboutUs .responsive{
+    display: block;
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .AboutUs .responsive img{
+    width: 350px;
+    height: 450px;
+
+  }
+  .AboutUs .data .flexiable{
+    width: 100%;
+  padding: 40px 20px 20px 100px;
+
+  }
+  .AboutUs .data .details{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr ;}
 }

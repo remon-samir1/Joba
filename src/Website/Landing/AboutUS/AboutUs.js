@@ -113,6 +113,13 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
+        <div className="img responsive">
+        <img
+          src={require("../../../images/AbouUs.png")}
+          alt="about-us"
+          loading="lazy"
+        />
+      </div>
         <Link className="link">
           <span>Discover more</span>
           <MdOutlineKeyboardDoubleArrowRight className="icon" />

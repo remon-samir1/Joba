@@ -15,8 +15,8 @@ const Landing = () => {
     <div>
       {/* <NavBar/> */}
       <Hero/>
-      {/* <AboutUs/>
-      <WhatweOffer/>
+      <AboutUs/>
+      {/* <WhatweOffer/>
       <OurCourses/>
       <PopulerCourses />
       <OurTeam/>
