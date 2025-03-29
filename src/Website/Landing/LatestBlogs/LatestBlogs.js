@@ -24,7 +24,7 @@ const LatestBlogs = () => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 85%",
+        start: "top -20%",
         toggleActions: "play none none reverse",
       },
     });
