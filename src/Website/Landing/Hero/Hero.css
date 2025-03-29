@@ -122,7 +122,7 @@ width: 350px;
   .Hero .data .content .details{
     width: 100vw;
     position: relative;
-    margin: 30px 0;
+    margin-bottom: 20px;
   }
   .Hero .data .content .details img{
     position: absolute;
