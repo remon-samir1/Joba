@@ -216,7 +216,8 @@
   }
 
   .OurCourses .OurCoursesCard .content .rating .stars .icon {
-
+    margin-left: -5px;
+  
     font-size: 1.6rem;
   }
   .OurCourses .OurCoursesCard .content .rating .stars .icon.half {
