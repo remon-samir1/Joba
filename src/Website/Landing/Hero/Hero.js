@@ -56,6 +56,7 @@ const Hero = () => {
     <div className="Hero" ref={heroRef}>
       <div className="data container mx-auto" ref={bgRef}>
         <div className="content" ref={contentRef}>
+
           <h2 ref={headingRef}>
             Take your time <br /> <span>and learn from anywhere</span>
           </h2>
@@ -64,6 +65,9 @@ const Hero = () => {
             vulputate ullamcorper nunc. Amet amet nunc varius vel Lorem ipsum
             dolor sit amet.
           </p>
+          <div className="img" ref={imageRef}>
+          <img src={image} alt="image" />
+        </div>
           <div className="details">
             <Link className="link" ref={buttonRef}>
               <span>Learn more</span>

@@ -18,3 +18,8 @@
 body{
   background-color: var(--bg-color);
 }
+@media (max-width:769px) {
+  html{
+    font-size: 14px;
+  }
+}
