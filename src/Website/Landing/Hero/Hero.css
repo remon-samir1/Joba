@@ -4,7 +4,7 @@
   background-image: url('../../../images//HeroBg.png'); 
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: auto;
 }
 
 .Hero .data{
@@ -80,6 +80,9 @@
 
 
 @media (max-width: 768px) {
+  .Hero{
+    background-image: none;
+  }
   .Hero .data{
     margin: 0 auto;
   }
