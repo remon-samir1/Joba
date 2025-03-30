@@ -9,8 +9,9 @@ import { ImInstagram } from "react-icons/im";
 const Footer = () => {
   return (
     <div className="footer">
+      
       <div className="content">
-        <div className="list2 list">
+        <div className="list2 list order-2">
           <h4>Quick Links</h4>
           <div className="Links">
             <Link to="">Course content</Link>
@@ -19,7 +20,7 @@ const Footer = () => {
             <Link to="">About</Link>
           </div>
         </div>
-        <div className="list2 list">
+        <div className="list2 list order-2">
           <h4>Support</h4>
           <div className="Links">
             <Link to="">Contact us</Link>
@@ -44,7 +45,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
-          <div className="list2 list">
+          <div className="list2 list order-1">
+          <img
+          src={require("../../images/logo-white.png")}
+          alt="joba"
+          loading="lazy"
+          width={100}
+          className="juba"
+        />
             <h4>Get in touch</h4>
             <p>
               Lorem ipsum dolor sit amet consectetur. Tempor purus in feugiat

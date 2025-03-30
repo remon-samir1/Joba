@@ -51,46 +51,45 @@
   font-size: 0.9rem;
   font-weight: 400;
 }
-.footer .content .list2 p{
+.footer .content .list2 p {
   font-size: 0.8rem;
   color: #fff;
   margin-top: 15px;
   max-width: 400px;
 }
-.footer .content .list2 .subscribe{
+.footer .content .list2 .subscribe {
   display: flex;
   width: 250px;
   justify-content: start;
   align-items: center;
   gap: 10px;
- background-color: #fff;
- border-radius: 30px;
- margin-top: 40px;
- padding: 5px 20px;
+  background-color: #fff;
+  border-radius: 30px;
+  margin-top: 40px;
+  padding: 5px 20px;
 }
 
-
-.footer .content .list2 .subscribe input{
- border: none;
- outline: none;
- width: 80px;
- font-size: 0.7rem;
+.footer .content .list2 .subscribe input {
+  border: none;
+  outline: none;
+  width: 80px;
+  font-size: 0.7rem;
 }
-.footer .content .list2 .subscribe button{
+.footer .content .list2 .subscribe button {
   color: #fff;
   background-color: var(--main-color);
   font-size: 0.9rem;
   padding: 10px 20px;
   border-radius: 30px;
 }
-.footer .content .list2 .Links .social-media{
+.footer .content .list2 .Links .social-media {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 15px;
   margin-top: 10px;
 }
-.footer .content .list2 .Links .social-media a{
+.footer .content .list2 .Links .social-media a {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -99,11 +98,11 @@
   justify-content: center;
   align-items: center;
 }
-.footer .content .list2 .Links .social-media a .icon{
+.footer .content .list2 .Links .social-media a .icon {
   color: #565656;
 }
 
-.footer .content .list2 .Links a .icon{
+.footer .content .list2 .Links a .icon {
   width: 20px;
   height: 20px;
 }
@@ -120,4 +119,40 @@
   text-align: center;
   font-weight: 400;
   padding: 25px;
+}
+.footer .juba {
+  display: none;
+}
+@media (max-width: 769px) {
+  .footer .content {
+    width: 100%;
+    justify-content: space-between;
+    padding: 25px;
+  }
+  .footer .juba {
+    margin-bottom: 20px;
+    margin-top: 80px;
+    display: block;
+  }
+  .footer .content .list2 .subscribe {
+    width: 80vw;
+    justify-content: start;
+  }
+  .footer .content .list2 .subscribe input {
+    flex: 1;
+    font-size: 1rem;
+  }
+  .footer .content .list:nth-child(3) {
+    width: 100%;
+  }
+
+  .footer .content .list1 p {
+    font-size: 1rem;
+  }
+  .footer .copyright img {
+    display: none;
+  }
+  .footer .copyright p {
+    font-size: 0.8rem;
+  }
 }

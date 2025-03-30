@@ -24,7 +24,7 @@ const Landing = () => {
       <JoinUs />
       <LatestBlogs />
       <SudentsSays />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
