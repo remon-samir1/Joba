@@ -23,7 +23,7 @@ const LatestBlogs = () => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 0%",
+        start: "top 85%",
         toggleActions: "play none none reverse",
       },
     });
@@ -34,7 +34,7 @@ const LatestBlogs = () => {
       <div ref={textRef} className="texts">
         <p>Latest blogs & news</p>
       </div>
-      <div ref={boxesRef} className="boxes flex justify-center items-center gap-10 mt-24">
+      <div ref={boxesRef} className="boxes flex-wrap flex justify-center items-center gap-10 mt-24">
         <LatestBlogsCard />
         <LatestBlogsCard />
         <LatestBlogsCard />

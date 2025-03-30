@@ -22,8 +22,8 @@ const Landing = () => {
       <PopulerCourses />
       <OurTeam/>
       <JoinUs />
-      {/* <LatestBlogs />
-      <SudentsSays />
+      <LatestBlogs />
+      {/* <SudentsSays />
       <Footer /> */}
     </div>
   );

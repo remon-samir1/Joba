@@ -69,3 +69,13 @@ font-weight: 600;
 .LatestBlogs .link:hover{
   box-shadow: 0 0 15px var(--main-color);
 }
+@media (max-width:769px) {
+  .LatestBlogs .boxes{
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .LatestBlogs .link{
+    width: 70%;
+    margin: auto;
+  }
+}
