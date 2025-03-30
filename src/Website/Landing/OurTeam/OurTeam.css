@@ -59,3 +59,20 @@ height: 390px;
   height: 100%;
   object-fit: cover;
 }
+
+@media (max-width:769px) {
+  .OurTeam{
+    margin-top: 30px;
+
+  }
+  .OurTeam .bg{
+    display: none;
+  }
+  .OurTeam .trainers{
+    background-image: url("../../../images/Our-team-bg.png");
+    background-repeat: repeat-y;
+    padding: 30px auto;
+    background-position: center;
+    background-size: contain;
+  }
+}
