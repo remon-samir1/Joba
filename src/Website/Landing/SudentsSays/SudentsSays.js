@@ -7,24 +7,10 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const SudentsSays = () => {
-  const containerRef = useRef(null);
 
-  useGSAP(() => {
-    gsap.from(containerRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-  }, []);
 
   return (
-    <div ref={containerRef} className="SudentsSays">
+    <div  className="SudentsSays">
       <div className="img">
         <img
           src={require("../../../images/student-ex.png")}

@@ -23,8 +23,8 @@ const Landing = () => {
       <OurTeam/>
       <JoinUs />
       <LatestBlogs />
-      {/* <SudentsSays />
-      <Footer /> */}
+      <SudentsSays />
+      {/* <Footer /> */}
     </div>
   );
 }

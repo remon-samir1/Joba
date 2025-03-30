@@ -15,10 +15,11 @@
 .SudentsSays .img{
   display: flex;
   justify-content: end;
+  /* order: 2; */
 }
 .SudentsSays .img img{
-  width: 280px;
-  height: 450px;
+  max-width: 280px;
+  max-height: 450px;
   border-radius: 50% / 30%;
 }
 .SudentsSays .content .header{
@@ -90,3 +91,28 @@ color:var(--text-color)
 .SudentsSays .content .arrow:last-child img{
   transform: rotateY(180deg);
 }
+@media (max-width:769px) {
+  .SudentsSays{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px 20px 20px;
+  height: 800px;
+  position: relative;
+
+  }
+  .SudentsSays .content{
+    margin-top: 230px;
+  }
+  .SudentsSays .img{
+   position: relative;
+   top: -210px; left: 55px;
+    order: 2;
+  }
+  .SudentsSays .img img{
+    max-width: 220px;
+    max-height: 380px;
+  }
+}
+
