@@ -155,7 +155,7 @@
 
 @media (max-width: 769px) {
   .OurCourses {
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
   .OurCourses .header .filters{
     gap: 10px;
@@ -175,7 +175,8 @@
   }
   .OurCourses .OurCoursesCard .content .details{
     margin-top: 10px;
-    gap: 5px;
+    gap: 9px;
+    flex-wrap: wrap;
   }
   .OurCourses .header .img {
     display: none;

@@ -84,7 +84,7 @@ const PopulerCourses = () => {
       <div ref={headerRef} className="header">
         <h3>Populer Courses</h3>
       </div>
-      <div ref={bgRef} className="bg">
+      <div ref={bgRef} className="main-bg">
         <img src={require("../../../images/Populer-bg.png")} alt="PopulerCourses" loading="lazy" />
       </div>
       <div className="boxes">

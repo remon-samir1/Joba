@@ -7,11 +7,11 @@
   color: var(--text-color);
   margin-bottom: 50px;
 }
-.PopulerCourses .bg {
+.PopulerCourses .main-bg {
   width: 100%;
   margin: auto;
 }
-.PopulerCourses .bg img {
+.PopulerCourses .main-bg img {
   width: 100%;
 }
 .PopulerCourses .boxes {
@@ -86,4 +86,16 @@
 .PopulerCoursesCard .content h4 {
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+@media (max-width:768px) {
+  .PopulerCourses .main-bg{
+    display: none;
+  }
+  .PopulerCourses .boxes{
+    position: relative;
+    top: 0;
+    background-image:url('../../../images/Populer-bg.png') ;
+    padding: 30px 0;
+  }
 }

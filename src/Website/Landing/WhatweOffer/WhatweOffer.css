@@ -83,6 +83,9 @@ height: max-content;
 @media (max-width:768px) {
   .WhatweOffer .boxes{
     gap: 15px;
+    position: relative;
+    top: -100px;
+
   }
 
   .WhatweOffer .header {
