@@ -45,7 +45,7 @@ const JoinUs = () => {
       ease: "power3.out",
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 85%",
+        start: "top 95%",
         toggleActions: "play none none reverse",
       },
     });
@@ -64,7 +64,7 @@ const JoinUs = () => {
         </div>
         <p>Which one is suitable for you?</p>
       </div>
-      <div className="boxes flex justify-center items-center gap-10">
+      <div className="boxes flex justify-center items-center gap-10 flex-wrap">
         <JoinUsCard title='learn' image="learn.png"/>
         <JoinUsCard title='teach' image="teach.png"/>
       </div>

@@ -59,18 +59,7 @@ const JoinUsCard = ({ title, image }) => {
       },
     });
 
-    gsap.from(imgRef.current, {
-      opacity: 0,
-      x: 30,
-      duration: 1,
-      delay: 0.4,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: cardRef.current,
-        start: "top 50%",
-        toggleActions: "play none none reverse",
-      },
-    });
+
   }, []);
 
   return (

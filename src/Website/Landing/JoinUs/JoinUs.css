@@ -34,7 +34,7 @@
   filter: drop-shadow(0 0 3px #f15b242a);
   border-radius: 10px;
   height: max-content;
-  width: 500px;
+  max-width: 500px;
 }
 .JoinUs .JoinUsCard .content{
 display: flex;
@@ -71,4 +71,18 @@ height: 100%;
   background-color: var(--main-color);
   color: #fff;
   box-shadow: 0 0 15px var(--main-color);
+}
+@media (max-width:769px) {
+  .JoinUs .boxes{
+padding: 20px;
+  }
+  .JoinUs .texts{
+  margin: 30px 0;
+    position: relative; top: 0;
+
+  
+  }
+  .JoinUs .JoinUsCard .img img{
+  width: 200px;
+  }
 }
