@@ -107,7 +107,7 @@ color:var(--text-color)
   }
   .SudentsSays .img{
    position: relative;
-   top: -210px; left: 55px;
+   top: -210px; left: 65px;
     order: 2;
   }
   .SudentsSays .img img{
