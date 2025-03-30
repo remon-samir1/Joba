@@ -1,0 +1,172 @@
+.Login {
+  background-color: #fff;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Login .main {
+  background-color: rgb(241, 90, 36, 0.4);
+  border-radius: 20px;
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  background-image: url("../../../images//register.png");
+  background-size: 100% 130%;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+.Login .main .content {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+
+}
+.Login .main .content img {
+  width: 130px;
+  margin-bottom: 30px;
+}
+.Login .main .content h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 50px;
+
+
+}
+.Login .main .content p {
+  max-width: 300px;
+  font-size: 1rem;
+  color: #fff;
+  align-self: center;
+  position: relative;
+  top: -40px;
+}
+.Login .main .form-box {
+  background-color: var(--bg-color);
+  width: 370px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+.Login .main .form-box h2 {
+  font-size: 1.3rem;
+  color: var(--text-color);
+}
+
+.Login .main .form-box p {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  margin-top: 10px;
+}
+.Login .main .form-box .inputs {
+  margin-top: 50px;
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+.Login .main .form-box .input {
+  width: 100%;
+  position: relative;
+}
+.Login .main .form-box .input .icon{
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  color: #656565;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.Login .main .form-box .input input {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.9em;
+  color: var(--text-color);
+  background-color: #fff;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+}
+
+
+.Login .main .form-box .input input:focus{
+  border-color:var(--main-color) ;
+}
+
+.Login .main .form-box .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  width: 100%;
+}
+.Login .main .form-box .options .flex {
+  gap: 5px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+.Login .main .form-box .options .flex input {
+  accent-color: var(--main-color);
+}
+.Login .main .form-box .options .link {
+  color: var(--main-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.Login .main .form-box button {
+  width: 100%;
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 20px;
+  text-decoration: 1px;
+}
+.Login .main .form-box .seperator {
+  font-size: 0.8rem;
+  margin-top: 20px;
+  color: var(--text-color);
+  position: relative;
+}
+
+.Login .main .form-box .providers{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+.Login .main .form-box .providers .link{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+.Login .main .form-box .providers .link span{
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.9rem;
+
+}
+.Login .main .form-box .providers .link img{
+  width: 20px;
+  height: 20px;
+}
+.Login .main .form-box .redirect{
+  margin-top: 30px;
+  color: var(--text-color);
+  font-size: 0.8rem;
+}
+.Login .main .form-box .redirect .link{
+  color: var(--main-color);
+}
