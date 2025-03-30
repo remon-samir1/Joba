@@ -71,8 +71,11 @@ height: 390px;
   .OurTeam .trainers{
     background-image: url("../../../images/Our-team-bg.png");
     background-repeat: repeat-y;
-    padding: 30px auto;
+    padding: 30px 20px;
     background-position: center;
     background-size: contain;
+  }
+  .OurTeam .trainers .trainer{
+    left: 20px;
   }
 }
