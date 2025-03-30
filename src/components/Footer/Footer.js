@@ -6,6 +6,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { TfiFacebook } from "react-icons/tfi";
 import { FaTwitter } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
+import logo from '../../images/white-logo.svg';
 const Footer = () => {
   return (
     <div className="footer">
@@ -47,7 +48,7 @@ const Footer = () => {
         </div>
           <div className="list2 list order-1">
           <img
-          src={require("../../images/logo-white.png")}
+          src={logo}
           alt="joba"
           loading="lazy"
           width={100}
@@ -69,7 +70,7 @@ const Footer = () => {
       <img src={require("../../images/Line.png")} alt="line" width="100%" />
       <div className="copyright">
         <img
-          src={require("../../images/logo-white.png")}
+          src={logo}
           alt="joba"
           loading="lazy"
           width={80}
