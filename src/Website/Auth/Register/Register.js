@@ -76,7 +76,7 @@ const Register = () => {
               <span>Facebook</span></Link>
           </div>
           <p className="redirect">
-          Don't have an account? <Link className="link">sign up</Link> 
+          Do you have an account? <Link className="link" to='/login'>sign in</Link> 
           </p>
         </form>
 

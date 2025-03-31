@@ -58,7 +58,7 @@ const Login = () => {
               <span>Facebook</span></Link>
           </div>
           <p className="redirect">
-          Don't have an account? <Link className="link">sign up</Link> 
+          Don't have an account? <Link className="link" to='/register'>sign up</Link> 
           </p>
         </form>
 

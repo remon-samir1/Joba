@@ -1,0 +1,14 @@
+.SideBar{
+  width: 20vw;
+}
+.SideBar .logo img{
+  margin-bottom: 20px;
+
+}
+.SideBar .links{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
+}
