@@ -12,13 +12,33 @@
   width: 95%;
   height: 95%;
   margin: auto;
-  background-image: url("../../../images//register.png");
+  background-image: url("../../../images//login.png");
   background-size: 100% 130%;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 100px;
+  position: relative;
+}
+.Login .main.register{
+  background-image: url('../../../images/register.png');
+}
+.Login .main .logo{
+  width: 25%;
+  background-color: #fff;
+  position: absolute;
+  top: 100%; left: 100%;
+  transform: translate(-100%,-100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.Login .main .logo img{
+  width: 200px;
+  height: 120px;
 }
 .Login .main .content {
   display: flex;
@@ -72,6 +92,9 @@
   gap: 10px;
   width: 100%;
 }
+.Login .main.register .form-box .inputs{
+  margin-top: 20px;
+}
 .Login .main .form-box .input {
   width: 100%;
   position: relative;
@@ -117,6 +140,9 @@
 .Login .main .form-box .options .flex input {
   accent-color: var(--main-color);
 }
+.Login .main .form-box .options span{
+  color: var(--main-color);
+}
 .Login .main .form-box .options .link {
   color: var(--main-color);
   font-size: 0.9rem;
@@ -131,6 +157,10 @@
   margin-top: 20px;
   border-radius: 20px;
   text-decoration: 1px;
+  transition: 0.5s;
+}
+.Login .main .form-box button:hover{
+  box-shadow: 0px 0px 10px var(--main-color);
 }
 .Login .main .form-box .seperator {
   font-size: 0.8rem;

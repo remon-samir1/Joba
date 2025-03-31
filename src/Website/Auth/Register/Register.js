@@ -1,22 +1,28 @@
 import React, { useState } from "react";
-import "./Login.css";
 import logo from "../../../images/register-logo.svg";
 import { Link } from "react-router-dom";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoEyeOffOutline } from "react-icons/io5";
 import google from '../../../images/google.svg'
 import facebook from '../../../images/facebook.svg'
-const Login = () => {
+import Logo from "../../../components/Logo/Logo";
+const Register = () => {
   const [hidePass, setHidePass] = useState(true);
   return (
     <div className="Login">
-      <div className="main">
-        <form className="form-box">
+      <div className="main register">
+        <div className="logo">
+          <Logo/>
+        </div>
+        <form className="form-box" >
           <h2>Welcome back</h2>
           <p>Enter your email and password to login to your account.</p>
           <div className="inputs">
             <div className="input">
-              <input type="text" placeholder="Email Address" />
+              <input type="text" placeholder="User name" />
+            </div>
+            <div className="input">
+              <input type="email" placeholder="Email Address" />
             </div>
             <div className="input">
               <input
@@ -35,15 +41,31 @@ const Login = () => {
                 />
               )}
             </div>
+            <div className="input">
+              <input
+                type={hidePass ? "password" : "text"}
+                placeholder="confirm Password "
+              />
+              {hidePass ? (
+                <IoEyeOffOutline
+                  className="icon"
+                  onClick={() => setHidePass((prev) => !prev)}
+                />
+              ) : (
+                <MdOutlineRemoveRedEye
+                  className="icon"
+                  onClick={() => setHidePass((prev) => !prev)}
+                />
+              )}
+            </div>
           </div>
           <div className="options">
-            <div className="flex">
+            <div className="flex mt-1">
               <input type="checkbox" name="remmember" id="remmember" />
-              <label htmlFor="remmember">Remember me</label>
+              <label htmlFor="remmember">agree <span>terms & condition</span></label>
             </div>
-            <Link className="link">Forget password</Link>
           </div>
-          <button type="submit">Log in</button>
+          <button type="submit">Sign in</button>
           <p className="seperator">- Or log in with -</p>
           <div className="providers">
             <Link className="link">
@@ -62,7 +84,7 @@ const Login = () => {
         <div className="content">
           <img src={logo} alt="juba" loading="lazy" />
           <h2>
-            Welcome to <br />
+          Sign up to <br />
             Juba academy
           </h2>
           <p>
@@ -75,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

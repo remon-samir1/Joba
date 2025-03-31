@@ -14,7 +14,7 @@ import Footer from '../../components/Footer/Footer';
 const Landing = () => {
   return (
     <div>
-      {/* <NavBar/> */}
+      <NavBar/>
       <Hero/>
       <AboutUs/>
       <WhatweOffer/>
