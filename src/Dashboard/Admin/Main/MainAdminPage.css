@@ -1,0 +1,20 @@
+.MainAdminPage {
+}
+.MainAdminPage .line,
+.MainAdminPage .pie {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: 400px;
+}
+.MainAdminPage .pie {
+  width: 30%;
+}
+.MainAdminPage .DateSelectBox{
+  border: 1px solid #DDD;
+  width: max-content;
+padding:2px 5px;
+outline:none;
+border-radius: 5px;
+}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify-icon/react";
 
-export default function DropDown(props) {
+export default function DropDownSideBar(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

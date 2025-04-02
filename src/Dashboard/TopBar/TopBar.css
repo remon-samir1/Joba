@@ -1,0 +1,80 @@
+.TopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 50px 0px;
+}
+.TopBar div:first-child {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+.TopBar div:first-child .icon {
+  color: gray;
+}
+.TopBar div:first-child .icon-container {
+  width: 58px;
+  height: 58px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.TopBar div:first-child .serach {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  height: 58px;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+.TopBar div:first-child .serach input {
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: gray;
+}
+
+.TopBar div:first-child .serach img {
+  width: 30px;
+  height: 30px;
+}
+.TopBar .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.TopBar .user .link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.TopBar .user .link .icon{
+  color: #30313E;
+}
+.TopBar .user .link .icon-container{
+  width: 48px;
+  height: 48px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}

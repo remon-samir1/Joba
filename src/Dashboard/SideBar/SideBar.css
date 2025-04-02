@@ -12,3 +12,7 @@
   flex-direction: column;
   gap: 10px;
 }
+.SideBar .active{
+  background-color: var(--main-color);
+  color: #fff;
+}

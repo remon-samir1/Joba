@@ -1,0 +1,81 @@
+.Recents{
+  flex: 1;
+  border: 1px solid #ddd;
+ height: 330px; 
+ display: flex;
+ flex-direction: column;
+ border-radius: 5px;
+ overflow: hidden;
+}
+.Recents .header{
+  background-color: rgb(241, 90, 36,0.5);
+  height: 30%;
+  padding: 20px;
+  line-height: 30px;
+}
+.Recents .header h3 , .Recents .header p{
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.Recents .body{
+  background-color: #fff;
+flex: 1;
+}
+.Recents .body .item{
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+
+}
+.Recents .body .item h4{
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.Recents .body .item .details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+.Recents .body .item .details span{
+  font-size: 0.8rem;
+  color: var(--second-text-color);
+}
+.Recents .body .item .details span:nth-child(2){
+  border-left: 0.5px solid var(--second-text-color);
+  padding: 0 15px;
+  border-right: 0.5px solid var(--second-text-color);
+}
+.Recents .recents-footer{
+  padding: 10px;
+  transition: 0.3s;
+  text-align: center;
+  background-color: #fff;
+}
+.Recents .recents-footer .link{
+  width: 100%;
+  height: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.Recents .recents-footer .link .icon{
+  color: var(--main-color);
+}
+.Recents .recents-footer:hover{
+  background-color:  rgb(241, 90, 36,0.5)
+}
+.Recents .recents-footer:hover .link{
+  color: var(--text-color);
+}
+.Recents .recents-footer:hover .icon{
+  color: var(--text-color);
+}
