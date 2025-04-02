@@ -19,7 +19,7 @@ const Categories = () => {
       <SelectBox title='By name'/>
       <SelectBox title='Status'/>
       </div>
-      <div className="table my-4 bg-white">
+      <div className="table my-8 bg-white">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
           <h4 className="text-main text-base ">Courses</h4>
           <Link className="flex justify-between gap-2 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500">
