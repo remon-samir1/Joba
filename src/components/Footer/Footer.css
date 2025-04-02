@@ -144,6 +144,7 @@
   }
   .footer .content .list:nth-child(3) {
     width: 100%;
+    order: 1;
   }
 
   .footer .content .list1 p {

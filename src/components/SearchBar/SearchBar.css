@@ -1,0 +1,23 @@
+ .search {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  height: 58px;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+ .search input {
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: gray;
+}
+
+.search img {
+  width: 30px;
+  height: 30px;
+}

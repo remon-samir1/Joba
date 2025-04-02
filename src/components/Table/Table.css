@@ -1,0 +1,25 @@
+.custom-table{
+  text-align: start;
+  width: 100%;
+}
+.custom-table thead{
+  background-color: rgb(241, 90, 36,0.1);
+  text-align: start;
+}
+.custom-table thead th{
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 20px;
+}
+.custom-table tbody td{
+  color: var(--second-text-color);
+  font-size: 0.8rem;
+  padding: 20px;
+}
+.custom-table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+.custom-table tbody tr:last-child{
+  border-bottom: none;
+}

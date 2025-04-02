@@ -1,0 +1,40 @@
+
+.Categories .filters{
+  background-color: #fff;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 25px;
+  margin-top: 15px;
+
+}
+.Categories .search{
+  height: 2.6rem !important;
+  width: 240px;
+
+}
+.Categories .table{
+  background-color: #fff;
+} 
+.Categories .table .link:hover{
+background-color: #fff;
+color: var(--main-color);
+}
+.Categories .DateSelectBox{
+  background-color: #f6f8fc;
+  height: 2.8rem;
+  width: 240px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+}
+.Categories .DateSelectBox select{
+  background-color: transparent !important;
+  flex: 1;
+  color: gray;
+}

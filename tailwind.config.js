@@ -5,7 +5,9 @@ module.exports = {
     extend: {
       colors: {
         main: "var(--main-color)",
-        textColor:"var(--text-color)"
+        textColor:"var(--text-color)",
+      borderColor:"#ddd",
+      inputColor:"#f6f8fc",
       },
     },
   },

@@ -4,6 +4,8 @@ import Login from "./Website/Auth/Login/Login";
 import Register from "./Website/Auth/Register/Register";
 import AdminDashboard from "./Dashboard/Admin/AdminDashboard";
 import MainAdminPage from "./Dashboard/Admin/Main/MainAdminPage";
+import Courses from "./Dashboard/Admin/Courses/Courses";
+import Categories from "./Dashboard/Admin/Categories/Categories";
 function App() {
   return (
     <div className="App">
@@ -14,6 +16,8 @@ function App() {
            {/* Admin Dahboard */}
         <Route path="/admin" element={<AdminDashboard />} >
         <Route path="main" element={<MainAdminPage/> } />
+        <Route path="courses" element={<Courses/> } />
+        <Route path="Categories" element={<Categories/> } />
          
 
         </Route>

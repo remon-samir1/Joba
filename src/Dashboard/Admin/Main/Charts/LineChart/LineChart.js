@@ -9,7 +9,21 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { DateSelectBox } from "../../../../../components/DropDown/DropDownDate";
+import { SelectBox } from "../../../../../components/DropDown/SelectBox";
+const filterData = [
+  {
+    name:'Year',
+    value:"year"
+  },
+  {
+    name:'Month',
+    value:"month"
+  },
+  {
+    name:'Weekly',
+    value:"weekly"
+  },
+]
 const data = [
   { name: "Jan", courses: -0.1, revenue: -0.18, students: -0.05 },
   { name: "Feb", courses: -0.29, revenue: -0.12, students: 0.17 },
@@ -30,7 +44,7 @@ const CustomLineChart = () => {
     <div className="w-full h-full">
     <div className="flex justify-between items-center">
     <p className="text-xl font-semibold text-textColor">Sales in march, 2025</p>
-    <DateSelectBox/>
+    <SelectBox data={filterData}/>
     </div>
     <ResponsiveContainer width="100%" height='95%' >
       <LineChart

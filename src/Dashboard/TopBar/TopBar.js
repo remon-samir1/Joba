@@ -2,6 +2,7 @@ import React from "react";
 import "./TopBar.css";
 import { Icon } from "@iconify-icon/react";
 import { Link } from "react-router-dom";
+import SearchBar from "../../components/SearchBar/SearchBar";
 const TopBar = () => {
   return (
     <div className="TopBar">
@@ -10,14 +11,7 @@ const TopBar = () => {
 
         <Icon icon="grommet-icons:language" width={20} height={20} className="icon" />
         </div>
-        <div className="serach">
-          <img
-            src={require("../../images/Search.png")}
-            alt="search"
-            loading="lazy"
-          />
-          <input type="text" placeholder="Search course here" />
-        </div>
+      <SearchBar placeholder='Search course here'/>
       </div>
       <div className="user">
         <Link to="/" className="link">

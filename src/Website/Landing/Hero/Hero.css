@@ -1,7 +1,7 @@
 .Hero {
   min-height: 100vh;
   overflow: hidden;
-  background-image: url("../../../images//HeroBg.png");
+  /* background-image: url("../../../images//HeroBg.png"); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
@@ -12,7 +12,7 @@
   grid-template-columns: 1fr 1fr;
   place-items: center;
 
-  height: 90%;
+  height: 90vh;
 }
 .Hero .data .content .img {
   display: none;

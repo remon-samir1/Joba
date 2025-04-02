@@ -1,7 +1,21 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { DateSelectBox } from "../../../../../components/DropDown/DropDownDate";
+import { SelectBox } from "../../../../../components/DropDown/SelectBox";
 
+const filterData = [
+  {
+    name:'Year',
+    value:"year"
+  },
+  {
+    name:'Month',
+    value:"month"
+  },
+  {
+    name:'Weekly',
+    value:"weekly"
+  },
+]
 const data = [
   { name: "Total Courses", value: 50 },
   { name: "Total Revenue", value: 15 },
@@ -13,7 +27,8 @@ const CustomPieChart = () => {
   return (
     <>
       <div className="flex justify-end mb-3">
-        <DateSelectBox />
+          <SelectBox data={filterData}/>
+
       </div>
       <div style={{ textAlign: "center" }} width="200px">
         <h3

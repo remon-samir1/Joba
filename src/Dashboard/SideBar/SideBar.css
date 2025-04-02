@@ -1,5 +1,6 @@
 .SideBar{
   width: 20vw;
+
 }
 .SideBar .logo img{
   margin-bottom: 20px;
@@ -15,4 +16,8 @@
 .SideBar .active{
   background-color: var(--main-color);
   color: #fff;
+}
+.SideBar .active.dropLink{
+  background-color: transparent;
+  color: var(--main-color);;
 }

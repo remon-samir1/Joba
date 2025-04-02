@@ -1,0 +1,25 @@
+.breadcrumbs {
+  list-style: none;
+  display: flex;
+  gap: 0px;
+  padding: 10px;
+}
+
+.breadcrumbs li {
+  display: inline;
+}
+
+.breadcrumbs li::before {
+  content: ">>";
+  padding: 0 5px;
+}
+
+.breadcrumbs li:first-child::before {
+  content: "";
+}
+.breadcrumbs li:last-child::after {
+  color: var(--main-color);
+}
+.breadcrumbs .active{
+  color: var(--main-color);
+}
