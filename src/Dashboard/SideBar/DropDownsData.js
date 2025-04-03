@@ -9,17 +9,17 @@ export const mangeContents=[
   },
   {
     name:'Levels',
-    to:'leves'
+    to:'Levels'
   },
   {
     name:'Course Review',
-    to:'courseReview'
+    to:'Course-Review'
   },
 ] 
 export const mangeBlogs=[
   {
     name:'Category list',
-    to:'Category-list'
+    to:'Blogs-Category'
   },
   {
     name:'Post list',

@@ -25,6 +25,7 @@ const Login = () => {
             <div className="input">
               <input
                 type={hidePass ? "password" : "text"}
+                className="appearance-none"
                 placeholder="Password"
               />
               {hidePass ? (

@@ -1,0 +1,66 @@
+.UpdateCategory .form-control{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+.UpdateCategory .form-control label{
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+.UpdateCategory .form-control label:after{
+  content: "*";
+  color: red;
+}
+.UpdateCategory .form-control input{
+width: 100%;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 10px;
+  transition: 0.3s;
+
+}
+.UpdateCategory .form-control .DateSelectBox{
+width: 100%;
+
+}
+.UpdateCategory .form-control .DateSelectBox select{
+  width: 100%;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 10px;
+  transition: 0.3s;
+}
+.UpdateCategory form button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  color: #fff;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: 0.5s;
+  border: 1px solid var(--main-color);
+}
+.UpdateCategory form button:hover{
+ background-color: #fff;
+ color: var(--main-color);
+}
+.UpdateCategory form button:hover .icon{
+  color: var(--main-color);
+}
+.UpdateCategory .form-control input:focus {
+  border-color:var(--main-color) ;
+  box-shadow: 0px 0px 2px var(--main-color);
+}
+.UpdateCategory .form-control .DateSelectBox select:focus{
+  border-color:var(--main-color) ;
+  box-shadow: 0px 0px 2px var(--main-color);
+
+
+}

@@ -6,6 +6,15 @@ import AdminDashboard from "./Dashboard/Admin/AdminDashboard";
 import MainAdminPage from "./Dashboard/Admin/Main/MainAdminPage";
 import Courses from "./Dashboard/Admin/Courses/Courses";
 import Categories from "./Dashboard/Admin/Categories/Categories";
+import UpdateCategory from "./Dashboard/Admin/Categories/UpdateCategory/UpdateCategory";
+import SubCategory from "./Dashboard/Admin/Categories/SubCategory/SubCategory";
+import Levels from "./Dashboard/Admin/Levels/Levels";
+import UpdateLevel from "./Dashboard/Admin/Levels/UpdateLevel/UpdateLevel";
+import AddLevel from "./Dashboard/Admin/Levels/AddLevel/AddLevel";
+import CourseReview from "./Dashboard/Admin/CourseReview/CourseReview";
+import BlogsCategory from "./Dashboard/Admin/BlogsCategory/BlogsCategory";
+import AddBlogsCategory from "./Dashboard/Admin/BlogsCategory/AddBlogsCategory/AddBlogsCategory";
+import UpdateBlogsCategory from "./Dashboard/Admin/BlogsCategory/UpdateBlogsCategory/UpdateBlogsCategory";
 function App() {
   return (
     <div className="App">
@@ -18,6 +27,16 @@ function App() {
         <Route path="main" element={<MainAdminPage/> } />
         <Route path="courses" element={<Courses/> } />
         <Route path="Categories" element={<Categories/> } />
+        <Route path="/admin/Categories/update" element={<UpdateCategory/> } />
+        <Route path="/admin/Categories/sub-category" element={<SubCategory/> } />
+        <Route path="Levels" element={<Levels/> } />
+        <Route path="/admin/Levels/update" element={<UpdateLevel/> } />
+        <Route path="/admin/Levels/Add" element={<AddLevel/> } />
+        <Route path="Course-Review" element={<CourseReview/> } />
+        <Route path="Blogs-Category" element={<BlogsCategory/> } />
+        <Route path="/admin/Blogs-Category/add" element={<AddBlogsCategory/> } />
+        <Route path="/admin/Blogs-Category/update" element={<UpdateBlogsCategory/> } />
+
          
 
         </Route>
