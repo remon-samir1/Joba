@@ -24,7 +24,6 @@ border-radius: 5px;
     width: 100%;
   }
   .MainAdminPage .boxes{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  gap: 8px;
   }
 }
