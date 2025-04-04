@@ -16,7 +16,7 @@ const MainAdminPage = () => {
   return (
     <div className="MainAdminPage ">
       <h3 className="font-bold text-textColor text-xl">Dashboard</h3>
-      <div className="mt-4 flex flex-wrap gap-5 justify-center items-center">
+      <div className="mt-4 flex flex-wrap gap-5 justify-center items-center boxes">
         {MainAdminPageBoxData.map((data, index) => (
           <MainAdminPageBox
             key={index}

@@ -23,4 +23,8 @@ border-radius: 5px;
   .MainAdminPage .pie {
     width: 100%;
   }
+  .MainAdminPage .boxes{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
