@@ -30,7 +30,7 @@ const CustomPieChart = () => {
           <SelectBox data={filterData}/>
 
       </div>
-      <div style={{ textAlign: "center" }} width="200px">
+      <div style={{ textAlign: "center" , display:'grid' , placeItems:'center' }} width="200px">
         <h3
           style={{ color: "#FF5733", fontWeight: "bold", marginBottom: "5px" }}
         >

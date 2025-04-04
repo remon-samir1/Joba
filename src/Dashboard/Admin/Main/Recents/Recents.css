@@ -1,11 +1,12 @@
 .Recents{
-  flex: 1;
+  /* flex: 1; */
   border: 1px solid #ddd;
  height: 330px; 
  display: flex;
  flex-direction: column;
  border-radius: 5px;
  overflow: hidden;
+ width: 340px;
 }
 .Recents .header{
   background-color: rgb(241, 90, 36,0.5);
@@ -78,4 +79,9 @@ flex: 1;
 }
 .Recents .recents-footer:hover .icon{
   color: var(--text-color);
+}
+@media (max-width: 769px) {
+  .Recents{
+    width: 90%;
+  }
 }

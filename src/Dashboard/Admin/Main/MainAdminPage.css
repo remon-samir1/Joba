@@ -18,3 +18,9 @@ padding:2px 5px;
 outline:none;
 border-radius: 5px;
 }
+
+@media (max-width: 769px) {
+  .MainAdminPage .pie {
+    width: 100%;
+  }
+}

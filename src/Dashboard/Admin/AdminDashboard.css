@@ -1,1 +1,6 @@
 .AdminDashboard{}
+@media (max-width:769px) {
+  .AdminDashboard .charts{
+    flex-direction: column;
+  }
+}

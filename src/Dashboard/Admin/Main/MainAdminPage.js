@@ -16,7 +16,7 @@ const MainAdminPage = () => {
   return (
     <div className="MainAdminPage ">
       <h3 className="font-bold text-textColor text-xl">Dashboard</h3>
-      <div className="mt-4 flex flex-wrap gap-5">
+      <div className="mt-4 flex flex-wrap gap-5 justify-center items-center">
         {MainAdminPageBoxData.map((data, index) => (
           <MainAdminPageBox
             key={index}
@@ -26,20 +26,20 @@ const MainAdminPage = () => {
           />
         ))}
       </div>
-      {/* <div className="charts flex mt-8 gap-4 flex-wrap">
+      <div className="charts flex mt-8 gap-4 flex-wrap">
         <div className="line flex-1 h-96">
           <CustomLineChart />
         </div>
-        <div className="pie ">
+        <div className="pie w-full">
           <CustomPieChart />
         </div>
-      </div> */}
+      </div>
 
-      {/* <div className="my-8 flex justify-center items-center gap-3 ">
+      <div className="my-8 flex justify-center flex-wrap items-center gap-3 flex-col md:flex-row">
         <Recents />
         <Recents />
         <Recents />
-      </div> */}
+      </div>
     </div>
   );
 };
