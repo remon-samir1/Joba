@@ -7,19 +7,19 @@
   align-items: start;
   gap: 12px;
   flex-wrap: wrap;
-  /* padding: 25px; */
+  padding: 25px;
   margin-top: 15px;
 
 }
 .Courses .search{
   height: 2.6rem !important;
-  /* width: 240px; */
+  width: 240px;
 
 }
 .Courses .DateSelectBox{
   background-color: #f6f8fc;
   height: 2.8rem;
-  /* width: 240px; */
+  width: 240px;
   border: 1px solid #ddd;
   border-radius: 5px;
   display: flex;
@@ -45,5 +45,15 @@ color: var(--main-color);
   grid-template-columns: 1fr 1fr;
   padding: 0;
   background-color: transparent;
+  }
+  .Courses .search{
+  width: 40vw;
+
+  
+  }
+  .Courses .DateSelectBox{
+  
+    width: 40vw;
+  
   }
 }

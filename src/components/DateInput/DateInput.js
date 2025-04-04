@@ -6,7 +6,7 @@ const DateInput = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
-    <div className="relative w-60 h-12">
+    <div className="relative md:w-60 h-12 w-[40vw]">
   
       <DatePicker
         selected={selectedDate}
