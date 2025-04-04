@@ -1,5 +1,7 @@
 .SideBar{
   width: 20vw;
+  background-color: var(--bg-color);
+  z-index: 999;
 
 }
 .SideBar .logo img{
@@ -20,4 +22,17 @@
 .SideBar .active.dropLink{
   background-color: transparent;
   color: var(--main-color);;
+}
+
+
+@media (max-width:769px) {
+  .SideBar{
+    /* background-color: red; */
+    width: max-content;
+    height: max-content;
+    position: fixed;
+  z-index: 999;
+  overflow-y: scroll;
+
+  }
 }

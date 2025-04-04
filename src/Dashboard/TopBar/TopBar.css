@@ -5,6 +5,9 @@
   height: 70px;
   padding: 50px 0px;
 }
+.parant-topbar .header{
+  display: none;
+}
 .TopBar div:first-child {
   display: flex;
   justify-content: start;
@@ -77,4 +80,51 @@
   align-items: center;
   cursor: pointer;
   border-radius: 50%;
+}
+
+@media (max-width:768px) {
+  .parant-topbar .header{
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .parant-topbar .header p{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .parant-topbar .TopBar div:first-child{
+   flex-direction: row-reverse;
+  }
+  .parant-topbar .TopBar{
+    justify-content: center;
+    width: 100%;
+  gap: 10px;
+  }
+  .parant-topbar .TopBar .user .link:last-child{
+display: none;
+  }
+  .parant-topbar .TopBar .user .link:first-child span{
+display: none;
+  }
+  .parant-topbar .TopBar .user .link:first-child {
+    width: 58px;
+    height: 58px;
+    background-color: #f6f8fc;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .parant-topbar .TopBar .user .link:first-child .icon{
+    color: gray;
+  }
+  .TopBar div:first-child .serach{
+    flex: 1 !important;
+  }
 }

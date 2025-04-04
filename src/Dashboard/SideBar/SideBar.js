@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SideBar.css";
 import Logo from "../../components/Logo/Logo";
 import { NavLink } from "react-router-dom";
@@ -10,10 +10,19 @@ import {
   mangeUsers,
 } from "./DropDownsData";
 import DropDownSideBar from "../../components/DropDown/DropDownSideBar";
+import { Menu } from "../../Context/MenuContext";
+import { WindowSize } from "../../Context/WindowSizeContext";
 
 const SideBar = () => {
+  const menu = useContext(Menu)
+  const isOpen = menu.isOpen
+  const windowSize = useContext(WindowSize)
+  const windowWidth = windowSize.windowSize
+  console.log();
   return (
-    <div className="SideBar py-5 px-7">
+    <div className="SideBar py-5 px-7" style={{
+      left: windowWidth < '769' && isOpen ? '0' : '-100%'
+    }}>
       <div className="logo">
         <Logo />
         <div className="links">
