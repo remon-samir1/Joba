@@ -2,6 +2,7 @@
   width: 20vw;
   background-color: var(--bg-color);
   z-index: 999;
+  transition: 0.7s;
 
 }
 .SideBar .logo img{
