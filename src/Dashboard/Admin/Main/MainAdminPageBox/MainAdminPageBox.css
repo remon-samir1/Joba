@@ -23,6 +23,6 @@ font-size: 1rem;
 }
 @media (max-width:768px) {
   .MainAdminPageBox{
-    width: 14rem;
+    width: 13.5rem;
   }
 }

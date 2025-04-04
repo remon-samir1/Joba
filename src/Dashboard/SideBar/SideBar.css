@@ -28,9 +28,7 @@
 
 @media (max-width:769px) {
   .SideBar{
-    /* background-color: red; */
     width: max-content;
-    height: max-content;
     position: fixed;
   z-index: 999;
   overflow-y: scroll;
