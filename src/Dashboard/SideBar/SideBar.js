@@ -21,22 +21,6 @@ const SideBar = () => {
   const windowWidth = windowSize.windowSize;
   const sideBarRef = useRef(null); 
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (windowWidth < 769 && isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, windowWidth]);
-
   return (
     <div
       ref={sideBarRef}

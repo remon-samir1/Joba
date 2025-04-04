@@ -100,7 +100,7 @@
    flex-direction: row-reverse;
   }
   .parant-topbar .TopBar{
-    justify-content: center;
+    justify-content: start;
     width: 100%;
   gap: 10px;
   }
