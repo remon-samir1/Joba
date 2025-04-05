@@ -41,7 +41,7 @@ const data = [
 
 const CustomLineChart = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-[26rem] md:h-full">
     <div className="flex justify-between items-center">
     <p className="text-xl font-semibold text-textColor">Sales in march, 2025</p>
     <SelectBox data={filterData}/>

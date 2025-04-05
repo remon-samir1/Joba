@@ -26,4 +26,7 @@ border-radius: 5px;
   .MainAdminPage .boxes{
   gap: 8px;
   }
+  .MainAdminPage .line-container{
+    height: 500px;
+  }
 }

@@ -26,8 +26,8 @@ const MainAdminPage = () => {
           />
         ))}
       </div>
-      <div className="charts flex mt-8 gap-4 flex-wrap">
-        <div className="line flex-1 h-96">
+      <div className="charts flex mt-8 gap-4 flex-wrap h-max">
+        <div className="line flex-1" >
           <CustomLineChart />
         </div>
         <div className="pie w-full">
