@@ -42,7 +42,7 @@ const data = [
 const CustomLineChart = () => {
   return (
     <div className="w-full h-[26rem] md:h-full">
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center px-5">
     <p className="text-xl font-semibold text-textColor">Sales in march, 2025</p>
     <SelectBox data={filterData}/>
     </div>
@@ -50,7 +50,7 @@ const CustomLineChart = () => {
       <LineChart
       
         data={data}
-        margin={{ top: 20, right: 0, left: 0, bottom: 0 }}
+        margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
       >
         <CartesianGrid strokeWidth={1} stroke="#F1F1F1" />
         <XAxis dataKey="name" tick={{ fill: "#333" }} />

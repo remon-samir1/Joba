@@ -3,13 +3,14 @@
 .MainAdminPage .line,
 .MainAdminPage .pie {
   background-color: #fff;
-  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   height: 400px;
+  padding: 20px;
 }
 .MainAdminPage .pie {
   width: 30%;
+
 }
 .MainAdminPage .DateSelectBox{
   border: 1px solid #DDD;
@@ -28,5 +29,8 @@ border-radius: 5px;
   }
   .MainAdminPage .line-container{
     height: 500px;
+  }
+  .MainAdminPage .line{
+    padding: 15px 0;
   }
 }
