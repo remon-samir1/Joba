@@ -1,46 +1,26 @@
 import React, { useRef, useState } from "react";
-import "./UpdateCategory.css";
 import Breadcrumbs from "../../../../components/Breadcrumbs/Breadcrumbs";
 import { Link, useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { SelectBox } from "../../../../components/DropDown/SelectBox";
 import { LuSave } from "react-icons/lu";
 import { Icon } from "@iconify-icon/react";
+import ToggleButton from "../../../../components/ToggleButton/ToggleButton";
 
-const UpdateCategory = () => {
+const UpdatePost = () => {
   const click = useRef(null);
   const navigate = useNavigate();
-  const showAtTraedingData = [
-    {
-      name: "Yes",
-      value: "Yes",
-    },
-    {
-      name: "No",
-      value: "No",
-    },
-  ];
-  const statusData = [
-    {
-      name: "Active",
-      value: "active",
-    },
-    {
-      name: "Inactive",
-      value: "Inactive",
-    },
-  ];
 
   const [image, setImage] = useState();
   return (
     <div className="UpdateCategory">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-textColor text-xl"> Category Update</h3>
+        <h3 className="font-bold text-textColor text-xl"> Add Post</h3>
         <Breadcrumbs />
       </div>
       <div className="bg-white my-8">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
-          <h4 className="text-main text-base ">Courses</h4>
+          <h4 className="text-main text-base ">Add Post</h4>
           <button
             onClick={() => navigate(-1)}
             className="flex justify-between gap-1 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500 hover:bg-white hover:text-main"
@@ -80,22 +60,26 @@ const UpdateCategory = () => {
             </div>
           </div>
           <div className="form-control">
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" placeholder="Name" />
+            <label htmlFor="Titel">Titel</label>
+            <input type="text" id="Titel" />
           </div>
           <div className="form-control">
-            <label htmlFor="Slug">Slug</label>
-            <input type="text" id="Slug" placeholder="Slug" />
+            <label htmlFor="Category">Category</label>
+            <input type="text" id="Category" />
           </div>
-          <div className="form-control">
-            <label htmlFor="name">Show at trading</label>
-            <SelectBox data={showAtTraedingData} />
+          <div className="form-control ">
+            <label htmlFor="Describtion">Describtion</label>
+            <textarea type="text" id="Describtion" className="h-36" />
           </div>
-          <div className="form-control">
-            <label htmlFor="name">Status</label>
-            <SelectBox data={statusData} />
-          </div>
-          <button type="submit">
+
+      
+         <div className="toggels mt-4 grid gap-4">
+          <ToggleButton title='Show on homepage'/>
+          <ToggleButton title='Msrk as populer'/>
+          <ToggleButton title='Status'/>
+          
+         </div>
+         <button type="submit">
             <LuSave width={24} height={24} className=" text-white icon" />
             <span>Save</span>{" "}
           </button>
@@ -105,4 +89,4 @@ const UpdateCategory = () => {
   );
 };
 
-export default UpdateCategory;
+export default UpdatePost;

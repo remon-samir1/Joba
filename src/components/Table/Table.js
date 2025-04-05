@@ -6,7 +6,7 @@ const Table = (props) => {
   return (
 
     <table className="custom-table">
-      <thead>
+      <thead style={{backgroundColor:props.gray && '#EEEEEE'}}>
         <tr>
           <th>SN</th>
           <th>type</th>

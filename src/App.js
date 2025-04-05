@@ -15,6 +15,10 @@ import CourseReview from "./Dashboard/Admin/CourseReview/CourseReview";
 import BlogsCategory from "./Dashboard/Admin/BlogsCategory/BlogsCategory";
 import AddBlogsCategory from "./Dashboard/Admin/BlogsCategory/AddBlogsCategory/AddBlogsCategory";
 import UpdateBlogsCategory from "./Dashboard/Admin/BlogsCategory/UpdateBlogsCategory/UpdateBlogsCategory";
+import PostList from "./Dashboard/Admin/PostList/PostList";
+import AddPost from "./Dashboard/Admin/PostList/AddPost/AddPost";
+import UpdatePost from "./Dashboard/Admin/PostList/UpdatePost/UpdatePost";
+import PostComments from "./Dashboard/Admin/PostComments/PostComments";
 function App() {
   return (
     <div className="App">
@@ -36,7 +40,10 @@ function App() {
         <Route path="Blogs-Category" element={<BlogsCategory/> } />
         <Route path="/admin/Blogs-Category/add" element={<AddBlogsCategory/> } />
         <Route path="/admin/Blogs-Category/update" element={<UpdateBlogsCategory/> } />
-
+         <Route path="post-list" element={<PostList/>} />
+         <Route path="/admin/post-list/add" element={<AddPost/>} />
+         <Route path="/admin/post-list/update" element={<UpdatePost/>} />
+         <Route path="Post-comments" element={<PostComments/>} />
          
 
         </Route>
