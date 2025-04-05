@@ -38,3 +38,21 @@ color: var(--main-color);
   flex: 1;
   color: gray;
 }
+@media (max-width:769px) {
+  .Categories .filters{
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+  background-color: transparent;
+  }
+  .Categories .search{
+  width: 40vw;
+
+  
+  }
+  .Categories .DateSelectBox{
+  
+    width: 40vw;
+  
+  }
+}

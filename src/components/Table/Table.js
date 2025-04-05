@@ -4,6 +4,7 @@ import { Icon } from "@iconify-icon/react";
 import { Link } from "react-router-dom";
 const Table = (props) => {
   return (
+
     <table className="custom-table">
       <thead>
         <tr>
@@ -47,8 +48,8 @@ const Table = (props) => {
               </Link>}
               {props.sub && (
                 <Link
-                  to="sub-Category"
-                  className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
+                to="sub-Category"
+                className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
                 >
                   <Icon
                     icon="carbon:category"
@@ -121,7 +122,7 @@ const Table = (props) => {
               )}
               {props.view && (
                 <Link
-                  to="sub-Category"
+                to="sub-Category"
                   className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
                 >
                   <Icon
@@ -145,6 +146,7 @@ const Table = (props) => {
         </tr>
       </tbody>
     </table>
+              
   );
 };
 

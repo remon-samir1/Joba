@@ -26,7 +26,10 @@ const BlogsCategory = () => {
           <span>add new</span>
           </Link>
         </div>
+    <div className="overflow-x-auto w-[90vw] md:w-full">
+
         <Table action trash update/>
+        </div>
       </div>
     </div>
   );

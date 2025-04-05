@@ -27,7 +27,10 @@ const Categories = () => {
           <span>add new</span>
           </Link>
         </div>
+    <div className="overflow-x-auto w-[90vw] md:w-full">
+
         <Table action sub update trash/>
+        </div>
       </div>
     </div>
   );
