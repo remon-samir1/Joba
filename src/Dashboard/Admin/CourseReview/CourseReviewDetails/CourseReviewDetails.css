@@ -1,0 +1,63 @@
+.CourseReviewDetails {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  padding: 10px 20px;
+  gap: 100px;
+  color: #999999;
+}
+.CourseReviewDetails .titles {
+  margin-bottom: 20px;
+}
+.CourseReviewDetails .details,
+.CourseReviewDetails .titles {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
+  gap: 35px;
+}
+.CourseReviewDetails .titles p {
+  font-weight: 600;
+}
+
+.CourseReviewDetails .DateSelectBox {
+  background-color: #f6f8fc;
+  height: 2.8rem;
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+}
+.CourseReviewDetails .DateSelectBox select {
+  background-color: transparent !important;
+  flex: 1;
+  color: gray;
+}
+.CourseReviewDetails button {
+  padding: 8px 20px;
+  color: #fff;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  transition: 0.5s;
+  border: 1px solid var(--main-color);
+}
+.CourseReviewDetails button:hover {
+  background-color: #fff;
+  color: var(--main-color);
+}
+.CourseReviewDetails .icon {
+
+  color: #F2A124;
+  width: max-content;
+  font-size: 1.9rem;
+}
+
+@media (max-width: 769px) {
+  .CourseReviewDetails {
+    gap: 50px;
+  }
+}

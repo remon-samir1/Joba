@@ -64,7 +64,17 @@ export const mangeUsers=[
   },
   {
     name:'Send bulk mail',
-    to:'Sned-bulk-mail'
+    to:'Send-bulk-mail'
   },
 
+]
+export const withdraw = [
+  {
+    name:'Withdraw Method',
+    to:'withdraw-method'
+  },
+  {
+    name:'Withdraw Request',
+    to:'withdraw-request'
+  }
 ]

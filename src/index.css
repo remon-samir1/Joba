@@ -8,12 +8,16 @@
   --text-color :#30313E;
   --second-text-color :#656565;
   --main-color:#F15A24;
+  --btn-color:#02308E;
 }
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family:"Cairo", sans-serif;
+}
+.rounded-circle{
+  border-radius: 50%;
 }
 body{
   background-color: var(--bg-color);

@@ -8,6 +8,7 @@ module.exports = {
         textColor:"var(--text-color)",
       borderColor:"#ddd",
       inputColor:"#f6f8fc",
+      btnColor:"#02308E",
       },
     },
   },

@@ -11,26 +11,19 @@ const Table = (props) => {
           <th>SN</th>
           <th>type</th>
           <th>title</th>
-          <th>instractor</th>
-          <th>price</th>
-          <th>students</th>
-          <th>created date</th>
+        
           <th>update date</th>
-          <th>status</th>
+      
           <th>Approve</th>
           {props.action && <th>Actions</th>}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="bg-white">
         <tr>
           <td>1</td>
           <td>Deutsh</td>
           <td>how to make your own bussines frfom zero</td>
-          <td>dale bumbach</td>
-          <td>Free</td>
-          <td>30</td>
-          <td>04 Feb 2025 17:26</td>
-          <td>04 Feb 2025 17:26</td>
+        
           <td>Puplished</td>
           <td>appeoved</td>
           {props.action && (
@@ -61,7 +54,7 @@ const Table = (props) => {
               )}
               {props.view && (
                 <Link
-                  to="sub-Category"
+                  to="view"
                   className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
                 >
                   <Icon
@@ -88,11 +81,6 @@ const Table = (props) => {
           <td>Deutsh</td>
           <td>how to make your own bussines frfom zero</td>
           <td>dale bumbach</td>
-          <td>Free</td>
-          <td>30</td>
-          <td>04 Feb 2025 17:26</td>
-          <td>04 Feb 2025 17:26</td>
-          <td>Puplished</td>
           <td>appeoved</td>
           {props.action && (
             <td className="flex justify-center items-center gap-3">
@@ -122,7 +110,7 @@ const Table = (props) => {
               )}
               {props.view && (
                 <Link
-                to="sub-Category"
+                to="view"
                   className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
                 >
                   <Icon

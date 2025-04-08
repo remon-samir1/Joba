@@ -19,6 +19,22 @@ import PostList from "./Dashboard/Admin/PostList/PostList";
 import AddPost from "./Dashboard/Admin/PostList/AddPost/AddPost";
 import UpdatePost from "./Dashboard/Admin/PostList/UpdatePost/UpdatePost";
 import PostComments from "./Dashboard/Admin/PostComments/PostComments";
+import CourseReviewDetails from "./Dashboard/Admin/CourseReview/CourseReviewDetails/CourseReviewDetails";
+import OrderHistory from "./Dashboard/Admin/OrderHistory/OrderHistory";
+import OrderDetails from "./Dashboard/Admin/OrderHistory/OrderDetails/OrderDetails";
+import PendingPayment from "./Dashboard/Admin/PandingPayment/PandingPayment";
+import AllStudents from "./Dashboard/Admin/AllStudents/AllStudents";
+import StudentsDetails from "./Dashboard/Admin/AllStudents/StudentsDetails/StudentsDetails";
+import Instructors from "./Dashboard/Admin/Instructors/Instructors";
+import InstructorsDetails from "./Dashboard/Admin/Instructors/InstructorsDetails/InstructorsDetails";
+import ActiveUsers from "./Dashboard/Admin/ActiveUsers/ActiveUsers";
+import NonVerifiedUsers from "./Dashboard/Admin/NonVerifiedUsers/NonVerifiedUsers";
+import BannedUsers from "./Dashboard/Admin/BannedUsers/BannedUsers";
+import SendbulkMail from "./Dashboard/Admin/SendbulkMail/SendbulkMail";
+import WithdrawMethod from "./Dashboard/Admin/WithdrawMethod/WithdrawMethod";
+import UpdateWithdrawMethod from "./Dashboard/Admin/WithdrawMethod/UpdateWithdrawMethod/UpdateWithdrawMethod";
+import AddWithdrawMethod from "./Dashboard/Admin/WithdrawMethod/AddWithdrawMethod/AddWithdrawMethod";
+import WidthdrawRequest from "./Dashboard/Admin/WidthdrawRequest/WidthdrawRequest";
 function App() {
   return (
     <div className="App">
@@ -37,6 +53,7 @@ function App() {
         <Route path="/admin/Levels/update" element={<UpdateLevel/> } />
         <Route path="/admin/Levels/Add" element={<AddLevel/> } />
         <Route path="Course-Review" element={<CourseReview/> } />
+        <Route path="/admin/Course-Review/view" element={<CourseReviewDetails/>} />
         <Route path="Blogs-Category" element={<BlogsCategory/> } />
         <Route path="/admin/Blogs-Category/add" element={<AddBlogsCategory/> } />
         <Route path="/admin/Blogs-Category/update" element={<UpdateBlogsCategory/> } />
@@ -44,6 +61,21 @@ function App() {
          <Route path="/admin/post-list/add" element={<AddPost/>} />
          <Route path="/admin/post-list/update" element={<UpdatePost/>} />
          <Route path="Post-comments" element={<PostComments/>} />
+         <Route path="order-history" element={<OrderHistory/>} />
+         <Route path="/admin/order-history/view" element={<OrderDetails/>} />
+         <Route path="Pending-payment" element={<PendingPayment/>} />
+         <Route path="All-Students" element={<AllStudents/>} />
+         <Route path="/admin/All-Students/view" element={<StudentsDetails/>} />
+         <Route path="Instructors" element={<Instructors/>} />
+         <Route path="/admin/Instructors/view" element={<InstructorsDetails/>} />
+         <Route path="Active-users" element={<ActiveUsers/>} />
+         <Route path="Non-verified" element={<NonVerifiedUsers/>} />
+         <Route path="Banned-users" element={<BannedUsers/>} />
+         <Route path="Send-bulk-mail" element={<SendbulkMail/>} />
+         <Route path="withdraw-method" element={<WithdrawMethod/>} />
+         <Route path="/admin/withdraw-method/update" element={<UpdateWithdrawMethod/>} />
+         <Route path="/admin/withdraw-method/add" element={<AddWithdrawMethod/>} />
+         <Route path="withdraw-request" element={<WidthdrawRequest/>} />
          
 
         </Route>

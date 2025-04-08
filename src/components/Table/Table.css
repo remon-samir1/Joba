@@ -24,3 +24,6 @@
 .custom-table tbody tr:last-child{
   border-bottom: none;
 }
+.table{
+  width: 100%;
+}

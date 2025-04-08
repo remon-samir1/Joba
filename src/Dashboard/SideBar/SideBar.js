@@ -8,6 +8,7 @@ import {
   mangeContents,
   mangeOrders,
   mangeUsers,
+  withdraw,
 } from "./DropDownsData";
 import DropDownSideBar from "../../components/DropDown/DropDownSideBar";
 import { Menu } from "../../Context/MenuContext";
@@ -16,10 +17,10 @@ import { WindowSize } from "../../Context/WindowSizeContext";
 const SideBar = () => {
   const menu = useContext(Menu);
   const isOpen = menu.isOpen;
-  const setIsOpen = menu.setIsOpen; 
+  const setIsOpen = menu.setIsOpen;
   const windowSize = useContext(WindowSize);
   const windowWidth = windowSize.windowSize;
-  const sideBarRef = useRef(null); 
+  const sideBarRef = useRef(null);
 
   return (
     <div
@@ -70,15 +71,11 @@ const SideBar = () => {
             <Icon icon="ph:certificate-light" width="24" height="24" />
             <span>Certificate builder</span>
           </NavLink>
-
-          <NavLink
-            to="/"
-            className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
-            onClick={() => setIsOpen(false)}
-          >
-            <Icon icon="ph:hand-withdraw" width="24" height="24" />
-            <span>Withdraw Method</span>
-          </NavLink>
+          <DropDownSideBar
+            data={withdraw}
+            icon="ph:hand-withdraw"
+            title="Withdraw Method"
+          />
 
           <p className="text-gray-400 mt-12">system</p>
 

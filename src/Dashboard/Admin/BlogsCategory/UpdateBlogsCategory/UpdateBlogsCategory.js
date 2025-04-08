@@ -25,12 +25,12 @@ const UpdateBlogsCategory = () => {
   return (
     <div className="UpdateCategory">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-textColor text-xl">Add Category </h3>
+        <h3 className="font-bold text-textColor text-xl">Update Category </h3>
         <Breadcrumbs />
       </div>
       <div className="bg-white my-8">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
-          <h4 className="text-main text-base ">Add Category </h4>
+          <h4 className="text-main text-base ">Update Category </h4>
           <button
             onClick={() => navigate(-1)}
             className="flex justify-between gap-1 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500 hover:bg-white hover:text-main"
