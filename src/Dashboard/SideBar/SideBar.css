@@ -3,7 +3,11 @@
   background-color: var(--bg-color);
   z-index: 999;
   transition: 0.5s ease-out;
+  max-height: 100vh;
+  overflow-y: scroll;
+  transition: scrollbar-width 0.5s ease-out;
 
+  scrollbar-width: none;
 }
 .SideBar .logo img{
   margin-bottom: 20px;
@@ -34,4 +38,34 @@
   overflow-y: scroll;
   height: 100vh;
   }
+}
+
+
+::-webkit-scrollbar{
+  width: 5px;
+  height: 2px;
+  transition: 0.5s;
+ }
+ ::-webkit-scrollbar-track{
+  background: transparent;
+  border-radius: 6px;
+ }
+ ::-webkit-scrollbar-thumb{
+  background:rgba(109, 106, 106, 0.561);
+  border-radius: 6px;
+ }
+
+
+
+.SideBar::-webkit-scrollbar {
+  width: 0 ;
+  transition: width 0.5s ease-out;
+}
+
+.SideBar:hover {
+  scrollbar-width: thin; 
+}
+
+.SideBar:hover::-webkit-scrollbar {
+  width: 5px;
 }

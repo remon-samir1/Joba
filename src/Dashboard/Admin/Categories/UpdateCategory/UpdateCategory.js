@@ -40,7 +40,7 @@ const UpdateCategory = () => {
       </div>
       <div className="bg-white my-8">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
-          <h4 className="text-main text-base ">Courses</h4>
+          <h4 className="text-main text-base ">Category Update</h4>
           <button
             onClick={() => navigate(-1)}
             className="flex justify-between gap-1 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500 hover:bg-white hover:text-main"

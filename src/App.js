@@ -35,6 +35,9 @@ import WithdrawMethod from "./Dashboard/Admin/WithdrawMethod/WithdrawMethod";
 import UpdateWithdrawMethod from "./Dashboard/Admin/WithdrawMethod/UpdateWithdrawMethod/UpdateWithdrawMethod";
 import AddWithdrawMethod from "./Dashboard/Admin/WithdrawMethod/AddWithdrawMethod/AddWithdrawMethod";
 import WidthdrawRequest from "./Dashboard/Admin/WidthdrawRequest/WidthdrawRequest";
+import CertificateBuilder from "./Dashboard/Admin/CertificateBuilder/CertificateBuilder";
+import Profile from "./Dashboard/Admin/Profile/Profile";
+import Setting from "./Dashboard/Admin/Setting/Setting";
 function App() {
   return (
     <div className="App">
@@ -76,6 +79,9 @@ function App() {
          <Route path="/admin/withdraw-method/update" element={<UpdateWithdrawMethod/>} />
          <Route path="/admin/withdraw-method/add" element={<AddWithdrawMethod/>} />
          <Route path="withdraw-request" element={<WidthdrawRequest/>} />
+         <Route path="certificate-builder" element={<CertificateBuilder/>} />
+         <Route path="profile" element={<Profile/>} />
+         <Route path="setting" element={<Setting/>} />
          
 
         </Route>
