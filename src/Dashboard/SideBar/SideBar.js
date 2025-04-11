@@ -25,10 +25,9 @@ const SideBar = () => {
   return (
     <div
       ref={sideBarRef}
-      className="SideBar py-5 px-7"
-      style={{
-        left: windowWidth < 769 && isOpen ? "0" : "-100%",
-      }}
+      className={`SideBar py-5 px-7 ${windowWidth < 769 && isOpen ? "left-0" : "-left-full"}`}
+
+    
     >
       <div className="logo">
         <Logo />

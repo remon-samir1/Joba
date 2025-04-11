@@ -52,7 +52,7 @@ const NavBar = () => {
         )}
       </div>
       <div className="btns" ref={btnsRef}>
-        <Link to='admin/main' className="link">Sign In</Link>
+        <Link to='login' className="link">Sign In</Link>
         <Link to='register' className="link">Sign Up</Link>
       </div>
     </div>
