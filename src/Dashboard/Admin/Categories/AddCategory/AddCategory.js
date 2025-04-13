@@ -1,30 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Breadcrumbs from "../../../../components/Breadcrumbs/Breadcrumbs";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { SelectBox } from "../../../../components/DropDown/SelectBox";
 import { LuSave } from "react-icons/lu";
 import { Icon } from "@iconify-icon/react";
-import { Axios, baseUrl } from "../../../../components/Helpers/Axios";
+import { Axios } from "../../../../components/Helpers/Axios";
 import Notifcation from "../../../../components/Notification";
 import { toast } from "react-toastify";
-import './UpdateCategory.css'
-const UpdateCategory = () => {
+import Loading from "../../../../components/Loading/Loading";
+
+const AddCategory = () => {
   const [laoding , setLoading] = useState(false)
   const [form, setForm] = useState({
-    method_ : 'PUT',
     icon: null,
     name: "",
     slug: "",
-    show_at_trending: 0 ,
+    showAtTraeding:0 ,
     status: 0,
-    code:'en'
   });
   const [imageReq, setImageReq] = useState(false);
+  console.log(form);
   const click = useRef(null);
   const navigate = useNavigate();
-  const {id} = useParams();
-  console.log(form);
   const showAtTraedingData = [
     {
       name: "No",
@@ -45,21 +43,13 @@ const UpdateCategory = () => {
       value: true,
     },
   ];
-
-  useEffect(()=>{
-    Axios.get(`admin/course-category/${id}`).then((data)=>{
-    setForm(data.data.data.category);
-    console.log(data.data.data.category);
-    })
-  },[])
   //    Form Data
   const formData = new FormData();
   formData.append("name", form.name);
   formData.append("icon", form.icon);
   formData.append("slug", form.slug);
-  formData.append("show_at_trending", form.show_at_trending);
+  formData.append("show_at_trending", form.showAtTraeding);
   formData.append("status", form.status);
-  formData.append("code", form.code);
 
   console.log(formData);
   //        Send Data
@@ -69,11 +59,10 @@ const UpdateCategory = () => {
 try{
 
   if (form.icon) {
-    const res = await Axios.put(`/admin/course-category/${id}`, formData).then(
+    const res = await Axios.post("/admin/course-category", formData).then(
       (data) => {
           setLoading(false)
-          console.log(data);
-        toast.success('Upadated successfly')
+        toast.success('Added successfly')
         setTimeout(() => {
           
           navigate('/admin/Categories')
@@ -83,14 +72,10 @@ try{
       );
     } else {
       toast.error("Icon is required");
-      setLoading(false)
-
+      
     }
   }catch(err){
     toast.error("some thing wrong");
-    console.log(err);
-    setLoading(false)
-
      
   }
   };
@@ -100,12 +85,12 @@ try{
   
       <div className="UpdateCategory">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-textColor text-xl">Update Category</h3>
+          <h3 className="font-bold text-textColor text-xl">Add Category</h3>
           <Breadcrumbs />
         </div>
         <div className="bg-white my-8">
           <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
-            <h4 className="text-main text-base ">Update Category</h4>
+            <h4 className="text-main text-base ">Add Category</h4>
             <button
               onClick={() => navigate(-1)}
               className="flex justify-between gap-1 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500 hover:bg-white hover:text-main"
@@ -133,7 +118,7 @@ try{
               >
                 {form.icon && (
                   <img
-                    src={typeof form.icon  === 'string'? `${baseUrl}/${form.icon}` :URL.createObjectURL(form.icon)}
+                    src={URL.createObjectURL(form.icon)}
                     width={140}
                     height={120}
                     alt=""
@@ -152,7 +137,6 @@ try{
               <input
                 type="text"
                 id="name"
-                value={form.name}
                 placeholder="Name"
                 required
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -163,8 +147,6 @@ try{
               <input
                 type="text"
                 id="Slug"
-                value={form.slug}
-
                 placeholder="Slug"
                 required
                 onChange={(e) => setForm({ ...form, slug: e.target.value })}
@@ -175,9 +157,9 @@ try{
               <SelectBox
                 data={showAtTraedingData}
                 onChange={(e) =>
-                  setForm({ ...form, show_at_trending: e.target.value === 'true' ? 1 : 0})
+                  setForm({ ...form, showAtTraeding: e.target.value === 'true' ? 1 : 0})
                 }
-                value={form.show_at_trending == 1 ? 'true' : 'false'}
+                value={form.showAtTraeding}
               />
             </div>
             <div className="form-control">
@@ -185,7 +167,7 @@ try{
               <SelectBox
                 data={statusData}
                 onChange={(e) => setForm({ ...form, status: e.target.value === 'true' ? 1 : 0})}
-                value={form.status == 1 ? 'true' : 'false'}
+                value={form.status}
               />
             </div>
             <button type="submit">
@@ -203,4 +185,4 @@ try{
   );
 };
 
-export default UpdateCategory;
+export default AddCategory;

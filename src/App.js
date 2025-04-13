@@ -38,9 +38,12 @@ import WidthdrawRequest from "./Dashboard/Admin/WidthdrawRequest/WidthdrawReques
 import CertificateBuilder from "./Dashboard/Admin/CertificateBuilder/CertificateBuilder";
 import Profile from "./Dashboard/Admin/Profile/Profile";
 import Setting from "./Dashboard/Admin/Setting/Setting";
+import AddCategory from "./Dashboard/Admin/Categories/AddCategory/AddCategory";
+import AddCourse from "./Dashboard/Admin/Courses/AddCourse/AddCourse";
 function App() {
   return (
     <div className="App">
+      
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
@@ -49,8 +52,10 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} >
         <Route path="main" element={<MainAdminPage/> } />
         <Route path="courses" element={<Courses/> } />
+        <Route path="/admin/courses/add" element={<AddCourse/> } />
         <Route path="Categories" element={<Categories/> } />
-        <Route path="/admin/Categories/update" element={<UpdateCategory/> } />
+        <Route path="/admin/Categories/update/:id" element={<UpdateCategory/> } />
+        <Route path="/admin/Categories/add" element={<AddCategory/> } />
         <Route path="/admin/Categories/sub-category" element={<SubCategory/> } />
         <Route path="Levels" element={<Levels/> } />
         <Route path="/admin/Levels/update" element={<UpdateLevel/> } />
