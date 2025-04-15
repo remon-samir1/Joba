@@ -10,20 +10,22 @@ import Notifcation from "../../../../components/Notification";
 import { toast } from "react-toastify";
 import './UpdateCategory.css'
 const UpdateCategory = () => {
+  const [disabled , setDisabled] = useState(false)
   const [laoding , setLoading] = useState(false)
   const [form, setForm] = useState({
-    method_ : 'PUT',
+    _method: 'POST',
     icon: null,
     name: "",
     slug: "",
     show_at_trending: 0 ,
     status: 0,
-    code:'en'
+    code:'EN'
   });
   const [imageReq, setImageReq] = useState(false);
   const click = useRef(null);
   const navigate = useNavigate();
   const {id} = useParams();
+  
   console.log(form);
   const showAtTraedingData = [
     {
@@ -47,49 +49,58 @@ const UpdateCategory = () => {
   ];
 
   useEffect(()=>{
+    setDisabled(true)
     Axios.get(`admin/course-category/${id}`).then((data)=>{
     setForm(data.data.data.category);
+     setDisabled(false)
     console.log(data.data.data.category);
     })
   },[])
   //    Form Data
+  
+
+  // console.log(formData);
+  //        Send Data
+  const handleSubmit = async (e) => {
+    
   const formData = new FormData();
-  formData.append("name", form.name);
-  formData.append("icon", form.icon);
+  formData.append('name', form.name);
+  formData.append("_method", "PUT");
+  if (form.icon && typeof form.icon !== "string") {
+    formData.append("icon", form.icon);
+  }
+  
   formData.append("slug", form.slug);
   formData.append("show_at_trending", form.show_at_trending);
   formData.append("status", form.status);
-  formData.append("code", form.code);
-
-  console.log(formData);
-  //        Send Data
-  const handleSubmit = async (e) => {
-    setLoading(true)
+  formData.append("code", 'EN');
+    setDisabled(true)
     e.preventDefault();
 try{
 
   if (form.icon) {
-    const res = await Axios.put(`/admin/course-category/${id}`, formData).then(
+    const res = await Axios.post(`/admin/course-category/${id}`, formData).then(
       (data) => {
-          setLoading(false)
+          setDisabled(false)
+
           console.log(data);
         toast.success('Upadated successfly')
         setTimeout(() => {
           
           navigate('/admin/Categories')
-        }, 2000);
+        }, 1000);
 
         }
       );
     } else {
       toast.error("Icon is required");
-      setLoading(false)
+      setDisabled(false)
 
     }
   }catch(err){
     toast.error("some thing wrong");
     console.log(err);
-    setLoading(false)
+    setDisabled(false)
 
      
   }
@@ -123,13 +134,14 @@ try{
             <div className="mb-4">
               <input
                 type="file"
+                disabled={disabled}
                 hidden
                 ref={click}
                 onChange={(e) => setForm({ ...form, icon: e.target.files[0] })}
               />
               <div
                 onClick={() => click.current.click()}
-                className="cursor-pointer flex justify-end py-2 items-center flex-col gap-1 w-56 h-56 rounded border-spacing-2 border-2 border-dashed border-borderColor"
+                className={`cursor-pointer flex justify-end py-2 items-center flex-col gap-1 w-56 h-56 rounded border-spacing-2 border-2 border-dashed border-borderColor ${disabled&& '!cursor-wait'}`}
               >
                 {form.icon && (
                   <img
@@ -140,8 +152,9 @@ try{
                   />
                 )}
                 <button
+                disabled={disabled}
                   type="button"
-                  className="text-base text-textColor border border-borderColor py-2 px-8 rounded w-3/4 justify-self-end"
+                  className={`text-base text-textColor border border-borderColor py-2 px-8 rounded w-3/4 justify-self-end ${disabled && '!bg-gray-400 !border-gray-400 hover:!text-white'}`}
                 >
                   Icon
                 </button>
@@ -150,6 +163,7 @@ try{
             <div className="form-control">
               <label htmlFor="name">Name</label>
               <input
+              disabled={disabled}
                 type="text"
                 id="name"
                 value={form.name}
@@ -161,6 +175,8 @@ try{
             <div className="form-control">
               <label htmlFor="Slug">Slug</label>
               <input
+              disabled={disabled}
+
                 type="text"
                 id="Slug"
                 value={form.slug}
@@ -173,6 +189,7 @@ try{
             <div className="form-control">
               <label htmlFor="name">Show at trading</label>
               <SelectBox
+              disabled={disabled}
                 data={showAtTraedingData}
                 onChange={(e) =>
                   setForm({ ...form, show_at_trending: e.target.value === 'true' ? 1 : 0})
@@ -183,13 +200,15 @@ try{
             <div className="form-control">
               <label htmlFor="name">Status</label>
               <SelectBox
+              disabled={disabled}
+
                 data={statusData}
                 onChange={(e) => setForm({ ...form, status: e.target.value === 'true' ? 1 : 0})}
                 value={form.status == 1 ? 'true' : 'false'}
               />
             </div>
-            <button type="submit">
-              {laoding  ?  'Loading ...':
+            <button type="submit" disabled={disabled} className={`${disabled && '!cursor-wait hover:!bg-main hover:!text-white'}`}>
+              {disabled  ?  'Loading ...':
               <>
               <LuSave width={24} height={24} className=" text-white icon" />
               <span>Save</span>{" "}

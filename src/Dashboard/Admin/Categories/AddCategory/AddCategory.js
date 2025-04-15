@@ -62,7 +62,7 @@ try{
     const res = await Axios.post("/admin/course-category", formData).then(
       (data) => {
           setLoading(false)
-        toast.success('Added successfly')
+        toast.success('Created successfly')
         setTimeout(() => {
           
           navigate('/admin/Categories')
@@ -72,11 +72,13 @@ try{
       );
     } else {
       toast.error("Icon is required");
+     setLoading(false)
+
       
     }
   }catch(err){
     toast.error("some thing wrong");
-     
+     setLoading(false)
   }
   };
   return (
@@ -109,6 +111,8 @@ try{
               <input
                 type="file"
                 hidden
+              disabled={laoding}
+
                 ref={click}
                 onChange={(e) => setForm({ ...form, icon: e.target.files[0] })}
               />
@@ -138,6 +142,8 @@ try{
                 type="text"
                 id="name"
                 placeholder="Name"
+              disabled={laoding}
+
                 required
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
@@ -148,6 +154,8 @@ try{
                 type="text"
                 id="Slug"
                 placeholder="Slug"
+              disabled={laoding}
+
                 required
                 onChange={(e) => setForm({ ...form, slug: e.target.value })}
               />
@@ -155,6 +163,8 @@ try{
             <div className="form-control">
               <label htmlFor="name">Show at trading</label>
               <SelectBox
+              disabled={laoding}
+
                 data={showAtTraedingData}
                 onChange={(e) =>
                   setForm({ ...form, showAtTraeding: e.target.value === 'true' ? 1 : 0})
@@ -165,12 +175,13 @@ try{
             <div className="form-control">
               <label htmlFor="name">Status</label>
               <SelectBox
+              disabled={laoding}
                 data={statusData}
                 onChange={(e) => setForm({ ...form, status: e.target.value === 'true' ? 1 : 0})}
                 value={form.status}
               />
             </div>
-            <button type="submit">
+            <button type="submit" disabled={laoding} className={`${laoding && 'cursor-wait hover:!bg-main hover:!text-white'}`}>
               {laoding  ?  'Loading ...':
               <>
               <LuSave width={24} height={24} className=" text-white icon" />

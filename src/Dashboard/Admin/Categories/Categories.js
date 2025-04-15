@@ -7,17 +7,22 @@ import { Link } from "react-router-dom";
 import Table from "../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa6";
 import { Axios } from "../../../components/Helpers/Axios";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Categories = () => {
+  const [deleted ,setDeleted] = useState(false)
   const [categories, setCategories] = useState([]);
   const [categoryStatus, setCategoryStatus] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState();
   // get data
   useEffect(() => {
     setLoading(true);
-    Axios.get("/admin/course-category").then((data) => {
-      setCategories(data.data.data);
+    Axios.get(`/admin/course-category?page=${page}&Search=w`).then((data) => {
+      console.log(data.data.data.categories);
+      setCategories(data.data.data.categories.data);
+      setTotal(data.data.data.categories.total);
       setLoading(false);
     });
   }, []);
@@ -77,8 +82,13 @@ const Categories = () => {
             headers={headers}
             data={categories}
             loading={loading}
+            url='/admin/course-category'
+            setDeleted={setDeleted}
           />
         </div>
+          <div className="flex justify-end p-5 px-10">
+          <Pagination total={total} setPage={setPage} itemsPerPage={15}/>
+          </div>
       </div>
     </div>
   );
