@@ -74,7 +74,7 @@
     background-color: #fafafa !important;
     flex-direction: column;
     width: 100%;
-    justify-content: start;
+    justify-content: center;
     align-items: start;
     height: 100dvh;
     gap: 20px;
