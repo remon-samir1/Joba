@@ -90,7 +90,7 @@
   .NavBar .Links .btns {
     width: 100%;
     flex-direction: column;
-    /* margin-top: 15px; */
+    margin-top: 25px;
     align-self: flex-end !important;
   }
   .NavBar .Links .btns .link {
