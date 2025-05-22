@@ -74,7 +74,7 @@
     background-color: #fafafa !important;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     height: 100dvh;
     gap: 20px;
@@ -90,8 +90,8 @@
   .NavBar .Links .btns {
     width: 100%;
     flex-direction: column;
-    margin-top: 25px;
-    align-self: flex-end !important;
+    margin-top: 8dvh;
+    place-self: end;
   }
   .NavBar .Links .btns .link {
     flex: 1 !important;
