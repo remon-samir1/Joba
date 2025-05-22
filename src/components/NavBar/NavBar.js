@@ -48,7 +48,7 @@ useEffect(()=>{
   return (
     <div className="NavBar mx-auto " ref={navRef}>
       <div className="logo" ref={logoRef}>
-        <Logo />
+        <Logo small={true}/>
       </div>
       <div
         onClick={() => setMenu((prev) => !prev)}

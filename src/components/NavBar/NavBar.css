@@ -1,39 +1,37 @@
-.NavBar{
+.NavBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 20px;
   height: 70px;
-position: sticky;
-top: 0; left: 0;
-z-index: 555;
-
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 555;
 }
-.NavBar .Links{
+.NavBar .Links {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
+}
+.NavBar .Links .link {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
 
+.NavBar .Links .link:hover {
+  color: var(--main-color);
 }
-.NavBar .Links .link{
- color: var(--text-color);
- font-size: 1rem;
- font-weight: 600;
- text-decoration: none;
-}
-
-.NavBar .Links .link:hover{
- color: var(--main-color);
-  
-}
-.NavBar .btns{
+.NavBar .btns {
   /* display: flex; */
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
-.NavBar .btns .link{
+.NavBar .btns .link {
   font-size: 1rem;
   font-weight: 500;
   border-radius: 20px;
@@ -41,35 +39,37 @@ z-index: 555;
   text-decoration: none;
   transition: 0.3s ease;
 }
-.NavBar .btns .link:first-child{
+.NavBar .btns .link:first-child {
   border: 1px solid var(--main-color);
   color: var(--main-color);
 }
-.NavBar .btns .link:last-child{
-background-color: var(--main-color);
-border: 0.5px solid var(--main-color);
+.NavBar .btns .link:last-child {
+  background-color: var(--main-color);
+  border: 0.5px solid var(--main-color);
 
   color: #fff;
 }
-.NavBar .btns .link:first-child:hover{
+.NavBar .btns .link:first-child:hover {
   background-color: var(--main-color);
   color: #fff;
 }
-.NavBar .btns .link:last-child:hover{
+.NavBar .btns .link:last-child:hover {
   border: 1px solid var(--main-color);
   color: var(--main-color);
   background-color: #fff;
 }
-@media (max-width:768px) {
-  .NavBar{
+@media (max-width: 768px) {
+  .NavBar {
     position: relative;
+  padding: 30px 20px 30px 0;
+
   }
-  .NavBar .Links{
+  .NavBar .Links {
     transition: 0.5s ease-out;
     padding: 20px 10px;
     position: absolute;
     top: 100%;
-    /* left: -100%; */
+
     z-index: 999;
     background-color: #fafafa !important;
     flex-direction: column;
@@ -78,24 +78,22 @@ border: 0.5px solid var(--main-color);
     align-items: start;
     height: 100dvh;
     gap: 20px;
-    
   }
-  .NavBar .Links .link{
+  .NavBar .Links .link {
     color: var(--main-color);
     padding: 10px 20px;
     font-size: 1.2rem;
 
     width: 100%;
-    border-bottom: 1px solid #EEEEEE;
-
+    border-bottom: 1px solid #eeeeee;
   }
-  .NavBar .Links .btns{
+  .NavBar .Links .btns {
     width: 100%;
     flex-direction: column;
     /* margin-top: 15px; */
     align-self: flex-end !important;
   }
-  .NavBar .Links .btns .link{
+  .NavBar .Links .btns .link {
     flex: 1 !important;
     text-align: center;
   }
