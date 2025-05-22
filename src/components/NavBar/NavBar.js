@@ -37,7 +37,13 @@ const NavBar = () => {
       );
   }, []);
 useEffect(()=>{
+ if(menu){
+  document.body.style.overflow="hidden"
+  document.body.style.height="100vh"
+ }else{
+  document.body.style.overflow="auto"
 
+ }
   gsap.fromTo(
     toggleIconRef.current,
     { rotate: 0, scale:0.3 },
