@@ -4,13 +4,17 @@ import { useGSAP } from "@gsap/react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
-
+import openMenu from "../../images/joba-menu.svg";
+import closeMenu from "../../images/joba-close-menu.svg";
+import { useState } from "react";
+import { useEffect } from "react";
 const NavBar = () => {
   const navRef = useRef(null);
   const logoRef = useRef(null);
   const linksRef = useRef([]);
   const btnsRef = useRef(null);
-
+  const toggleIconRef = useRef(null)
+  const [menu, setMenu] = useState(false);
   useGSAP(() => {
     const tl = gsap.timeline();
 
@@ -32,13 +36,29 @@ const NavBar = () => {
         "-=0.4"
       );
   }, []);
+useEffect(()=>{
 
+  gsap.fromTo(
+    toggleIconRef.current,
+    { rotate: 0, scale:0.3 },
+    { rotate: 180,scale:1, duration: 0.5, ease: "power2.out" }
+  );
+
+},[menu])
   return (
-    <div className="NavBar mx-auto container" ref={navRef}>
+    <div className="NavBar mx-auto " ref={navRef}>
       <div className="logo" ref={logoRef}>
         <Logo />
       </div>
-      <div className="Links">
+      <div
+        onClick={() => setMenu((prev) => !prev)}
+        className="toggle-menu md:hidden cursor-pointer"
+      >
+        <img
+         ref={toggleIconRef}
+        src={menu ? closeMenu : openMenu} alt="menu" />
+      </div>
+      <div className={`Links ${menu ? "left-0" : "left-[-100%]"}`}>
         {["Home", "About", "Course content", "Resources", "Support"].map(
           (text, index) => (
             <Link
@@ -50,13 +70,27 @@ const NavBar = () => {
             </Link>
           )
         )}
+        <div className="btns md:!hidden flex " ref={btnsRef}>
+          <Link to="login" className="link">
+            Sign In
+          </Link>
+          <Link to="register" className="link">
+            Sign Up
+          </Link>
+        </div>
       </div>
-      <div className="btns" ref={btnsRef}>
-        <Link to='login' className="link">Sign In</Link>
-        <Link to='register' className="link">Sign Up</Link>
+      <div className="btns hidden md:flex" ref={btnsRef}>
+        <Link to="login" className="link">
+          Sign In
+        </Link>
+        <Link to="register" className="link">
+          Sign Up
+        </Link>
       </div>
     </div>
   );
 };
 
 export default NavBar;
+
+

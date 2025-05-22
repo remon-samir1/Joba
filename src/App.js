@@ -58,13 +58,13 @@ function App() {
         <Route path="/admin/Categories/add" element={<AddCategory/> } />
         <Route path="/admin/Categories/sub-category" element={<SubCategory/> } />
         <Route path="Levels" element={<Levels/> } />
-        <Route path="/admin/Levels/update" element={<UpdateLevel/> } />
+        <Route path="/admin/Levels/update/:id" element={<UpdateLevel/> } />
         <Route path="/admin/Levels/Add" element={<AddLevel/> } />
         <Route path="Course-Review" element={<CourseReview/> } />
-        <Route path="/admin/Course-Review/view" element={<CourseReviewDetails/>} />
+        <Route path="/admin/Course-Review/view/:id" element={<CourseReviewDetails/>} />
         <Route path="Blogs-Category" element={<BlogsCategory/> } />
         <Route path="/admin/Blogs-Category/add" element={<AddBlogsCategory/> } />
-        <Route path="/admin/Blogs-Category/update" element={<UpdateBlogsCategory/> } />
+        <Route path="/admin/Blogs-Category/update/:id" element={<UpdateBlogsCategory/> } />
          <Route path="post-list" element={<PostList/>} />
          <Route path="/admin/post-list/add" element={<AddPost/>} />
          <Route path="/admin/post-list/update" element={<UpdatePost/>} />

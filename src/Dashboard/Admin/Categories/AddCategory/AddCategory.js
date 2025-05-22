@@ -19,7 +19,6 @@ const AddCategory = () => {
     showAtTraeding:0 ,
     status: 0,
   });
-  const [imageReq, setImageReq] = useState(false);
   console.log(form);
   const click = useRef(null);
   const navigate = useNavigate();
@@ -43,24 +42,24 @@ const AddCategory = () => {
       value: true,
     },
   ];
-  //    Form Data
-  const formData = new FormData();
-  formData.append("name", form.name);
-  formData.append("icon", form.icon);
-  formData.append("slug", form.slug);
-  formData.append("show_at_trending", form.showAtTraeding);
-  formData.append("status", form.status);
-
-  console.log(formData);
+  
   //        Send Data
   const handleSubmit = async (e) => {
     setLoading(true)
     e.preventDefault();
-try{
+    //    Form Data
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("icon", form.icon);
+    formData.append("slug", form.slug);
+    formData.append("show_at_trending", form.showAtTraeding);
+    formData.append("status", form.status);
+    try{
 
   if (form.icon) {
     const res = await Axios.post("/admin/course-category", formData).then(
       (data) => {
+        console.log(data);
           setLoading(false)
         toast.success('Created successfly')
         setTimeout(() => {
@@ -79,7 +78,8 @@ try{
   }catch(err){
     toast.error("some thing wrong");
      setLoading(false)
-  }
+     console.log(err);
+  } 
   };
   return (
     <>

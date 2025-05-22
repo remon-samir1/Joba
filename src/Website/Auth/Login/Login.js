@@ -70,7 +70,8 @@ const Login = () => {
 
     } catch (err) {
       toast.error('There is some think wrong !');
-    
+      setLaoding(false)
+     
     }
   };
   return (

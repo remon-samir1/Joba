@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        main: "var(--main-color)",
+        main: '#F15A24',
         textColor:"var(--text-color)",
       borderColor:"#ddd",
       inputColor:"#f6f8fc",

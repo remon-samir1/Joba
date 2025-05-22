@@ -4,7 +4,7 @@
   z-index: 999;
   transition: 0.5s ease-out;
   overflow-y: auto;
-
+  
 }
 .SideBar .logo img{
   margin-bottom: 20px;

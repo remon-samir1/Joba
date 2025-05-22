@@ -13,7 +13,7 @@ const AdminDashboard = () => {
     <div className="AdminDashboard">
       <div className="flex ">
         <SideBar />
-        <div className={`flex-1 flex flex-col px-3`}   >
+        <div className={`flex-1 flex flex-col px-3 `}   >
           <TopBar />
           <Outlet />
         </div>

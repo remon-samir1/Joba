@@ -9,10 +9,18 @@ import CustomLineChart from "./Charts/LineChart/LineChart";
 import Recents from "./Recents/Recents";
 import { Menu } from "../../../Context/MenuContext";
 import { WindowSize } from "../../../Context/WindowSizeContext";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 
 const MainAdminPage = () => {
-  const menu = useContext(WindowSize)
-  
+useEffect(()=>{
+  Axios.get('/admin/dashboard').then(data=>console.log(data))
+},[])
+
+
+
+  const menu = useContext(WindowSize);
+
   return (
     <div className="MainAdminPage ">
       <h3 className="font-bold text-textColor text-xl">Dashboard</h3>
@@ -27,7 +35,7 @@ const MainAdminPage = () => {
         ))}
       </div>
       <div className="charts flex mt-8 gap-4 flex-wrap h-max">
-        <div className="line flex-1" >
+        <div className="line flex-1">
           <CustomLineChart />
         </div>
         <div className="pie w-full">

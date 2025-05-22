@@ -1,12 +1,59 @@
-import { Icon } from '@iconify-icon/react';
-import React from 'react';
-import Breadcrumbs from '../../../../components/Breadcrumbs/Breadcrumbs';
-import { useNavigate } from 'react-router-dom';
-import './CourseReviewDetails.css'
-import { SelectBox } from '../../../../components/DropDown/SelectBox';
+import { Icon } from "@iconify-icon/react";
+import React from "react";
+import Breadcrumbs from "../../../../components/Breadcrumbs/Breadcrumbs";
+import { useNavigate, useParams } from "react-router-dom";
+import "./CourseReviewDetails.css";
+import { SelectBox } from "../../../../components/DropDown/SelectBox";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Axios } from "../../../../components/Helpers/Axios";
+import StarRating from "../../../../components/StarRating/StarRating";
+import { toast } from "react-toastify";
+import SkeletonShow from "../../../../components/Skeleton/Skeleton";
 const CourseReviewDetails = () => {
+  const [data, setData] = useState([]);
+  const [btnLoading, setBtnLoading] = useState(false);
+  const [skeleton, setSkeleton] = useState(true);
+  const [status, setStatus] = useState();
   const navigate = useNavigate();
+  const { id } = useParams();
+  useEffect(() => {
+    Axios.get(`/admin/course-review`).then((data) => {
+      setData(data.data.data.reviews.data.find((obj) => obj.id == id));
+      setSkeleton(false)
 
+    });
+  }, []);
+  const updateStatus = async () => {
+    if (status) {
+      setBtnLoading(true);
+      try {
+        await Axios.post(`/admin/course-review/${id}`, {
+          _method: "PUT",
+          status: status,
+        }).then((data) => {
+          setBtnLoading(false);
+          toast.success("Updated successfly");
+        });
+      } catch (err) {
+        setBtnLoading(false);
+        toast.error("Updated Failed");
+        console.log(err);
+      }
+    }
+  };
+  // console.log(data);
+  const statusData = [
+    {
+      name: "Approved",
+      value: 1,
+    },
+
+    {
+      name: "Disapproved",
+      value: 0,
+    },
+  ];
   return (
     <div className="UpdateCategory">
       <div className="flex justify-between items-center">
@@ -30,61 +77,52 @@ const CourseReviewDetails = () => {
           </button>
         </div>
         <div className="CourseReviewDetails">
-     <div className="titles">
-      <p>Course</p>
-      <p>Rating</p>
-      <p>Review</p>
-      <p>Date</p>
-      <p>Status</p>
-     </div>
-     <div className="details">
-     <p>Brand: Lorem ipsum dolor sit amet consectetur.</p>
-      <div>
-        
-    
-            <Icon
-              icon="ic:round-star"
-              className="icon"
-            />
-    
-            <Icon
-              icon="ic:round-star"
-              className="icon"
-            />
-    
-            <Icon
-              icon="ic:round-star"
-              className="icon"
-            />
-    
-            <Icon
-              icon="ic:round-star"
-              className="icon"
-            />
-    
-            <Icon
-              icon="ic:round-star"
-              className="icon"
-            />
-          
-          
-
-
-
-
-      </div>
-      <p>Lorem ipsum dolor sit amet consectetur. Egestas phasellus quisque amet nunc vitae turpis at nunc.</p>
-      <p>05 Feb, 2025</p>
-      <div className='flex justify-start items-center gap-4'><SelectBox title='Approved'/>
-       <button className="update">Update</button>
-      </div>
-     </div>
-
-
+          <div className="titles">
+            <p>Course</p>
+            <p>Rating</p>
+            <p>Review</p>
+            <p>Date</p>
+            <p>Status</p>
+          </div>
+          <div className="details flex-1">
+            {skeleton ? (
+              <div className="w-full  flex-1">
+                <SkeletonShow
+                  height="20px"
+                  width="100%"
+                  length="5"
+                  classes="mb-9"
+                />
+              </div>
+            ) : (
+              <>
+                <p>{data.course?.title}</p>
+                <div>
+                  <StarRating rating={data?.rating} />
+                </div>
+                <p>{data?.review}</p>
+                <p>{data?.created_at}</p>
+                <div className="flex justify-start items-center gap-4 flex-wrap">
+                  <SelectBox
+                    value={status ? status : data?.status}
+                    data={statusData}
+                    onChange={(e) => setStatus(e.target.value)}
+                  />
+                  <button
+                    disabled={btnLoading}
+                    className={`update ${btnLoading && "!cursor-wait"}`}
+                    onClick={updateStatus}
+                  >
+                    {btnLoading ? "Loading..." : "Update"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default CourseReviewDetails;

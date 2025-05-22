@@ -1,6 +1,6 @@
 import React from "react";
 import './SearchBar.css'
-const SearchBar = ({placeholder}) => {
+const SearchBar = ({placeholder ,onchange ,value}) => {
   return (
     <div className="search">
       <img
@@ -8,7 +8,7 @@ const SearchBar = ({placeholder}) => {
         alt="search"
         loading="lazy"
       />
-      <input type="text" placeholder={placeholder}/>
+      <input type="text" placeholder={placeholder} onChange={onchange} value={value}/>
     </div>
   );
 };

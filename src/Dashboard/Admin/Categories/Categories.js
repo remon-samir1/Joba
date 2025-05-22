@@ -8,24 +8,26 @@ import Table from "../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa6";
 import { Axios } from "../../../components/Helpers/Axios";
 import Pagination from "../../../components/Pagination/Pagination";
+import Notifcation from "../../../components/Notification";
 
 const Categories = () => {
   const [deleted ,setDeleted] = useState(false)
   const [categories, setCategories] = useState([]);
-  const [categoryStatus, setCategoryStatus] = useState(false);
+  const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
+  const [search , setSearch] = useState('')
   // get data
   useEffect(() => {
     setLoading(true);
-    Axios.get(`/admin/course-category?page=${page}&Search=w`).then((data) => {
+    Axios.get(`/admin/course-category?page=${page}&keyword=${search}& status=${status}`).then((data) => {
       console.log(data.data.data.categories);
       setCategories(data.data.data.categories.data);
       setTotal(data.data.data.categories.total);
       setLoading(false);
     });
-  }, []);
+  }, [search,deleted, status]);
 
   // headers of table
   const headers = [
@@ -42,7 +44,7 @@ const Categories = () => {
       key: "slug",
     },
     {
-      title: "Show ata trading",
+      title: "Show at trading",
       key: "show_at_trending",
     },
     {
@@ -50,17 +52,31 @@ const Categories = () => {
       key: "status",
     },
   ];
-
+// status selectbox data
+const statusData = [
+  {
+    name:'Active',
+    value:1
+  },
+  
+  {
+    name:'Inactive',
+    value:0
+  }
+]
+console.log(status);
   return (
+    <>
+    <Notifcation/>
     <div className="Categories">
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> Categories</h3>
         <Breadcrumbs />
       </div>
       <div className="filters">
-        <SearchBar placeholder="Search" />
+        <SearchBar placeholder="Search" onchange={(e)=>setSearch(e.target.value)}/>
         <SelectBox title="By name" />
-        <SelectBox title="Status" />
+        <SelectBox title="Status" data={statusData} onChange={(e)=> setStatus(e.target.value)} />
       </div>
       <div className="table my-8 bg-white">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
@@ -82,7 +98,7 @@ const Categories = () => {
             headers={headers}
             data={categories}
             loading={loading}
-            url='/admin/course-category'
+            url='admin/course-category'
             setDeleted={setDeleted}
           />
         </div>
@@ -91,6 +107,7 @@ const Categories = () => {
           </div>
       </div>
     </div>
+    </>
   );
 };
 

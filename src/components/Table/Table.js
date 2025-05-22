@@ -4,15 +4,30 @@ import { Icon } from "@iconify-icon/react";
 import { Link } from "react-router-dom";
 import { Axios, baseUrl } from "../Helpers/Axios";
 import ToggleStatusButton from "../TiggleStatusBtn/TiggleStatusBtn";
+import { toast } from "react-toastify";
+import TransformDate from "../../components/Helpers/TransformDate";
+import StringSlice from "../../components/Helpers/StringSlice";
+import Notifcation from "../Notification";
+import StarRating from "../StarRating/StarRating";
 const Table = (props) => {
   // handle delete
   const handleDelete = async (id) => {
     try {
       console.log(id);
-      await Axios.delete(`/admin/course-category/${id}`).then((data) =>
-        console.log(data)
-      );
+
+      await Axios.post(`${props.url}/${id}`, {
+        _method: "DELETE",
+      }).then((data) => {
+        console.log(data);
+        props.setDeleted((prev) => !prev);
+        if (data.data.status == "error") {
+          toast.error(data.data.message || data.data.messege );
+        } else {
+          toast.success("Deleted successfly");
+        }
+      });
     } catch (err) {
+      toast.success(err);
       console.log(err);
     }
   };
@@ -23,17 +38,18 @@ const Table = (props) => {
   const showData = props.data?.map((item, key) => (
     <tr key={key}>
       <td>{item.id}</td>
-
-      {props.headers.map((item2) => (
-        <td>
-          {item2.key == "icon" ? (
+  
+      {props.headers.map((item2, i) => (
+        <td key={i}>
+          {item2.key === "icon" ? (
             <img
               src={`${baseUrl}/${item[item2.key]}`}
               width="100px"
               height="30px"
+              alt="icon"
             />
-          ) : item2.key == "show_at_trending" ? (
-            item[item2.key] == 1 ? (
+          ) : item2.key === "show_at_trending" ? (
+            item[item2.key] === 1 ? (
               <span className="text-teal-600 bg-teal-200 py-1 rounded-full px-5">
                 Yes
               </span>
@@ -42,17 +58,36 @@ const Table = (props) => {
                 No
               </span>
             )
-          ) : item2.key == "status" ? (
-            <ToggleStatusButton data={item[item2.key]} id={item.id} />
-          ) : (
+          ) : item2.key === "status" && item2.type !== "static" ? (
+            <ToggleStatusButton
+              data={item[item2.key]}
+              id={item.id}
+              url={props.url}
+            />
+          ) : item2.key === "created_at" || item2.key === "updated_at" ? (
+            TransformDate(item[item2.key])
+          ) : item2.key === "course" ? (
+            item[item2.key]?.title
+          ) : item2.key === "rating" ? (
+            <StarRating rating={item[item2.key]} />
+          ) : item2.key === "name" && item2.dir ? (
+            item[item2.key]?.name
+          ) : item2.type === "static" && item2.key === "status" ? (
+            item[item2.key] == 1 ? (
+              <span  className="text-white bg-green-600 py-1 px-4 rounded-3xl">Approved</span>
+            ) : (
+              <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">Disapproved</span>
+            )
+          ) : ( item2.type == "obj" ? item[item2.key]?.name :
+          item2.key == 'show_homepage' || item2.key == 'is_popular' ? item[item2.key] == 1 ? <span  className="text-white bg-green-600 py-1 px-6 rounded-3xl">Yes</span> : <span className="text-white bg-red-600 py-1 px-6 rounded-3xl">No</span> :
             item[item2.key]
           )}
         </td>
       ))}
-
-      {/* statics */}
+  
+      {/* Static Actions */}
       {props.action && (
-        <td className="flex justify-center items-center gap-3">
+        <td className="flex justify-center items-center gap-3 mt-2">
           {props.update && (
             <Link
               to={`update/${item.id}`}
@@ -81,7 +116,7 @@ const Table = (props) => {
           )}
           {props.view && (
             <Link
-              to="view"
+              to={`view/${item.id}`}
               className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
             >
               <Icon
@@ -109,28 +144,43 @@ const Table = (props) => {
       )}
     </tr>
   ));
-
+  
   return (
-    <table className="custom-table">
-      <thead style={{ backgroundColor: props.gray && "#EEEEEE" }}>
-        <tr>
-          <th>SN</th>
-          {showHeaders}
-          {props.action && <th>Actions</th>}
-        </tr>
-      </thead>
-      <tbody className="bg-white">
-        {props.loading ? (
-          <tr className=" rounded w-full p-10">
-            <td className="text-textColor text-base" colSpan={10}>
-              Loading ...
-            </td>
+    <>
+      <Notifcation />
+      <table className="custom-table">
+        <thead style={{ backgroundColor: props.gray && "#EEEEEE" }}>
+          <tr>
+            <th>SN</th>
+            {showHeaders}
+            {props.action && <th>Actions</th>}
           </tr>
-        ) : (
-          showData
-        )}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="bg-white">
+          {props.loading ? (
+            <tr className=" rounded w-full p-10">
+              <td className="text-textColor text-base" colSpan={10}>
+                Loading ...
+              </td>
+            </tr>
+          ) : props.data.length == 0 ? (
+            <tr className=" rounded w-full p-10 ">
+              <td colSpan={10}>
+                <div className="flex justify-center w-full">
+                  <img
+                    src={require("../../images/no-data.png")}
+                    alt="Not found"
+                    loading="lazy"
+                  />
+                </div>
+              </td>
+            </tr>
+          ) : (
+            showData
+          )}
+        </tbody>
+      </table>
+    </>
   );
 };
 
