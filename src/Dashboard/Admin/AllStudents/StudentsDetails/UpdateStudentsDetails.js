@@ -2,12 +2,33 @@ import React from "react";
 import { SelectBox } from "../../../../components/DropDown/SelectBox";
 import Select from "react-select";
 import countries from "world-countries";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Axios } from "../../../../components/Helpers/Axios";
+import { useParams } from "react-router-dom";
 const UpdateStudentsDetails = () => {
   const formattedCountries = countries.map((country) => ({
     value: country.cca2,
     label: country.name.common,
   }));
+  const [student, setStudent] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    Axios.get("/users").then((data) =>
+      setStudent(data.data.filter((data) => data.id == id))
+    );
+  }, []);
 
+  const genderDate = [
+    {
+      name: "Female",
+      value: "female",
+    },
+    {
+      name: "Male",
+      value: "male",
+    },
+  ];
   return (
     <div className="UpdateStudentsDetails flex-1">
       {/* Profile information */}
@@ -31,7 +52,7 @@ const UpdateStudentsDetails = () => {
           <div className="flex justify-center items-center gap-4">
             <div className="form-control">
               <label htmlFor="email">Gender</label>
-              <SelectBox title="select" />
+              <SelectBox title="select" data={genderDate} />
             </div>{" "}
             <div className="form-control">
               <label htmlFor="age">Age</label>
@@ -78,23 +99,27 @@ const UpdateStudentsDetails = () => {
         </form>
       </div>
 
-                           {/* Password */}
+      {/* Password */}
       <div className="profile-information mt-8">
         <h3>Profile location</h3>
         <form>
-        
-                        
           <div className="flex justify-center items-center gap-4">
             <div className="form-control">
               <label htmlFor="password">Password</label>
               <input type="password" id="password" name="password" />
             </div>{" "}
             <div className="form-control">
-              <label htmlFor="Password-confirmation">Password confirmation</label>
-              <input type="password" id="Password-confirmation" name="Password-confirmation" />
+              <label htmlFor="Password-confirmation">
+                Password confirmation
+              </label>
+              <input
+                type="password"
+                id="Password-confirmation"
+                name="Password-confirmation"
+              />
             </div>
           </div>
-    
+
           <button type="submit">Update</button>
         </form>
       </div>

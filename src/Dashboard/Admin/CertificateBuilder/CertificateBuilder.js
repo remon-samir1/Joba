@@ -3,7 +3,39 @@ import "./CertificateBuilder.css";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import { SelectBox } from "../../../components/DropDown/SelectBox";
 import { LuSave } from "react-icons/lu";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 const CertificateBuilder = () => {
+  const [certificate, setCertificate] = useState([]);
+  useEffect(() => {
+    Axios.get("/admin/certificate-builder").then((data) =>
+      setCertificate(data.data.data.certificate)
+    );
+  }, []);
+  console.log(certificate);
+  const [form , setForm] = useState({
+    title:'',
+    sub_title:'',
+    description:""
+  })
+  console.log(form);
+  const hanleSubmit =async (e)=>{
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('title' , form.title)
+    formData.append('sub_title' , form.sub_title)
+    formData.append('description' , form.description)
+    formData.append('background' , bg)
+    formData.append('signature' , signature)
+    formData.append('_method' , 'PUT')
+    try{
+await Axios.put("/admin/certificate-builder/0" , formData).then(data=>console.log(data))
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
   const clickBg = useRef(null);
   const clickSignature = useRef(null);
 
@@ -13,7 +45,7 @@ const CertificateBuilder = () => {
   return (
     <div className="CertificateBuilder">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-textColor text-xl"> Category Update</h3>
+        <h3 className="font-bold text-textColor text-xl"> </h3>
         <Breadcrumbs />
       </div>
       <div className="container mt-4 w-full flex justify-center items-start gap-4">
@@ -23,7 +55,7 @@ const CertificateBuilder = () => {
               Certificate details
             </h3>
           </div>
-          <form className="inputs py-3 px-5">
+          <form className="inputs py-3 px-5" onSubmit={hanleSubmit}>
             <div className="mb-4">
               <h3 className="py-4 font-semibold text-[#000000] text-[1.1rem]">
                 Background image{" "}
@@ -57,12 +89,13 @@ const CertificateBuilder = () => {
             </div>
             <div className="form-control">
               <label htmlFor="title">Title</label>
-              <input type="text" id="title" placeholder="[student-name]" />
+              <input type="text" id="title" placeholder="[student-name]" onChange={(e)=>setForm({...form,title:e.target.value})}/>
             </div>
 
             <div className="form-control">
               <label htmlFor="sub-title">Sub title</label>
               <input
+              onChange={(e)=>setForm({...form,sub_title:e.target.value})}
                 type="text"
                 id="sub-title"
                 placeholder="for completing[course]"
@@ -71,6 +104,7 @@ const CertificateBuilder = () => {
             <div className="form-control">
               <label htmlFor="Description">Description</label>
               <textarea
+              onChange={(e)=>setForm({...form,description:e.target.value})}
                 id="Description"
                 placeholder="Description"
                 className="h-[200px]"
@@ -117,20 +151,30 @@ const CertificateBuilder = () => {
           </form>
         </div>
 
-        <div className="flex-1 bg-white text-center px-5 py-8">
-
-          <h2 className="text-xl text-main font-semibold">Certificate Competition</h2>
-          <h3 className="text-xl text-[#000000] mt-4 font-semibold">[student name]</h3>
-          <h3 className="text-xl text-textColor mt-4 font-semibold">For completing [course]</h3>
+        <div
+          style={{
+            background: `url(https://goba.sunmedagency.com/${certificate?.background}) no-repeat cover center `,
+          }}
+          className="flex-1 bg-white text-center px-5 py-8"
+        >
+          <h2 className="text-xl text-main font-semibold">
+            Certificate Competition
+          </h2>
+          <h3 className="text-xl text-[#000000] mt-4 font-semibold">
+            {certificate?.title}
+          </h3>
+          <h3 className="text-xl text-textColor mt-4 font-semibold">
+            {certificate.sub_title}
+          </h3>
           <p className="text-base text-textColor mt-4 font-semibold">
-            
-            This certificate is awarded to recognize the successful completion
-            of the course [course] offered on the platform [platform_name] by
-            [instructor_name]. The recipient,[student_name], has demonstrated
-            commendable dedication and proficiency and has successfully
-            completed the course on [date].
+            {certificate?.description}
           </p>
-          <p className="text-end text-gray-500 text-xl font-semibold mt-5">signaure</p>
+          <p className="text-end text-gray-500 text-xl font-semibold mt-5">
+            <img
+              src={`https://goba.sunmedagency.com/${certificate?.signature}`}
+              alt=""
+            />
+          </p>
         </div>
       </div>
     </div>

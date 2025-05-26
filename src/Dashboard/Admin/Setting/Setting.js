@@ -22,13 +22,13 @@ const Setting = () => {
             onClick={() => click.current.click()}
             className="w-[8.6rem] h-[8.6rem] rounded-full border border-borderColor flex justify-center items-center cursor-pointer"
           >
-            {image && (
+            {/* {image && (
               <img
                 src={image && URL.createObjectURL(image[0])}
                 loading="lazy"
                 className="w-full h-full object-cover rounded-full"
               />
-            )}
+            )} */}
           </div>
           <label
             htmlFor="profile"

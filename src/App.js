@@ -73,7 +73,7 @@ function App() {
          <Route path="/admin/order-history/view" element={<OrderDetails/>} />
          <Route path="Pending-payment" element={<PendingPayment/>} />
          <Route path="All-Students" element={<AllStudents/>} />
-         <Route path="/admin/All-Students/view" element={<StudentsDetails/>} />
+         <Route path="/admin/All-Students/view/:id" element={<StudentsDetails/>} />
          <Route path="Instructors" element={<Instructors/>} />
          <Route path="/admin/Instructors/view" element={<InstructorsDetails/>} />
          <Route path="Active-users" element={<ActiveUsers/>} />

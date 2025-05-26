@@ -5,7 +5,7 @@ const cookie = Cookies()
 const token = cookie.get('token')
 console.log(token);
 export const Axios = axios.create({
-  baseURL:'https://goba.netlabacademy.com/api',
+  baseURL:'https://goba.sunmedagency.com/api',
   headers: {
     Authorization: 'Bearer ' + token
   }

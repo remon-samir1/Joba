@@ -21,7 +21,7 @@ const Table = (props) => {
         console.log(data);
         props.setDeleted((prev) => !prev);
         if (data.data.status == "error") {
-          toast.error(data.data.message || data.data.messege );
+          toast.error(data.data.message || data.data.messege);
         } else {
           toast.success("Deleted successfly");
         }
@@ -38,7 +38,7 @@ const Table = (props) => {
   const showData = props.data?.map((item, key) => (
     <tr key={key}>
       <td>{item.id}</td>
-  
+
       {props.headers.map((item2, i) => (
         <td key={i}>
           {item2.key === "icon" ? (
@@ -74,17 +74,36 @@ const Table = (props) => {
             item[item2.key]?.name
           ) : item2.type === "static" && item2.key === "status" ? (
             item[item2.key] == 1 ? (
-              <span  className="text-white bg-green-600 py-1 px-4 rounded-3xl">Approved</span>
+              <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
+                Approved
+              </span>
             ) : (
-              <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">Disapproved</span>
+              <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
+                Disapproved
+              </span>
             )
-          ) : ( item2.type == "obj" ? item[item2.key]?.name :
-          item2.key == 'show_homepage' || item2.key == 'is_popular' ? item[item2.key] == 1 ? <span  className="text-white bg-green-600 py-1 px-6 rounded-3xl">Yes</span> : <span className="text-white bg-red-600 py-1 px-6 rounded-3xl">No</span> :
+          ) : item2.type == "obj" ? (
+            item[item2.key]?.name
+          ) : item2.key == "show_homepage" || item2.key == "is_popular" ? (
+            item[item2.key] == 1 ? (
+              <span className="text-white bg-green-600 py-1 px-6 rounded-3xl">
+                Yes
+              </span>
+            ) : (
+              <span className="text-white bg-red-600 py-1 px-6 rounded-3xl">
+                No
+              </span>
+            )
+          ) : 
+          
+          item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl">Not verified</span>:
+          
+          (
             item[item2.key]
           )}
         </td>
       ))}
-  
+
       {/* Static Actions */}
       {props.action && (
         <td className="flex justify-center items-center gap-3 mt-2">
@@ -144,7 +163,7 @@ const Table = (props) => {
       )}
     </tr>
   ));
-  
+
   return (
     <>
       <Notifcation />
@@ -163,7 +182,7 @@ const Table = (props) => {
                 Loading ...
               </td>
             </tr>
-          ) : props.data.length == 0 ? (
+          ) : props.data?.length != 0 ?   showData :(
             <tr className=" rounded w-full p-10 ">
               <td colSpan={10}>
                 <div className="flex justify-center w-full">
@@ -175,8 +194,8 @@ const Table = (props) => {
                 </div>
               </td>
             </tr>
-          ) : (
-            showData
+          
+          
           )}
         </tbody>
       </table>

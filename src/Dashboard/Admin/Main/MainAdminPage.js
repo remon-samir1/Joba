@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./MainAdminPage.css";
 import MainAdminPageBox from "./MainAdminPageBox/MainAdminPageBox";
-import { MainAdminPageBoxData } from "./MainAdminPageBox/MainAdminPageBoxData";
+// import { MainAdminPageBoxData } from "./MainAdminPageBox/MainAdminPageBoxData";
 
 import CustomPieChart from "./Charts/PieChart/PieChart";
 import CustomLineChart from "./Charts/LineChart/LineChart";
@@ -11,11 +11,57 @@ import { Menu } from "../../../Context/MenuContext";
 import { WindowSize } from "../../../Context/WindowSizeContext";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
+import { useState } from "react";
 
 const MainAdminPage = () => {
+  const [data , setData] = useState()
 useEffect(()=>{
-  Axios.get('/admin/dashboard').then(data=>console.log(data))
+  Axios.get('/admin/dashboard').then(data=>{
+    setData(data.data.data)
+    console.log(data.data.data)})
 },[])
+ const MainAdminPageBoxData = [
+  {
+    icon: "iconoir:simple-cart",
+    title: "Total orders",
+    count: data?.total_orders,
+  },
+  {
+    icon: "iconoir:simple-cart",
+    title: "Pending orders",
+    count: data?.total_pending_orders,
+  },
+  {
+    icon:"stash:graduation-cap-light",
+    title: "Total courses",
+    count: data?.total_course,
+  },
+  {
+    icon: "stash:graduation-cap-light",
+    title: "Pending courses",
+    count: data?.total_pending_course,
+  },
+  {
+    icon:"solar:money-bag-outline",
+    title: "Year revenue",
+    count: data?.this_years_earning,
+  },
+  {
+    icon: "solar:money-bag-outline",
+    title: "month revenue",
+    count: data?.this_months_earning,
+  },
+  {
+    icon: "solar:money-bag-outline",
+    title: "Weekly revenue",
+    count: "0",
+  },
+  {
+    icon: "solar:money-bag-outline",
+    title: "Total earnings",
+    count: data?.total_earning,
+  },
+];
 
 
 
@@ -24,7 +70,7 @@ useEffect(()=>{
   return (
     <div className="MainAdminPage ">
       <h3 className="font-bold text-textColor text-xl">Dashboard</h3>
-      <div className="mt-4 flex flex-wrap gap-5 justify-start items-center boxes">
+      <div className="mt-4 flex flex-wrap gap-5 justify-center md:justify-start items-center boxes">
         {MainAdminPageBoxData.map((data, index) => (
           <MainAdminPageBox
             key={index}

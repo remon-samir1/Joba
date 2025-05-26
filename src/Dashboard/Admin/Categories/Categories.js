@@ -75,7 +75,6 @@ console.log(status);
       </div>
       <div className="filters">
         <SearchBar placeholder="Search" onchange={(e)=>setSearch(e.target.value)}/>
-        <SelectBox title="By name" />
         <SelectBox title="Status" data={statusData} onChange={(e)=> setStatus(e.target.value)} />
       </div>
       <div className="table my-8 bg-white">

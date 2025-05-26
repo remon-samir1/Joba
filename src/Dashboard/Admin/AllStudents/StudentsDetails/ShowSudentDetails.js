@@ -1,28 +1,57 @@
 import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Axios } from "../../../../components/Helpers/Axios";
+import { useState } from "react";
 
 const ShowSudentDetails = () => {
+  function formatCustomDate(isoDateStr) {
+    const date = new Date(isoDateStr);
+
+    const day = date.getUTCDate();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[date.getUTCMonth()]; 
+    const year = date.getUTCFullYear(); 
+
+    let hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; 
+
+    return `${day} , ${month}${year} ${hours}:${minutes}${ampm}`;
+}
+  const {id} = useParams()
+  const [student , setStudent] = useState([])
+  useEffect(()=>{
+    Axios.get('/users').then(data=> setStudent(data.data.filter(data => data.id == id)))
+  },[])
+  console.log(student);
   return (
     <div className="w-[268px] bg-white rounded px-4 py-6 mb-8">
       <div className="flex justify-center gap-4 items-center flex-col w-full">
         <img
-          src={require("../../../../images/our-team.png")}
+          src={`https://goba.sunmedagency.com/${student[0]?.cover}`}
           className="w-[119px] h-[119px] rounded-circle"
           alt=""
         />
 
         <p className="text-base text-[#000000] font-semibold">
-          Shari Runolfsson
+        {student[0]?.name}
         </p>
       </div>
       <p className="text-base text-[#000000] font-semibold mt-4">
-        Shari_Runolfsson42@yahoo.com
+      {student[0]?.email}
+
       </p>
       <p className="text-base text-[#000000] font-semibold mt-4">
-        Joined at 5,Mar2025 12:00PM
+        Joined at {formatCustomDate(student[0]?.created_at)}
       </p>
-      <p className="text-base text-[#000000] font-semibold mt-4">Banned : No</p>
+      <p className="text-base text-[#000000] font-semibold mt-4 capitalize">Banned : {student[0]?.is_banned}</p>
       <p className="text-base text-[#000000] font-semibold mt-4">
-        Email verified : None
+        Email verified : {student[0]?.email_verified_at == null? "No" : 'Yes'}
       </p>
       <button className="hover:bg-white hover:text-[#319F43]   duration-500 border border-[#319F43] text-white mt-6 w-full p-3 bg-[#319F43] text-sm rounded">
         Send verifiy link to mail

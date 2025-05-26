@@ -23,6 +23,7 @@ const SideBar = () => {
   const sideBarRef = useRef(null);
 
   return (
+    
     <div
       ref={sideBarRef}
       className={`SideBar py-5 px-7 ${windowWidth < 769 && isOpen ? "left-0" : "-left-full"}`}
