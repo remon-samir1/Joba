@@ -46,10 +46,10 @@ export const mangeUsers=[
     name:'All students',
     to:'All-students'
   },
-  {
-    name:'Instructors',
-    to:'Instructors'
-  },
+  // {
+  //   name:'Instructors',
+  //   to:'Instructors'
+  // },
   {
     name:'Active users',
     to:'Active-users'

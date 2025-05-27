@@ -13,11 +13,11 @@ const UpdateStudentsDetails = () => {
   }));
   const [student, setStudent] = useState([]);
   const { id } = useParams();
-  useEffect(() => {
-    Axios.get("/users").then((data) =>
-      setStudent(data.data.filter((data) => data.id == id))
-    );
-  }, []);
+  // useEffect(() => {
+  //   Axios.get("/users").then((data) =>
+  //     setStudent(data.data.filter((data) => data.id == id))
+  //   );
+  // }, []);
 
   const genderDate = [
     {

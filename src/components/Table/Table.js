@@ -9,21 +9,26 @@ import TransformDate from "../../components/Helpers/TransformDate";
 import StringSlice from "../../components/Helpers/StringSlice";
 import Notifcation from "../Notification";
 import StarRating from "../StarRating/StarRating";
+import { AiOutlineLoading } from "react-icons/ai";
+
 const Table = (props) => {
+  const [loadDelete , setLoadDelete] = useState(false)
   // handle delete
   const handleDelete = async (id) => {
+    setLoadDelete(id)
     try {
       console.log(id);
 
-      await Axios.post(`${props.url}/${id}`, {
+      await Axios.post(`${props.url === 'admin/customer-status-update' ? '/admin/customer-delete' : props.url}/${id}`, {
         _method: "DELETE",
       }).then((data) => {
+        setLoadDelete(false)
         console.log(data);
         props.setDeleted((prev) => !prev);
         if (data.data.status == "error") {
           toast.error(data.data.message || data.data.messege);
         } else {
-          toast.success("Deleted successfly");
+          toast.success(data.data.status? data.data.status : "Deleted successfly");
         }
       });
     } catch (err) {
@@ -96,7 +101,7 @@ const Table = (props) => {
             )
           ) : 
           
-          item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl">Not verified</span>:
+          item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl " style={{whiteSpace:'nowrap'}} >Not verified</span>:
           
           (
             item[item2.key]
@@ -148,15 +153,21 @@ const Table = (props) => {
           )}
           {props.trash && (
             <button
+            disabled={loadDelete == item.id}
               onClick={() => handleDelete(item.id)}
               className="w-7 h-7 bg-red-600 flex justify-center items-center rounded"
             >
+{
+  loadDelete == item.id  ? <AiOutlineLoading className="load-icon text-white"/> :
+
+
               <Icon
                 icon="mage:trash"
                 width={18}
                 height={18}
                 style={{ color: "#fff" }}
               />
+}
             </button>
           )}
         </td>

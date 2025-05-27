@@ -26,32 +26,32 @@ const ShowSudentDetails = () => {
   const {id} = useParams()
   const [student , setStudent] = useState([])
   useEffect(()=>{
-    Axios.get('/users').then(data=> setStudent(data.data.filter(data => data.id == id)))
+    Axios.get(`/admin/customer-show/${id}`).then(data=> setStudent(data.data.data.user))
   },[])
   console.log(student);
   return (
     <div className="w-[268px] bg-white rounded px-4 py-6 mb-8">
       <div className="flex justify-center gap-4 items-center flex-col w-full">
         <img
-          src={`https://goba.sunmedagency.com/${student[0]?.cover}`}
+          src={`https://goba.sunmedagency.com/${student?.cover}`}
           className="w-[119px] h-[119px] rounded-circle"
           alt=""
         />
 
         <p className="text-base text-[#000000] font-semibold">
-        {student[0]?.name}
+        {student?.name}
         </p>
       </div>
       <p className="text-base text-[#000000] font-semibold mt-4">
-      {student[0]?.email}
+      {student?.email}
 
       </p>
       <p className="text-base text-[#000000] font-semibold mt-4">
-        Joined at {formatCustomDate(student[0]?.created_at)}
+        Joined at {formatCustomDate(student?.created_at)}
       </p>
-      <p className="text-base text-[#000000] font-semibold mt-4 capitalize">Banned : {student[0]?.is_banned}</p>
+      <p className="text-base text-[#000000] font-semibold mt-4 capitalize">Banned : {student?.is_banned}</p>
       <p className="text-base text-[#000000] font-semibold mt-4">
-        Email verified : {student[0]?.email_verified_at == null? "No" : 'Yes'}
+        Email verified : {student?.email_verified_at == null? "No" : 'Yes'}
       </p>
       <button className="hover:bg-white hover:text-[#319F43]   duration-500 border border-[#319F43] text-white mt-6 w-full p-3 bg-[#319F43] text-sm rounded">
         Send verifiy link to mail

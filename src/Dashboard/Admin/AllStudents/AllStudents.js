@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Table from "../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa6";
 import { Axios } from "../../../components/Helpers/Axios";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const AllStudents = () => {
   const [deleted, setDeleted] = useState(false);
@@ -19,11 +20,11 @@ const AllStudents = () => {
 
   useEffect(() => {
     setLoading(true);
-    Axios.get(`/users?page=${page}&keyword=${search}& status=${status}`).then(
+    Axios.get(`admin/all-customers?page=${page}&keyword=${search}& status=${status}`).then(
       (data) => {
         console.log(data.data);
-        setData(data.data);
-        // setTotal(data.data.data.categories.total);
+        setData(data.data.data.users.data);
+        setTotal(data.data.data.users.total);
         setLoading(false);
       }
     );
@@ -79,14 +80,14 @@ const AllStudents = () => {
       <div className="table my-8 bg-white">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
           <h4 className="text-main text-base ">All Students</h4>
-          <Link className="flex justify-between gap-2 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500">
+          {/* <Link className="flex justify-between gap-2 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500">
             <FaPlus />
             <span>add new</span>
-          </Link>
+          </Link> */}
         </div>
         <div className="overflow-x-auto w-[90vw] md:w-full">
           <Table
-            url="admin/users"
+            url="admin/customer-status-update"
             headers={headers}
             data={data}
             setDeleted={setDeleted}
@@ -97,6 +98,9 @@ const AllStudents = () => {
             trash
           />
         </div>
+        <div className="flex justify-end p-5 px-10">
+          <Pagination total={total} setPage={setPage} itemsPerPage={15}/>
+          </div>
       </div>
     </div>
   );

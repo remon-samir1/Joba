@@ -74,6 +74,8 @@ function App() {
          <Route path="Pending-payment" element={<PendingPayment/>} />
          <Route path="All-Students" element={<AllStudents/>} />
          <Route path="/admin/All-Students/view/:id" element={<StudentsDetails/>} />
+         <Route path="/admin/active-users/view/:id" element={<StudentsDetails/>} />
+         <Route path="/admin/Non-verified/view/:id" element={<StudentsDetails/>} />
          <Route path="Instructors" element={<Instructors/>} />
          <Route path="/admin/Instructors/view" element={<InstructorsDetails/>} />
          <Route path="Active-users" element={<ActiveUsers/>} />
