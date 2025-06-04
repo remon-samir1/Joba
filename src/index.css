@@ -16,6 +16,10 @@
   box-sizing: border-box;
   font-family:"Cairo", sans-serif;
 }
+.main-shadow:hover{
+  filter: drop-shadow(0 0 5px var(--main-color));
+  transition: 0.5s;
+}
 .rounded-circle{
   border-radius: 50%;
 }

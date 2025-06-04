@@ -50,7 +50,7 @@ const Login = () => {
     e.preventDefault();
     setLaoding(true);
     try {
-      const res = await Axios.post("/admin/admin-login", form);
+      const res = await Axios.post("/user-login", form);
         if(res.data.status == 'success'){
           const token = res.data.access_token;
           cookie.set("token", token);
@@ -58,8 +58,10 @@ const Login = () => {
           toast.success(res.data.messege);
           nav('/admin/main')
           setLaoding(false)
+          console.log(res);
 
         }else{
+          console.log(res);
           toast.error(res.data.messege);
           setLaoding(false)
 
@@ -71,7 +73,7 @@ const Login = () => {
     } catch (err) {
       toast.error('There is some think wrong !');
       setLaoding(false)
-     
+     console.log(err);
     }
   };
   return (

@@ -14,12 +14,14 @@ import { Axios } from "../../../components/Helpers/Axios";
 import { useState } from "react";
 
 const MainAdminPage = () => {
+  // const [lineChartData , setLineChartData] = useState([])
   const [data , setData] = useState()
 useEffect(()=>{
   Axios.get('/admin/dashboard').then(data=>{
     setData(data.data.data)
-    console.log(data.data.data)})
+    })
 },[])
+// console.log(data?.monthly_data)
  const MainAdminPageBoxData = [
   {
     icon: "iconoir:simple-cart",
@@ -82,7 +84,7 @@ useEffect(()=>{
       </div>
       <div className="charts flex mt-8 gap-4 flex-wrap h-max">
         <div className="line flex-1">
-          <CustomLineChart />
+          <CustomLineChart cusrom={data?.monthly_data}/>
         </div>
         <div className="pie w-full">
           <CustomPieChart />

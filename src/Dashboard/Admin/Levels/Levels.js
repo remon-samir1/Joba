@@ -73,7 +73,6 @@ const Levels = () => {
             placeholder="Search"
             onchange={(e) => setSearch(e.target.value)}
           />
-          <SelectBox title="By name" />
           <SelectBox
             title="Status"
             data={statusData}

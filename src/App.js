@@ -40,6 +40,18 @@ import Profile from "./Dashboard/Admin/Profile/Profile";
 import Setting from "./Dashboard/Admin/Setting/Setting";
 import AddCategory from "./Dashboard/Admin/Categories/AddCategory/AddCategory";
 import AddCourse from "./Dashboard/Admin/Courses/AddCourse/AddCourse";
+import StudentDashboard from "./Dashboard/Student/StudentDashboard";
+import MainStudentPage from "./Dashboard/Student/MainStudentPage/MainStudentPage";
+import ExploreCourses from "./Dashboard/Student/ExploreCourses/ExploreCourses";
+import CourseDetails from "./Dashboard/Student/CourseDetails/CourseDetails";
+import Cart from "./components/Cart/Cart";
+import OrderStudentHistory from "./Dashboard/Student/OrderHistory/OrderStudentHistory";
+import EnrolledCourseDetails from "./Dashboard/Student/EnrolledCourseDetails/EnrolledCourseDetails";
+import MyCourses from "./Dashboard/Student/MyCourses/MyCourses";
+import WishList from "./Dashboard/Student/WishList/WishList";
+import Reviews from "./Dashboard/Student/Reviews/Reviews";
+import StudentReviewsDetails from "./Dashboard/Student/Reviews/StudentReviewsDetails";
+import MyQuiz from "./Dashboard/Student/MyQuiz/MyQuiz";
 function App() {
   return (
     <div className="App">
@@ -83,16 +95,31 @@ function App() {
          <Route path="Banned-users" element={<BannedUsers/>} />
          <Route path="Send-bulk-mail" element={<SendbulkMail/>} />
          <Route path="withdraw-method" element={<WithdrawMethod/>} />
-         <Route path="/admin/withdraw-method/update" element={<UpdateWithdrawMethod/>} />
+         <Route path="/admin/withdraw-method/update/:id" element={<UpdateWithdrawMethod/>} />
          <Route path="/admin/withdraw-method/add" element={<AddWithdrawMethod/>} />
          <Route path="withdraw-request" element={<WidthdrawRequest/>} />
          <Route path="certificate-builder" element={<CertificateBuilder/>} />
          <Route path="profile" element={<Profile/>} />
          <Route path="setting" element={<Setting/>} />
-         
-
-        </Route>
         
+        </Route>
+                   {/* Student Dashboard */}
+          <Route path="/student" element={<StudentDashboard/>}>
+          <Route path="cart" element={<Cart/>}/>
+          <Route path="main" element={<MainStudentPage/>}/>
+          <Route path="explore" element={<ExploreCourses/>}/>
+          <Route path="course-details" element={<CourseDetails/>}/>
+          <Route path="order-history" element={<OrderStudentHistory/>}/>
+          <Route path="enrolled-course" element={<EnrolledCourseDetails/>}/>
+          <Route path="my-courses" element={<MyCourses/>}/>
+          <Route path="wishlist" element={<WishList/>}/>
+          <Route path="reviews" element={<Reviews/>}/>
+          <Route path="my-Quiz" element={<MyQuiz/>}/>
+
+          <Route path="/student/reviews/details" element={<StudentReviewsDetails/>}/>
+      
+            
+            </Route>         
       </Routes>
     </div>
   );

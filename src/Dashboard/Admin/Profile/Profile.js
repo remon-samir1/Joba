@@ -1,6 +1,14 @@
 import React, { useRef, useState } from "react";
 import "./Profile.css";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 const Profile = () => {
+useEffect(()=>{
+  Axios.get('/admin/edit-profile').then(data=>console.log(data))
+},[])
+
+
+
   const click = useRef(null);
   const [image, setImage] = useState();
   console.log(image);

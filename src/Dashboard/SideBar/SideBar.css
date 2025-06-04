@@ -17,6 +17,10 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.SideBar  svg path {
+ fill: #fff;
+}
 .SideBar .active{
   background-color: var(--main-color);
   color: #fff;

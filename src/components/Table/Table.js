@@ -19,7 +19,7 @@ const Table = (props) => {
     try {
       console.log(id);
 
-      await Axios.post(`${props.url === 'admin/customer-status-update' ? '/admin/customer-delete' : props.url}/${id}`, {
+      await Axios.post(`${props.delurl ? props.delurl : props.url}/${id}`, {
         _method: "DELETE",
       }).then((data) => {
         setLoadDelete(false)
@@ -41,11 +41,11 @@ const Table = (props) => {
     <th key={key}>{data.title}</th>
   ));
   const showData = props.data?.map((item, key) => (
-    <tr key={key}>
+    <tr >
       <td>{item.id}</td>
 
       {props.headers.map((item2, i) => (
-        <td key={i}>
+        <td key={i} >
           {item2.key === "icon" ? (
             <img
               src={`${baseUrl}/${item[item2.key]}`}
@@ -63,7 +63,7 @@ const Table = (props) => {
                 No
               </span>
             )
-          ) : item2.key === "status" && item2.type !== "static" ? (
+          ) : item2.key === "status" && item2.type !== "static" && item2.type !== "show" ? (
             <ToggleStatusButton
               data={item[item2.key]}
               id={item.id}
@@ -102,10 +102,10 @@ const Table = (props) => {
           ) : 
           
           item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl " style={{whiteSpace:'nowrap'}} >Not verified</span>:
+           item2.type =='show' ? item[item2.key] ==  'active'? <span className="bg-green-500 text-white px-5 py-1 rounded-3xl">active</span> : <span className="bg-orange-500 text-white px-5 py-1 rounded-3xl">Inactive</span> :
           
-          (
             item[item2.key]
-          )}
+          }
         </td>
       ))}
 

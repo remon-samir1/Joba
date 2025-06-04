@@ -1,0 +1,130 @@
+.StudentTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 50px 0px;
+}
+.parant-topbar .header {
+  display: none;
+}
+/* .StudentTopBar div:first-child {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+} */
+.StudentTopBar div:first-child .icon {
+  color: gray;
+}
+.StudentTopBar div:first-child .icon-container {
+  width: 58px;
+  height: 58px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.StudentTopBar div:first-child .serach {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  height: 58px;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+.StudentTopBar div:first-child .serach input {
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: gray;
+}
+
+.StudentTopBar div:first-child .serach img {
+  width: 30px;
+  height: 30px;
+}
+.StudentTopBar .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.StudentTopBar .user .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.StudentTopBar .user  .icon {
+  color: #30313e;
+}
+.StudentTopBar .user  .icon-container {
+  width: 50px;
+  height: 50px;
+  background-color: #f6f8fc;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .parant-topbar .header {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .parant-topbar .header p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .parant-topbar .StudentTopBar div:first-child {
+    flex-direction: row-reverse;
+  }
+  .parant-topbar .StudentTopBar {
+    justify-content: start;
+    width: 100%;
+    gap: 10px;
+  }
+  .parant-topbar .StudentTopBar .user .link:last-child {
+    display: none;
+  }
+  .parant-topbar .StudentTopBar .user .link:first-child span {
+    display: none;
+  }
+  .parant-topbar .StudentTopBar .user .link:first-child {
+    width: 58px;
+    height: 58px;
+    background-color: #f6f8fc;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .parant-topbar .StudentTopBar .user .link:first-child .icon {
+    color: gray;
+  }
+  .StudentTopBar div:first-child .serach {
+    flex: 1 !important;
+  }
+}

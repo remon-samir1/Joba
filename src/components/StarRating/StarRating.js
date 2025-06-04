@@ -7,11 +7,11 @@ const StarRating = ({ rating }) => {
   const stars = Array.from({ length: totalStars }, (_, index) => {
     const starNumber = index + 1;
     if (rating >= starNumber) {
-      return <FaStar key={index} color="gold" />;
+      return <FaStar key={index} color="#F1AC4D" />;
     } else if (rating >= starNumber - 0.5) {
-      return <FaStarHalfAlt key={index} color="gold" />;
+      return <FaStarHalfAlt key={index} color="#F1AC4D" />;
     } else {
-      return <FaRegStar key={index} color="gold" />;
+      return <FaRegStar key={index} color="#F1AC4D" />;
     }
   });
 

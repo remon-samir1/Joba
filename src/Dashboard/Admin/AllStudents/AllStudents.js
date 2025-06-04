@@ -88,6 +88,7 @@ const AllStudents = () => {
         <div className="overflow-x-auto w-[90vw] md:w-full">
           <Table
             url="admin/customer-status-update"
+            delurl='/admin/customer-delete'
             headers={headers}
             data={data}
             setDeleted={setDeleted}
