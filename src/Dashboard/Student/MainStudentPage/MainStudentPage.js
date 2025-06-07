@@ -30,12 +30,12 @@ const MainStudentPage = () => {
     <div className="MainStudentPage mt-8">
       <div className="overview">
         <h3 className="text-[1.1rem] text-textColor">Learning overview</h3>
-        <div className="boxes flex items-center gap-4 mt-5">
+        <div className="boxes flex items-center gap-4 mt-5 flex-col md:flex-row">
           {cardsData.map((data, index) => (
             <div
               key={index}
               style={{ background: data.bg }}
-              className={`box flex items-center gap-4 h-[105px] px-5  rounded-xl flex-1 `}
+              className={`box flex w-full  items-center gap-4 py-16 md:py-0 !h-[105px] px-5 justify-center md:justify-start  rounded-xl flex-1 `}
             >
               <img src={data.img} alt="course" />
               <div className="text">

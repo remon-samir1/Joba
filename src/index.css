@@ -46,7 +46,13 @@ body{
 
 
 
-
+.scrollbar-hide {
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; 
+}
 
 
 .Toastify__toast-theme--colored.Toastify__toast--success{

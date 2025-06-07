@@ -1,7 +1,7 @@
 import { Icon } from "@iconify-icon/react";
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const nav = useNavigate();
@@ -99,9 +99,9 @@ const Cart = () => {
           <span className="text-base text-textColor">Total </span>
           <span className="text-base text-textColor">0.00EGP</span>
         </div>
-        <button className="main-shadow duration-500 mt-10 w-full p-3 text-base rounded text-white bg-main">
+        <Link to='/student/payment' className="main-shadow inline-block text-center duration-500 mt-10 w-full p-3 text-base rounded text-white bg-main">
           Checkout
-        </button>
+        </Link>
       </div>
     </div>
   );

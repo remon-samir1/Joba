@@ -186,18 +186,10 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >
           <Icon icon="gg:profile" width="24" height="24" />
-          <span>Profile</span>
+          <span>Profile Setting</span>
         </NavLink>
 
-        <NavLink
-          to="setting"
-          className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
-          onClick={() => setIsOpen(false)}
-        >
-          <Icon icon="ci:settings" width="24" height="24" />
-          <span>Setting</span>
-        </NavLink>
-
+    
         <NavLink
           to="/"
           className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"

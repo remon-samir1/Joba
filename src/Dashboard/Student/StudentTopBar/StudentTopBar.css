@@ -83,6 +83,10 @@
 }
 
 @media (max-width: 768px) {
+.StudentTopBar {
+height: 30px;
+padding: 0;
+}
   .parant-topbar .header {
     display: flex;
     width: 100%;

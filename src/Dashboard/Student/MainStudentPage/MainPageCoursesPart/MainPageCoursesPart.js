@@ -1,14 +1,27 @@
 import { Icon } from "@iconify-icon/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const MainPageCoursesPart = () => {
+const [resize , setResize] = useState(window.innerWidth)
+useEffect(()=>{
+  window.addEventListener('resize',()=>setResize(window.innerWidth))
+   
+
+  return ()=>{
+    window.removeEventListener('resize',()=>setResize(window.innerWidth))
+  }
+},[window.innerWidth])
+console.log(resize);
+
   return (
     <div className="MainPageCoursesPart mt-8 ">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center  gap-6">
+      <div className="flex items-center justify-between scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
+        <div className="flex items-start md:items-center  gap-6 flex-col md:flex-row justify-start">
           <p className="text-[1.2rem] text-textColor">Continue learning</p>
-          <button className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
+          <div className="flex items-center gap-6">
+
+          <button className="bg-[#F6F8FC] text-text2 px-5 whitespace-nowrap py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
             All Courses
           </button>
           <button className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
@@ -17,26 +30,27 @@ const MainPageCoursesPart = () => {
           <button className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
             Development
           </button>
-          <button className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
+          <button className="bg-[#F6F8FC] text-text2 px-5 py-3 whitespace-nowrap rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
             Digital Marketing
           </button>
-        </div>
-        <Link className="text-main text-[1.05rem] flex items-center gap-2 pr-4">
+        <Link className="text-main text-[1.05rem] flex items-center gap-2 pr-4 whitespace-nowrap">
           See all courses
           <Icon
             className="text-main"
             icon="mingcute:arrow-right-line"
             width="24"
             height="24"
-          />
+            />
         </Link>
+            </div>
+            </div>
       </div>
-      <div className="courses mt-5 flex items-center gap-8">
+      <div className="courses mt-5 flex items-center gap-4 md:gap-8">
         {
-          Array.from({length:3}).map((_,index)=>(
+          Array.from({length: resize < 700 ? 2 : 3}).map((_,index)=>(
 
-            <div className="course-card group relative flex-1 transition-transform duration-500 ">
-            <div className="img w-full h-[155px] rounded-xl overflow-hidden relative">
+            <div className="course-card group relative flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
+            <div className="img w-full h-[9.6rem] rounded md:rounded-xl overflow-hidden relative">
               <img
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 src={require("../../../../images/course.png")}

@@ -68,6 +68,7 @@ useEffect(()=>{
         {["Home", "About", "Course content", "Resources", "Support"].map(
           (text, index) => (
             <Link
+            to='/student'
               key={index}
               className="link"
               ref={(el) => (linksRef.current[index] = el)}

@@ -52,6 +52,8 @@ import WishList from "./Dashboard/Student/WishList/WishList";
 import Reviews from "./Dashboard/Student/Reviews/Reviews";
 import StudentReviewsDetails from "./Dashboard/Student/Reviews/StudentReviewsDetails";
 import MyQuiz from "./Dashboard/Student/MyQuiz/MyQuiz";
+import Payment from "./Dashboard/Student/Payment/Payment";
+import ProfileSettings from "./Dashboard/Student/ProfileSettings/ProfileSettings";
 function App() {
   return (
     <div className="App">
@@ -115,7 +117,8 @@ function App() {
           <Route path="wishlist" element={<WishList/>}/>
           <Route path="reviews" element={<Reviews/>}/>
           <Route path="my-Quiz" element={<MyQuiz/>}/>
-
+          <Route path="payment" element={<Payment/>}/>
+          <Route path="profile" element={<ProfileSettings/>}/>
           <Route path="/student/reviews/details" element={<StudentReviewsDetails/>}/>
       
             
