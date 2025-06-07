@@ -15,7 +15,7 @@ const StudentTopBar = () => {
       <div className="header">
         <div className="logo flex items-center w-full justify-between">
           <Logo small />
-          <div className="flex items-center gap-3">
+          <Link to='/student/cart' className="flex items-center gap-3">
             <Icon
               icon="game-icons:shopping-cart"
               width="28"
@@ -36,7 +36,7 @@ const StudentTopBar = () => {
               className="text-main cursor-pointer"
               onClick={() => setIsOpen((prev) => !prev)}
             />
-          </div>
+          </Link>
         </div>
         <div className="name">
           <p>Welcome ,Jay Johnson</p>

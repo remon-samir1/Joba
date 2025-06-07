@@ -7,7 +7,7 @@ const Cart = () => {
   const nav = useNavigate();
   const [fav, setFav] = useState(false);
   return (
-    <div className="flex gap-6 mt-6">
+    <div className="flex gap-6 mt-6 md:flex-row flex-col">
       {/* Center */}
       <div className="flex-1">
         <div onClick={() => nav(-1)} className="flex items-center gap-2 cursor-pointer w-max">

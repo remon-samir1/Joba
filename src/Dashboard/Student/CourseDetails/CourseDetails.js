@@ -15,7 +15,7 @@ const CourseDetails = () => {
   return (
     <div className="my-5">
       <button
-        className="flex items-center text-textColor gap-2 text-[1.1rem]"
+        className="flex items-center text-textColor  gap-2 text-[1.1rem]"
         onClick={() => nav(-1)}
       >
         <Icon
@@ -27,9 +27,9 @@ const CourseDetails = () => {
         Back
       </button>
 
-      <div className="flex mt-5 items-start gap-5">
+      <div className="flex mt-5 items-start gap-5 md:flex-row flex-col">
         {/*  center  */}
-        <div className="flex-1 pb-12 bg-white rounded-xl">
+        <div className="flex-1  pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] rounded-xl overflow-hidden">
             <img
               src={require("../../../images/course-details.png")}
@@ -41,7 +41,7 @@ const CourseDetails = () => {
             <h3 className="text-textColor px-3 text-[1.3rem] ">
               How to make your own brand from zero
             </h3>
-            <div className="flex px-3 py-4 items-center justify-between">
+            <div className="flex px-3 py-4 items-center gap-20 md:gap-0 md:justify-between overflow-scroll md:w-auto scrollbar-hide her  w-[90vw]">
               <div className="flex items-center gap-3">
                 <img
                   src={require("../../../images/course.png")}
@@ -81,7 +81,7 @@ const CourseDetails = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-10 py-6 px-2 bg-white">
+          <div className="flex items-center gap-10 py-6 px-2 bg-white scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
             <button
               onClick={() => setTabs("overview")}
               className={`text-text2 text-base capitalize py-3 px-4 duration-500 hover:bg-main hover:text-white rounded-xl ${
@@ -135,3 +135,4 @@ const CourseDetails = () => {
 };
 
 export default CourseDetails;
+

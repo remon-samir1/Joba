@@ -4,8 +4,8 @@ import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const MyCoursesCard = () => {
   return (
-    <Link to='/student/enrolled-course' className='bg-white mt-4 border flex items-center gap-4  border-[#dddd] rounded-lg pl-3 pr-8 py-3'>
-      <div className="h-[220px] w-[25%] shrink-0 rounded overflow-hidden">
+    <Link to='/student/enrolled-course' className='bg-white mt-4 border flex flex-col md:flex-row items-center gap-4  border-[#dddd] rounded-lg pl-3 pr-3 md:pr-8 py-3'>
+      <div className="h-[220px] w-full md:w-[25%] shrink-0 rounded overflow-hidden">
         <img src={require('../../../images/course-details.png')} alt="course" loading='lazy' className='w-full h-full object-cover' />
         </div> 
         <div className='flex-1'>
