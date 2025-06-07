@@ -30,7 +30,7 @@ const EnrolledCourseDetails = () => {
         </button>
         <Breadcrumbs />
       </div>
-      <div className="flex mt-5 items-start gap-5">
+      <div className="flex mt-5 items-start gap-5 flex-col">
         {/*  center  */}
         <div className="flex-1 pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">
@@ -60,7 +60,7 @@ const EnrolledCourseDetails = () => {
             <h3 className="text-textColor px-3 text-[1.3rem] ">
               How to make your own brand from zero
             </h3>
-            <div className="flex px-3 py-4 items-center justify-between">
+            <div className="flex px-3 py-4 items-center justify-between gap-20 md:gap-0 md:justify-between overflow-scroll md:w-auto scrollbar-hide her  w-[90vw]">
               <div className="flex items-center gap-3">
                 <img
                   src={require("../../../images/course.png")}
@@ -100,7 +100,7 @@ const EnrolledCourseDetails = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-10 py-6 px-2 bg-white">
+          <div className="flex items-center gap-10 py-6 px-2 bg-white scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
             <button
               onClick={() => setTabs("overview")}
               className={`text-text2 text-base capitalize py-3 px-4 duration-500 hover:bg-main hover:text-white rounded-xl ${
@@ -134,12 +134,7 @@ const EnrolledCourseDetails = () => {
               Reviews
             </button>
           </div>
-          {/* <CourseDetailsOverview /> */}
-          {/* <QA /> */}
-         {/* <Annoucement/> */}
-         {/* <EnroledCourseReviews/> */}
-
-
+      
 
       {tabs === "overview" ? (
             <CourseDetailsOverview />

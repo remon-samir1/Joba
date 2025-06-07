@@ -3,8 +3,8 @@ import React from "react";
 const CourseDetailsInstructor = () => {
   return (
     <div className="pt-4 px-4 bg-white">
-      <div className="flex items-center gap-5 py-8 rounded-lg px-4  border border-[#dddd]">
-        <div className="min-w-[9.25rem] h-[9.25rem] rounded-full overflow-hidden">
+      <div className="flex items-start md:items-center gap-5 py-8 rounded-lg px-4  border border-[#dddd]">
+        <div className="md:min-w-[9.25rem] w-14 h-14 shrink-0 md:h-[9.25rem] rounded-full overflow-hidden">
           <img
             src={require("../../../images/course-details.png")}
             alt="instructor"
