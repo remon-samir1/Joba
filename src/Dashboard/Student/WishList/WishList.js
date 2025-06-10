@@ -9,7 +9,7 @@ const WishList = () => {
         <h3 className='text-[1.1rem] text-textColor'>WishList</h3>
         <Breadcrumbs/>
       </div>
-      <div className="flex items-center gap-5 flex-wrap">
+      <div className="flex items-center gap-5 md:justify-start justify-center flex-wrap">
         <WishListCard/>
         <WishListCard/>
         <WishListCard/>

@@ -14,12 +14,12 @@ import { AiOutlineLoading } from "react-icons/ai";
 const Table = (props) => {
   const [loadDelete , setLoadDelete] = useState(false)
   // handle delete
-  const handleDelete = async (id) => {
+  const handleDelete = async (id , parent_id) => {
     setLoadDelete(id)
     try {
       console.log(id);
 
-      await Axios.post(`${props.delurl ? props.delurl : props.url}/${id}`, {
+      await Axios.post(`${props.delurl ? props.delurl : props.url}/${id}/${parent_id ? parent_id : ''}`, {
         _method: "DELETE",
       }).then((data) => {
         setLoadDelete(false)
@@ -34,6 +34,8 @@ const Table = (props) => {
     } catch (err) {
       toast.success(err);
       console.log(err);
+      setLoadDelete(false)
+
     }
   };
 
@@ -45,7 +47,8 @@ const Table = (props) => {
       <td>{item.id}</td>
 
       {props.headers.map((item2, i) => (
-        <td key={i} >
+        <td key={i} className="">
+
           {item2.key === "icon" ? (
             <img
               src={`${baseUrl}/${item[item2.key]}`}
@@ -63,7 +66,7 @@ const Table = (props) => {
                 No
               </span>
             )
-          ) : item2.key === "status" && item2.type !== "static" && item2.type !== "show" ? (
+          ) : item2.key === "status" && item2.type !== "static" && item2.type !== "show" && item2.type !== "text" ? (
             <ToggleStatusButton
               data={item[item2.key]}
               id={item.id}
@@ -103,6 +106,14 @@ const Table = (props) => {
           
           item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl " style={{whiteSpace:'nowrap'}} >Not verified</span>:
            item2.type =='show' ? item[item2.key] ==  'active'? <span className="bg-green-500 text-white px-5 py-1 rounded-3xl">active</span> : <span className="bg-orange-500 text-white px-5 py-1 rounded-3xl">Inactive</span> :
+
+           item2.type === 'text' && item2.key === 'status' ? item[item2.key] === 'completed' ? <span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-5">{item[item2.key]}</span> : <span className="text-base bg-orange-600 text-white rounded-3xl py-1 px-5">{item[item2.key]}</span> : item2.key === 'payment_status' ? item[item2.key] === 'paid' ?<span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-8">{item[item2.key]}</span> : <span className="text-base bg-orange-600 rounded-3xl text-white py-1 px-8">{item[item2.key]}</span> :
+
+           item2.key === "is_approved" ? item[item2.key] === 'approved' ?  <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
+           Approved
+         </span> :   <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
+                Disapproved
+              </span>:
           
             item[item2.key]
           }
@@ -127,7 +138,7 @@ const Table = (props) => {
           )}
           {props.sub && (
             <Link
-              to="sub-Category"
+              to={`sub-Category/${item.id}`}
               className="w-7 h-7 bg-blue-800 flex justify-center items-center rounded"
             >
               <Icon
@@ -151,10 +162,27 @@ const Table = (props) => {
               />
             </Link>
           )}
+
+
+{props.viewStudent && (
+            <Link
+              to={`view/${item.id}`}
+              className="w-7 h-7 bg-[#F15A24] bg-opacity-30 flex justify-center items-center rounded-full"
+            >
+              <Icon
+                icon="iconamoon:eye-light"
+                width={18}
+                height={18}
+                style={{ color: "#F15A24" }}
+              />
+            </Link>
+          )}
+
+
           {props.trash && (
             <button
             disabled={loadDelete == item.id}
-              onClick={() => handleDelete(item.id)}
+              onClick={() => handleDelete(item.id , props.url === 'admin/course-sub-category' && item.parent_id)}
               className="w-7 h-7 bg-red-600 flex justify-center items-center rounded"
             >
 {
@@ -183,7 +211,7 @@ const Table = (props) => {
           <tr>
             <th>SN</th>
             {showHeaders}
-            {props.action && <th>Actions</th>}
+            {props.action && <th> {props.viewStudent ? "": 'Actions'}</th>}
           </tr>
         </thead>
         <tbody className="bg-white">

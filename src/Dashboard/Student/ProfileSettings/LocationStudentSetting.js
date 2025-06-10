@@ -13,17 +13,17 @@ const LocationStudentSetting = () => {
       </div>
 
 
-      <div className='flex flex-col gap-2 mt-4 flex-1 '>
+      <div className='flex flex-col gap-2 mt-4 md:flex-1 w-full '>
         <label htmlFor="State" className='text-[0.9rem] text-textColor font-medium'>State</label>
         <input type="text" placeholder='State' id='State' className='p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2'  />
       </div>
-      <div className='flex flex-col gap-2 mt-4 flex-1 '>
+      <div className='flex flex-col gap-2 mt-4 md:flex-1 w-full '>
         <label htmlFor="City" className='text-[0.9rem] text-textColor font-medium'>City</label>
         <input type="text" placeholder='City' id='name' className='p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2'  />
       </div>
       </div>
 
-      <div className='flex flex-col gap-2 mt-4 flex-1 '>
+      <div className='flex flex-col gap-2 mt-4 md:flex-1 w-full '>
         <label htmlFor="address" className='text-[0.9rem] text-textColor font-medium'>Address</label>
         <input type="text" placeholder='Address' id='address' className='p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2'  />
 

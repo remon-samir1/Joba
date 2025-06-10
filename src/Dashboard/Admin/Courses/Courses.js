@@ -18,6 +18,8 @@ const Courses = () => {
   const [deleted, setDeleted] = useState(false);
 const [courses, setCourses] = useState([]);
 const [categoryStatus, setCategoryStatus] = useState(false);
+const [selectedDate, setSelectedDate] = useState(0);
+
 const [loading, setLoading] = useState(false);
 const [page, setPage] = useState(1);
 const [total, setTotal] = useState();
@@ -26,14 +28,14 @@ const [search, setSearch] = useState("");
 useEffect(() => {
   setLoading(true);
   Axios.get(
-    `/admin/courses?page=${page}&keyword=${search}`
+    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}`
   ).then((data) => {
     console.log(data.data.data.courses);
     setCourses(data.data.data.courses.data);
     setTotal(data.data.data.courses.total);
     setLoading(false);
   });
-}, [search, deleted]);
+}, [search, deleted,selectedDate]);
 
 // headers of table
 const headers = [
@@ -45,10 +47,7 @@ const headers = [
     title: "Title",
     key: "title",
   },
-  // {
-  //   title: "Instructor",
-  //   key: "insturctor",
-  // },
+
   {
     title: "Price",
     key: "price",
@@ -74,6 +73,7 @@ const headers = [
     key: "is_approved",
   },
 ];
+console.log(selectedDate);
   return (
     <div className="Courses">
       <div className="flex justify-between items-center">
@@ -87,9 +87,9 @@ const headers = [
           onchange={(e) => setSearch(e.target.value)}
         />
 
-        <DateInput />
+        <DateInput setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
         <SelectBox title="Category" />
-        <SelectBox title="Instarctor" />
+      
         <SelectBox title="Statue" />
         <SelectBox title="Approval statue" />
       </div>
@@ -104,7 +104,7 @@ const headers = [
             <span>add new</span>
           </Link>
         </div>
-        <div className="overflow-auto w-[90vw] md:w-[75vw] ">
+        <div className="overflow-auto w-[90vw] md:w-full ">
         <Table
             action
             update
@@ -113,6 +113,7 @@ const headers = [
             data={courses}
             loading={loading}
             url='admin/courses/status-update'
+            delurl='/admin/courses/delete'
             setDeleted={setDeleted}
           />
         </div>

@@ -7,7 +7,7 @@ const Notifcation = () => {
       autoClose={5000}
       hideProgressBar
       newestOnTop={false}
-      closeOnClick={false}
+      closeOnClick={true}
       rtl={false}
       pauseOnFocusLoss
       draggable

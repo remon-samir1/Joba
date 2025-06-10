@@ -28,7 +28,7 @@ const ExploreCourses = () => {
           <span className="text-[1rem] text-text2">Filter</span>
         </button>
       </div>
-      <div className="flex items-center mt-4 gap-4 flex-wrap">
+      <div className="flex items-center justify-center md:justify-start mt-4 gap-4 flex-wrap">
       {Array.from({length:3}).map((_,index)=>(
       <div
       key={index}

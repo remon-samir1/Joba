@@ -6,9 +6,9 @@ import Visa from './Visa';
 const Payment = () => {
   const [method ,setMethod] = useState('insta')
   return (
-    <div className='flex items-start gap-4'>
+    <div className='flex items-start gap-4 flex-wrap md:flex-row flex-col '>
       {/* Payment Method */}
-      <div className="flex-1 p-4 bg-white border border-[#dddd] rounded overflow-hidden">
+      <div className="flex-1 p-4 min-w-max w-full bg-white border border-[#dddd] rounded overflow-hidden">
   <h3 className='text-textColor text-base'>Payment method</h3>
   <div className="flex justify-center items-start gap-7 mt-6">
  <div  onClick={()=>setMethod('insta')} className="flex flex-col justify-center items-center gap-3 ">
@@ -45,7 +45,7 @@ const Payment = () => {
 
       {/*  Your Order */}
 
-      <div className="w-[338px] h-max py-5 px-3 rounded bg-white border border-[#dddd]">
+      <div className="md:w-[338px] w-full  h-max py-5 px-3 rounded bg-white border border-[#dddd]">
         <div className="text-center">
           <h3 className="text-textColor text-[1rem] py-3 mb-3">
             Your order

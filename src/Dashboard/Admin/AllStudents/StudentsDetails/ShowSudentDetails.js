@@ -3,8 +3,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Axios } from "../../../../components/Helpers/Axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import Notifcation from "../../../../components/Notification";
 
 const ShowSudentDetails = () => {
+
   function formatCustomDate(isoDateStr) {
     const date = new Date(isoDateStr);
 
@@ -29,8 +32,38 @@ const ShowSudentDetails = () => {
     Axios.get(`/admin/customer-show/${id}`).then(data=> setStudent(data.data.data.user))
   },[])
   console.log(student);
+
+  // handle send verify link
+  const handleSendVerifyLink = async()=>{
+try{
+  await Axios.post(`/admin/send-verify-request/${id}`).then(data=>{
+    toast.success(data.data.messege)
+    console.log(data.data.messege)})
+
+}
+
+catch(err){
+  console.log(err);
+  toast.error(err.message)
+}
+  }
+  // handle send verify link
+  const handleSendMail = async()=>{
+try{
+  await Axios.post(`/admin/send-mial-to-customer/${id}`).then(data=>{
+    toast.success(data.data.messege)
+    console.log(data.data.messege)})
+
+}
+
+catch(err){
+  console.log(err);
+  toast.error(err.message)
+}
+  }
   return (
     <div className="w-[268px] bg-white rounded px-4 py-6 mb-8">
+      <Notifcation/>
       <div className="flex justify-center gap-4 items-center flex-col w-full">
         <img
           src={`https://goba.sunmedagency.com/${student?.cover}`}
@@ -53,10 +86,10 @@ const ShowSudentDetails = () => {
       <p className="text-base text-[#000000] font-semibold mt-4">
         Email verified : {student?.email_verified_at == null? "No" : 'Yes'}
       </p>
-      <button className="hover:bg-white hover:text-[#319F43]   duration-500 border border-[#319F43] text-white mt-6 w-full p-3 bg-[#319F43] text-sm rounded">
+      <button onClick={handleSendVerifyLink} className="hover:bg-white hover:text-[#319F43]   duration-500 border border-[#319F43] text-white mt-6 w-full p-3 bg-[#319F43] text-sm rounded">
         Send verifiy link to mail
       </button>
-      <button className="hover:bg-white hover:text-[#0048D3]  duration-500 border border-[#0048D3] text-white mt-3 w-full p-3 bg-[#0048D3] text-sm rounded">
+      <button onClick={handleSendMail} className="hover:bg-white hover:text-[#0048D3]  duration-500 border border-[#0048D3] text-white mt-3 w-full p-3 bg-[#0048D3] text-sm rounded">
         Send mail to user
       </button>
       <button className="hover:bg-white hover:text-[#F2A124]  duration-500 border border-[#F2A124] text-white mt-3 w-full p-3 bg-[#F2A124] text-sm rounded">

@@ -18,6 +18,7 @@ const MainAdminPage = () => {
   const [data , setData] = useState()
 useEffect(()=>{
   Axios.get('/admin/dashboard').then(data=>{
+    console.log(data.data);
     setData(data.data.data)
     })
 },[])
@@ -66,7 +67,7 @@ useEffect(()=>{
 ];
 
 
-
+console.log(data?.monthly_data);
   const menu = useContext(WindowSize);
 
   return (
@@ -84,7 +85,7 @@ useEffect(()=>{
       </div>
       <div className="charts flex mt-8 gap-4 flex-wrap h-max">
         <div className="line flex-1">
-          <CustomLineChart cusrom={data?.monthly_data}/>
+          <CustomLineChart data={data?.monthly_data}/>
         </div>
         <div className="pie w-full">
           <CustomPieChart />

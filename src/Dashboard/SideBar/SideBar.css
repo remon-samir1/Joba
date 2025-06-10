@@ -1,10 +1,10 @@
 .SideBar{
-  width: 20vw;
+  width: 250px;
   background-color: var(--bg-color);
   z-index: 999;
   transition: 0.5s ease-out;
   overflow-y: auto;
-  
+flex-shrink: 0;
 }
 .SideBar .logo img{
   margin-bottom: 20px;
@@ -40,48 +40,3 @@
   height: 100vh;
   }
 }
-
-/* 
-::-webkit-scrollbar{
-  width: 5px;
-  height: 2px;
-  transition: 0.5s;
- }
- ::-webkit-scrollbar-track{
-  background: transparent;
-  border-radius: 6px;
- }
- ::-webkit-scrollbar-thumb{
-  background:#c3c3c3;
-  border-radius: 6px;
- }
-
-
-
-
-
-
-.SideBar::-webkit-scrollbar {
-  width: 6px;
-  transition: opacity 0.3s ease; 
-  opacity: 0; 
-}
-
-
-.SideBar::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-  opacity: 0; 
-}
-
-
-.SideBar:hover::-webkit-scrollbar {
-  opacity: 1;
-}
-
-
-.SideBar:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.4); 
-  opacity: 1;
-} */

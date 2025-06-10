@@ -27,7 +27,7 @@ const SideBar = (props) => {
     <div
       ref={sideBarRef}
       className={`SideBar py-5 px-7 ${
-        windowWidth < 769 && isOpen ? "left-0" : "-left-full"
+        windowWidth < 1000 && isOpen ? "left-0" : "-left-full"
       }`}
     >
       <div className="logo">
@@ -186,7 +186,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >
           <Icon icon="gg:profile" width="24" height="24" />
-          <span>Profile Setting</span>
+        <span>Profile Setting</span>
         </NavLink>
 
     

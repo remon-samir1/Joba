@@ -54,6 +54,9 @@ import StudentReviewsDetails from "./Dashboard/Student/Reviews/StudentReviewsDet
 import MyQuiz from "./Dashboard/Student/MyQuiz/MyQuiz";
 import Payment from "./Dashboard/Student/Payment/Payment";
 import ProfileSettings from "./Dashboard/Student/ProfileSettings/ProfileSettings";
+import OrderStudentHistoryDetails from "./Dashboard/Student/OrderHistory/OrderStudentHistoryDetails";
+import AddSubCategory from "./Dashboard/Admin/Categories/SubCategory/AddSubCategory/AddSubCategory";
+import UpdateSubCategory from "./Dashboard/Admin/Categories/SubCategory/UpdateSubCategory/UpdateSubCategory";
 function App() {
   return (
     <div className="App">
@@ -70,7 +73,9 @@ function App() {
         <Route path="Categories" element={<Categories/> } />
         <Route path="/admin/Categories/update/:id" element={<UpdateCategory/> } />
         <Route path="/admin/Categories/add" element={<AddCategory/> } />
-        <Route path="/admin/Categories/sub-category" element={<SubCategory/> } />
+        <Route path="/admin/Categories/sub-category/:id" element={<SubCategory/> } />
+        <Route path="/admin/Categories/sub-category/:id/add" element={<AddSubCategory/> } />
+        <Route path="/admin/Categories/sub-category/:id/update/:id" element={<UpdateSubCategory/> } />
         <Route path="Levels" element={<Levels/> } />
         <Route path="/admin/Levels/update/:id" element={<UpdateLevel/> } />
         <Route path="/admin/Levels/Add" element={<AddLevel/> } />
@@ -112,6 +117,7 @@ function App() {
           <Route path="explore" element={<ExploreCourses/>}/>
           <Route path="course-details" element={<CourseDetails/>}/>
           <Route path="order-history" element={<OrderStudentHistory/>}/>
+          <Route path="order-history/view/:id" element={<OrderStudentHistoryDetails/>}/>
           <Route path="enrolled-course" element={<EnrolledCourseDetails/>}/>
           <Route path="my-courses" element={<MyCourses/>}/>
           <Route path="wishlist" element={<WishList/>}/>

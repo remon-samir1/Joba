@@ -41,6 +41,7 @@ const OrderStudentHistory = () => {
     {
       title: "Status",
       key: "status",
+      type:'text'
     },
     {
       title: "Payment",
@@ -53,13 +54,10 @@ const OrderStudentHistory = () => {
         <div className="overflow-x-auto w-[90vw] md:w-full mt-6">
           <Table
             action
-            sub
-            update
-            trash
+            viewStudent
             headers={headers}
             data={categories}
             loading={loading}
-            url='admin/course-category'
             setDeleted={setDeleted}
           />
         </div>

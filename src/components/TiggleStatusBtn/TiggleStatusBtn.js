@@ -17,7 +17,8 @@ export default function ToggleStatusButton(props) {
     try {
       if (
         props.url === "admin/course-category" ||
-        props.url === "admin/course-level/"
+        props.url === "admin/course-level/" ||
+        props.url ==='admin/course-sub-category'
       ) {
         await Axios.put(`/${props.url}/status-update/${props.id}`).then(
           (data) => console.log(data)
@@ -26,11 +27,17 @@ export default function ToggleStatusButton(props) {
         await Axios.put(`/${props.url}/${props.id}`, { status: isActive }).then(
           (data) => console.log(data)
         );
-      }else if(props.url === 'admin/customer-status-update'){
+      }else if(props.url === 'admin/customer-status-update' ){
         await Axios.post(`/${props.url}/${props.id} `
         , {
            status: props.data =='active' ? 'inactive' : 'active',
           _method: "PUT",
+        }).then((data) => console.log(data));
+      }else if(props.url === 'admin/courses/status-update'){
+        await Axios.post(`/${props.url}/${props.id} `
+        , {
+          status: props.data =='active' ? 'inactive' : 'active',
+      
         }).then((data) => console.log(data));
       }
       
@@ -49,7 +56,7 @@ console.log(isActive);
   return (
     <button
       onClick={handleUpdate}
-      className={` relative w-28 h-10 rounded-md border-2 flex items-center justify-center px-1 transition-all duration-500
+      className={` relative w-28 h-10 mx-auto rounded-md border-2 flex items-center justify-center px-1 transition-all duration-500
         ${
           isActive
             ? "bg-[#1CC340] border-[#4BBC9A]"

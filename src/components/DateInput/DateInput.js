@@ -2,15 +2,16 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DateInput = () => {
+const DateInput = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
     <div className="relative md:w-60 h-12 w-[40vw]">
   
       <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
+      
+        selected={props.selectedDate}
+        onChange={(date) => props.setSelectedDate(date)}
         className="w-full bg-inputColor border border-borderColor rounded px-4 py-2 pr-10 text-gray-300 focus:outline-none cursor-pointer"
         dateFormat="yyyy-MM-dd"
         placeholderText="Date"

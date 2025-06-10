@@ -30,7 +30,7 @@ const EnrolledCourseDetails = () => {
         </button>
         <Breadcrumbs />
       </div>
-      <div className="flex mt-5 items-start gap-5 flex-col">
+      <div className="flex mt-5 items-start gap-5 flex-col md:flex-row">
         {/*  center  */}
         <div className="flex-1 pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">

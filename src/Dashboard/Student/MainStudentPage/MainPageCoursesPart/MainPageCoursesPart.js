@@ -16,10 +16,10 @@ console.log(resize);
 
   return (
     <div className="MainPageCoursesPart mt-8 ">
-      <div className="flex items-center justify-between scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
+      <div className="flex items-center justify-between ">
         <div className="flex items-start md:items-center  gap-6 flex-col md:flex-row justify-start">
           <p className="text-[1.2rem] text-textColor">Continue learning</p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
 
           <button className="bg-[#F6F8FC] text-text2 px-5 whitespace-nowrap py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
             All Courses
@@ -45,11 +45,11 @@ console.log(resize);
             </div>
             </div>
       </div>
-      <div className="courses mt-5 flex items-center gap-4 md:gap-8">
+      <div className="courses mt-5 flex sm:flex-row flex-col items-center gap-4 md:gap-8 flex-wrap">
         {
           Array.from({length: resize < 700 ? 2 : 3}).map((_,index)=>(
 
-            <div className="course-card group relative flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
+            <div className="course-card group relative w-full flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
             <div className="img w-full h-[9.6rem] rounded md:rounded-xl overflow-hidden relative">
               <img
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

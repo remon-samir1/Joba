@@ -7,7 +7,7 @@ const Cart = () => {
   const nav = useNavigate();
   const [fav, setFav] = useState(false);
   return (
-    <div className="flex gap-6 mt-6 md:flex-row flex-col">
+    <div className="flex gap-6 mt-6 md:flex-row flex-col justify-center md:justify-start">
       {/* Center */}
       <div className="flex-1">
         <div onClick={() => nav(-1)} className="flex items-center gap-2 cursor-pointer w-max">
@@ -20,7 +20,7 @@ const Cart = () => {
           <span className="text-text2 text-base">Back</span>
         </div>
         {/* Cards of  Courses */}
-        <div className="flex items-center gap-3 mt-5 flex-wrap">
+        <div className="flex items-center gap-3 mt-5 flex-wrap justify-center">
           {/* Card */}
           {Array.from({length:2}).map((_,index)=>(
             <div className="w-[333px] min-w-[300px] rounded-lg overflow-hidden bg-white">

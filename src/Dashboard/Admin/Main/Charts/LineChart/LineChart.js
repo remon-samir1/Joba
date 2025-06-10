@@ -39,7 +39,7 @@ const data = [
 ];
 
 
-const CustomLineChart = () => {
+const CustomLineChart = (props) => {
   return (
     <div className="w-full h-[26rem] md:h-full">
     <div className="flex justify-between items-center px-5">
