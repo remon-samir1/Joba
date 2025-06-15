@@ -13,7 +13,7 @@ import SudentsSays from './SudentsSays/SudentsSays';
 import Footer from '../../components/Footer/Footer';
 const Landing = () => {
   return (
-    <div className='overflow-hidden'>
+    <div >
       <NavBar/>
       <Hero/>
       <AboutUs/>

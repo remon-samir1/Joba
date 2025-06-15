@@ -8,6 +8,9 @@
   top: 0;
   left: 0;
   z-index: 555;
+  backdrop-filter: blur(0px);
+  background-color: transparent;
+  transition: all 0.3s ease;
 }
 .NavBar .Links {
   display: flex;
@@ -56,12 +59,13 @@
 .NavBar .btns .link:last-child:hover {
   border: 1px solid var(--main-color);
   color: var(--main-color);
-  background-color: #fff;
+  background-color: transparent;
 }
 @media (max-width: 768px) {
   .NavBar {
-    position: relative;
+    position: sticky;
   padding: 30px 20px 30px 0;
+  z-index: 50;
 
   }
   .NavBar .Links {

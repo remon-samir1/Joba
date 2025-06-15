@@ -57,12 +57,14 @@ import ProfileSettings from "./Dashboard/Student/ProfileSettings/ProfileSettings
 import OrderStudentHistoryDetails from "./Dashboard/Student/OrderHistory/OrderStudentHistoryDetails";
 import AddSubCategory from "./Dashboard/Admin/Categories/SubCategory/AddSubCategory/AddSubCategory";
 import UpdateSubCategory from "./Dashboard/Admin/Categories/SubCategory/UpdateSubCategory/UpdateSubCategory";
+import Blog from "./Website/Blog/Blog";
 function App() {
   return (
     <div className="App">
       
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
            {/* Admin Dahboard */}
