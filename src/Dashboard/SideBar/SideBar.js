@@ -24,6 +24,11 @@ const SideBar = (props) => {
   const sideBarRef = useRef(null);
 
   return (
+    <>
+    {
+     isOpen &&
+      <div onClick={()=>setIsOpen(false)}  className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-10"></div>
+    }
     <div
       ref={sideBarRef}
       className={`SideBar py-5 px-7 ${
@@ -34,13 +39,13 @@ const SideBar = (props) => {
         <Logo />
         {
           props.admin ?
-
+          
           <div className="links">
           <NavLink
             to="main"
             className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
             onClick={() => setIsOpen(false)}
-          >
+            >
             <Icon icon="hugeicons:home-02" width="24" height="24" />
             <span>Dashboard</span>
           </NavLink>
@@ -78,7 +83,7 @@ const SideBar = (props) => {
             data={withdraw}
             icon="ph:hand-withdraw"
             title="Withdraw Method"
-          />
+            />
 
           <p className="text-gray-400 mt-12">system</p>
 
@@ -95,7 +100,7 @@ const SideBar = (props) => {
             to="setting"
             className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
             onClick={() => setIsOpen(false)}
-          >
+            >
             <Icon icon="ci:settings" width="24" height="24" />
             <span>Setting</span>
           </NavLink>
@@ -110,14 +115,14 @@ const SideBar = (props) => {
           </NavLink>
         </div>
         :
-
+        
                 //  Student Links
-        <div className="links">
+                <div className="links">
         <NavLink
           to="main"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
           onClick={() => setIsOpen(false)}
-        >
+          >
           <Icon icon="hugeicons:home-02" width="24" height="24" />
           <span>Dashboard</span>
         </NavLink>
@@ -125,7 +130,7 @@ const SideBar = (props) => {
           to="explore"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 link"
           onClick={() => setIsOpen(false)}
-        >  
+          >  
     <Icon icon="charm:cards" width="24" height="24" />
           <span>Explore Course</span>
           
@@ -134,7 +139,7 @@ const SideBar = (props) => {
           to="my-courses"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 link"
           onClick={() => setIsOpen(false)}
-        >  
+          >  
   <Icon icon="solar:book-outline"  width="24" height="24" />
           <span>My Course</span>
           
@@ -143,7 +148,7 @@ const SideBar = (props) => {
           to="order-history"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 link"
           onClick={() => setIsOpen(false)}
-        >  
+          >  
   <Icon icon="iconamoon:history" width="24" height="24" />
           <span>Order History</span>
           
@@ -152,7 +157,7 @@ const SideBar = (props) => {
           to="wishlist"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 link"
           onClick={() => setIsOpen(false)}
-        >  
+          >  
   <Icon icon="material-symbols:favorite-outline"  width="24" height="24" />
           <span>Wish list</span>
           
@@ -202,6 +207,7 @@ const SideBar = (props) => {
         }
       </div>
     </div>
+        </>
   );
 };
 
