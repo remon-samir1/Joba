@@ -210,6 +210,60 @@ const SideBar = (props) => {
           <Icon icon="solar:logout-2-outline" width="24" height="24" />
           <span>Logout account</span>
         </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
+    
+        <NavLink
+          to="/"
+          className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+          onClick={() => setIsOpen(false)}
+          >
+          <Icon icon="solar:logout-2-outline" width="24" height="24" />
+          <span>Logout account</span>
+        </NavLink>
       </div>
         }
       </div>
