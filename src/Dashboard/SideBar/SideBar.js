@@ -22,9 +22,16 @@ const SideBar = (props) => {
   const windowSize = useContext(WindowSize);
   const windowWidth = windowSize.windowSize;
   const sideBarRef = useRef(null);
-
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100vh";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  },[isOpen])
   return (
-    <>
+    <div>
     {
      isOpen &&
       <div onClick={()=>setIsOpen(false)}  className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-10"></div>
@@ -207,7 +214,7 @@ const SideBar = (props) => {
         }
       </div>
     </div>
-        </>
+        </div>
   );
 };
 
