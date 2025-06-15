@@ -1,27 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MainStudentPage.css";
 import award1 from "../../../images/award.svg";
 import award2 from "../../../images/award2.svg";
 import book from "../../../images/book.svg";
 import MainPageCoursesPart from "./MainPageCoursesPart/MainPageCoursesPart";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 
 const MainStudentPage = () => {
+  const [data,setData]= useState() 
+  //  get data
+useEffect(()=>{
+  Axios.get('/student/dashboard').then(data=>setData(data.data))
+},[])
   const cardsData = [
     {
       img: award1,
-      value: "21",
+      value: data?.completed_courses,
       title: "Compelete Courses",
       bg: "#F2F8FF",
     },
     {
       img: book,
-      value: "21",
+      value: data?.ongoing_courses,
       title: "Ongoing Courses",
       bg: "#F0FEF9",
     },
     {
       img: award2,
-      value: "21",
+      value: data?.advance_certificate,
       title: "Advance certificate",
       bg: "#F6F2FF",
     },

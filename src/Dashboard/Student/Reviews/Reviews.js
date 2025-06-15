@@ -3,8 +3,13 @@ import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import StarRating from "../../../components/StarRating/StarRating";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify-icon/react";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 
 const Reviews = () => {
+  useEffect(()=>{
+    Axios.get('/student/reviews').then(data=>console.log(data))
+  },[])
   return (
     <div className="py-4">
       <div className="flex justify-between items-center ">

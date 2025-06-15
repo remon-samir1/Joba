@@ -1,8 +1,25 @@
 import { Icon } from '@iconify-icon/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Axios } from '../../../components/Helpers/Axios';
 
-const WishListCard = () => {
+const WishListCard = (props) => {
+  const toggleFav = async (slug) => {
+    try{
+      
+
+    await Axios.get(`/wishlist/${slug}`).then((data)=>{ 
+      props.setWait(prev=> !prev)
+      console.log(data);
+    
+    }
+  
+    )
+    }catch(err){
+      console.log(err);
+    }
+  };
+
   return (
     <div
     
@@ -11,12 +28,12 @@ const WishListCard = () => {
       <div className="img h-[195px] w-full relative overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          src={require("../../../images/course.png")}
+          src={`https://goba.sunmedagency.com/${props.image}`}
           alt="course"
         />
     
         <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <Link to='/student/enrolled-course' className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md">
+          <Link to={`/student/enrolled-course/${props.slug}`} className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md">
             Watch Now
           </Link>
         </div>
@@ -26,13 +43,13 @@ const WishListCard = () => {
     
       <div className="mt-3 px-3">
         <h3 className="text-[1.1rem] text-textColor transition-all duration-300">
-          Cosmetics course for beginner
+          {props.title}
         </h3>
         <div className="flex items-center justify-between gap-3 mt-4">
         <p className='text-[0.9rem] text-textColor'>
-        Reliable engineering takes many forms.
+        {props.slug}
         </p>
-          <p className="text-main text-base  p-1 rounded bg-[#F15A24] bg-opacity-20 whitespace-nowrap">1500 EGP</p>
+          <p className="text-main text-base  p-1 rounded bg-[#F15A24] bg-opacity-20 whitespace-nowrap">{props.price} EGP</p>
         </div>
       </div>
       <div className="flex justify-between items-center mt-4 px-3">
@@ -43,10 +60,10 @@ const WishListCard = () => {
               src={require("../../../images/course.png")}
               alt="student"
             />
-            <span className="text-textColor text-base">Brenda Howe</span>
+            <span className="text-textColor text-base">{props.instructor_name}</span>
           </div>
           <div className="cursor-pointer w-[35px] h-[35px] rounded-full flex justify-center items-center bg-main bg-opacity-30">
-          <Icon className='text-main' icon="iconamoon:trash-light" width="24" height="24" />
+          <Icon onClick={()=>toggleFav(props.slug)} className='text-main' icon="iconamoon:trash-light" width="24" height="24" />
           </div>
       </div>
     </div>

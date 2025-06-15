@@ -1,6 +1,6 @@
 import { Icon } from "@iconify-icon/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SideDetails from "./SideDetails";
 import CourseDetailsOverview from "./CourseDetailsOverview";
 import CoursesList from "./Curriculum";
@@ -8,8 +8,24 @@ import Curriculum from "./Curriculum";
 import CourseDetailsReviews from "./CourseDetailsReviews";
 import CourseDetailsInstructor from "./CourseDetailsInstructor";
 import { useState } from "react";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
+import TransformDate from "../../../components/Helpers/TransformDate";
 
 const CourseDetails = () => {
+  const [course , setCourse] = useState([])
+  const {id} = useParams()
+  console.log(id);
+useEffect(()=>{
+  Axios.get(`/course/${id}`).then(data=>{
+    setCourse(data.data.course)
+    console.log(data.data.course)})
+},[])
+
+
+
+
+
   const [tabs, setTabs] = useState("overview");
   const nav = useNavigate();
   return (
@@ -27,28 +43,28 @@ const CourseDetails = () => {
         Back
       </button>
 
-      <div className="flex mt-5 items-start gap-5 md:flex-row flex-col">
+      <div className="flex mt-5  items-start gap-5 md:flex-row flex-col">
         {/*  center  */}
-        <div className="flex-1  pb-12 bg-white rounded-xl">
+        <div className="flex-1 w-full  pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] rounded-xl overflow-hidden">
             <img
-              src={require("../../../images/course-details.png")}
+            src={`https://goba.sunmedagency.com${course?.thumbnail}`}
               alt="course"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="bg-white border-b border-[#dddd]  py-4">
             <h3 className="text-textColor px-3 text-[1.3rem] ">
-              How to make your own brand from zero
+            {course?.title}
             </h3>
             <div className="flex px-3 py-4 items-center gap-20 md:gap-0 md:justify-between overflow-scroll md:w-auto scrollbar-hide her  w-[90vw]">
               <div className="flex items-center gap-3">
                 <img
-                  src={require("../../../images/course.png")}
+                  src={`https://goba.sunmedagency.com/${course.instructor?.image}`}
                   className="w-[45px] h-[45px] rounded-full"
                   alt="instarctor"
                 />
-                <span className="text-textColor text-base">Brenda Howe</span>
+                <span className="text-textColor text-base">{course.instructor?.name}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -57,7 +73,7 @@ const CourseDetails = () => {
                   height="24"
                   className="text-main"
                 />
-                <span className="text-textColor text-base">3/5/2025</span>
+                <span className="text-textColor text-base">{TransformDate(course?.created_at)}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -77,7 +93,7 @@ const CourseDetails = () => {
                   className="text-[#F0AB4C]"
                 />
 
-                <span className="text-textColor text-base">4.8 Reviews</span>
+                <span className="text-textColor text-base">{course?.reviews_count} Reviews</span>
               </div>
             </div>
           </div>
@@ -117,18 +133,18 @@ const CourseDetails = () => {
           </div>
 
           {tabs === "overview" ? (
-            <CourseDetailsOverview />
+            <CourseDetailsOverview data={course?.description} />
           ) : tabs === "curriculum" ? (
-            <Curriculum />
+            <Curriculum  data={course?.chapters}/>
           ) : tabs === "reviews" ? (
             <CourseDetailsReviews />
           ) : (
-            tabs === "instructor" && <CourseDetailsInstructor />
+            tabs === "instructor" && <CourseDetailsInstructor image={course?.instructor.image} name={course?.instructor.name} />
           )}
         
         </div>
         {/* Right Side  */}
-        <SideDetails />
+        <SideDetails price={course?.price} duration={course?.duration} certificate={course?.certificate} id={course?.id}/>
       </div>
     </div>
   );

@@ -1,35 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Icon } from "@iconify-icon/react";
+import { formatDuration } from "../../../components/FormatDuration/FormatDuration";
 
-const Curriculum = () => {
-  const [units, setUnits] = useState([]);
+const Curriculum = (props) => {
   const [openUnit, setOpenUnit] = useState(null);
   const contentRefs = useRef([]);
 
-  useEffect(() => {
-    setUnits([
-      {
-        unitTitle: "Unit one",
-        courses: [
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-        ],
-      },
-      {
-        unitTitle: "Unit two",
-        courses: [],
-      },
-      {
-        unitTitle: "Unit three",
-        courses: [
-          { title: "Start course", duration: "0H 20M", locked: false },
-        ],
-      },
-    ]);
-  }, []);
 
   const toggleUnit = (index) => {
     if (openUnit === index) {
@@ -65,13 +42,13 @@ const Curriculum = () => {
 
   return (
     <div className="bg-white py-3 px-5 " >
-      {units.map((unit, index) => (
+      {props.data.map((data, index) => (
         <div key={index} className="py-4 border-b border-[#ddddd] cursor-pointer">
           <div
             onClick={() => toggleUnit(index)}
         className="flex justify-between items-center"
           >
-            <span className="text-[1rem] text-textColor font-semibold">{unit.unitTitle}</span>
+            <span className="text-[1rem] text-textColor font-semibold">{data.title}</span>
             <Icon
   icon="dashicons:arrow-down"
   width="20"
@@ -88,8 +65,8 @@ const Curriculum = () => {
             className="overflow-hidden h-0 mt-1 rounded "
           
           >
-            {unit.courses.length > 0 ? (
-              unit.courses.map((course, cIndex) => (
+            {data.chapter_items.length > 0 ? (
+              data.chapter_items.map((course, cIndex) => (
                 <div
                   key={cIndex}
                   className="flex justify-between p-3 my-1 bg-[#EEEEEE]"
@@ -97,11 +74,11 @@ const Curriculum = () => {
                 >
                   <div className="flex items-center gap-1">
                   <Icon className="text-main" icon="icon-park-solid:play" width="18" height="18" />
-                  <span className="text-textColor text-[0.9rem] font-semibold"> Start Course</span>
+                  <span className="text-textColor text-[0.9rem] font-semibold"> {course.lesson.title}</span>
                   </div>
                   <div className="flex items-center gap-1">
 
-                  <span className="text-textColor text-[0.9rem] font-semibold">{course.duration}</span>
+                  <span className="text-textColor text-[0.9rem] font-semibold">{formatDuration(course.lesson.duration)}</span>
                   <Icon className="text-main" icon="si:lock-line" width="18" height="18" />
                   </div>
                 </div>

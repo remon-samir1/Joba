@@ -3,7 +3,20 @@ import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import Table from "../../../components/Table/Table";
 import { SelectBox } from "../../../components/DropDown/SelectBox";
 import { Icon } from "@iconify-icon/react";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 const OrderStudentHistoryDetails = () => {
+//  get data
+const {id} = useParams()
+const [data , setData] = useState([]);
+useEffect(()=>{
+  Axios.get(`/student/order-details/${id}`).then(data=>console.log(data.data.order))
+},[])
+
+
+
   return (
     <div className="OrderDetails">
       <div className="flex justify-between items-center">
@@ -12,7 +25,7 @@ const OrderStudentHistoryDetails = () => {
       </div>
       <div className="invoices">
         <h4>invoices</h4>
-        <div className="flex justify-between items-start w-full">
+        <div className="flex justify-between md:flex-nowrap flex-wrap gap-4 items-start w-full">
           <div className="details">
             <div className="hedaers">
               <p>Order date:</p>
@@ -25,7 +38,7 @@ const OrderStudentHistoryDetails = () => {
             </div>
             <div className="data">
               <p>6 / 1 /2004</p>
-              <p>manar magdy</p>
+              <p> magdy</p>
               <p>(484) 817-2760 x305</p>
               <p>Lamar_Hermann@hotmail.com</p>
               <p>681 W Walnut Street, New Juniorton 90516</p>
@@ -34,8 +47,8 @@ const OrderStudentHistoryDetails = () => {
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <p className="text-base font-bold text-textColor">Order Id:</p>
-            <p className="text-base font-bold text-textColor">#gmnsci</p>
+            <p className="text-base font-bold text-textColor whitespace-nowrap">Order Id:</p>
+            <p className="text-base font-bold text-textColor whitespace-nowrap">#gmnsci</p>
           </div>
         </div>
       </div>

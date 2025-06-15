@@ -15,14 +15,15 @@ export default function MyQuiz() {
       <h2 className="text-base text-textColor ">My Quiz </h2>
       <Breadcrumbs/>
       </div>
-      
-      <div className=" rounded-lg overflow-hidden ">
+      <div className="overflow-x-scroll w-[80vw] md:w-full md:overflow-hidden">
+
+      <div className=" rounded-lg md:w-full w-[100vw]">
         {/* Header Row */}
         <div className="grid grid-cols-12 gap-4  mb-5 font-semibold text-text2 border-[#ddd] px-3 py-5  text-sm border-b">
-          <div className=" col-span-6">Item</div>
-          <div className=" col-span-2">Status</div>
-          <div className=" col-span-2">Date & Time</div>
-          <div className=" col-span-2">Grade</div>
+          <div className=" col-span-3 md:col-span-6">Item</div>
+          <div className="col-span-3 md:col-span-2">Status</div>
+          <div className="col-span-3 md:col-span-2">Date & Time</div>
+          <div className="col-span-3 md:col-span-2">Grade</div>
         </div>
 
         {/* Data Rows */}
@@ -48,6 +49,7 @@ export default function MyQuiz() {
             <div className="col-span-2 font-semibold text-gray-800">{item.score}</div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

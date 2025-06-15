@@ -1,6 +1,7 @@
 {
   "name": "joba",
   "version": "0.1.0",
+
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.2",

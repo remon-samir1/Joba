@@ -66,7 +66,7 @@ const Hero = () => {
             dolor sit amet.
           </p>
           <div className="img" ref={imageRef}>
-          <img src={image} alt="image" />
+          <img src={require('../../../images/Hero.webp')} alt="image" />
         </div>
           <div className="details">
             <Link className="link" ref={buttonRef}>
@@ -81,7 +81,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="img" ref={imageRef}>
-          <img src={image} alt="image" />
+          <img src={require('../../../images/Hero.webp')} alt="image" />
         </div>
       </div>
     </div>
