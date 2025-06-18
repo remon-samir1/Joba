@@ -10,8 +10,9 @@
 .Hero .data {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  place-items: center;
-
+  /* place-items: start; */
+  justify-content: start;
+align-items: center;
   height: 90vh;
 }
 .Hero .data .content .img {
@@ -68,7 +69,7 @@
 }
 .Hero .data .img {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
 .Hero .data img {
