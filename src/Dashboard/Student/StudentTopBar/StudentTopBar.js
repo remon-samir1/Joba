@@ -26,11 +26,12 @@ useEffect(()=>{
     <div className="parant-topbar">
       <div className="header">
         <div className="logo flex items-center w-full justify-between">
-          <div>
-
+        
           <Logo small />
-          </div>
-          <div className="flex items-center !justify-center w-ma"></div>
+
+          
+          <div className="flex items-center !justify-center gap-4 w-ma">
+
           <Link to='/student/cart' className="relative">
             <div className="absolute top-0 right-[-3px] w-4 h-4 bg-main rounded-full  flex justify-center items-center">
               <span className="text-white text-[11px] font-semibold">{cart}</span>
@@ -40,7 +41,7 @@ useEffect(()=>{
               width="28"
               height="28"
               className="text-main cursor-pointer"
-            />
+              />
 
 </Link>
             <Icon
@@ -48,7 +49,7 @@ useEffect(()=>{
               width="28"
               height="28"
               className="text-main cursor-pointer"
-            />
+              />
             <Icon
               icon="hugeicons:menu-square"
               width="28"
@@ -56,6 +57,7 @@ useEffect(()=>{
               className="text-main cursor-pointer"
               onClick={() => setIsOpen((prev) => !prev)}
             />
+              </div>
         </div>
         <div className="name">
           <p>Welcome ,Jay Johnson</p>

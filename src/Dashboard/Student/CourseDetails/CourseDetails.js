@@ -14,12 +14,14 @@ import TransformDate from "../../../components/Helpers/TransformDate";
 
 const CourseDetails = () => {
   const [course , setCourse] = useState([])
+  const [count , setCount] = useState()
   const {id} = useParams()
   console.log(id);
 useEffect(()=>{
   Axios.get(`/course/${id}`).then(data=>{
     setCourse(data.data.course)
-    console.log(data.data.course)})
+    setCount(data.data)
+    console.log(data.data)})
 },[])
 
 
@@ -137,14 +139,14 @@ useEffect(()=>{
           ) : tabs === "curriculum" ? (
             <Curriculum  data={course?.chapters}/>
           ) : tabs === "reviews" ? (
-            <CourseDetailsReviews />
+            <CourseDetailsReviews data={course?.reviews} />
           ) : (
-            tabs === "instructor" && <CourseDetailsInstructor image={course?.instructor.image} name={course?.instructor.name} />
+            tabs === "instructor" && <CourseDetailsInstructor image={course?.instructor.image} name={course?.instructor.name} bio={course?.instructor.short_bio}/>
           )}
         
         </div>
         {/* Right Side  */}
-        <SideDetails price={course?.price} duration={course?.duration} certificate={course?.certificate} id={course?.id}/>
+        <SideDetails languages={course?.languages} price={course?.price} duration={course?.duration} certificate={course?.certificate} id={course?.id} quizCount={count?.courseQuizCount} lessons={count?.courseLessonCount}/>
       </div>
     </div>
   );

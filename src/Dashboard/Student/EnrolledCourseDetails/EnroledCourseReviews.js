@@ -1,7 +1,30 @@
 import React from "react";
 import StarRating from "../../../components/StarRating/StarRating";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
+import { useState } from "react";
 
-const EnroledCourseReviews = () => {
+const EnroledCourseReviews = ({id}) => {
+  const [form , setForm] = useState({
+    rating:'',
+    review:'',
+    course_id:id
+
+  })
+  console.log(form);
+  useEffect(()=>{
+    Axios.get(`/student/fetch-reviews/${id}`).then(data=>console.log(data))
+  },[])
+  //  handle add Review
+  const handleAddReview = (e)=>{
+e.preventDefault();
+try{
+Axios.get('/student/add-review')
+}
+catch(err){
+  console.log(err);
+}
+  }
   return (
     <div className="pt-4 px-4 bg-white">
       <div className="flex items-center gap-5 py-8 rounded-lg px-4  border border-[#dddd]">
@@ -28,15 +51,15 @@ const EnroledCourseReviews = () => {
         </div>
       </div>
 
-      <form className="mt-6">
+      <form className="mt-6" onSubmit={handleAddReview}>
         <h4 className="text-[0.9rem] text-textColor">Write a reviews</h4>
         <div className="mt-8">
           <label className="text-[0.9rem] text-textColor" htmlFor="rating">Rating</label>
-          <input id="rating" type="text" className="w-full p-3 mt-4  border border-[#dddd] rounded-lg appearance-none focus:border-main outline-none " />
+          <input onChange={(e)=> setForm({...form , rating :e.target.value})} id="rating" type="text" className="w-full p-3 mt-4  border border-[#dddd] rounded-lg appearance-none focus:border-main outline-none " />
         </div>
         <div className="mt-8">
           <label className="text-[0.9rem] text-textColor" htmlFor="review">Reveiw</label>
-          <textarea id="review" type="text" className="w-full p-3 mt-4  border border-[#dddd] rounded-lg appearance-none focus:border-main outline-none " />
+          <textarea onChange={(e)=> setForm({...form , review: e.target.value})} id="review" type="text" className="w-full p-3 mt-4  border border-[#dddd] rounded-lg appearance-none focus:border-main outline-none " />
         </div>
         <button type="submit" className="text-white bg-main text-base px-5 py-2 rounded-lg mt-4 main-shadow duration-500">Submit</button>
       </form>

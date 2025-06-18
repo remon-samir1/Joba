@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Icon } from "@iconify-icon/react";
 
-const CourseContactDetails = () => {
+const CourseContactDetails = (props) => {
   const [units, setUnits] = useState([]);
   const [openUnit, setOpenUnit] = useState(null);
   const contentRefs = useRef([]);
@@ -62,11 +62,11 @@ const CourseContactDetails = () => {
   };
 
   return (
-    <div className="bg-white py-3  w-[340px]">
+    <div className="bg-white py-3 w-full md:w-[340px]">
       <h3 className="text-textColor text-[1.1rem] font-semibold p-4">
         Course Contact
       </h3>
-      {units.map((unit, index) => (
+      {props.data?.map((unit, index) => (
         <div
           key={index}
           className="cursor-pointer"
@@ -76,7 +76,7 @@ const CourseContactDetails = () => {
             className="flex justify-between items-center  p-4 bg-[#F15A24] bg-opacity-20" 
           >
             <span className="text-[1rem] text-textColor font-semibold ">
-              {unit.unitTitle}
+              {unit.title}
             </span>
             <div className="flex items-center gap-1">
 <span className="text-[1rem] text-textColor ">0/30 Done</span>
@@ -95,20 +95,21 @@ const CourseContactDetails = () => {
             ref={(el) => (contentRefs.current[index] = el)}
             className="overflow-hidden h-0 mt-2 rounded "
           >
-            {unit.courses.length > 0 ? (
-              unit.courses.map((course, cIndex) => (
+            {unit.chapter_items.length > 0 ? (
+              unit.chapter_items.map((course, cIndex) => (
                 <div
+                onClick={()=>props.setUrl(course.lesson?.file_path)}
                   key={cIndex}
-                  className="flex justify-between p-3 my-1 "
+                  className={`flex justify-between p-3 my-1 ${props.url === course.lesson?.file_path && '!bg-main !text-white'}`} 
                 >
                   <div className="flex items-center gap-2">
-                    <div className="flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1]">
-                      1
+                    <div className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${props.url === course.lesson?.file_path && '!bg-white !text-main'}`}>
+                      {cIndex + 1}
                     </div>
                   
-                    <span className="text-textColor text-[0.9rem] font-semibold">
+                    <span className={`text-textColor text-[0.9rem] font-semibold ${props.url === course.lesson?.file_path && ' !text-white'}`}>
                       {" "}
-                      Start Course
+                      {course.lesson?.title}
                     </span>
                   </div>
                   <div className="flex items-center gap-1">

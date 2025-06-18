@@ -128,9 +128,17 @@ const SideDetails = (props) => {
                 Language
               </span>
             </div>
+            <div className="flex items-center gap-3">
+
+            {
+              props.languages?.map((data,index)=>(
             <p className="text-[0.9rem] text-white bg-main px-5 py-1 rounded capitalize">
-              arabic
+              {data.language.name}
             </p>
+
+              ))
+            }
+            </div>
           </div>
 
           <p className="text-textColor text-[1.2rem] font-semibold mt-4">Share this course:</p>
@@ -151,7 +159,7 @@ const SideDetails = (props) => {
            <Icon className="text-white hover:text-main duration-300" icon="mdi:twitter"  width="28" height="28" />
            </div>
           </div>
-          <button onClick={()=>addToCart(props.id)}  className="mt-8 hover:shadow main-shadow duration-500   text-white bg-main w-full p-3 rounded-lg text-[1.2rem] font-semibold text-center">{
+          <button disabled={loading} onClick={()=>addToCart(props.id)}  className="mt-8 hover:shadow main-shadow duration-500   text-white bg-main w-full p-3 rounded-lg text-[1.2rem] font-semibold text-center">{
           loading? 
           <Icon
           className="text-white"

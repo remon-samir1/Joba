@@ -74,11 +74,11 @@ const Curriculum = (props) => {
                 >
                   <div className="flex items-center gap-1">
                   <Icon className="text-main" icon="icon-park-solid:play" width="18" height="18" />
-                  <span className="text-textColor text-[0.9rem] font-semibold"> {course.lesson.title}</span>
+                  <span className="text-textColor text-[0.9rem] font-semibold"> {course.lesson?.title}</span>
                   </div>
                   <div className="flex items-center gap-1">
 
-                  <span className="text-textColor text-[0.9rem] font-semibold">{formatDuration(course.lesson.duration)}</span>
+                  <span className="text-textColor text-[0.9rem] font-semibold">{formatDuration(course.lesson?.duration)}</span>
                   <Icon className="text-main" icon="si:lock-line" width="18" height="18" />
                   </div>
                 </div>

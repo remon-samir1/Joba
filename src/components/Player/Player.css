@@ -1,0 +1,45 @@
+.plyr--full-ui.plyr--video .plyr__control--overlaid {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: white !important;
+  width: 68px;
+  height: 68px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: 9999px;
+}
+
+.plyr__progress input[type="range"] {
+  height: 2px;
+  /* background-color: white !important; */
+}
+
+.plyr--full-ui input[type="range"] {
+  appearance: none;
+  background: #0000;
+  border: 0;
+  border-radius: 26px;
+  border-radius: calc(var(--plyr-range-thumb-height, 13px)*2);
+  color: #00b2ff;
+  color: var(--plyr-range-fill-background,var(--plyr-color-main,var(--plyr-color-main,#fff))) !important;
+  display: block;
+  height: 19px;
+  height: calc(var(--plyr-range-thumb-active-shadow-width, 3px)*2 + var(--plyr-range-thumb-height, 13px));
+  margin: 0;}
+/* .plyr__controls button {
+  color: white !important;
+  background: transparent !important;
+} */
+
+.plyr__control {
+  background: transparent !important;
+}
+
+.plyr__control:hover{
+  background: var(--main-color) !important;
+
+}
+.plyr video {
+  image-rendering: auto;
+  backface-visibility: hidden;
+}

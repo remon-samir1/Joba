@@ -1,6 +1,6 @@
 import { Icon } from "@iconify-icon/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useState } from "react";
 import CourseDetailsOverview from "../CourseDetails/CourseDetailsOverview";
@@ -9,12 +9,37 @@ import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import QA from "./QA";
 import Annoucement from "./Annoucement";
 import EnroledCourseReviews from "./EnroledCourseReviews";
+import Player from "../../../components/Player/Player";
+import { useEffect } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
+import TransformDate from "../../../components/Helpers/TransformDate";
 
 const EnrolledCourseDetails = () => {
+  const [course, setCourse] = useState(null);
+  const [play , setPlay] = useState(false)
+  const [url , setUrl] = useState()
+  const [skeleton, setSkeleton] = useState(false);
+  const {id} = useParams()
+  useEffect(() => {
+    setSkeleton(true);
+
+    Axios.get(`/course/${id}`).then(data=>{
+      setCourse(data.data)
+      setUrl(data.data.course.chapters[0].chapter_items[0].lesson.file_path)
+      setSkeleton(false);
+      console.log(data);
+    });
+  }, []);
+  console.log(url);
   const [tabs, setTabs] = useState("overview");
+  
   const nav = useNavigate();
   return (
     <div className="my-5">
+      {
+play && url  &&
+        <Player url={url && url} setPlay={setPlay} />
+      }
       <div className="flex items-center justify-between">
         <button
           className="flex items-center text-textColor gap-2 text-[1.1rem]"
@@ -30,11 +55,12 @@ const EnrolledCourseDetails = () => {
         </button>
         <Breadcrumbs />
       </div>
-      <div className="flex mt-5 items-start gap-5 flex-col md:flex-row">
+      <div className="flex mt-5 items-start gap-5 flex-col md:flex-row flex-wrap">
         {/*  center  */}
         <div className="flex-1 pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">
             <div
+            onClick={()=>setPlay(true)}
               style={{
                 background:
                   "linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25))",
@@ -51,23 +77,23 @@ const EnrolledCourseDetails = () => {
               />
             </div>
             <img
-              src={require("../../../images/course-details.png")}
+              src={`https://goba.sunmedagency.com/${course?.course.thumbnail}`}
               alt="course"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="bg-white border-b border-[#dddd]  py-4">
             <h3 className="text-textColor px-3 text-[1.3rem] ">
-              How to make your own brand from zero
+              {course?.course.title}
             </h3>
             <div className="flex px-3 py-4 items-center justify-between gap-20 md:gap-0 md:justify-between overflow-scroll md:w-auto scrollbar-hide her  w-[90vw]">
               <div className="flex items-center gap-3">
                 <img
-                  src={require("../../../images/course.png")}
+                  src={`https://goba.sunmedagency.com/${course?.course.instructor?.image}`}
                   className="w-[45px] h-[45px] rounded-full"
                   alt="instarctor"
                 />
-                <span className="text-textColor text-base">Brenda Howe</span>
+                <span className="text-textColor text-base">{course?.course.instructor.name}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -76,7 +102,7 @@ const EnrolledCourseDetails = () => {
                   height="24"
                   className="text-main"
                 />
-                <span className="text-textColor text-base">3/5/2025</span>
+                <span className="text-textColor text-base">{TransformDate(course?.course.created_at)}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -86,7 +112,7 @@ const EnrolledCourseDetails = () => {
                   className="text-main"
                 />
 
-                <span className="text-textColor text-base">12 Student</span>
+                <span className="text-textColor text-base">{course?.course.enrollments.length} Student</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -96,7 +122,7 @@ const EnrolledCourseDetails = () => {
                   className="text-[#F0AB4C]"
                 />
 
-                <span className="text-textColor text-base">4.8 Reviews</span>
+                <span className="text-textColor text-base">{course?.course.reviews_count} Reviews</span>
               </div>
             </div>
           </div>
@@ -137,17 +163,17 @@ const EnrolledCourseDetails = () => {
       
 
       {tabs === "overview" ? (
-            <CourseDetailsOverview />
+            <CourseDetailsOverview  data={course?.course.description}/>
           ) : tabs === "QA" ? (
             <QA />
           ) : tabs === "reviews" ? (
-            <EnroledCourseReviews />
+            <EnroledCourseReviews  id={course?.course.id}/>
           ) : (
             tabs === "Annoucement" && <Annoucement />
           )} 
         </div>
         {/* Right Side  */}
-        <CourseContactDetails />
+        <CourseContactDetails data={course?.course.chapters} setUrl={setUrl} url={url}/>
       </div>
     </div>
   );

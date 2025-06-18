@@ -17,10 +17,7 @@ const CourseDetailsInstructor = (props) => {
           {props.name}
           </h3>
           <p className="text-[0.9rem] text-textColor max-w-[90%]">
-            Lorem ipsum dolor sit amet consectetur. Convallis vitae malesuada
-            gravida posuere. Faucibus vel nec felis pellentesque nisi nibh. Nam
-            enim sed id facilisis nullam. Arcu sit leo vulputate ornare vitae
-            rutrum condimentum velit velit.
+      {props.bio}
           </p>
         </div>
       </div>

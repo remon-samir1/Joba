@@ -120,14 +120,14 @@ function App() {
           <Route path="course-details/:id" element={<CourseDetails/>}/>
           <Route path="order-history" element={<OrderStudentHistory/>}/>
           <Route path="order-history/view/:id" element={<OrderStudentHistoryDetails/>}/>
-          <Route path="enrolled-course" element={<EnrolledCourseDetails/>}/>
+          <Route path="enrolled-course/:id" element={<EnrolledCourseDetails/>}/>
           <Route path="my-courses" element={<MyCourses/>}/>
           <Route path="wishlist" element={<WishList/>}/>
           <Route path="reviews" element={<Reviews/>}/>
           <Route path="my-Quiz" element={<MyQuiz/>}/>
           <Route path="payment" element={<Payment/>}/>
           <Route path="profile" element={<ProfileSettings/>}/>
-          <Route path="/student/reviews/details" element={<StudentReviewsDetails/>}/>
+          <Route path="/student/reviews/details/:id" element={<StudentReviewsDetails/>}/>
       
             
             </Route>         

@@ -9,6 +9,7 @@ import { Axios } from "../../../components/Helpers/Axios";
 import StarRating from "../../../components/StarRating/StarRating";
 import { toast } from "react-toastify";
 import SkeletonShow from "../../../components/Skeleton/Skeleton";
+import TransformDate from "../../../components/Helpers/TransformDate";
 const StudentReviewsDetails = () => {
   const [data, setData] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
@@ -16,13 +17,14 @@ const StudentReviewsDetails = () => {
   const [status, setStatus] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
-  // useEffect(() => {
-  //   Axios.get(`/admin/course-review`).then((data) => {
-  //     setData(data.data.data.reviews.data.find((obj) => obj.id == id));
-  //     setSkeleton(false)
+  useEffect(() => {
+    Axios.get(`/student/reviews/${id}`).then((data) => {
+      console.log(data);
+      setData(data.data.review);
+      setSkeleton(false)
 
-  //   });
-  // }, []);
+    });
+  }, []);
 
 
   return (
@@ -73,8 +75,8 @@ const StudentReviewsDetails = () => {
                   <StarRating rating={data?.rating} />
                 </div>
                 <p>{data?.review}</p>
-                <p>{data?.created_at}</p>
-              <p>app</p>
+                <p>{TransformDate(data?.created_at) }</p>
+              <p>{data.status === 0 ?"Disapproved" : 'Approved'}</p>
               </>
             )}
           </div>

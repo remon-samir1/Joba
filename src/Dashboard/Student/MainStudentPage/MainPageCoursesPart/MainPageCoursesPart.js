@@ -87,7 +87,7 @@ console.log(resize);
           :
           courses.map((course,index)=>(
 
-            <div key={index} className="course-card md:max-w-[40%] group relative w-full flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
+            <div key={index} className="course-card md:max-w-[300px] group relative w-full flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
             <div className="img w-full h-[9.6rem] rounded md:rounded-xl overflow-hidden relative">
               <img
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
