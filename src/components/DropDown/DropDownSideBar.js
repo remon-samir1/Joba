@@ -41,7 +41,7 @@ export default function DropDownSideBar(props) {
         <ul className=" rounded-lg  mt-2 items-start flex flex-col">
           {props.data.map((data, index) => (
             <NavLink
-            onClick={()=>(setIsOpen(prev=>!prev))}
+            onClick={()=>(setIsOpen(false))}
               className="dropLink text-textColor text-sm px-4 py-2 w-full hover:bg-gray-100 cursor-pointer hover:text-main"
               to={data.to}
             >

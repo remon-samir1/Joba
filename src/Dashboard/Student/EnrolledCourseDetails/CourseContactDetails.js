@@ -100,7 +100,7 @@ const CourseContactDetails = (props) => {
                 <div
                 onClick={()=>props.setUrl(course.lesson?.file_path)}
                   key={cIndex}
-                  className={`flex justify-between p-3 my-1 ${props.url === course.lesson?.file_path && '!bg-main !text-white'}`} 
+                  className={`flex justify-between p-3 hover:bg-gray-100 my-1 ${props.url === course.lesson?.file_path && '!bg-main !text-white'}`} 
                 >
                   <div className="flex items-center gap-2">
                     <div className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${props.url === course.lesson?.file_path && '!bg-white !text-main'}`}>
