@@ -9,7 +9,8 @@ const CertificateBuilder = () => {
   const [certificate, setCertificate] = useState([]);
   useEffect(() => {
     Axios.get("/admin/certificate-builder").then((data) =>
-      setCertificate(data.data.data.certificate)
+      // setCertificate(data.data.data.certificate)
+      console.log(data)
     );
   }, []);
   console.log(certificate);
@@ -29,7 +30,7 @@ const CertificateBuilder = () => {
     formData.append('signature' , signature)
     formData.append('_method' , 'PUT')
     try{
-await Axios.put("/admin/certificate-builder/0" , formData).then(data=>console.log(data))
+await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.log(data))
     }
     catch(err){
       console.log(err);

@@ -17,6 +17,8 @@ const AddCategory = () => {
     name: "",
     slug: "",
     status: 0,
+    code:'EN',
+    _method:'PUT'
   });
   console.log(form);
   const click = useRef(null);
@@ -31,15 +33,14 @@ const AddCategory = () => {
         })
       console.log(form);
   },[])
-
   const statusData = [
     {
       name: "Inactive",
-      value: false,
+      value: 0,
     },
     {
       name: "Active",
-      value: true,
+      value: 1,
     },
   ];
 
@@ -127,21 +128,7 @@ const AddCategory = () => {
               />
             </div>
 
-            <div className="form-control">
-              <label htmlFor="name">Status</label>
-              <SelectBox
-                disabled={laoding}
-                data={statusData}
-                // value={form.status}
-
-                onChange={(e) =>
-                  setForm({
-                    ...form,
-                    status: e.target.value === "true" ? 1 : 0,
-                  })
-                }
-              />
-            </div>
+        
             <button
               type="submit"
               disabled={laoding}

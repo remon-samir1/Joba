@@ -17,9 +17,11 @@ const Courses = () => {
 
   const [deleted, setDeleted] = useState(false);
 const [courses, setCourses] = useState([]);
-const [categoryStatus, setCategoryStatus] = useState(false);
+const [category, setCategory] = useState();
 const [selectedDate, setSelectedDate] = useState(0);
-
+const [status, setStatus] = useState('');
+const [approved, setApproved] = useState('');
+const [categoryId , setCategoryId] = useState();
 const [loading, setLoading] = useState(false);
 const [page, setPage] = useState(1);
 const [total, setTotal] = useState();
@@ -28,15 +30,30 @@ const [search, setSearch] = useState("");
 useEffect(() => {
   setLoading(true);
   Axios.get(
-    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}`
+    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&`
   ).then((data) => {
     console.log(data.data.data.courses);
     setCourses(data.data.data.courses.data);
     setTotal(data.data.data.courses.total);
     setLoading(false);
   });
-}, [search, deleted,selectedDate]);
+}, [search, deleted,selectedDate,status,approved,categoryId]);
+useEffect(()=>{
+  Axios.get(`/admin/course-category`).then(data=>{
+    setCategory(data.data.data.categories.data);
 
+  })
+},[])
+console.log(category);
+const categoryData =  category?.map((data,index)=>{
+  
+    return{
+      name:data.name,
+      value:data.id
+    }
+  
+})
+console.log(categoryData);
 // headers of table
 const headers = [
   {
@@ -73,7 +90,29 @@ const headers = [
     key: "is_approved",
   },
 ];
-console.log(selectedDate);
+// status selectbox data
+const statusData = [
+  {
+    name:'Active',
+    value:"active"
+  },
+  
+  {
+    name:'Inactive',
+    value:"inactive"
+  }
+]
+const approvedData = [
+  {
+    name:'Approved',
+    value:"approved"
+  },
+  
+  {
+    name:'Disapproved',
+    value:"disapproved"
+  }
+]
   return (
     <div className="Courses">
       <div className="flex justify-between items-center">
@@ -88,10 +127,10 @@ console.log(selectedDate);
         />
 
         <DateInput setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
-        <SelectBox title="Category" />
+        <SelectBox title="Category" data={categoryData} onChange={(e)=>setCategoryId(e.target.value)}/>
       
-        <SelectBox title="Statue" />
-        <SelectBox title="Approval statue" />
+        <SelectBox title="Status" data={statusData} onChange={(e)=> setStatus(e.target.value)}/>
+        <SelectBox title="Approval status" data={approvedData} onChange={(e)=> setApproved(e.target.value)}/>
       </div>
       <div className="table my-8 bg-white ">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">

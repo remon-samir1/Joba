@@ -37,9 +37,9 @@ const AddPost = () => {
     formData.append("image", form.image);
     formData.append("slug", form.slug);
     formData.append("description", form.description);
-    // formData.append("show_homepage", showHomePage);
-    // formData.append("status", status);
-    // formData.append("is_popular", isPopular);
+    formData.append("show_homepage", showHomePage);
+    formData.append("status", status);
+    formData.append("is_popular", isPopular);
     try{
 
   if (form.image) {

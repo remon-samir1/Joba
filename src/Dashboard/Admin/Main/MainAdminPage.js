@@ -57,7 +57,7 @@ useEffect(()=>{
   {
     icon: "solar:money-bag-outline",
     title: "Weekly revenue",
-    count: "0",
+    count: data?.this_weekly_earning,
   },
   {
     icon: "solar:money-bag-outline",

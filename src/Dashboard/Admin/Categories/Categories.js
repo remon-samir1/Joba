@@ -64,7 +64,8 @@ const statusData = [
     value:0
   }
 ]
-console.log(status);
+
+
   return (
     <>
     <Notifcation/>

@@ -71,9 +71,10 @@ const statusData = [
         <Breadcrumbs />
       </div>
       <div className="filters">
-        <SearchBar placeholder='Search'/>
-      <SelectBox title='By name'/>
-      <SelectBox title='Status'/>
+      <SearchBar placeholder="Search" onchange={(e)=>setSearch(e.target.value)}/>
+
+        <SelectBox title="Status" data={statusData} onChange={(e)=> setStatus(e.target.value)} />
+
       </div>
       <div className="table my-8 bg-white">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">

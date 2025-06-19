@@ -20,7 +20,7 @@ const BlogsCategory = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(
-      `/admin/blog-category?page=${page}&keyword=${search}&status=${1}`
+      `/admin/blog-category?page=${page}&keyword=${search}&status=${status}`
     ).then((data) => {
       console.log(data.data.data.data);
       setBlogsCategory(data.data.data.data);

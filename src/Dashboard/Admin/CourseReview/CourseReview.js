@@ -55,12 +55,12 @@ const CourseReview = () => {
   const statusData = [
     {
       name: "Active",
-      value: 1,
+      value: 'active',
     },
 
     {
       name: "Inactive",
-      value: 0,
+      value: 'inactive',
     },
   ];
   console.log(status);
