@@ -18,7 +18,7 @@ const DateInput = (props) => {
       />
     
       <span
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 cursor-pointer"
+        className="absolute right-[15%] top-1/2 transform -translate-y-1/2 text-blue-500 cursor-pointer"
         onClick={() => document.querySelector(".react-datepicker__input-container input").focus()}
       >
         📅

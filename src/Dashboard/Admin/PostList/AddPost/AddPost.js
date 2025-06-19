@@ -8,25 +8,41 @@ import { Icon } from "@iconify-icon/react";
 import ToggleButton from "../../../../components/ToggleButton/ToggleButton";
 import { toast } from "react-toastify";
 import { Axios } from "../../../../components/Helpers/Axios";
+import Loading from "../../../../components/Loading/Loading";
+import { useEffect } from "react";
 
 const AddPost = () => {
   const click = useRef(null);
   const navigate = useNavigate();
-
+  const [laoding, setLoading] = useState();
   const [form, setForm] = useState({
-    image:'',
-    title:'',
-    slug:'',
-    description:'',
-
+    image: "",
+    title: "",
+    slug: "",
+    category: "",
+    description: "",
   });
-  const [showHomePage , setShowHomePage] = useState(null)
-  const [isPopular , setIsPopular] = useState(null)
-  const [status , setStatus] = useState(null)
-  console.log(form);
-  console.log(showHomePage);
-  console.log(isPopular);
-  console.log(status);
+  const [showHomePage, setShowHomePage] = useState(0);
+  const [isPopular, setIsPopular] = useState(0);
+  const [status, setStatus] = useState(0);
+  const [category , setCategory] = useState([])
+
+
+  //  get post category
+useEffect(()=>{
+  Axios.get(`/admin/blog-category`).then(data=>{
+    setCategory(data.data.data.data);
+console.log(data.data.data.data);
+  })
+},[])
+console.log(form);
+const categoryData =  category?.map((data,index)=>(
+  
+ <option value={data.id}>{data.name}</option>
+
+
+
+))
   // handleSubmit function
   const handleSubmit = async (e) => {
     // setLoading(true)
@@ -37,37 +53,31 @@ const AddPost = () => {
     formData.append("image", form.image);
     formData.append("slug", form.slug);
     formData.append("description", form.description);
+    formData.append("blog_category_id", form.category);
     formData.append("show_homepage", showHomePage);
     formData.append("status", status);
     formData.append("is_popular", isPopular);
-    try{
-
-  if (form.image) {
-    const res = await Axios.post("/admin/blogs", formData).then(
-      (data) => {
-        console.log(data);
-          // setLoading(false)
-        toast.success('Created successfly')
-        setTimeout(() => {
-          
-          // navigate('/admin/Categories')
-        }, 2000);
-
-        }
-      );
-    } else {
-      toast.error("image is required");
-    //  setLoading(false)
-
-      
+    try {
+      setLoading(true);
+      if (form.image) {
+        const res = await Axios.post("/admin/blogs", formData).then((data) => {
+          console.log(data);
+          setLoading(false);
+          toast.success("Created successfly");
+          setTimeout(() => {
+            navigate("/admin/post-list");
+          }, 2000);
+        });
+      } else {
+        toast.error("image is required");
+        setLoading(false);
+      }
+    } catch (err) {
+      toast.error("some thing wrong");
+       setLoading(false)
+      console.log(err);
     }
-  }catch(err){
-    toast.error("some thing wrong");
-    //  setLoading(false)
-     console.log(err);
-  } 
   };
-
 
   return (
     <div className="UpdateCategory">
@@ -97,7 +107,7 @@ const AddPost = () => {
               type="file"
               hidden
               ref={click}
-              onChange={(e) => setForm({...form , image:e.target.files[0]})}
+              onChange={(e) => setForm({ ...form, image: e.target.files[0] })}
               required
             />
             <div
@@ -112,34 +122,84 @@ const AddPost = () => {
                   alt=""
                 />
               )}
-              <button type="button" className="text-base text-textColor border border-borderColor py-2 px-8 rounded w-3/4 justify-self-end">
+              <button
+                type="button"
+                className="text-base text-textColor border border-borderColor py-2 px-8 rounded w-3/4 justify-self-end"
+              >
                 Icon
               </button>
             </div>
           </div>
           <div className="form-control">
-            <label htmlFor="Titel">Titel</label>
-            <input type="text" id="Titel" value={form.title} onChange={(e)=>setForm({...form,title:e.target.value})}required/>
+            <label htmlFor="Titel">Title</label>
+            <input
+              type="text"
+              id="Titel"
+              value={form.title}
+              disabled={laoding}
+              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              required
+            />
           </div>
           <div className="form-control">
             <label htmlFor="slug">Slug</label>
-            <input type="text" id="slug" value={form.slug} onChange={(e)=>setForm({...form,slug:e.target.value})} required/>
+            <input
+              type="text"
+              id="slug"
+              value={form.slug}
+              disabled={laoding}
+              onChange={(e) => setForm({ ...form, slug: e.target.value })}
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="category">Category</label>
+            <select
+            required
+              type="text"id="category"
+              className="bg-white"
+              value={form.category}
+              disabled={laoding}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+              
+            >
+              <option disabled value="">Category</option>
+{categoryData}
+            </select>
           </div>
           <div className="form-control ">
-            <label htmlFor="Describtion">Describtion</label>
-            <textarea type="text" id="Describtion" className="h-36" value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})} required/>
+            <label htmlFor="Description">Description</label>
+            <textarea
+              type="text"
+              id="Description"
+              className="h-36"
+              disabled={laoding}
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+              required
+            />
           </div>
 
-      
-         <div className="toggels mt-4 grid gap-4">
-          <ToggleButton title='Show on homepage' setData={setShowHomePage}/>
-          <ToggleButton title='Mark as populer' setData={setIsPopular}/>
-          <ToggleButton title='Status' setData={setStatus}/>
-          
-         </div>
-         <button type="submit">
-            <LuSave width={24} height={24} className=" text-white icon" />
-            <span>Save</span>{" "}
+          <div className="toggels mt-4 grid gap-4">
+            <ToggleButton title="Show on homepage" setData={setShowHomePage} />
+            <ToggleButton title="Mark as populer" setData={setIsPopular} />
+            <ToggleButton title="Status" setData={setStatus} />
+          </div>
+          <button
+            disabled={Loading}
+            type="submit"
+            className={`${laoding && "cursor-wait"}`}
+          >
+            {laoding ? (
+              "Loading..."
+            ) : (
+              <>
+                <LuSave width={24} height={24} className=" text-white icon" />
+                <span>Save</span>{" "}
+              </>
+            )}
           </button>
         </form>
       </div>

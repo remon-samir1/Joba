@@ -60,22 +60,22 @@ const SideBar = (props) => {
           <DropDownSideBar
             data={mangeContents}
             icon="simple-line-icons:graduation"
-            title="Mange contents"
+            title="Manage contents"
             />
           <DropDownSideBar
             data={mangeBlogs}
             icon="fluent-mdl2:blog"
-            title="Mange blogs"
+            title="Manage blogs"
             />
           <DropDownSideBar
             data={mangeOrders}
             icon="lsicon:management-stockout-outline"
-            title="Mange orders"
+            title="Manage orders"
             />
           <DropDownSideBar
             data={mangeUsers}
             icon="ci:users"
-            title="Mange users"
+            title="Manage users"
             />
 
           <NavLink

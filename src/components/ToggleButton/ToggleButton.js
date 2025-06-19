@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const ToggleButton = (props) => {
 
-  const [isOn, setIsOn] = useState(true); 
+  const [isOn, setIsOn] = useState(props.data && props.data); 
 
   const handleToggle = () => {
-    setIsOn(prev => !prev);
-  props.setData(!isOn)
+    setIsOn(prev => prev === 1 ? 0 : 1);
+  props.setData(isOn === 1 ? 0 : 1)
   };
 
   return (

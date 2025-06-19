@@ -88,7 +88,7 @@ function App() {
         <Route path="/admin/Blogs-Category/update/:id" element={<UpdateBlogsCategory/> } />
          <Route path="post-list" element={<PostList/>} />
          <Route path="/admin/post-list/add" element={<AddPost/>} />
-         <Route path="/admin/post-list/update" element={<UpdatePost/>} />
+         <Route path="/admin/post-list/update/:id" element={<UpdatePost/>} />
          <Route path="Post-comments" element={<PostComments/>} />
          <Route path="order-history" element={<OrderHistory/>} />
          <Route path="/admin/order-history/view" element={<OrderDetails/>} />

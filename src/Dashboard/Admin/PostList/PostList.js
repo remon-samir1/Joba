@@ -14,6 +14,7 @@ const PostList = () => {
   const [postLists, setPostLists] = useState([]);
   const [status, setStatus] = useState("");
   const [showHomePage, setShowHomePage] = useState("");
+  const [ispopuler , setIspopuler] = useState()
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
@@ -22,14 +23,14 @@ const PostList = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(
-      `/admin/blogs?keyword=${search}& status=true&show_homepage=${showHomePage}&is_popular=0`
+      `/admin/blogs?keyword=${search}&status=${status}&show_homepage=${showHomePage}&is_popular=${ispopuler}`
     ).then((data) => {
       console.log(data);
       setPostLists(data.data.data.posts.data);
       setTotal(data.data.data.posts.total);
       setLoading(false);
     });
-  }, [search, deleted, status ,showHomePage]);
+  }, [search, deleted, status ,showHomePage,ispopuler]);
 
   // headers of table
   const headers = [
@@ -61,15 +62,26 @@ const PostList = () => {
   const statusData = [
     {
       name: "Active",
-      value: "active",
+      value: 1,
     },
 
     {
       name: "Inactive",
-      value: "inactive",
+      value: 0,
     },
   ];
   const showHomepageData = [
+    {
+      name: "yes",
+      value: 1,
+    },
+
+    {
+      name: "No",
+      value: 0,
+    },
+  ];
+  const isPopulerData = [
     {
       name: "yes",
       value: 1,
@@ -95,7 +107,7 @@ const PostList = () => {
             onchange={(e) => setSearch(e.target.value)}
           />
           <SelectBox title="Show homepage" data={showHomepageData} onChange={(e) => setShowHomePage(e.target.value)}/>
-          <SelectBox title="Populer" />
+          <SelectBox title="Populer" data={isPopulerData} onChange={(e) => setIspopuler(e.target.value)}/>
           <SelectBox
             title="Status"
             data={statusData}

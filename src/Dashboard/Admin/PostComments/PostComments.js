@@ -22,7 +22,7 @@ const PostComments = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(
-      `/admin/blog-comment?keyword=${search}& status=true&post=${post}&is_popular=0`
+      `/admin/blog-comment?keyword=${search}&post=${post}&status=${status}`
     ).then((data) => {
       console.log(data);
       setData(data.data.data.comments.data);
@@ -44,11 +44,11 @@ const PostComments = () => {
 
     {
       title: "Name",
-      key: "name",
+      key: "user_name",
     },
     {
       title: "Email",
-      key: "email",
+      key: "user_email",
     },
     {
       title: "Status",
@@ -59,12 +59,12 @@ const PostComments = () => {
   const statusData = [
     {
       name: "Active",
-      value: "active",
+      value: 1,
     },
 
     {
       name: "Inactive",
-      value: "inactive",
+      value: 0,
     },
   ];
   const postData = [
@@ -92,7 +92,6 @@ const PostComments = () => {
             placeholder="Search"
             onchange={(e) => setSearch(e.target.value)}
           />
-          <SelectBox title="Post" data={postData}  onChange={(e)=>setPost(e.target.value)}/>
           <SelectBox
             title="Status"
             data={statusData}

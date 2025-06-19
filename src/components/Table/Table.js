@@ -12,30 +12,36 @@ import StarRating from "../StarRating/StarRating";
 import { AiOutlineLoading } from "react-icons/ai";
 
 const Table = (props) => {
-  const [loadDelete , setLoadDelete] = useState(false)
+  const [loadDelete, setLoadDelete] = useState(false);
   // handle delete
-  const handleDelete = async (id , parent_id) => {
-    setLoadDelete(id)
+  const handleDelete = async (id, parent_id) => {
+    setLoadDelete(id);
     try {
       console.log(id);
 
-      await Axios.post(`${props.delurl ? props.delurl : props.url}/${id}/${parent_id ? parent_id : ''}`, {
-        _method: "DELETE",
-      }).then((data) => {
-        setLoadDelete(false)
+      await Axios.post(
+        `${props.delurl ? props.delurl : props.url}/${id}/${
+          parent_id ? parent_id : ""
+        }`,
+        {
+          _method: "DELETE",
+        }
+      ).then((data) => {
+        setLoadDelete(false);
         console.log(data);
         props.setDeleted((prev) => !prev);
         if (data.data.status == "error") {
           toast.error(data.data.message || data.data.messege);
         } else {
-          toast.success(data.data.status? data.data.status : "Deleted successfly");
+          toast.success(
+            data.data.status ? data.data.status : "Deleted successfly"
+          );
         }
       });
     } catch (err) {
       toast.success(err);
       console.log(err);
-      setLoadDelete(false)
-
+      setLoadDelete(false);
     }
   };
 
@@ -43,12 +49,11 @@ const Table = (props) => {
     <th key={key}>{data.title}</th>
   ));
   const showData = props.data?.map((item, key) => (
-    <tr >
+    <tr>
       <td>{item.id}</td>
 
       {props.headers.map((item2, i) => (
         <td key={i} className="">
-
           {item2.key === "icon" ? (
             <img
               src={`${baseUrl}/${item[item2.key]}`}
@@ -66,7 +71,10 @@ const Table = (props) => {
                 No
               </span>
             )
-          ) : item2.key === "status" && item2.type !== "static" && item2.type !== "show" && item2.type !== "text" ? (
+          ) : item2.key === "status" &&
+            item2.type !== "static" &&
+            item2.type !== "show" &&
+            item2.type !== "text" ? (
             <ToggleStatusButton
               data={item[item2.key]}
               id={item.id}
@@ -102,21 +110,63 @@ const Table = (props) => {
                 No
               </span>
             )
-          ) : 
-          
-          item2.key === 'email_verified_at' ? item[item2.key] != null ? <span className="text-white bg-green-600 py-1 px-6 rounded-3xl"> verified</span> : <span className="text-white bg-orange-500 py-1 px-6 rounded-3xl " style={{whiteSpace:'nowrap'}} >Not verified</span>:
-           item2.type =='show' ? item[item2.key] ==  'active'? <span className="bg-green-500 text-white px-5 py-1 rounded-3xl">active</span> : <span className="bg-orange-500 text-white px-5 py-1 rounded-3xl">Inactive</span> :
-
-           item2.type === 'text' && item2.key === 'status' ? item[item2.key] === 'completed' ? <span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-5">{item[item2.key]}</span> : <span className="text-base bg-orange-600 text-white rounded-3xl py-1 px-5">{item[item2.key]}</span> : item2.key === 'payment_status' ? item[item2.key] === 'paid' ?<span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-8">{item[item2.key]}</span> : <span className="text-base bg-orange-600 rounded-3xl text-white py-1 px-8">{item[item2.key]}</span> :
-
-           item2.key === "is_approved" ? item[item2.key] === 'approved' ?  <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
-           Approved
-         </span> :   <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
+          ) : item2.key === "email_verified_at" ? (
+            item[item2.key] != null ? (
+              <span className="text-white bg-green-600 py-1 px-6 rounded-3xl">
+                {" "}
+                verified
+              </span>
+            ) : (
+              <span
+                className="text-white bg-orange-500 py-1 px-6 rounded-3xl "
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Not verified
+              </span>
+            )
+          ) : item2.type == "show" ? (
+            item[item2.key] == "active" ? (
+              <span className="bg-green-500 text-white px-5 py-1 rounded-3xl">
+                active
+              </span>
+            ) : (
+              <span className="bg-orange-500 text-white px-5 py-1 rounded-3xl">
+                Inactive
+              </span>
+            )
+          ) : item2.type === "text" && item2.key === "status" ? (
+            item[item2.key] === "completed" ? (
+              <span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-5">
+                {item[item2.key]}
+              </span>
+            ) : (
+              <span className="text-base bg-orange-600 text-white rounded-3xl py-1 px-5">
+                {item[item2.key]}
+              </span>
+            )
+          ) : item2.key === "payment_status" ? (
+            item[item2.key] === "paid" ? (
+              <span className="text-base bg-[#4C9D8D] rounded-3xl text-white py-1 px-8">
+                {item[item2.key]}
+              </span>
+            ) : (
+              <span className="text-base bg-orange-600 rounded-3xl text-white py-1 px-8">
+                {item[item2.key]}
+              </span>
+            )
+          ) : item2.key === "is_approved" ? (
+            item[item2.key] === "approved" ? (
+              <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
+                Approved
+              </span>
+            ) : (
+              <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
                 Disapproved
-              </span>:
-          
+              </span>
+            )
+          ) : (
             item[item2.key]
-          }
+          )}
         </td>
       ))}
 
@@ -163,8 +213,7 @@ const Table = (props) => {
             </Link>
           )}
 
-
-{props.viewStudent && (
+          {props.viewStudent && (
             <Link
               to={`view/${item.id}`}
               className="w-7 h-7 bg-[#F15A24] bg-opacity-30 flex justify-center items-center rounded-full"
@@ -178,24 +227,27 @@ const Table = (props) => {
             </Link>
           )}
 
-
           {props.trash && (
             <button
-            disabled={loadDelete == item.id}
-              onClick={() => handleDelete(item.id , props.url === 'admin/course-sub-category' && item.parent_id)}
+              disabled={loadDelete == item.id}
+              onClick={() =>
+                handleDelete(
+                  item.id,
+                  props.url === "admin/course-sub-category" && item.parent_id
+                )
+              }
               className="w-7 h-7 bg-red-600 flex justify-center items-center rounded"
             >
-{
-  loadDelete == item.id  ? <AiOutlineLoading className="load-icon text-white"/> :
-
-
-              <Icon
-                icon="mage:trash"
-                width={18}
-                height={18}
-                style={{ color: "#fff" }}
-              />
-}
+              {loadDelete == item.id ? (
+                <AiOutlineLoading className="load-icon text-white" />
+              ) : (
+                <Icon
+                  icon="mage:trash"
+                  width={18}
+                  height={18}
+                  style={{ color: "#fff" }}
+                />
+              )}
             </button>
           )}
         </td>
@@ -211,7 +263,7 @@ const Table = (props) => {
           <tr>
             <th>SN</th>
             {showHeaders}
-            {props.action && <th> {props.viewStudent ? "": 'Actions'}</th>}
+            {props.action && <th> {props.viewStudent ? "" : "Actions"}</th>}
           </tr>
         </thead>
         <tbody className="bg-white">
@@ -221,7 +273,9 @@ const Table = (props) => {
                 Loading ...
               </td>
             </tr>
-          ) : props.data?.length != 0 ?   showData :(
+          ) : props.data?.length != 0 ? (
+            showData
+          ) : (
             <tr className=" rounded w-full p-10 ">
               <td colSpan={10}>
                 <div className="flex justify-center w-full">
@@ -233,8 +287,6 @@ const Table = (props) => {
                 </div>
               </td>
             </tr>
-          
-          
           )}
         </tbody>
       </table>

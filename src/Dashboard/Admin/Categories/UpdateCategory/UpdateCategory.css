@@ -16,7 +16,7 @@
   color: red;
 }
 
-.UpdateCategory .form-control input , .UpdateCategory .form-control textarea{
+.UpdateCategory .form-control input , .UpdateCategory .form-control textarea ,  .UpdateCategory .form-control select{
 width: 100%;
   outline: none;
   border: 1px solid #ddd;
