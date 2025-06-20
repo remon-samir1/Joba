@@ -7,7 +7,6 @@ const Curriculum = (props) => {
   const [openUnit, setOpenUnit] = useState(null);
   const contentRefs = useRef([]);
 
-
   const toggleUnit = (index) => {
     if (openUnit === index) {
       // Close animation
@@ -41,50 +40,68 @@ const Curriculum = (props) => {
   };
 
   return (
-    <div className="bg-white py-3 px-5 " >
+    <div className="bg-white py-3 px-5 ">
       {props.data.map((data, index) => (
-        <div key={index} className="py-4 border-b border-[#ddddd] cursor-pointer">
+        <div
+          key={index}
+          className="py-4 border-b border-[#ddddd] cursor-pointer"
+        >
           <div
             onClick={() => toggleUnit(index)}
-        className="flex justify-between items-center"
+            className="flex justify-between items-center"
           >
-            <span className="text-[1rem] text-textColor font-semibold">{data.title}</span>
+            <span className="text-[1rem] text-textColor font-semibold">
+              {data.title}
+            </span>
             <Icon
-  icon="dashicons:arrow-down"
-  width="20"
-  height="20"
-  className={`transform transition duration-300 ${
-    openUnit === index ? "-rotate-[180deg] text-main" : "rotate-0"
-  }`}
-/>
-
+              icon="dashicons:arrow-down"
+              width="20"
+              height="20"
+              className={`transform transition duration-300 ${
+                openUnit === index ? "-rotate-[180deg] text-main" : "rotate-0"
+              }`}
+            />
           </div>
 
           <div
             ref={(el) => (contentRefs.current[index] = el)}
             className="overflow-hidden h-0 mt-1 rounded "
-          
           >
             {data.chapter_items.length > 0 ? (
               data.chapter_items.map((course, cIndex) => (
                 <div
                   key={cIndex}
                   className="flex justify-between p-3 my-1 bg-[#EEEEEE]"
-                
                 >
                   <div className="flex items-center gap-1">
-                  <Icon className="text-main" icon="icon-park-solid:play" width="18" height="18" />
-                  <span className="text-textColor text-[0.9rem] font-semibold"> {course.lesson?.title}</span>
+                    <Icon
+                      className="text-main"
+                      icon="icon-park-solid:play"
+                      width="18"
+                      height="18"
+                    />
+                    <span className="text-textColor text-[0.9rem] font-semibold">
+                      {" "}
+                      {course.lesson?.title}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
-
-                  <span className="text-textColor text-[0.9rem] font-semibold">{formatDuration(course.lesson?.duration)}</span>
-                  <Icon className="text-main" icon="si:lock-line" width="18" height="18" />
+                    <span className="text-textColor text-[0.9rem] font-semibold">
+                      {formatDuration(course.lesson?.duration)}
+                    </span>
+                    <Icon
+                      className="text-main"
+                      icon="si:lock-line"
+                      width="18"
+                      height="18"
+                    />
                   </div>
                 </div>
               ))
             ) : (
-              <div style={{ padding: "10px", color: "#888" }}>No courses yet</div>
+              <div style={{ padding: "10px", color: "#888" }}>
+                No courses yet
+              </div>
             )}
           </div>
         </div>

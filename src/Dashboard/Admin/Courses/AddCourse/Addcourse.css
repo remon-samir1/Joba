@@ -1,11 +1,12 @@
 .AddCoourse .form-control {
   display: flex;
-  justify-content: center;
-  align-items: start;
+  justify-content: center ;
+  align-items: start ;
   flex-direction: column;
   gap: 10px;
   width: 100%;
   margin-top: 20px;
+  background-color: #fff ;
 }
 .AddCoourse .form-control label {
   font-size: 1.1rem;
@@ -16,7 +17,7 @@
   color: red;
 }
 
-.AddCoourse .form-control input , .AddCoourse  .form-control textarea , .AddCoourse  .form-control select{
+.AddCoourse .form-control input , .AddCoourse  .form-control textarea , .AddCoourse .form-control select{
   border-radius: 5px;
   width: 100%;
   outline: none;
@@ -25,7 +26,7 @@
   transition: 0.3s;
   color: var(--second-text-color);
 }
-.AddCoourse .form-control .input {
+.AddCoourse .form-control .input , .addLesson .input{
   width: 100%;
   border-radius: 5px;
   border: 1px solid #ddd;
@@ -38,7 +39,7 @@
 .AddCoourse .form-control .input:hover{
 border-color: var(--main-color);
 }
-.AddCoourse .form-control .input div{
+.AddCoourse .form-control .input div  , .addLesson .input div {
   color: #fff;
   background-color: var(--main-color);
   height: 100%;

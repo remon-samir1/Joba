@@ -101,7 +101,7 @@ const AddCourseBasics = () => {
             <label htmlFor="path">Path</label>
             {videoSource === "local" ? (
               <div className="input" onClick={() => pathRef.current.click()}>
-                <div>choose</div>
+                <div >choose</div>
                 <p>{form.path && StringSlice(form.path.name, 12)}</p>
                 <input
                   ref={pathRef}

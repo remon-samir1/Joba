@@ -77,7 +77,7 @@ const AddCourseMoreInfo = () => {
         </div>
         <div className="flex mt-4 items-start gap-5 justify-center">
           <div className="flex-1 bg-white p-5 flex border border-[#ddd] flex-col justify-start items-start gap-4">
-          <label>Level</label>
+            <label>Level</label>
             <div className="flex justify-start items-center gap-2">
               <input
                 type="checkbox"
@@ -86,7 +86,7 @@ const AddCourseMoreInfo = () => {
                 className="accent-main w-[18px] h-[18px]"
               />
               <label htmlFor="check1" className="text-base text-[#000000]">
-              Beginner 
+                Beginner
               </label>
             </div>
             <div className="flex justify-start items-center gap-2">
@@ -97,7 +97,7 @@ const AddCourseMoreInfo = () => {
                 className="accent-main w-[18px] h-[18px]"
               />
               <label htmlFor="check2" className="text-base text-[#000000]">
-              Intermediate 
+                Intermediate
               </label>
             </div>
             <div className="flex justify-start items-center gap-2">
@@ -108,14 +108,12 @@ const AddCourseMoreInfo = () => {
                 className="accent-main w-[18px] h-[18px]"
               />
               <label htmlFor="check3" className="text-base text-[#000000]">
-              
-Expert
-
+                Expert
               </label>
             </div>
           </div>
           <div className="flex-1 bg-white p-5 flex border border-[#ddd] flex-col justify-start items-start gap-4">
-          <label>Language</label>
+            <label>Language</label>
             <div className="flex justify-start items-center gap-2">
               <input
                 type="checkbox"
@@ -124,7 +122,7 @@ Expert
                 className="accent-main w-[18px] h-[18px]"
               />
               <label htmlFor="check1" className="text-base text-[#000000]">
-              English
+                English
               </label>
             </div>
             <div className="flex justify-start items-center gap-2">
@@ -135,14 +133,12 @@ Expert
                 className="accent-main w-[18px] h-[18px]"
               />
               <label htmlFor="check2" className="text-base text-[#000000]">
-              Arabic
+                Arabic
               </label>
             </div>
-        
           </div>
         </div>
         <button type="submit">Save</button>
-
       </form>
     </div>
   );
