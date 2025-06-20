@@ -12,6 +12,7 @@ import Loading from "../../../../components/Loading/Loading";
 import { useEffect } from "react";
 
 const AddPost = () => {
+  
   const click = useRef(null);
   const navigate = useNavigate();
   const [laoding, setLoading] = useState();

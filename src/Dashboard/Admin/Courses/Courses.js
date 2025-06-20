@@ -18,10 +18,10 @@ const Courses = () => {
   const [deleted, setDeleted] = useState(false);
 const [courses, setCourses] = useState([]);
 const [category, setCategory] = useState();
+const [categoryId , setCategoryId] = useState();
 const [selectedDate, setSelectedDate] = useState(0);
 const [status, setStatus] = useState('');
 const [approved, setApproved] = useState('');
-const [categoryId , setCategoryId] = useState();
 const [loading, setLoading] = useState(false);
 const [page, setPage] = useState(1);
 const [total, setTotal] = useState();

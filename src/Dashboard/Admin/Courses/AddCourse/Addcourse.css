@@ -16,7 +16,7 @@
   color: red;
 }
 
-.AddCoourse .form-control input , .AddCoourse  .form-control textarea{
+.AddCoourse .form-control input , .AddCoourse  .form-control textarea , .AddCoourse  .form-control select{
   border-radius: 5px;
   width: 100%;
   outline: none;
