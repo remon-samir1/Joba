@@ -69,6 +69,8 @@ console.log(courseId);
     setShowChapterModal(false);
   };
   console.log(chapters);
+  console.log(parseInt("222"));
+
   const addOrUpdateLesson = (lessonData, chapterIdFromDropdown) => {
     const chapterId = chapterIdFromDropdown || selectedChapterId;
     if (editMode && selectedLessonIndex !== null) {

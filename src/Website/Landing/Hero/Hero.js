@@ -54,7 +54,7 @@ const Hero = () => {
 
   return (
     <div className="Hero" ref={heroRef}>
-      <div className="data px-12 mx-auto" ref={bgRef}>
+      <div className="data px-4 md:px-12 mx-auto" ref={bgRef}>
         <div className="content" ref={contentRef}>
 
           <h2 ref={headingRef}>

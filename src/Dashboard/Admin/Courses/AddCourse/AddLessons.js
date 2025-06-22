@@ -48,7 +48,7 @@ console.log(preview);
 // console.log(course);
     const lessonData = {
       type: "lesson",
-      course_id,
+      course_id : +course_id,
       chapter_id: selectedChapter,
       title: lessonTitle.trim(),
       file_type: videoType,
