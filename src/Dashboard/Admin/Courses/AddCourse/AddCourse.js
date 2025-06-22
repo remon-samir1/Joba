@@ -12,7 +12,7 @@ import AddCourseFinish from "./AddCourseFinish";
 
 const AddCourse = () => {
   const [page , setPage] = useState('basic')
-
+ const [courseId , setCourseId] = useState()
 return (
   <div>
 
@@ -25,7 +25,7 @@ return (
 
 
        {
-        page === 'basic' ? <AddCourseBasics/> : page === 'more' ? <AddCourseMoreInfo/> : page === 'content' ? <AddCourseContent/> : page === 'finish' && <AddCourseFinish/> 
+        page === 'basic' ? <AddCourseBasics setCourseId={setCourseId} setPage={setPage}/> : page === 'more' ? <AddCourseMoreInfo course_id={courseId}/> : page === 'content' ? <AddCourseContent courseId={courseId}/> : page === 'finish' && <AddCourseFinish/> 
       }
 
 
