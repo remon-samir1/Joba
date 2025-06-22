@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import StringSlice from "../../../../components/Helpers/StringSlice";
+import ToggleButton from "../../../../components/ToggleButton/ToggleButton";
 
 const AddLessons = ({
   lessonModalRef,
@@ -16,13 +17,14 @@ const AddLessons = ({
   const [videoType, setVideoType] = useState("video");
   const [videoLink, setVideoLink] = useState(defaultLesson?.videoLink || "");
   const [videoFile, setVideoFile] = useState(null);
+  const [preview ,SetPreview] = useState(0)
   const [description, setDescription] = useState(defaultLesson?.description || "");
   const [duration, setDuration] = useState(defaultLesson?.duration || "");
   const [selectedChapter, setSelectedChapter] = useState(
     selectedChapterId || (chapters.length > 0 ? chapters[0].id : "")
   );
   const pathRef = useRef(null);
-
+console.log(preview);
   useEffect(() => {
     if (source === "upload") {
       setVideoType("video");
@@ -43,7 +45,7 @@ const AddLessons = ({
 
   const handleSubmit = () => {
     if (!lessonTitle.trim() || !duration.trim() || !selectedChapter || (!videoLink && source === "upload" && !videoFile)) return;
-
+// console.log(course);
     const lessonData = {
       type: "lesson",
       course_id,
@@ -51,7 +53,9 @@ const AddLessons = ({
       title: lessonTitle.trim(),
       file_type: videoType,
       source,
-      file_path: source === "upload" ? videoFile : videoLink,
+      is_free: preview,
+      upload_path:  videoFile ,
+      link_path:videoLink , 
       duration: duration.trim(),
       description: description.trim(),
     };
@@ -127,7 +131,7 @@ const AddLessons = ({
               Duration <span className="text-red-500">*</span>
             </label>
             <input
-              type="text"
+              type="number"
               required
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
@@ -209,7 +213,10 @@ const AddLessons = ({
           className="w-full border rounded px-3 py-2 mb-4 outline-none focus:border-main text-textColor"
           placeholder="Enter description"
         />
+        <div className="pb-4">
 
+ <ToggleButton title='Preview' setData={SetPreview}/>
+        </div>
         {/* Submit */}
         <button onClick={handleSubmit} className="bg-main text-white px-4 py-2 rounded w-full">
           {editMode ? "Update Lesson" : "Add Lesson"}

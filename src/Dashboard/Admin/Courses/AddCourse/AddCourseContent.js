@@ -4,7 +4,7 @@ import AddLessons from "./AddLessons";
 import { Icon } from "@iconify-icon/react";
 import { Axios } from "../../../../components/Helpers/Axios";
 
-const AddCourseContent = ({courseId}) => {
+const AddCourseContent = ({ courseId }) => {
   const [chapters, setChapters] = useState([]);
   const [showChapterModal, setShowChapterModal] = useState(false);
   const [showLessonModal, setShowLessonModal] = useState(false);
@@ -15,7 +15,7 @@ const AddCourseContent = ({courseId}) => {
 
   const chapterModalRef = useRef();
   const lessonModalRef = useRef();
-
+console.log(courseId);
   // useEffect(() => {
   //   Axios.get("/chapters").then((res) => setChapters(res.data));
   // }, []);
@@ -59,7 +59,7 @@ const AddCourseContent = ({courseId}) => {
       `,
         { title: newChapterTitle.trim() }
       ).then((res) => {
-        setChapters([...chapters, { ...res.data  , lessons: [] }]);
+        setChapters([...chapters, { ...res.data, lessons: [] }]);
         console.log(res);
       });
     }
@@ -68,7 +68,7 @@ const AddCourseContent = ({courseId}) => {
     setSelectedChapterId(null);
     setShowChapterModal(false);
   };
-console.log(chapters);
+  console.log(chapters);
   const addOrUpdateLesson = (lessonData, chapterIdFromDropdown) => {
     const chapterId = chapterIdFromDropdown || selectedChapterId;
     if (editMode && selectedLessonIndex !== null) {
@@ -86,16 +86,18 @@ console.log(chapters);
         );
       });
     } else {
-      Axios.post(`/admin/course-chapter/lesson/create`, lessonData).then((res) => {
-        console.log(res);
-        setChapters((prev) =>
-          prev.map((ch) =>
-            ch.id === chapterId
-              ? { ...ch, lessons: [...ch.lessons, res.data] }
-              : ch
-          )
-        );
-      });
+      Axios.post(`/admin/course-chapter/lesson/create`, lessonData).then(
+        (res) => {
+          console.log(res);
+          setChapters((prev) =>
+            prev.map((ch) =>
+              ch.id === chapterId
+                ? { ...ch, lessons: [...ch.lessons, res.data] }
+                : ch
+            )
+          );
+        }
+      );
     }
     setShowLessonModal(false);
     setEditMode(false);
@@ -160,7 +162,9 @@ console.log(chapters);
         {chapters.map((chapter) => (
           <div key={chapter.chapter_id} className="border rounded bg-white">
             <div className="flex justify-between bg-[#FEEFE9] p-3 items-center">
-              <div className="font-semibold text-lg">{chapter.chapter_name }</div>
+              <div className="font-semibold text-lg">
+                {chapter.chapter_name}
+              </div>
               <div className="flex items-center gap-2">
                 <div className="relative">
                   <button
@@ -233,7 +237,9 @@ console.log(chapters);
                   <span>{lesson.title || lesson}</span>
                   <div className="flex gap-2">
                     <button
-                      onClick={() => editLesson(chapter.chapter_id, lesson, idx)}
+                      onClick={() =>
+                        editLesson(chapter.chapter_id, lesson, idx)
+                      }
                       className="w-7 h-7 bg-yellow-400 flex justify-center items-center rounded"
                     >
                       <Icon
@@ -285,7 +291,7 @@ console.log(chapters);
             </div>
             <input
               type="text"
-              value={ newChapterTitle}
+              value={newChapterTitle}
               onChange={(e) => setNewChapterTitle(e.target.value)}
               className="w-full border rounded px-3 py-2 mb-4 outline-none focus:border-main"
               placeholder="Enter chapter title"
@@ -302,7 +308,7 @@ console.log(chapters);
 
       {showLessonModal && (
         <AddLessons
-        course_id={courseId}
+          course_id={courseId}
           lessonModalRef={lessonModalRef}
           setShowLessonModal={setShowLessonModal}
           addLesson={addOrUpdateLesson}
