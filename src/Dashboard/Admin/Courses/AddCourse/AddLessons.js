@@ -24,6 +24,7 @@ const AddLessons = ({
     selectedChapterId || (chapters.length > 0 ? chapters[0].id : "")
   );
   const pathRef = useRef(null);
+  // console.log(videoFile);
 console.log(preview);
   useEffect(() => {
     if (source === "upload") {
@@ -46,19 +47,32 @@ console.log(preview);
   const handleSubmit = () => {
     if (!lessonTitle.trim() || !duration.trim() || !selectedChapter || (!videoLink && source === "upload" && !videoFile)) return;
 // console.log(course);
-    const lessonData = {
-      type: "lesson",
-      course_id : +course_id,
-      chapter_id: selectedChapter,
-      title: lessonTitle.trim(),
-      file_type: videoType,
-      source,
-      is_free: preview,
-      upload_path:  videoFile ,
-      link_path:videoLink , 
-      duration: duration.trim(),
-      description: description.trim(),
-    };
+    // const lessonData = {
+    //   type: "lesson",
+    //   course_id : +course_id,
+    //   chapter_id: selectedChapter,
+    //   title: lessonTitle.trim(),
+    //   file_type: videoType,
+    //   source,
+    //   is_free: preview,
+    //   upload_path:  videoFile ,
+    //   link_path:videoLink , 
+    //   duration: duration.trim(),
+    //   description: description.trim(),
+    // };
+    const lessonData = new FormData();
+
+    lessonData.append("type", "lesson");
+    lessonData.append("course_id", +course_id);
+    lessonData.append("chapter_id", selectedChapter);
+    lessonData.append("title", lessonTitle.trim());
+    lessonData.append("file_type", videoType);
+    lessonData.append("source", source);
+    lessonData.append("is_free", preview);
+    lessonData.append("upload_path", videoFile); 
+    lessonData.append("link_path", videoLink);
+    lessonData.append("duration", duration.trim());
+lessonData.append("description", description.trim());
 
     addLesson(lessonData, selectedChapter);
 
