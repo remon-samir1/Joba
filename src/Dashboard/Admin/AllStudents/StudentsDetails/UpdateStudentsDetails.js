@@ -11,13 +11,23 @@ const UpdateStudentsDetails = () => {
     value: country.cca2,
     label: country.name.common,
   }));
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState({
+    name:'',
+    phone:'',
+    email:'',
+    gender:'',
+ age:"",
+ bio:''
+
+  });
   const { id } = useParams();
-  // useEffect(() => {
-  //   Axios.get("/users").then((data) =>
-  //     setStudent(data.data.filter((data) => data.id == id))
-  //   );
-  // }, []);
+  useEffect(() => {
+    Axios.get(`/admin/customer-show/${id}`).then((data) =>{
+      // setStudent(data.data.filter((data) => data.id == id))
+      setStudent(data.data.data.user)
+    }
+    );
+  }, []);
 
   const genderDate = [
     {
@@ -37,31 +47,31 @@ const UpdateStudentsDetails = () => {
         <form>
           <div className="form-control">
             <label htmlFor="name">Full name</label>
-            <input type="text" id="name" name="name" />
+            <input value={student.name} onChange={(e)=>setStudent({...student , name:e.target.value})} type="text" id="name" name="name" />
           </div>
           <div className="flex justify-center items-center gap-4">
             <div className="form-control">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" />
+              <input type="email" id="email" name="email" value={student.email} onChange={(e)=>setStudent({...student , email:e.target.value})} />
             </div>{" "}
             <div className="form-control">
               <label htmlFor="phone">Phone</label>
-              <input type="number" id="phone" name="phone" />
+              <input type="number" id="phone" name="phone" value={student.phone} onChange={(e)=>setStudent({...student , phone:e.target.value})} />
             </div>
           </div>
           <div className="flex justify-center items-center gap-4">
             <div className="form-control">
               <label htmlFor="email">Gender</label>
-              <SelectBox title="select" data={genderDate} />
+              <SelectBox onChange={(e)=>setStudent({...student , gender:e.target.value})} value={student.gender} title="select" data={genderDate} />
             </div>{" "}
             <div className="form-control">
               <label htmlFor="age">Age</label>
-              <input type="number" id="age" name="age" />
+              <input type="number" id="age" name="age" onChange={(e)=>setStudent({...student , age:e.target.value})} value={student.age} />
             </div>
           </div>
           <div className="form-control ">
             <label htmlFor="bio">Bio</label>
-            <textarea type="text" id="bio" className="h-36" />
+            <textarea type="text" id="bio" className="h-36" onChange={(e)=>setStudent({...student , bio:e.target.value})} value={student.bio}/>
           </div>
           <button type="submit">Update</button>
         </form>

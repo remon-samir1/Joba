@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Axios } from "../../../../components/Helpers/Axios";
 
 const AddQuiz = ({
   quizModalRef,
@@ -8,12 +9,15 @@ const AddQuiz = ({
   defaultQuiz,
   chapters,
   selectedChapterId,
-  course_id,
+  courseId,
+  setChange
 }) => {
   const [title, setTitle] = useState(defaultQuiz?.title || "");
   const [timeLimit, setTimeLimit] = useState(defaultQuiz?.time_limit || "");
   const [attempts, setAttempts] = useState(defaultQuiz?.attempts || "");
   const [totalMark, setTotalMark] = useState(defaultQuiz?.total_mark || "");
+  const [chapterItem , setChapterItem] = useState()
+
   const [passMark, setPassMark] = useState(defaultQuiz?.pass_mark || "");
   const [selectedChapter, setSelectedChapter] = useState(
     selectedChapterId || (chapters.length > 0 ? chapters[0].chapter_id : "")
@@ -21,21 +25,22 @@ const AddQuiz = ({
 
   useEffect(() => {
     if (defaultQuiz) {
-      setTitle(defaultQuiz.title || "");
-      setTimeLimit(defaultQuiz.time_limit || "");
-      setAttempts(defaultQuiz.attempts || "");
-      setTotalMark(defaultQuiz.total_mark || "");
-      setPassMark(defaultQuiz.pass_mark || "");
+      setTitle(defaultQuiz.quiz.title || "");
+      setTimeLimit(defaultQuiz.quiz.time || "");
+      setAttempts(defaultQuiz.quiz.attempt || "");
+      setTotalMark(defaultQuiz.quiz.total_mark || "");
+      setPassMark(defaultQuiz.quiz.pass_mark || "");
+      setChapterItem(defaultQuiz.id)
     }
     if (selectedChapterId) setSelectedChapter(selectedChapterId);
   }, [defaultQuiz, selectedChapterId]);
 
   const handleSubmit = () => {
-    if (!title.trim() || !totalMark.trim() || !passMark.trim() || !selectedChapter) return;
-
+    setShowQuizModal(false)
     const quizData = {
       type: "quiz",
-      course_id: +course_id,
+      chapter_item_id: chapterItem || '',
+      course_id : +courseId,
       chapter_id: selectedChapter,
       title: title.trim(),
       time_limit: timeLimit.trim(),
@@ -43,8 +48,26 @@ const AddQuiz = ({
       total_mark: totalMark.trim(),
       pass_mark: passMark.trim(),
     };
+    // addQuiz(quizData, selectedChapter);
 
-    addQuiz(quizData, selectedChapter);
+try{
+  if(editMode){
+    Axios.post(`/admin/course-chapter/lesson/update`, quizData).then((res) => {
+console.log(res);
+setChange(prev=>!prev)
+});
+}else{
+
+Axios.post(`/admin/course-chapter/lesson/create`, quizData).then((res) => {
+console.log(res);
+setChange(prev=>!prev)
+});
+}
+}catch(err){
+
+}
+
+
 
     setTitle("");
     setTimeLimit("");
@@ -52,7 +75,7 @@ const AddQuiz = ({
     setTotalMark("");
     setPassMark("");
   };
-
+console.log(courseId);
   return (
     <div className="fixed inset-0 max-h-screen overflow-auto flex items-center justify-center bg-black bg-opacity-30 z-50">
       <div
@@ -81,8 +104,8 @@ const AddQuiz = ({
           onChange={(e) => setSelectedChapter(e.target.value)}
         >
           {chapters.map((ch) => (
-            <option key={ch.chapter_id} value={ch.chapter_id}>
-              {ch.chapter_name}
+            <option key={ch.id} value={ch.id}>
+              {ch.title}
             </option>
           ))}
         </select>

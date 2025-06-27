@@ -37,7 +37,7 @@ useEffect(() => {
     setTotal(data.data.data.courses.total);
     setLoading(false);
   });
-}, [search, deleted,selectedDate,status,approved,categoryId]);
+}, [search, deleted,selectedDate,status,approved,categoryId,page]);
 useEffect(()=>{
   Axios.get(`/admin/course-category`).then(data=>{
     setCategory(data.data.data.categories.data);
@@ -154,6 +154,7 @@ const approvedData = [
             url='admin/courses/status-update'
             delurl='/admin/courses/delete'
             setDeleted={setDeleted}
+            setData={setCourses}
           />
         </div>
         <div className="flex justify-end p-5 px-10">

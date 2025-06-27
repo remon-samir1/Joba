@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Axios } from "../../../../components/Helpers/Axios";
 
 const AddDocument = ({
   documentModalRef,
@@ -9,10 +10,14 @@ const AddDocument = ({
   chapters,
   selectedChapterId,
   course_id,
+  setChange,
+  setEditMode
 }) => {
   const [title, setTitle] = useState(defaultDocument?.title || "");
   const [fileType, setFileType] = useState(defaultDocument?.file_type || "pdf");
   const [file, setFile] = useState(null);
+  const [chapterItem , setChapterItem] = useState()
+
   const [description, setDescription] = useState(defaultDocument?.description || "");
   const [selectedChapter, setSelectedChapter] = useState(
     selectedChapterId || (chapters.length > 0 ? chapters[0].chapter_id : "")
@@ -22,32 +27,57 @@ const AddDocument = ({
   useEffect(() => {
     if (defaultDocument) {
       setTitle(defaultDocument.title || "");
-      setFileType(defaultDocument.file_type || "pdf");
-      setDescription(defaultDocument.description || "");
+      setFileType(defaultDocument.lesson.file_type || "pdf");
+      setDescription(defaultDocument.lesson.description || "");
+      // file_path(defaultDocument.lesson.file_path  || "");
+      setChapterItem(defaultDocument.id)
     }
     if (selectedChapterId) setSelectedChapter(selectedChapterId);
   }, [defaultDocument, selectedChapterId]);
 
-  const handleSubmit = () => {
-    if (!title.trim() || !file || !selectedChapter) return;
+  
+  const handleSubmit =async () => {
+    setShowDocumentModal(false)
+    // if (!title.trim() || !file || !selectedChapter) return;
 
-    const documentData = {
-      type: "document",
-      course_id: +course_id,
-      chapter_id: selectedChapter,
-      title: title.trim(),
-      file_type: fileType,
-      upload_path: file,
-      description: description.trim(),
-    };
+    const formData = new FormData();
+    if(editMode){
 
-    addDocument(documentData, selectedChapter);
+      formData.append("chapter_item_id", chapterItem);
+    }
+    formData.append("type", "document");
+    formData.append("course_id", +course_id);
+    formData.append("chapter_id", selectedChapter);
+    formData.append("title", title.trim());
+    formData.append("file_type", fileType);
+    formData.append("upload_path", file); 
+    formData.append("description", description.trim());
+  
 
     setTitle("");
     setFile(null);
     setFileType("pdf");
     setDescription("");
-  };
+    try{
+
+      if(editMode){
+        Axios.post(`/admin/course-chapter/lesson/update`, formData).then((res) => {
+    console.log(res);
+    setChange(prev=>!prev)
+  });
+}else{
+
+  Axios.post(`/admin/course-chapter/lesson/create`, formData).then((res) => {
+    console.log(res);
+    setChange(prev=>!prev)
+  });
+}
+    setShowDocumentModal(false)
+    setEditMode(false)
+  }catch(err){
+    console.log(err);
+  }
+  }
 
   return (
     <div className="fixed inset-0 max-h-screen overflow-auto flex items-center justify-center bg-black bg-opacity-30 z-50">
@@ -77,8 +107,8 @@ const AddDocument = ({
           onChange={(e) => setSelectedChapter(e.target.value)}
         >
           {chapters.map((ch) => (
-            <option key={ch.chapter_id} value={ch.chapter_id}>
-              {ch.chapter_name}
+            <option key={ch.id} value={ch.id}>
+              {ch.title}
             </option>
           ))}
         </select>
@@ -104,13 +134,13 @@ const AddDocument = ({
             </label>
             <select
               value={fileType}
+              required
               onChange={(e) => setFileType(e.target.value)}
               className="w-full border outline-none rounded px-3 py-2 mb-4 bg-white text-textColor"
             >
               <option value="pdf">PDF</option>
-              <option value="doc">Word</option>
-              <option value="ppt">PowerPoint</option>
-              <option value="txt">Text</option>
+              <option value="docx">Word</option>
+              <option value="txt">Text File</option>
             </select>
           </div>
 
@@ -125,11 +155,23 @@ const AddDocument = ({
               <span>Choose</span>
               <p>{file && file.name}</p>
               <input
-                ref={pathRef}
-                hidden
-                type="file"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
+  ref={pathRef}
+  hidden
+  type="file"
+  accept={
+    fileType === "pdf"
+      ? ".pdf"
+      : fileType === "docx"
+      ? ".doc,.docx,.odt"
+      : fileType === "txt"
+      ? ".txt"
+      : "*"
+  }
+  onChange={(e) => {
+    setFile(e.target.files[0]);
+  }}
+/>
+
             </div>
           </div>
         </div>

@@ -10,7 +10,8 @@ const AddLessons = ({
   defaultLesson,
   chapters,
   selectedChapterId,
-  course_id
+  course_id,
+  
 }) => {
   const [lessonTitle, setLessonTitle] = useState(defaultLesson?.title || "");
   const [source, setSource] = useState("youtube");
@@ -18,8 +19,9 @@ const AddLessons = ({
   const [videoLink, setVideoLink] = useState(defaultLesson?.videoLink || "");
   const [videoFile, setVideoFile] = useState(null);
   const [preview ,SetPreview] = useState(0)
+  const [chapterItem , setChapterItem] = useState()
   const [description, setDescription] = useState(defaultLesson?.description || "");
-  const [duration, setDuration] = useState(defaultLesson?.duration || "");
+  const [duration, setDuration] = useState(defaultLesson?.lesson.duration || '' );
   const [selectedChapter, setSelectedChapter] = useState(
     selectedChapterId || (chapters.length > 0 ? chapters[0].id : "")
   );
@@ -33,35 +35,26 @@ console.log(preview);
       setVideoType("video");
     }
   }, [source]);
-
+console.log(defaultLesson);
   useEffect(() => {
     if (defaultLesson) {
-      setLessonTitle(defaultLesson.title || "");
-      setVideoLink(defaultLesson.videoLink || "");
-      setDescription(defaultLesson.description || "");
-      setDuration(defaultLesson.duration || "");
+      setLessonTitle(defaultLesson?.title );
+      setVideoLink(defaultLesson.lesson.file_path || "");
+      setDescription(defaultLesson.lesson.description || "");
+      setDuration(defaultLesson.lesson.duration || "");
+      setChapterItem(defaultLesson.id)
     }
     if (selectedChapterId) setSelectedChapter(selectedChapterId);
   }, [defaultLesson, selectedChapterId]);
 
   const handleSubmit = () => {
     if (!lessonTitle.trim() || !duration.trim() || !selectedChapter || (!videoLink && source === "upload" && !videoFile)) return;
-// console.log(course);
-    // const lessonData = {
-    //   type: "lesson",
-    //   course_id : +course_id,
-    //   chapter_id: selectedChapter,
-    //   title: lessonTitle.trim(),
-    //   file_type: videoType,
-    //   source,
-    //   is_free: preview,
-    //   upload_path:  videoFile ,
-    //   link_path:videoLink , 
-    //   duration: duration.trim(),
-    //   description: description.trim(),
-    // };
-    const lessonData = new FormData();
 
+    const lessonData = new FormData();
+if(editMode){
+
+  lessonData.append("chapter_item_id", chapterItem);
+}
     lessonData.append("type", "lesson");
     lessonData.append("course_id", +course_id);
     lessonData.append("chapter_id", selectedChapter);
@@ -73,7 +66,7 @@ console.log(preview);
     lessonData.append("link_path", videoLink);
     lessonData.append("duration", duration.trim());
 lessonData.append("description", description.trim());
-
+console.log(selectedChapter);
     addLesson(lessonData, selectedChapter);
 
     setLessonTitle("");
@@ -121,7 +114,7 @@ lessonData.append("description", description.trim());
           onChange={(e) => setSelectedChapter(e.target.value)}
         >
           {chapters.map((ch) => (
-            <option key={ch.chapter_id} value={ch.chapter_id}>{ch.chapter_name}</option>
+            <option key={ch.id} value={ch.id}>{ch.title}</option>
           ))}
         </select>
 

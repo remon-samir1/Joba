@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Axios } from "../../../../components/Helpers/Axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Notifcation from "../../../../components/Notification";
 
-const ShowSudentDetails = () => {
-
+const ShowSudentDetails = ({setLoading}) => {
+const nav = useNavigate()
   function formatCustomDate(isoDateStr) {
     const date = new Date(isoDateStr);
 
@@ -35,17 +35,20 @@ const ShowSudentDetails = () => {
 
   // handle send verify link
   const handleSendVerifyLink = async()=>{
+    setLoading(true)
 try{
   await Axios.post(`/admin/send-verify-request/${id}`).then(data=>{
     toast.success(data.data.messege)
     console.log(data.data.messege)})
-
+    setLoading(false)
 }
 
 catch(err){
   console.log(err);
   toast.error(err.message)
+  setLoading(false)
 }
+
   }
   // handle send verify link
   const handleSendMail = async()=>{
@@ -60,6 +63,25 @@ catch(err){
   console.log(err);
   toast.error(err.message)
 }
+  }
+  // handle Delete
+  const  handleDelete = async()=>{
+    setLoading(true)
+    try{
+Axios.delete(`/admin/customer-delete/${id}`).then(data=>{
+  console.log(data)
+ toast.error(data.data.messege)
+ setLoading(false)
+ if(data.data.messege === 'User deleted successfully'){
+ toast.success(data.data.messege)
+
+  nav(-1)
+ }
+})
+    }catch(err){
+console.log(err);
+setLoading(false)
+    }
   }
   return (
     <div className="w-[268px] bg-white rounded px-4 py-6 mb-8">
@@ -95,7 +117,7 @@ catch(err){
       <button className="hover:bg-white hover:text-[#F2A124]  duration-500 border border-[#F2A124] text-white mt-3 w-full p-3 bg-[#F2A124] text-sm rounded">
         Bann user
       </button> */}
-      <button className="hover:bg-white hover:text-[#D70000]  duration-500 border border-[#D70000] text-white mt-3 w-full p-3 bg-[#D70000] text-sm rounded">
+      <button onClick={handleDelete} className="hover:bg-white hover:text-[#D70000]  duration-500 border border-[#D70000] text-white mt-3 w-full p-3 bg-[#D70000] text-sm rounded">
         Delete account
       </button>
     </div>

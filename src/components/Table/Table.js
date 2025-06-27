@@ -30,6 +30,7 @@ const Table = (props) => {
         setLoadDelete(false);
         console.log(data);
         props.setDeleted((prev) => !prev);
+        // props.setData(props.data.filter(prev=> prev.id !== id))
         if (data.data.status == "error") {
           toast.error(data.data.message || data.data.messege);
         } else {

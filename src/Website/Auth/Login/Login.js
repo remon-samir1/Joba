@@ -52,11 +52,13 @@ const Login = () => {
     try {
       const res = await Axios.post("/user-login", form);
         if(res.data.status == 'success'){
+          console.log(res);
           const token = res.data.access_token;
           cookie.set("token", token);
           saveData();
           toast.success(res.data.messege);
-          nav('/admin/main')
+          window.location.pathname='/admin/main'
+          // nav('/admin/main')
           setLaoding(false)
           console.log(res);
 
