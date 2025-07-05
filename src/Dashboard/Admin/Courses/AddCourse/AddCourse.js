@@ -25,7 +25,7 @@ return (
 
 
        {
-        page === 'basic' ? <AddCourseBasics setCourseId={setCourseId} setPage={setPage}/> : page === 'more' ? <AddCourseMoreInfo course_id={courseId}/> : page === 'content' ? <AddCourseContent courseId={courseId}/> : page === 'finish' && <AddCourseFinish/> 
+        page === 'basic' ? <AddCourseBasics setCourseId={setCourseId} setPage={setPage}/> : page === 'more' ? <AddCourseMoreInfo setPage={setPage} course_id={courseId}/> : page === 'content' ? <AddCourseContent courseId={courseId}/> : page === 'finish' && <AddCourseFinish courseId={courseId}/> 
       }
 
 

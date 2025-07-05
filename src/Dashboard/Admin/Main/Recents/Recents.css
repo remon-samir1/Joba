@@ -1,12 +1,13 @@
 .Recents{
-  /* flex: 1; */
+  flex: 1;
   border: 1px solid #ddd;
- height: 330px; 
+ /* height: 330px;  */
  display: flex;
  flex-direction: column;
  border-radius: 5px;
  overflow: hidden;
- width: 340px;
+ min-width: 340px;
+ max-width: 450px;
 }
 .Recents .header{
   background-color: rgb(241, 90, 36,0.5);
@@ -18,6 +19,7 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-color);
+
 }
 .Recents .body{
   background-color: #fff;
@@ -25,7 +27,11 @@ flex: 1;
 }
 .Recents .body .item{
   width: 100%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* text-align: center; */
   padding: 20px;
   border-bottom: 1px solid #ddd;
 

@@ -58,6 +58,7 @@ import OrderStudentHistoryDetails from "./Dashboard/Student/OrderHistory/OrderSt
 import AddSubCategory from "./Dashboard/Admin/Categories/SubCategory/AddSubCategory/AddSubCategory";
 import UpdateSubCategory from "./Dashboard/Admin/Categories/SubCategory/UpdateSubCategory/UpdateSubCategory";
 import Blog from "./Website/Blog/Blog";
+import UpdateCourse from "./Dashboard/Admin/Courses/UpdateCourse/UpdateCourse";
 function App() {
   return (
     <div className="App">
@@ -72,6 +73,7 @@ function App() {
         <Route path="main" element={<MainAdminPage/> } />
         <Route path="courses" element={<Courses/> } />
         <Route path="/admin/courses/add" element={<AddCourse/> } />
+        <Route path="/admin/courses/update/:id" element={<UpdateCourse/> } />
         <Route path="Categories" element={<Categories/> } />
         <Route path="/admin/Categories/update/:id" element={<UpdateCategory/> } />
         <Route path="/admin/Categories/add" element={<AddCategory/> } />
@@ -91,7 +93,7 @@ function App() {
          <Route path="/admin/post-list/update/:id" element={<UpdatePost/>} />
          <Route path="Post-comments" element={<PostComments/>} />
          <Route path="order-history" element={<OrderHistory/>} />
-         <Route path="/admin/order-history/view" element={<OrderDetails/>} />
+         <Route path="/admin/order-history/view/:id" element={<OrderDetails/>} />
          <Route path="Pending-payment" element={<PendingPayment/>} />
          <Route path="All-Students" element={<AllStudents/>} />
          <Route path="/admin/All-Students/view/:id" element={<StudentsDetails/>} />

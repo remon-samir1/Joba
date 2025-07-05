@@ -11,7 +11,8 @@ const AddDocument = ({
   selectedChapterId,
   course_id,
   setChange,
-  setEditMode
+  setEditMode,
+  setLoading
 }) => {
   const [title, setTitle] = useState(defaultDocument?.title || "");
   const [fileType, setFileType] = useState(defaultDocument?.file_type || "pdf");
@@ -39,7 +40,7 @@ const AddDocument = ({
   const handleSubmit =async () => {
     setShowDocumentModal(false)
     // if (!title.trim() || !file || !selectedChapter) return;
-
+    setLoading(true)
     const formData = new FormData();
     if(editMode){
 
@@ -64,18 +65,21 @@ const AddDocument = ({
         Axios.post(`/admin/course-chapter/lesson/update`, formData).then((res) => {
     console.log(res);
     setChange(prev=>!prev)
+    setLoading(false)
   });
 }else{
 
   Axios.post(`/admin/course-chapter/lesson/create`, formData).then((res) => {
     console.log(res);
     setChange(prev=>!prev)
+
   });
 }
     setShowDocumentModal(false)
     setEditMode(false)
   }catch(err){
     console.log(err);
+    setLoading(false)
   }
   }
 

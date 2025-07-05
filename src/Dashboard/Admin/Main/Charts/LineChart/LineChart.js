@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -24,33 +24,34 @@ const filterData = [
     value:"weekly"
   },
 ]
-const data = [
-  { name: "Jan", courses: -0.1, revenue: -0.18, students: -0.05 },
-  { name: "Feb", courses: -0.29, revenue: -0.12, students: 0.17 },
-  { name: "Mar", courses: -0.17, revenue: -0.0, students: 0.0 },
-  { name: "Apr", courses: 0.12, revenue: -0.08, students: -0.12 },
-  { name: "May", courses: 0.07, revenue: 0.03, students: 0.17 },
-  { name: "Jun", courses: 0.29, revenue: 0.24, students: -0.1 },
-  { name: "Jul", courses: 0.29, revenue: 0.21, students: -0.11 },
-  { name: "Aug", courses: -0.01, revenue: 0.15, students: 0.12 },
-  { name: "Sep", courses: 0.22, revenue: -0.27, students: 0.22 },
-  { name: "Oct", courses: -0.11, revenue: 0.08, students: 0.26 },
-  { name: "Nov", courses: -0.01, revenue: -0.29, students: 0.01 },
-];
-
 
 const CustomLineChart = (props) => {
+  const [filter , setFilter] = useState('year')
+  const [data , setData] = useState( );
+  useEffect(()=>{
+    setData(props.data?.yearly )
+
+
+    if(filter === 'year'){
+  setData(props.data?.yearly )
+    }else if(filter === 'month'){
+      setData(props.data?.monthly )
+    }else{
+      setData(props.data?.weekly )
+    }
+  },[filter , props.data])
+  console.log(filter);
   return (
     <div className="w-full h-[26rem] md:h-full">
     <div className="flex justify-between items-center px-5">
     <p className="text-xl font-semibold text-textColor">Sales in march, 2025</p>
-    <SelectBox data={filterData}/>
+    <SelectBox data={filterData} onChange={(e)=>setFilter(e.target.value)} value={filter}/>
     </div>
     <ResponsiveContainer width="100%" height='95%' >
       <LineChart
       
-        data={data}
-        margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
+      data={data}
+      margin={{ top: 20, right: 20, left: 0, bottom: 0 }}
       >
         <CartesianGrid strokeWidth={1} stroke="#F1F1F1" />
         <XAxis dataKey="name" tick={{ fill: "#333" }} />

@@ -8,8 +8,13 @@ import { FaPlus } from "react-icons/fa6";
 import { Axios } from "../../../components/Helpers/Axios";
 import Pagination from "../../../components/Pagination/Pagination";
 import Notifcation from "../../../components/Notification";
+import { useRef } from "react";
 
 const PostList = () => {
+  const scrollRef = useRef(null);
+  useEffect(()=>{
+scrollRef.current.scrollIntoView()
+  },[])
   const [deleted, setDeleted] = useState(false);
   const [postLists, setPostLists] = useState([]);
   const [status, setStatus] = useState("");
@@ -96,7 +101,7 @@ const PostList = () => {
   return (
     <>
       <Notifcation />
-      <div className="Categories">
+      <div className="Categories" ref={scrollRef}>
         <div className="flex justify-between items-center">
           <h3 className="font-bold text-textColor text-xl"> Post list</h3>
           <Breadcrumbs />

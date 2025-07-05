@@ -1,5 +1,9 @@
 .Courses{
 }
+.table-container{
+width: calc(100vw - 300px) ;
+
+}
 .Courses .filters{
   background-color: #fff;
   display: flex;
@@ -40,6 +44,9 @@ background-color: #fff;
 color: var(--main-color);
 }
 @media (max-width:769px) {
+  .table-container{
+    width: 90vw;
+  }
   .Courses .filters{
     display: grid;
   grid-template-columns: 1fr 1fr;

@@ -86,11 +86,11 @@ const SideBar = (props) => {
             <Icon icon="ph:certificate-light" width="24" height="24" />
             <span>Certificate builder</span>
           </NavLink>
-          <DropDownSideBar
+          {/* <DropDownSideBar
             data={withdraw}
             icon="ph:hand-withdraw"
             title="Withdraw Method"
-            />
+            /> */}
 
           <p className="text-gray-400 mt-12">system</p>
 

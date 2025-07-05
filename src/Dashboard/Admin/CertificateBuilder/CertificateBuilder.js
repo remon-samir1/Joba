@@ -49,8 +49,8 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
         <h3 className="font-bold text-textColor text-xl"> </h3>
         <Breadcrumbs />
       </div>
-      <div className="container mt-4 w-full flex justify-center items-start gap-4">
-        <div className="details">
+      <div className="container mt-4 w-full flex flex-col md:flex-row justify-center items-start gap-4">
+        <div className="details w-full md:w-[22vw]  min-w-64">
           <div className="text-center">
             <h3 className="text-main py-4 border-b font-semibold text-xl border-b-borderColor">
               Certificate details
@@ -156,7 +156,7 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
           style={{
             background: `url(https://goba.sunmedagency.com/${certificate?.background}) no-repeat cover center `,
           }}
-          className="flex-1 bg-white text-center px-5 py-8"
+          className="w-full md:flex-1 bg-white text-center px-5 py-8"
         >
           <h2 className="text-xl text-main font-semibold">
             Certificate Competition

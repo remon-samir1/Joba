@@ -12,8 +12,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import Pagination from "../../../components/Pagination/Pagination";
+import { useRef } from "react";
 
 const Courses = () => {
+  const scrollRef = useRef(null);
+  useEffect(()=>{
+scrollRef.current.scrollIntoView()
+  },[])
 
   const [deleted, setDeleted] = useState(false);
 const [courses, setCourses] = useState([]);
@@ -100,6 +105,10 @@ const statusData = [
   {
     name:'Inactive',
     value:"inactive"
+  },
+  {
+    name:'Draft',
+    value:"is_draft"
   }
 ]
 const approvedData = [
@@ -114,7 +123,7 @@ const approvedData = [
   }
 ]
   return (
-    <div className="Courses">
+    <div className="Courses" ref={scrollRef}>
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl">Courses</h3>
         <Breadcrumbs />
@@ -143,7 +152,7 @@ const approvedData = [
             <span>add new</span>
           </Link>
         </div>
-        <div className="overflow-auto w-[90vw] md:w-full ">
+        <div className="overflow-auto table-container">
         <Table
             action
             update

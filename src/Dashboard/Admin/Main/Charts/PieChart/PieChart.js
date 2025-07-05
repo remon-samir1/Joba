@@ -1,6 +1,8 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { SelectBox } from "../../../../../components/DropDown/SelectBox";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const filterData = [
   {
@@ -16,30 +18,49 @@ const filterData = [
     value:"weekly"
   },
 ]
-const data = [
-  { name: "Total Courses", value: 50 },
-  { name: "Total Revenue", value: 15 },
-];
+
+
+// const dataa = [
+//   { name: "Total Courses", value: 87 },
+//   { name: "Total Revenue", value: 13 },
+// ];
+
 
 const COLORS = ["#546EFF", "#FF6384"];
 
-const CustomPieChart = () => {
+const CustomPieChart = (props) => {
+  const [filter , setFilter] = useState('year')
+  const [data , setData] = useState( );
+  useEffect(()=>{
+    // setData(props.data?.yearly_data )
+
+
+    if(filter === 'year'){
+  setData(props.data?.yearly_data )
+    }else if(filter === 'month'){
+      setData(props.data?.monthly_data )
+    }else{
+      setData(props.data?.weekly_data )
+    }
+  },[filter , props.data])
+  console.log(props.data);
   return (
     <>
       <div className="flex justify-end mb-3">
-          <SelectBox data={filterData}/>
+          <SelectBox data={filterData} onChange={(e)=>setFilter(e.target.value)}/>
 
       </div>
       <div style={{ textAlign: "center" , display:'grid' , placeItems:'center' }} width="200px">
         <h3
           style={{ color: "#FF5733", fontWeight: "bold", marginBottom: "5px" }}
         >
-          Revenue: 50,000
+          Revenue:  {props.revenue}
         </h3>
-        <h4 style={{ marginTop: 0 }}>50 Orders</h4>
+        <h4 style={{ marginTop: 0 }}>{props.orders} Orders</h4>
         <PieChart width={280} height={220}>
           <Pie
-            data={data}
+            data={data
+            }
             cx="50%"
             cy="50%"
             innerRadius={60}
@@ -74,7 +95,7 @@ const CustomPieChart = () => {
               );
             }}
           >
-            {data.map((entry, index) => (
+            {Array.isArray(data) &&  data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index]} />
             ))}
           </Pie>

@@ -29,7 +29,11 @@ const nav = useNavigate()
   const {id} = useParams()
   const [student , setStudent] = useState([])
   useEffect(()=>{
-    Axios.get(`/admin/customer-show/${id}`).then(data=> setStudent(data.data.data.user))
+    setLoading(true)
+    Axios.get(`/admin/customer-show/${id}`).then(data=> {
+      setStudent(data.data.data.user)
+    
+      setLoading(false)})
   },[])
   console.log(student);
 
@@ -74,7 +78,7 @@ Axios.delete(`/admin/customer-delete/${id}`).then(data=>{
  setLoading(false)
  if(data.data.messege === 'User deleted successfully'){
  toast.success(data.data.messege)
-
+toast.success('User deleted successfully')
   nav(-1)
  }
 })
@@ -84,7 +88,7 @@ setLoading(false)
     }
   }
   return (
-    <div className="w-[268px] bg-white rounded px-4 py-6 mb-8">
+    <div className="w-full md:w-[268px] bg-white rounded px-4 py-6 mb-8">
       <Notifcation/>
       <div className="flex justify-center gap-4 items-center flex-col w-full">
         <img

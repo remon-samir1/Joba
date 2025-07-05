@@ -5,7 +5,15 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import Logo from "../../components/Logo/Logo";
 import { Icon } from "@iconify-icon/react";
 import { Menu } from "../../Context/MenuContext";
+import { useEffect } from "react";
+import { Axios } from "../../components/Helpers/Axios";
+import { useState } from "react";
 const TopBar = () => {
+  const [admin , setAdmin] = useState([])
+  useEffect(()=>{
+    Axios.get('admin/edit-profile').then(data=>setAdmin(data.data.data.admin))
+  },[])
+  console.log(admin);
   const menu = useContext(Menu)
   const setIsOpen = menu.setIsOpen
   const isOpen = menu.isOpen
@@ -24,7 +32,7 @@ const TopBar = () => {
           />
         </div>
         <div className="name">
-          <p>Welcome ,Jay Johnson</p>
+          <p>{admin?.name}</p>
         </div>
       </div>
       <div className="TopBar">
@@ -49,16 +57,15 @@ const TopBar = () => {
             />
             <span>visit website</span>
           </Link>
-          <Link className="link">
+          <Link className="link" to='/admin/profile'>
             <div className="icon-container">
-              <Icon
-                width={24}
-                height={24}
-                icon="iconoir:user"
-                className=" icon"
-              />
+              {
+ admin
+  &&
+                <img className="w-full h-full object-cover" src={`https://goba.sunmedagency.com/${admin?.image}`} alt="" />
+              }
             </div>
-            <span>JAY johnson</span>
+            <span>{admin?.name}</span>
           </Link>
         </div>
       </div>

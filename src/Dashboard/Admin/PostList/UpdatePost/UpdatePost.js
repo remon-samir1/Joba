@@ -12,6 +12,10 @@ import Loading from "../../../../components/Loading/Loading";
 import { useEffect } from "react";
 
 const UpdatePost = () => {
+  const scrollRef = useRef(null);
+  useEffect(()=>{
+scrollRef.current.scrollIntoView()
+  },[])
   // show data
   const { id } = useParams();
   const [category, setCategory] = useState([]);
@@ -100,7 +104,7 @@ const UpdatePost = () => {
     </option>
   ));
   return (
-    <div className="UpdateCategory">
+    <div className="UpdateCategory" ref={scrollRef}>
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> Add Post</h3>
         <Breadcrumbs />

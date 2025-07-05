@@ -14,15 +14,18 @@ import { Axios } from "../../../components/Helpers/Axios";
 import { useState } from "react";
 
 const MainAdminPage = () => {
-  // const [lineChartData , setLineChartData] = useState([])
+  const [lineChartData , setLineChartData] = useState() 
+  const [pieChartData , setPieChartData] = useState() 
   const [data , setData] = useState()
 useEffect(()=>{
   Axios.get('/admin/dashboard').then(data=>{
-    console.log(data.data);
+    console.log(data.data.data);
+    setLineChartData(data.data.data.line_chart);
+    setPieChartData(data.data.data.pie_chart);
     setData(data.data.data)
     })
 },[])
-// console.log(data?.monthly_data)
+console.log(data)
  const MainAdminPageBoxData = [
   {
     icon: "iconoir:simple-cart",
@@ -85,17 +88,17 @@ console.log(data?.monthly_data);
       </div>
       <div className="charts flex mt-8 gap-4 flex-wrap h-max">
         <div className="line flex-1">
-          <CustomLineChart data={data?.monthly_data}/>
+          <CustomLineChart data={lineChartData}/>
         </div>
         <div className="pie w-full">
-          <CustomPieChart />
+          <CustomPieChart data={pieChartData} revenue={data?.total_earning} orders={data?.total_orders}/>
         </div>
       </div>
 
-      <div className="my-8 flex justify-center flex-wrap items-center gap-3 flex-col md:flex-row">
-        <Recents />
-        <Recents />
-        <Recents />
+      <div className="my-8 flex items-center md:justify-between flex-wrap md:items-start gap-3 flex-col md:flex-row">
+        <Recents data={data?.recent_courses} link={`/admin/courses/update`} title='Courses' viewAll='/admin/courses'/>
+        <Recents data={data?.recent_blogs} link={`/admin/post-list/update`} title='Blogs' viewAll='/admin/post-list'/>
+        <Recents data={data?.recent_contacts} link={``} title='contact' viewAll='/admin/All-students' />
       </div>
     </div>
   );

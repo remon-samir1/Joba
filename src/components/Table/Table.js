@@ -166,6 +166,7 @@ const Table = (props) => {
               </span>
             )
           ) : (
+            item2.key === 'buyer' ? item[item2.key].name :
             item[item2.key]
           )}
         </td>

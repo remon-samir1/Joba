@@ -3,7 +3,10 @@ import "./Profile.css";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 const Profile = () => {
-  const [form , setForm] = useState([])
+  const [form , setForm] = useState({
+    name:'',
+    
+  })
 useEffect(()=>{
   Axios.get('/admin/edit-profile').then(data=>console.log(data.data.data.admin))
 },[])

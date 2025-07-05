@@ -7,8 +7,13 @@ import Table from "../../../components/Table/Table";
 import { FaPlus } from "react-icons/fa6";
 import { Axios } from "../../../components/Helpers/Axios";
 import Pagination from "../../../components/Pagination/Pagination";
+import { useRef } from "react";
 
 const AllStudents = () => {
+  const scrollRef = useRef(null);
+  useEffect(()=>{
+scrollRef.current.scrollIntoView()
+  },[])
   const [deleted, setDeleted] = useState(false);
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("");
@@ -20,7 +25,7 @@ const AllStudents = () => {
 
   useEffect(() => {
     setLoading(true);
-    Axios.get(`admin/all-customers?page=${page}&keyword=${search}& status=${status}`).then(
+    Axios.get(`admin/all-customers?page=${page}&keyword=${search}&status=${status}`).then(
       (data) => {
         console.log(data.data);
         setData(data.data.data.users.data);
@@ -57,16 +62,16 @@ const AllStudents = () => {
   const statusData = [
     {
       name: "Active",
-      value: 1,
+      value: 'active',
     },
 
     {
       name: "Inactive",
-      value: 0,
+      value: 'inactive',
     },
   ];
   return (
-    <div className="Categories">
+    <div className="Categories" ref={scrollRef}>
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> All Students</h3>
         <Breadcrumbs />
