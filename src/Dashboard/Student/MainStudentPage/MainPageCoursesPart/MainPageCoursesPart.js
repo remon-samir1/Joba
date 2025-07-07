@@ -20,7 +20,7 @@ useEffect(()=>{
     setCategories(data.data.categories)})
 
   Axios.get('/student/enrolled-courses').then(data=>{
-    // console.log(data.data);
+    console.log(data.data);
     setSkeleton(false)
     setCourses(data.data.enrolls)})
 },[])
@@ -91,7 +91,7 @@ console.log(resize);
             <div className="img w-full h-[9.6rem] rounded md:rounded-xl overflow-hidden relative">
               <img
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src={`https://goba.sunmedagency.com${course?.course.thumbnail}`}
+                src={`https://goba.sunmedagency.com/${course?.course.thumbnail}`}
                 alt="course"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

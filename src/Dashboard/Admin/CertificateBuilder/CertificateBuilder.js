@@ -7,12 +7,21 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 const CertificateBuilder = () => {
   const [certificate, setCertificate] = useState([]);
+  const [laoding , setLaoding] = useState(false)
+  const [change , setChange] = useState(false)
+  
   useEffect(() => {
+    setLaoding(true)
     Axios.get("/admin/certificate-builder").then((data) =>
-      // setCertificate(data.data.data.certificate)
+    {
+      setLaoding(false)
+
+      setCertificate(data.data.data.certificate)
       console.log(data)
+    }
     );
-  }, []);
+  }, [change]);
+
   console.log(certificate);
   const [form , setForm] = useState({
     title:'',
@@ -22,6 +31,7 @@ const CertificateBuilder = () => {
   console.log(form);
   const hanleSubmit =async (e)=>{
     e.preventDefault()
+    setLaoding(true)
     const formData = new FormData()
     formData.append('title' , form.title)
     formData.append('sub_title' , form.sub_title)
@@ -29,11 +39,16 @@ const CertificateBuilder = () => {
     formData.append('background' , bg)
     formData.append('signature' , signature)
     formData.append('_method' , 'PUT')
+    console.log(formData);
     try{
-await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.log(data))
+await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
+  console.log(data);
+  setLaoding(false)})
     }
     catch(err){
       console.log(err);
+      setChange(prev => !prev)
+      setLaoding(false)
     }
   }
 
@@ -45,6 +60,11 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
 
   return (
     <div className="CertificateBuilder">
+      {laoding && (
+        <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
+        </div>
+      )}
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> </h3>
         <Breadcrumbs />
@@ -66,7 +86,7 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
                 type="file"
                 hidden
                 ref={clickBg}
-                onChange={(e) => setBg(e.target.files)}
+                onChange={(e) => setBg(e.target.files[0])}
               />
               <div
                 onClick={() => clickBg.current.click()}
@@ -74,7 +94,7 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
               >
                 {bg && (
                   <img
-                    src={URL.createObjectURL(bg[0])}
+                    src={URL.createObjectURL(bg)}
                     width={120}
                     height={120}
                     alt=""
@@ -121,7 +141,7 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
                 type="file"
                 hidden
                 ref={clickSignature}
-                onChange={(e) => setSignature(e.target.files)}
+                onChange={(e) => setSignature(e.target.files[0])}
               />
               <div
                 onClick={() => clickSignature.current.click()}
@@ -129,7 +149,7 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
               >
                 {signature && (
                   <img
-                    src={URL.createObjectURL(signature[0])}
+                    src={URL.createObjectURL(signature)}
                     width={120}
                     height={120}
                     alt=""
@@ -153,11 +173,12 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
         </div>
 
         <div
-          style={{
-            background: `url(https://goba.sunmedagency.com/${certificate?.background}) no-repeat cover center `,
-          }}
-          className="w-full md:flex-1 bg-white text-center px-5 py-8"
-        >
+  style={{
+    background: `url(https://goba.sunmedagency.com/${certificate?.background}) center / cover no-repeat`,
+  }}
+  className="w-full md:flex-1 bg-white text-center px-5 py-8"
+>
+
           <h2 className="text-xl text-main font-semibold">
             Certificate Competition
           </h2>
@@ -183,3 +204,5 @@ await Axios.put("/admin/certificate-builder/1" , formData).then(data=>console.lo
 };
 
 export default CertificateBuilder;
+
+

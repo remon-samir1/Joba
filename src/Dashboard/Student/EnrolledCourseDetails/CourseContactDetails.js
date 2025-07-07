@@ -7,27 +7,7 @@ const CourseContactDetails = (props) => {
   const [openUnit, setOpenUnit] = useState(null);
   const contentRefs = useRef([]);
 
-  useEffect(() => {
-    setUnits([
-      {
-        unitTitle: "Module 1",
-        courses: [
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-          { title: "Start course", duration: "0H 20M", locked: true },
-        ],
-      },
-      {
-        unitTitle: "Module 2",
-        courses: [],
-      },
-      {
-        unitTitle: "Module 3",
-        courses: [{ title: "Start course", duration: "0H 20M", locked: false }],
-      },
-    ]);
-  }, []);
+  
 
   const toggleUnit = (index) => {
     if (openUnit === index) {
@@ -72,7 +52,9 @@ const CourseContactDetails = (props) => {
           className="cursor-pointer"
         >
           <div
-            onClick={() => toggleUnit(index)}
+            onClick={() =>{
+              
+              toggleUnit(index)}}
             className="flex justify-between items-center  p-4 bg-[#F15A24] bg-opacity-20" 
           >
             <span className="text-[1rem] text-textColor font-semibold ">
@@ -98,16 +80,21 @@ const CourseContactDetails = (props) => {
             {unit.chapter_items.length > 0 ? (
               unit.chapter_items.map((course, cIndex) => (
                 <div
-                onClick={()=>props.setUrl(course.lesson?.file_path)}
+                onClick={()=>{
+                  props.setType(course.type)
+                  props.setUrl(course.lesson?.file_path)
+                props.setQuizId(course?.quiz?.id)
+                
+                }}
                   key={cIndex}
-                  className={`flex justify-between p-3 hover:bg-gray-100 my-1 ${props.url === course.lesson?.file_path && '!bg-main !text-white'}`} 
+                  className={`flex justify-between p-3 hover:bg-gray-100 my-1 ${course.lesson?.file_path && props.url === course.lesson?.file_path  && '!bg-main !text-white'}`} 
                 >
                   <div className="flex items-center gap-2">
-                    <div className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${props.url === course.lesson?.file_path && '!bg-white !text-main'}`}>
+                    <div className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${course.lesson?.file_path && props.url === course.lesson?.file_path && '!bg-white !text-main'}`}>
                       {cIndex + 1}
                     </div>
                   
-                    <span className={`text-textColor text-[0.9rem] font-semibold ${props.url === course.lesson?.file_path && ' !text-white'}`}>
+                    <span className={`text-textColor text-[0.9rem] font-semibold ${course.lesson?.file_path &&  props.url === course.lesson?.file_path && ' !text-white'}`}>
                       {" "}
                       {course.lesson?.title}
                     </span>

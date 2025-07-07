@@ -8,14 +8,17 @@ import { Menu } from "../../../Context/MenuContext";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import { useState } from "react";
+import { CartCh } from "../../../Context/CartContext";
 const StudentTopBar = () => {
+  const cartch = useContext(CartCh)
+  const  cartChange = cartch.cartChange
 //  cart notification
 const [cart , setCart] = useState()
 useEffect(()=>{
   Axios.get('/cart').then(data=>{
     console.log(data);
-    setCart(data.data.total)})
-},[])
+    setCart(data.data.products.length      )})
+},[cartChange])
 
 
   const menu = useContext(Menu);

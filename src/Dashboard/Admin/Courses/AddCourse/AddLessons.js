@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import StringSlice from "../../../../components/Helpers/StringSlice";
 import ToggleButton from "../../../../components/ToggleButton/ToggleButton";
+import { Axios } from "../../../../components/Helpers/Axios";
 
 const AddLessons = ({
   lessonModalRef,
   setShowLessonModal,
   addLesson,
+  setChange,
   editMode,
   defaultLesson,
   chapters,
@@ -67,7 +69,25 @@ if(editMode){
     lessonData.append("duration", duration.trim());
 lessonData.append("description", description.trim());
 console.log(selectedChapter);
-    addLesson(lessonData, selectedChapter);
+  try{
+    if(editMode){
+
+      Axios.post('admin/course-chapter/lesson/update' , lessonData).then((data)=>{
+      setChange(prev=>!prev)
+      console.log(data);
+      setShowLessonModal(false)
+      })
+    }else{
+      
+      Axios.post('admin/course-chapter/lesson/create' , lessonData).then((data)=>{
+        setChange(prev=>!prev)
+        console.log(data);
+        setShowLessonModal(false)
+      })
+    }
+  }catch(err){
+
+  }
 
     setLessonTitle("");
     setVideoLink("");

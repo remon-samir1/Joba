@@ -65,7 +65,7 @@ const TopBar = () => {
                 <img className="w-full h-full object-cover" src={`https://goba.sunmedagency.com/${admin?.image}`} alt="" />
               }
             </div>
-            <span>{admin?.name}</span>
+            <span>{admin?.user_name}</span>
           </Link>
         </div>
       </div>

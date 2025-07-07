@@ -57,10 +57,17 @@ const Login = () => {
           cookie.set("token", token);
           saveData();
           toast.success(res.data.messege);
-          window.location.pathname='/admin/main'
-          // nav('/admin/main')
+          if(res.data.isAdmin){
+
+            window.location.pathname='/admin/main'
+          }else{
+            window.location.pathname='/student/main'
+
+          }
           setLaoding(false)
+          // nav('/admin/main')
           console.log(res);
+
 
         }else{
           console.log(res);

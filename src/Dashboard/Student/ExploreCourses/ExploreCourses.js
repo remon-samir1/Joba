@@ -17,6 +17,7 @@ const ExploreCourses = () => {
     Axios.get("/fetch-courses").then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
+      console.log(data);
     });
   }, []);
 
@@ -85,7 +86,7 @@ const ExploreCourses = () => {
                 <div className="img h-[165px] w-full relative rounded overflow-hidden">
                   <img
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    src={`https://goba.sunmedagency.com${course?.thumbnail}`}
+                    src={`https://goba.sunmedagency.com/${course?.thumbnail}`}
                     alt="course"
                   />
 

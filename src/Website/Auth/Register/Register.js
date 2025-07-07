@@ -7,7 +7,12 @@ import google from "../../../images/google.svg";
 import facebook from "../../../images/facebook.svg";
 import Logo from "../../../components/Logo/Logo";
 import { Axios } from "../../../components/Helpers/Axios";
+import Notifcation from "../../../components/Notification";
+import { toast } from "react-toastify";
+import Loading from "../../../components/Loading/Loading";
 const Register = () => {
+  const [laoding, setLaoding] = useState(false);
+
   const [form , setForm] = useState({
     name:'',
     email:'',
@@ -23,13 +28,19 @@ setForm({...form , [e.target.name] : e.target.value})
   const handelSubmit =async (e) => {
     e.preventDefault();
     try{
-      const res =Axios.post('/register' , form).then(data => console.log(data))
+      const res =await Axios.post('/register' , form).then(data => console.log(data))
+      toast.success(res.data.messege);
+      window.location.pathname='/admin/main'
+      setLaoding(false)
     }
     catch(err){
-
+console.log(err);
     }
   }
   return (
+    <>
+        {laoding && <Loading />}
+      <Notifcation />
     <div className="Login">
       <div className="main register">
         <div className="logo">
@@ -49,7 +60,7 @@ setForm({...form , [e.target.name] : e.target.value})
               <input onChange={handleChange} name="password" value={form.password}
                 type={hidePass ? "password" : "text"}
                 placeholder="Password"
-              />
+                />
               {hidePass ? (
                 <IoEyeOffOutline
                   className="icon"
@@ -66,18 +77,18 @@ setForm({...form , [e.target.name] : e.target.value})
               <input onChange={handleChange} name="password_confirmation" value={form.password_confirmation}
                 type={hidePass ? "password" : "text"}
                 placeholder="confirm Password "
-              />
+                />
               {hidePass ? (
                 <IoEyeOffOutline
+                className="icon"
+                onClick={() => setHidePass((prev) => !prev)}
+                />
+                ) : (
+                  <MdOutlineRemoveRedEye
                   className="icon"
                   onClick={() => setHidePass((prev) => !prev)}
-                />
-              ) : (
-                <MdOutlineRemoveRedEye
-                  className="icon"
-                  onClick={() => setHidePass((prev) => !prev)}
-                />
-              )}
+                  />
+                  )}
             </div>
           </div>
           <div className="options">
@@ -121,6 +132,7 @@ setForm({...form , [e.target.name] : e.target.value})
         </div>
       </div>
     </div>
+                  </>
   );
 };
 

@@ -5,16 +5,23 @@ import { Axios } from '../../../components/Helpers/Axios';
 import { toast } from 'react-toastify';
 import Notifcation from '../../../components/Notification';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { CartCh } from '../../../Context/CartContext';
 
 const SideDetails = (props) => {
   //  handle add to cart
   const [loading , setLoading] = useState(false)
+  const cartch = useContext(CartCh)
+  const  cartChange = cartch.cartChange
+  const  setCartChange = cartch.setCartChange
+
   const addToCart = async(id)=>{
     setLoading(true)
     try{
       Axios.post(`/add-to-cart/${id}`).then(data=>{
         toast.success(data.data.message)
         setLoading(false)
+        setCartChange(prev=>!prev)
         console.log(data)})
 
     }catch(err){

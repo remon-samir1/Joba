@@ -13,25 +13,30 @@ import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
 
 const CourseDetails = () => {
-  const [course , setCourse] = useState([])
-  const [count , setCount] = useState()
-  const {id} = useParams()
+  const [course, setCourse] = useState([]);
+  const [count, setCount] = useState();
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
   console.log(id);
-useEffect(()=>{
-  Axios.get(`/course/${id}`).then(data=>{
-    setCourse(data.data.course)
-    setCount(data.data)
-    console.log(data.data)})
-},[])
-
-
-
-
+  useEffect(() => {
+    setLoading(true);
+    Axios.get(`/course/${id}`).then((data) => {
+      setLoading(false);
+      setCourse(data.data.course);
+      setCount(data.data);
+      console.log(data.data);
+    });
+  }, []);
 
   const [tabs, setTabs] = useState("overview");
   const nav = useNavigate();
   return (
     <div className="my-5">
+      {loading && (
+        <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
+        </div>
+      )}
       <button
         className="flex items-center text-textColor  gap-2 text-[1.1rem]"
         onClick={() => nav(-1)}
@@ -50,14 +55,14 @@ useEffect(()=>{
         <div className="flex-1 w-full  pb-12 bg-white rounded-xl">
           <div className="w-full h-[18.5rem] rounded-xl overflow-hidden">
             <img
-            src={`https://goba.sunmedagency.com${course?.thumbnail}`}
+              src={`https://goba.sunmedagency.com/${course?.thumbnail}`}
               alt="course"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="bg-white border-b border-[#dddd]  py-4">
             <h3 className="text-textColor px-3 text-[1.3rem] ">
-            {course?.title}
+              {course?.title}
             </h3>
             <div className="flex px-3 py-4 items-center gap-20 md:gap-0 md:justify-between overflow-scroll md:w-auto scrollbar-hide her  w-[90vw]">
               <div className="flex items-center gap-3">
@@ -66,7 +71,9 @@ useEffect(()=>{
                   className="w-[45px] h-[45px] rounded-full"
                   alt="instarctor"
                 />
-                <span className="text-textColor text-base">{course.instructor?.name}</span>
+                <span className="text-textColor text-base">
+                  {course.instructor?.first_name}
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -75,7 +82,9 @@ useEffect(()=>{
                   height="24"
                   className="text-main"
                 />
-                <span className="text-textColor text-base">{TransformDate(course?.created_at)}</span>
+                <span className="text-textColor text-base">
+                  {TransformDate(course?.created_at)}
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -95,7 +104,9 @@ useEffect(()=>{
                   className="text-[#F0AB4C]"
                 />
 
-                <span className="text-textColor text-base">{course?.reviews_count} Reviews</span>
+                <span className="text-textColor text-base">
+                  {course?.reviews_count} Reviews
+                </span>
               </div>
             </div>
           </div>
@@ -137,20 +148,32 @@ useEffect(()=>{
           {tabs === "overview" ? (
             <CourseDetailsOverview data={course?.description} />
           ) : tabs === "curriculum" ? (
-            <Curriculum  data={course?.chapters}/>
+            <Curriculum data={course?.chapters} />
           ) : tabs === "reviews" ? (
             <CourseDetailsReviews data={course?.reviews} />
           ) : (
-            tabs === "instructor" && <CourseDetailsInstructor image={course?.instructor.image} name={course?.instructor.name} bio={course?.instructor.short_bio}/>
+            tabs === "instructor" && (
+              <CourseDetailsInstructor
+                image={course?.instructor.image}
+                name={course?.instructor.name}
+                bio={course?.instructor.short_bio}
+              />
+            )
           )}
-        
         </div>
         {/* Right Side  */}
-        <SideDetails languages={course?.languages} price={course?.price} duration={course?.duration} certificate={course?.certificate} id={course?.id} quizCount={count?.courseQuizCount} lessons={count?.courseLessonCount}/>
+        <SideDetails
+          languages={course?.languages}
+          price={course?.price}
+          duration={course?.duration}
+          certificate={course?.certificate}
+          id={course?.id}
+          quizCount={count?.courseQuizCount}
+          lessons={count?.courseLessonCount}
+        />
       </div>
     </div>
   );
 };
 
 export default CourseDetails;
-

@@ -1,7 +1,7 @@
 import { Icon } from "@iconify-icon/react";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
+import { Link, useNavigate, useParams } from "react-router-dom";
+import quizImage from '../../../images/quiz-image.svg'
 import { useState } from "react";
 import CourseDetailsOverview from "../CourseDetails/CourseDetailsOverview";
 import CourseContactDetails from "./CourseContactDetails";
@@ -19,23 +19,35 @@ const EnrolledCourseDetails = () => {
   const [play , setPlay] = useState(false)
   const [url , setUrl] = useState()
   const [skeleton, setSkeleton] = useState(false);
+  const [quizId , setQuizId] =useState('')
+  const [loading, setLoading] = useState(false);
+  
+  const [type , setType] = useState(false)
   const {id} = useParams()
+  console.log(quizId);
   useEffect(() => {
     setSkeleton(true);
-
+    setLoading(true)
     Axios.get(`/course/${id}`).then(data=>{
-      setCourse(data.data)
-      setUrl(data.data.course.chapters[0].chapter_items[0].lesson.file_path)
-      setSkeleton(false);
       console.log(data);
+      setCourse(data.data)
+      setLoading(false)
+      setUrl(data.data.course.chapters[0]?.chapter_items[0]?.lesson.file_path)
+      setSkeleton(false);
     });
   }, []);
-  console.log(url);
+
+  console.log(course?.course?.chapters[1]?.chapter_items[0].type);
   const [tabs, setTabs] = useState("overview");
   
   const nav = useNavigate();
   return (
     <div className="my-5">
+        {loading && (
+        <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
+        </div>
+      )}
       {
 play && url  &&
         <Player url={url && url} setPlay={setPlay} />
@@ -58,7 +70,21 @@ play && url  &&
       <div className="flex mt-5 items-start gap-5 flex-col md:flex-row flex-wrap">
         {/*  center  */}
         <div className="flex-1 pb-12 bg-white rounded-xl">
-          <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">
+          {
+            type === 'quiz'?
+
+            <div className="flex justify-center items-center">
+            <div className="border-dashed border-2 border-[#ddd] rounded mt-5 py-4 px-8 flex flex-col justify-center items-center gap-3">
+<img src={quizImage} alt="quiz" loading="lazy" width={80} height={80}/>
+<h3 className="text-[1.1rem] font-bold text-textColor">Text</h3>
+<p className="text-text2 text-sm">Please go to quiz page for mor information</p>
+<Link to={`/student/quiz-exam/${quizId}`} className='text-white main-shadow mt-2 bg-main text-base px-5 py-2 rounded-full'>Start Quiz</Link>
+            </div>
+          </div>
+        :
+        
+
+           <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">
             <div
             onClick={()=>setPlay(true)}
               style={{
@@ -66,7 +92,7 @@ play && url  &&
                   "linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25))",
                 boxShadow:
                   " inset 0 1px 0 rgba(255, 255, 255, 3), 0 8px 24px rgba(000, 0000, 0000, 0.2) ",
-              }}
+                }}
               className="flex justify-center cursor-pointer items-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-[100px] h-[100px] rounded-full  backdrop-blur-xl bg-opacity-50 backdrop-saturate-150 "
             >
               <Icon
@@ -80,8 +106,13 @@ play && url  &&
               src={`https://goba.sunmedagency.com/${course?.course.thumbnail}`}
               alt="course"
               className="w-full h-full object-cover"
-            />
-          </div>
+              />
+            </div> 
+
+
+          }
+
+          
           <div className="bg-white border-b border-[#dddd]  py-4">
             <h3 className="text-textColor px-3 text-[1.3rem] ">
               {course?.course.title}
@@ -93,7 +124,7 @@ play && url  &&
                   className="w-[45px] h-[45px] rounded-full"
                   alt="instarctor"
                 />
-                <span className="text-textColor text-base">{course?.course.instructor.name}</span>
+                <span className="text-textColor text-base">{course?.course.instructor.first_name}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -173,7 +204,7 @@ play && url  &&
           )} 
         </div>
         {/* Right Side  */}
-        <CourseContactDetails data={course?.course.chapters} setUrl={setUrl} url={url}/>
+        <CourseContactDetails setType={setType} setQuizId={setQuizId} data={course?.course.chapters} setUrl={setUrl} url={url}/>
       </div>
     </div>
   );

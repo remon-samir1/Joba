@@ -59,16 +59,25 @@ import AddSubCategory from "./Dashboard/Admin/Categories/SubCategory/AddSubCateg
 import UpdateSubCategory from "./Dashboard/Admin/Categories/SubCategory/UpdateSubCategory/UpdateSubCategory";
 import Blog from "./Website/Blog/Blog";
 import UpdateCourse from "./Dashboard/Admin/Courses/UpdateCourse/UpdateCourse";
+import NotFoundPage from "./Website/Auth/ErrorsPages/NotFoundPage";
+import ForbiddenPage from "./Website/Auth/ErrorsPages/ForbiddenPage";
+import ReqiureAuth from "./Website/Auth/RequireAuth/RequireAuth";
+import QuizExam from "./Dashboard/Student/MyQuiz/QuizExam";
+import QuizResualt from "./Dashboard/Student/MyQuiz/QuizResualt";
 function App() {
   return (
     <div className="App">
       
       <Routes>
+      <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Landing />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
            {/* Admin Dahboard */}
+           <Route element={<ReqiureAuth  alowedRole={['admin' , 'student' ]}/>}  >
+           <Route element={<ReqiureAuth  alowedRole={['admin' ]}/>}  >
+
         <Route path="/admin" element={<AdminDashboard />} >
         <Route path="main" element={<MainAdminPage/> } />
         <Route path="courses" element={<Courses/> } />
@@ -112,9 +121,13 @@ function App() {
          <Route path="certificate-builder" element={<CertificateBuilder/>} />
          <Route path="profile" element={<Profile/>} />
          <Route path="setting" element={<Setting/>} />
+           </Route>
         
         </Route>
                    {/* Student Dashboard */}
+           <Route element={<ReqiureAuth alowedRole={['student' ]} />} >
+
+
           <Route path="/student" element={<StudentDashboard/>}>
           <Route path="cart" element={<Cart/>}/>
           <Route path="main" element={<MainStudentPage/>}/>
@@ -122,6 +135,9 @@ function App() {
           <Route path="course-details/:id" element={<CourseDetails/>}/>
           <Route path="order-history" element={<OrderStudentHistory/>}/>
           <Route path="order-history/view/:id" element={<OrderStudentHistoryDetails/>}/>
+          <Route path="quiz-exam/:id" element={<QuizExam/>}/>
+          <Route path="quiz-result/:id" element={<QuizResualt/>}/>
+
           <Route path="enrolled-course/:id" element={<EnrolledCourseDetails/>}/>
           <Route path="my-courses" element={<MyCourses/>}/>
           <Route path="wishlist" element={<WishList/>}/>
@@ -132,7 +148,9 @@ function App() {
           <Route path="/student/reviews/details/:id" element={<StudentReviewsDetails/>}/>
       
             
-            </Route>         
+           </Route>
+            </Route>    
+            </Route>     
       </Routes>
     </div>
   );

@@ -33,7 +33,7 @@ const WishList = () => {
           </div> :
           data?.map((course,index)=>(
  
-            <WishListCard key={index} slug={course.slug} title={course.title} setWait={setWait} image={course?.thumbnail} price={course.price} instructor_name={course.instructor.name}/>
+            <WishListCard key={index} slug={course.slug} title={course.title} setWait={setWait} image={course?.thumbnail} price={course.price} instructor_image={course.instructor?.image} instructor_name={course.instructor?.user_name}/>
           ))
         }
       

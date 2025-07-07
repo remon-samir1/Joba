@@ -57,7 +57,7 @@ const WishListCard = (props) => {
           <div className="flex items-start justify-between  mt-4 gap-2">
             <img
               className="w-[2.2rem] h-[2.2rem] rounded-full"
-              src={require("../../../images/course.png")}
+              src={`https://goba.sunmedagency.com/${props.instructor_image}`}
               alt="student"
             />
             <span className="text-textColor text-base">{props.instructor_name}</span>
