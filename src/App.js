@@ -64,6 +64,7 @@ import ForbiddenPage from "./Website/Auth/ErrorsPages/ForbiddenPage";
 import ReqiureAuth from "./Website/Auth/RequireAuth/RequireAuth";
 import QuizExam from "./Dashboard/Student/MyQuiz/QuizExam";
 import QuizResualt from "./Dashboard/Student/MyQuiz/QuizResualt";
+import Blogs from "./Website/Blog/Blogs";
 function App() {
   return (
     <div className="App">
@@ -72,6 +73,7 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Landing />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
            {/* Admin Dahboard */}

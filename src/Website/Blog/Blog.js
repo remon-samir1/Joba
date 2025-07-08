@@ -1,29 +1,78 @@
+
 import "./blog.css";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 const Blog = () => {
+  const headingRef = useRef(null);
+  const textRef = useRef(null);
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(headingRef.current, {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.from(textRef.current, {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+
+    gsap.from(imageRef.current, {
+      scale: 0.9,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      ease: "power2.out",
+    });
+
+    gsap.from(contentRef.current, {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+      delay: 0.8,
+      ease: "power2.out",
+    });
+  });
+
   const text = "Home > Blogs & News >";
   return (
     <div>
       <NavBar />
-      <div className="h-[50vh]  blog bg-cover bg-center flex-col md:flex-row flex justify-center md:justify-between items-center px-[5vw] ">
-        <h3 className="text-white text-[1.9rem] w-full md:max-w-[400px] font-semibold md:text-left text-center">
+      <div className="h-[50vh] blog bg-cover bg-center flex-col md:flex-row flex justify-center md:justify-between items-center px-[5vw]">
+        <h3
+          ref={headingRef}
+          className="text-white text-[1.9rem] w-full md:max-w-[400px] font-semibold md:text-left text-center"
+        >
           Education technology & mobile learning
         </h3>
-        <p className="text-base text-white md:text-left text-center mt-4 md:mt-0">
+        <p
+          ref={textRef}
+          className="text-base text-white md:text-left text-center mt-4 md:mt-0"
+        >
           {text}
-          <span className="text-main ">
+          <span className="text-main">
             {" "}
             Education technology & mobile learning
           </span>
         </p>
       </div>
+
       {/* Blogs */}
       <div className="flex py-5 px-8 gap-10 flex-col md:flex-row">
-        <div className="flex-1 ">
-          <div className="w-full md:h-[70vh] h-[40vh] ">
+        <div className="flex-1">
+          <div className="w-full md:h-[70vh] h-[40vh]" ref={imageRef}>
             <img
               src={require("../../images/course-details.png")}
               alt="blog"
@@ -37,21 +86,23 @@ const Blog = () => {
             </h4>
             <h4 className="text-sm font-semibold text-main">20Viwes</h4>
           </div>
-          <h3 className="text-textColor text-2xl font-medium">
-            Education technology & mobile learning
-          </h3>
-          <p className="text-base text-textColor my-6">
-            Lorem ipsum dolor sit amet consectetur. Viverra pellentesque amet
-            dignissim ante luctus sagittis porta. Dui libero eu convallis augue
-            molestie risus eros id. Non odio augue nulla quam varius egestas.
-            Urna tempor habitasse lobortis sed risus nam quam. Quis quis nunc
-            quam pharetra nulla sollicitudin.
-          </p>
+          <div ref={contentRef}>
+            <h3 className="text-textColor text-2xl font-medium">
+              Education technology & mobile learning
+            </h3>
+            <p className="text-base text-textColor my-6">
+              Lorem ipsum dolor sit amet consectetur. Viverra pellentesque amet
+              dignissim ante luctus sagittis porta. Dui libero eu convallis
+              augue molestie risus eros id. Non odio augue nulla quam varius
+              egestas. Urna tempor habitasse lobortis sed risus nam quam. Quis
+              quis nunc quam pharetra nulla sollicitudin.
+            </p>
+          </div>
         </div>
+
         <div className="md:w-[315px] w-full">
           <div className="border text-center border-[#ddd] py-5 px-4 rounded">
             <p className="text-[1.1rem] font-medium  text-main">
-              {" "}
               Subscribe to our newsletter
             </p>
             <div className="flex h-12 mt-4 border border-[#ddd] rounded focus-within:border-main">
@@ -65,14 +116,58 @@ const Blog = () => {
               </button>
             </div>
           </div>
-            <div className="border border-[#ddd] py-5 px-4 mt-4 rounded ">
-              <h3 className="text-main text-2xl font-medium">Main menu</h3>
-              <Link to='/' className='text-main text-[1.1rem] mt-5 block font-medium'>Home</Link>
-              <Link className='text-main text-[1.1rem] mt-5 block font-medium'>About</Link>
-              <Link className='text-main text-[1.1rem] mt-5 block font-medium'>Course content</Link>
-              <Link className='text-main text-[1.1rem] mt-5 block font-medium'>Resources</Link>
-              <Link className='text-main text-[1.1rem] mt-5 block font-medium'>Support</Link>
+
+          <div className="border border-[#ddd] py-5 px-4 mt-4 rounded ">
+            <h3 className="text-main text-2xl font-medium">Main menu</h3>
+            <Link
+              to="/"
+              className="text-main text-[1.1rem] mt-5 block font-medium"
+            >
+              Home
+            </Link>
+            <Link className="text-main text-[1.1rem] mt-5 block font-medium">
+              About
+            </Link>
+            <Link className="text-main text-[1.1rem] mt-5 block font-medium">
+              Course content
+            </Link>
+            <Link className="text-main text-[1.1rem] mt-5 block font-medium">
+              Resources
+            </Link>
+            <Link className="text-main text-[1.1rem] mt-5 block font-medium">
+              Support
+            </Link>
+          </div>
+          <div className="border border-[#ddd] pb-5 px-4 mt-4 rounded ">
+        {
+          Array.from({length:2}).map((_,index)=>(
+            <Link>
+                <div className="flex items-start gap-3 mt-5">
+              <div className="w-[8rem] h-[6.5rem] shrink-0 rounded overflow-hidden">
+                <img
+                  src={require("../../images/Blogs.png")}
+                  alt="blog"
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+
+              <h3 className="text-base text-textColor font-semibold">
+                Electric technology & realstick learning
+              </h3>
+              <p className="mt-4 text-sm font-semibold text-main">
+                Creative - Jul 22 , 2025
+              </p>
+              </div>
             </div>
+            <p className="mt-4 text-text2 text-[1.1rem]">
+              Lorem ipsum dolor sit amet consectetur. Orci id sed est maecenas
+              molestie sagittis.
+            </p></Link>
+          ))
+        }
+          </div>
         </div>
       </div>
       <Footer />

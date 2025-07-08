@@ -22,7 +22,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const nav = useNavigate()
+  const nav = useNavigate();
   useEffect(() => {
     const savedEmail = localStorage.getItem("email");
     const savedPassword = localStorage.getItem("password");
@@ -51,38 +51,29 @@ const Login = () => {
     setLaoding(true);
     try {
       const res = await Axios.post("/user-login", form);
-        if(res.data.status == 'success'){
-          console.log(res);
-          const token = res.data.access_token;
-          cookie.set("token", token);
-          saveData();
-          toast.success(res.data.messege);
-          if(res.data.isAdmin){
-
-            window.location.pathname='/admin/main'
-          }else{
-            window.location.pathname='/student/main'
-
-          }
-          setLaoding(false)
-          // nav('/admin/main')
-          console.log(res);
-
-
-        }else{
-          console.log(res);
-          toast.error(res.data.messege);
-          setLaoding(false)
-
+      if (res.data.status == "success") {
+        console.log(res);
+        const token = res.data.access_token;
+        cookie.set("token", token);
+        saveData();
+        toast.success(res.data.messege);
+        if (res.data.isAdmin) {
+          window.location.pathname = "/admin/main";
+        } else {
+          window.location.pathname = "/student/main";
         }
-      
-      
-      
-
+        setLaoding(false);
+        // nav('/admin/main')
+        console.log(res);
+      } else {
+        console.log(res);
+        toast.error(res.data.messege);
+        setLaoding(false);
+      }
     } catch (err) {
-      toast.error('There is some think wrong !');
-      setLaoding(false)
-     console.log(err);
+      toast.error("There is some think wrong !");
+      setLaoding(false);
+      console.log(err);
     }
   };
   return (
@@ -91,7 +82,7 @@ const Login = () => {
       <Notifcation />
       <div className="Login">
         <div className="main">
-          <div className="logo">
+          <div className="logo ">
             <Logo />
           </div>
           <form className="form-box" onSubmit={handelSubmit}>
@@ -166,7 +157,7 @@ const Login = () => {
           <div className="content">
             <img src={logo} alt="juba" loading="lazy" />
             <h2>
-              Welcome to <br />
+              Welcome to <br className="hidden md:block" />
               Juba academy
             </h2>
             <p>

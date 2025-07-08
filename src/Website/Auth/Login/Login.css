@@ -201,3 +201,36 @@
 .Login .main .form-box .redirect .link{
   color: var(--main-color);
 }
+@media (max-width:768px) {
+.Login {
+height: 750px;
+padding-bottom: 40px;
+}
+  .Login .main {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .Login .main .content {
+align-items: center;
+margin-top: 40px;
+  }
+  .Login .main .content img {
+margin-bottom: 10px;
+  }
+  .Login .main .content p {
+max-width: 100%;
+margin-top: 10px;
+text-align: center;
+position: static;
+  }
+  .Login .main .content h2{
+    font-size: 1.1rem;
+  }
+.Login .main .content h2 {
+margin-bottom: 0;
+max-width: 100%;
+}
+.Login .main .logo{
+display: none;
+}
+}

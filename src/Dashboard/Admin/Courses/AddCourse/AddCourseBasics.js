@@ -19,6 +19,7 @@ const AddCourseBasics = ({setPage , setCourseId}) => {
     discount:'',
     description:''
   });
+
   const [videoSource, setVideoSource] = useState("youtube");
 
   const thubmRef = useRef(null);
@@ -159,6 +160,9 @@ const AddCourseBasics = ({setPage , setCourseId}) => {
         <div className="form-control !mt-11">
           <label htmlFor="description">Description</label>
           <textarea disabled={laoding} id="description" required className="h-72" value={form.description} onChange={(e)=>setForm({...form,description:e.target.value })}/>
+
+    
+    
         </div>
         
         <button type="submit" className={`${laoding && 'cursor-wait'}`} disabled={laoding}>{laoding ? "Loding..." :'Save'}</button>
