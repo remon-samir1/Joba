@@ -206,6 +206,7 @@
 height: 750px;
 padding-bottom: 40px;
 }
+
   .Login .main {
     flex-direction: column-reverse;
     gap: 10px;
