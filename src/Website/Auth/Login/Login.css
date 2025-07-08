@@ -203,7 +203,7 @@
 }
 @media (max-width:768px) {
 .Login {
-height: 750px;
+height: max-content;
 padding-bottom: 40px;
 }
 
@@ -213,7 +213,7 @@ padding-bottom: 40px;
   }
   .Login .main .content {
 align-items: center;
-margin-top: 40px;
+/* margin-top: 40px; */
   }
   .Login .main .content img {
 margin-bottom: 10px;
