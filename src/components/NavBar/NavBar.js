@@ -95,7 +95,7 @@ const NavBar = () => {
         {["Home", "About", "Course content", "Resources", "Support"].map(
           (text, index) => (
             <Link
-              to="/student/main"
+            
               key={index}
               onClick={() => setMenu(false)}
               className="link"

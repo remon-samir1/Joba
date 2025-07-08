@@ -56,17 +56,23 @@ const QuizExam = () => {
     return `${mins}:${secs}`;
   };
 
-  const handleSubmit = (isTimeOut = false) => {
+  const handleSubmit = async(isTimeOut = false) => {
     const payload = isTimeOut ? {} : selectedAnswers;
-
-    Axios.post(`student/learning/quiz/${id}`, payload)
+setLoading(true)
+  await  Axios.post(`student/learning/quiz/${id}`, payload)
       .then((data) => {
         console.log("Submitted", data);
+setLoading(false)
+
         toast.success("Questions Submited");
-        navigate(-1);
+        setTimeout(() => {
+          navigate(-1);
+        }, 1500);
       })
       .catch((err) => {
         console.error(err);
+setLoading(false)
+
       });
   };
 

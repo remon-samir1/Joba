@@ -22,13 +22,13 @@ const QuizResualt = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get("/student/quiz-attempts").then((data) => {
-      const quizesData =data.data.quizAttempts.data
+      const quizesData = data.data.quizAttempts.data;
       console.log(quizesData);
-      setQuizes(quizesData.filter(data => data.quiz.id == id)[0]);
+      setQuizes(quizesData.filter((data) => data.quiz.id == id)[0]);
       setLoading(false);
     });
   }, []);
-console.log(quizes);
+  console.log(quizes);
   const formatTime = (seconds) => {
     const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secs = String(seconds % 60).padStart(2, "0");
@@ -38,17 +38,17 @@ console.log(quizes);
   const cards = [
     {
       icon: minimumImage,
-      degree: quizes?.quiz.total_mark + '/' +quizes?.user_grade      ,
+      degree: quizes?.quiz?.total_mark + "/" + quizes?.user_grade,
       name: "Minimum marks",
     },
     {
       icon: attemptImage,
-      degree: quizes?.quiz.attempt,
+      degree: quizes?.quiz?.attempt,
       name: "Attempts",
     },
     {
       icon: marksImage,
-      degree: quizes?.user_grade  ,
+      degree: quizes?.user_grade,
       name: "Your Marks",
     },
     {
@@ -67,15 +67,13 @@ console.log(quizes);
         </div>
       )}
       <div className="flex justify-center flex-col items-center bg-white border rounded py-4 gap-3">
-        {
-          quizes?.status === 'pass'&&
-        <img src={passedQuizImage} alt="pass" loading="lazy" />
-        }
+        {quizes?.status === "pass" && (
+          <img src={passedQuizImage} alt="pass" loading="lazy" />
+        )}
         <p className="text-textColor text-[1.3rem]  ">
-          {
-              quizes?.status === 'pass'? 'You have passed the quiz' : 'You have failed in quiz'
-          }
-          
+          {quizes?.status === "pass"
+            ? "You have passed the quiz"
+            : "You have failed in quiz"}
         </p>
         <Link
           to="/student/main"
@@ -107,7 +105,11 @@ console.log(quizes);
             )}
             <p
               className={`text-textColor text-[2rem] font-bold ${
-                data.degree === "pass" ? "!text-[#319F43]" : data.degree === 'failed' ? 'text-[#F94545]' : 'text-textColor'
+                data.degree === "pass"
+                  ? "!text-[#319F43]"
+                  : data.degree === "failed"
+                  ? "text-[#F94545]"
+                  : "text-textColor"
               }`}
             >
               {data.degree}
@@ -129,7 +131,11 @@ console.log(quizes);
                 return (
                   <label
                     key={aIndex}
-                    className={`flex items-center gap-2 px-4 py-3 border rounded-md cursor-pointer w-full md:w-[48%] ${answer.correct === 1 ? 'bg-[#4BBC9A] bg-opacity-30' : 'bg-[#FF725E] bg-opacity-30'}`} 
+                    className={`flex items-center gap-2 px-4 py-3 border rounded-md cursor-pointer w-full md:w-[48%] ${
+                      answer.correct === 1
+                        ? "bg-[#4BBC9A] bg-opacity-30"
+                        : "bg-[#FF725E] bg-opacity-30"
+                    }`}
                   >
                     <input
                       disabled
