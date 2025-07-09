@@ -58,7 +58,7 @@ const Table = (props) => {
           {item2.key === "icon" ? (
             <img
               src={`${baseUrl}/${item[item2.key]}`}
-              width="100px"
+              width="30px"
               height="30px"
               alt="icon"
             />
@@ -155,17 +155,21 @@ const Table = (props) => {
                 {item[item2.key]}
               </span>
             )
-          ) : item2.key === "is_approved" ? (
+          ) : item2.key === "is_approved" ? 
             item[item2.key] === "approved" ? (
               <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
                 Approved
               </span>
-            ) : (
+            ) : item[item2.key] === "rejected" ? (
               <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
                 Disapproved
               </span>
             )
-          ) : (
+          :  <span className="text-white bg-orange-600 py-1 px-4 rounded-3xl">
+          Draft
+        </span>
+          
+          : (
             item2.key === 'buyer' ? item[item2.key].name :
             item[item2.key]
           )}

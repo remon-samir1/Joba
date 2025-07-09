@@ -6,10 +6,12 @@ import { PiStudent } from "react-icons/pi";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { baseUrl } from "../../../components/Helpers/Axios";
+import { formatDuration } from "../../../components/FormatDuration/FormatDuration";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const OurCoursesCard = () => {
+const OurCoursesCard = (props) => {
   const cardRef = useRef(null);
 
   useGSAP(() => {
@@ -29,27 +31,33 @@ const OurCoursesCard = () => {
 
   return (
     <div ref={cardRef} className="OurCoursesCard">
-      <div className="img">
+      <div className="img relative overflow-hidden group">
         <img
-          src={require("../../../images/ourcourses-img.png")}
+          src={`${baseUrl}/${props.thumbnail}`}
           alt="courses"
           loading="lazy"
         />
-        <Icon icon="mdi-light:heart" width="24" height="24" className="icon" />
+         <div className="shine-overlay"></div>
+        {/* <Icon icon="mdi-light:heart" width="24" height="24" className="icon" /> */}
       </div>
       <div className="content px-3">
         <div className="details">
           <div className="detail">
             <LuClock3 className="icon" />
-            <span>4 hours</span>
+            <span>{formatDuration(props.duration)}</span>
           </div>
           <div className="detail">
             <PiStudent className="icon" />
-            <span>112 students</span>
+            <span>{props.students} students</span>
           </div>
           <div className="detail">
-            <Icon icon="streamline:class-lesson" width="0.8rem" height="0.8rem" className="icon" />
-            <span>6 Lesson</span>
+            <Icon
+              icon="streamline:class-lesson"
+              width="0.8rem"
+              height="0.8rem"
+              className="icon"
+            />
+            <span>{props.lessons} Lesson</span>
           </div>
         </div>
         <div className="rating">
@@ -75,19 +83,19 @@ const OurCoursesCard = () => {
               className="icon"
             />
           </div>
-          <p className="review">( 3 Reviews )</p>
+          <p className="review">( {props.reviews} Reviews )</p>
         </div>
-        <h4 className="title">Managment consultants in competitive markets</h4>
+        <h4 className="title">{props.title}</h4>
         <div className="card-footer">
           <div className="trainer">
             <img
-              src={require("../../../images/TRAINER.png")}
+            src={`${baseUrl}/${props.instructor_image}`}
               alt="trainer-image"
               loading="lazy"
             />
-            <span className="name">Mario MacGyver</span>
+            <span className="name">{props.instructor_name}</span>
           </div>
-          <p className="price">350.00 EGP</p>
+          <p className="price">{props.price} EGP</p>
         </div>
       </div>
     </div>

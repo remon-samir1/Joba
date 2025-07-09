@@ -31,14 +31,16 @@ console.log(course);
     step:'4',
     course_id:courseId ? courseId : id,
     message_for_reviewer : '',
-    status : '',
+    is_approved : '',
+    status : 'active',
 });
+console.log(form);
 const handleSubmit=async(e)=>{
   e.preventDefault();
   setLoading(true);
   try{
   await  Axios.post('admin/courses' , form).then(data=>{
-    
+    console.log(data);
     toast.success('updated successfly');
   });
     setLoading(false)
@@ -71,11 +73,11 @@ const handleSubmit=async(e)=>{
         <select
             className="w-full border rounded px-3 py-2 mb-4 outline-none focus:border-main my-3"
         
-        id="Status" value={form.status} onChange={(e)=>setForm({...form , status : e.target.value})}>
+        id="Status" value={form.is_approved} onChange={(e)=>setForm({...form , is_approved : e.target.value})}>
           <option value="" disabled>Status</option>
-          <option value="active">Puplish</option>
-          <option value="inactive">Unpuplish</option>
-          <option value="is_draft">draft</option>
+          <option value="approved">Puplish</option>
+          <option value="rejected">Unpuplish</option>
+          <option value="pending">draft</option>
         </select>
         <button className="bg-main text-base text-white px-4 py-2 rounded mt-4 hover:bg-opacity-85 duration-300" type="submit">{loading ? "Loading..." : "save"}</button>
       </form>

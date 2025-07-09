@@ -30,6 +30,7 @@
     "react-select": "^5.10.1",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.1",
+    "swiper": "^11.2.10",
     "web-vitals": "^2.1.4",
     "world-countries": "^5.1.0"
   },

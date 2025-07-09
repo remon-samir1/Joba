@@ -4,14 +4,20 @@ import OurCoursesCard from "./OurCoursesCard";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useState } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const OurCourses = () => {
+  const [courses, setCourses] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [categoryId, setCategoryId] = useState('');
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const filtersRef = useRef(null);
   const cardsRef = useRef([]);
+  const [filter , setFilter] = useState([])
 
   useGSAP(() => {
     gsap.from(headerRef.current, {
@@ -53,6 +59,27 @@ const OurCourses = () => {
     });
   }, []);
 
+  useEffect(() => {
+    // setLoading(true);
+    Axios.get("/fetch-courses").then((data) => {
+      // setSkeleton(false);
+      const courseData = data.data.items.courses.data.slice(-3);
+      setCourses(courseData);
+     setFilter(courseData)
+      setCategory(data.data.items.courses.data);
+      console.log(data.data.items.courses.data);
+  
+    });
+  }, []);
+useEffect(()=>{
+
+  if(categoryId === ''){
+
+    setFilter(courses);
+  }else{
+    setFilter(courses.filter(data=> data.category.id === categoryId))
+  }
+},[categoryId])
   return (
     <div ref={containerRef} className="OurCourses container mx-auto">
       <div ref={headerRef} className="header">
@@ -70,27 +97,59 @@ const OurCourses = () => {
           />
         </div>
         <div ref={filtersRef} className="filters">
-          {["AllCourses", "Bussiness", "Design", "Devolpment", "Markting"].map(
-            (text, index) => (
-              <button key={index}>{text}</button>
-            )
-          )}
+          <button className={`${categoryId === '' && '!text-main'}`} onClick={() => setCategoryId("")}>All Courses</button>
+
+          {(() => {
+            const seenCategories = new Set();
+
+            return courses
+              ?.filter((courses) => {
+                const categoryId = courses.category.id;
+                if (seenCategories.has(categoryId)) {
+                  return false;
+                } else {
+                  seenCategories.add(categoryId);
+                  return true;
+                }
+              })
+              .map((course, index) => (
+                <button
+                className={`${categoryId === course.category.id && '!text-main'}`}
+                  onClick={() => setCategoryId(course.category.id)}
+                  key={index}
+                >
+                  {course.category.name}
+                </button>
+              ));
+          })()}
         </div>
       </div>
-      <div className="boxes flex justify-center items-center gap-6 px-3 ">
-        {[...Array(3)].map((_, index) => (
+      <div className="boxes flex-col md:flex-row flex justify-center items-center gap-6 px-3 ">
+        {filter?.map((course, index) => (
           <OurCoursesCard
+            thumbnail={course.thumbnail}
+            title={course.title}
+            duration={course.duration}
+            students={course.enrollments.length}
+            lessons={course.lessons.length}
+            is_favorite={course.is_favorite}
+            reviews={course.reviews.length}
+            instructor_image={course.instructor.image}
+            instructor_name={course.instructor.user_name}
+            price={course.discount ? course.discount : course.price}
             key={index}
             forwardRef={(el) => (cardsRef.current[index] = el)}
           />
         ))}
       </div>
       <div className="flex justify-between items-center pr-7 mt-4">
-        <img src={require('../../../images/img1.png')} loading="lazy" />
-        <img src={require('../../../images/img2.png')} loading="lazy" />
+        <img src={require("../../../images/img1.png")} loading="lazy" />
+        <img src={require("../../../images/img2.png")} loading="lazy" />
       </div>
     </div>
   );
 };
 
 export default OurCourses;
+
+

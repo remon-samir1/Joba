@@ -23,7 +23,7 @@ scrollRef.current.scrollIntoView()
   const [deleted, setDeleted] = useState(false);
 const [courses, setCourses] = useState([]);
 const [category, setCategory] = useState();
-const [categoryId , setCategoryId] = useState();
+const [categoryId , setCategoryId] = useState('');
 const [selectedDate, setSelectedDate] = useState(0);
 const [status, setStatus] = useState('');
 const [approved, setApproved] = useState('');
@@ -35,7 +35,7 @@ const [search, setSearch] = useState("");
 useEffect(() => {
   setLoading(true);
   Axios.get(
-    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&`
+    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&category=${categoryId}`
   ).then((data) => {
     console.log(data.data.data.courses);
     setCourses(data.data.data.courses.data);

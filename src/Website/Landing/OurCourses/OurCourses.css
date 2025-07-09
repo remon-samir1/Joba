@@ -41,23 +41,28 @@
 .OurCourses .header .filters button:hover {
   color: var(--main-color);
 }
+.OurCourses .swiper-slide{
+  /* display: flex;
+  justify-content: center; */
+}
 .OurCourses .OurCoursesCard {
   background-color: #fff;
   border: 1px solid DDD;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 400px;
+  width: 400px;
+  /* min-width: 350px; */
   height: 550px;
 }
 .OurCourses .OurCoursesCard .img {
-  height: 50%;
+  height: 18rem;
   width: 100%;
   position: relative;
 }
 .OurCourses .OurCoursesCard .img img {
   width: 100%;
   height: 100%;
-  border-radius: 0px 0px 20px 20px;
+  /* border-radius: 0px 0px 20px 20px; */
 }
 .OurCourses .OurCoursesCard .img .icon {
   position: absolute;
@@ -153,10 +158,42 @@
 .OurCourses .OurCoursesCard .content .card-footer .price {
   font-size: 1.1rem;
 }
+.shine-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: skewX(-25deg);
+}
 
+.group:hover .shine-overlay::before {
+  animation: shine 1s ease-in-out;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+.swiper-pagination-bullet-active{
+  background-color: #f15a24;
+}
 @media (max-width: 769px) {
-  .OurCourses {
-    /* margin-top: 20px; */
+  .OurCourses .swiper-slide{
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto !important; */
+  }
+  .OurCourses .OurCoursesCard {
+  width: 100%;
   }
   .OurCourses .header .filters{
     gap: 10px;
@@ -164,9 +201,12 @@
   .OurCourses .boxes{
     gap: 5px;
   }
-  .OurCourses .boxes .OurCoursesCard:nth-child(3){
+  /* .OurCourses .boxes .OurCoursesCard:nth-child(3){
     display: none;
   }
+  .OurCourses .boxes .OurCoursesCard:nth-child(2){
+    display: none;
+  } */
   .OurCourses .header {
     justify-content: center;
     gap: 30px;
@@ -190,7 +230,7 @@
     font-size: 1.3rem;
   }
   .OurCourses .OurCoursesCard .content .details .detail {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     gap: 2px;
   }
   .OurCourses .OurCoursesCard .content .title {
@@ -229,4 +269,8 @@
     font-size: 0.8rem;
   }
 }
+
+
+
+
 

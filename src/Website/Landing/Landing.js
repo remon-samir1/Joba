@@ -20,7 +20,7 @@ const Landing = () => {
       <WhatweOffer/>
       <OurCourses/>
       <PopulerCourses />
-      <OurTeam/>
+      {/* <OurTeam/> */}
       <JoinUs />
       <LatestBlogs />
       <SudentsSays />
