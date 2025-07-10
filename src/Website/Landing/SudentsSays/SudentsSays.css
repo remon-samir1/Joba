@@ -112,12 +112,12 @@ color:var(--text-color)
     margin-top: 230px;
   }
   .SudentsSays .img{
-   position: relative;
-   top: -76px;
-   left: 55px;
-   order: 2;
-   height: 219px;
-   width: 144px;
+    position: relative;
+    top: -20px;
+    left: 39px;
+    order: 2;
+    height: 243px;
+    width: 160px;
   }
   .SudentsSays .img img{
     width: 100%;
