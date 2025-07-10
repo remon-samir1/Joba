@@ -108,12 +108,13 @@ color:var(--text-color)
   position: relative;
 
   }
-  .SudentsSays .content{
-    margin-top: 230px;
+  .SudentsSays .content .arrows{
+margin-top: 0;
+
   }
   .SudentsSays .img{
     position: relative;
-    top: -20px;
+    top: -45px;
     left: 39px;
     order: 2;
     height: 243px;
@@ -124,5 +125,8 @@ color:var(--text-color)
     height: 100%;
 
   }
+.SudentsSays .content .student{
+margin-top: 0;
+}
 }
 
