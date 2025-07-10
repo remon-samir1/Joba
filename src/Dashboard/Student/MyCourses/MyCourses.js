@@ -36,6 +36,8 @@ const MyCourses = () => {
           image={course?.course.thumbnail}
           id={course?.course.id}
           slug={course?.course.slug}
+          instructor_name={course?.course.instructor.user_name}
+          instructor_image={course?.course.instructor.image}
           title={course?.course.title}
           category={course?.course.category.name}
           duration={course?.course.duration}

@@ -16,11 +16,15 @@
   display: flex;
   justify-content: end;
   /* order: 2; */
+  max-width: 280px;
+  height: 450px;
+  border-radius: 50% / 30%;
+  overflow: hidden;
 }
 .SudentsSays .img img{
-  max-width: 280px;
-  max-height: 450px;
-  border-radius: 50% / 30%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .SudentsSays .content .header{
   color: var(--text-color);
@@ -83,6 +87,7 @@ color:var(--text-color)
 }
 .SudentsSays .content .arrow:hover{
   background-color: var(--main-color);
+  color: #fff;
 }
 .SudentsSays .content .arrow img{
   width: 30px;
@@ -93,6 +98,7 @@ color:var(--text-color)
 }
 @media (max-width:769px) {
   .SudentsSays{
+    overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,12 +113,16 @@ color:var(--text-color)
   }
   .SudentsSays .img{
    position: relative;
-   top: -210px; left: 65px;
-    order: 2;
+   top: -76px;
+   left: 55px;
+   order: 2;
+   height: 219px;
+   width: 144px;
   }
   .SudentsSays .img img{
-    max-width: 220px;
-    max-height: 380px;
+    width: 100%;
+    height: 100%;
+
   }
 }
 

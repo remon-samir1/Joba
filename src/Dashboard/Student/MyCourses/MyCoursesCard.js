@@ -3,6 +3,7 @@ import React from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { formatDuration } from '../../../components/FormatDuration/FormatDuration';
+import { baseUrl } from '../../../components/Helpers/Axios';
 const MyCoursesCard = (props) => {
   return (
     <Link to={`/student/enrolled-course/${props.slug}`} className='bg-white mt-4 border flex flex-col md:flex-row items-center gap-4  border-[#dddd] rounded-lg pl-3 pr-3 md:pr-8 py-3'>
@@ -16,9 +17,9 @@ const MyCoursesCard = (props) => {
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-[36px] h-[36px] shrink-0 rounded-full overflow-hidden">
-            <img src={require('../../../images/course.png')} alt="instructor" loading='lazy' className='w-full h-full object-cover' />
+            <img src={`${baseUrl}/${props.instructor_image}`} alt="instructor" loading='lazy' className='w-full h-full object-cover' />
           </div>
-          <span className='text-textColor text-base'>Rahardian</span>
+          <span className='text-textColor text-base'>{props.instructor_name}</span>
         </div>
         <div className="flex items-center gap-1">
         <FaStar  color="#F1AC4D" />

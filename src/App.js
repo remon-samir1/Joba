@@ -72,7 +72,7 @@ function App() {
       <Routes>
       <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Landing />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<Blog />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

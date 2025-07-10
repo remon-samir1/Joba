@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import "./Profile.css";
 import { useEffect } from "react";
 import { Axios, baseUrl } from "../../../components/Helpers/Axios";
+import { toast } from "react-toastify";
+import Notifcation from "../../../components/Notification";
 const Profile = () => {
   const [loading , setLoading] = useState(false)
   const [change , setChange] = useState(true)
@@ -20,6 +22,7 @@ useEffect(()=>{
   setLoading(true)
   Axios.get('/admin/edit-profile').then(data=>{
     setForm(data.data.data.admin)
+    toast.success('Updated Successfly')
     setLoading(false)
     console.log(data.data.data.admin)})
 },[change])
@@ -54,6 +57,7 @@ await Axios.post('admin/profile-update' ,formData ).then(data=> {
 
   return (
     <div className="Profile">
+      <Notifcation/>
         {loading && (
         <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}

@@ -164,13 +164,13 @@
   top: 0;
   left: -75%;
   height: 100%;
-  width: 50%;
+  width: 30%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
   transform: skewX(-25deg);
 }
 
 .group:hover .shine-overlay::before {
-  animation: shine 1s ease-in-out;
+  animation: shine 0.8s ease-in-out;
 }
 
 @keyframes shine {

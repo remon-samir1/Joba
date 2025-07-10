@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { Axios, baseUrl } from "../../../../components/Helpers/Axios";
 import Loading from "../../../../components/Loading/Loading";
 import { useEffect } from "react";
+import Notifcation from "../../../../components/Notification";
 
 const UpdatePost = () => {
   const scrollRef = useRef(null);
@@ -77,21 +78,21 @@ scrollRef.current.scrollIntoView()
     formData.append("_method", "PUT");
     try {
       setLoading(true);
-      if (form.image) {
+      
         const res = await Axios.post(`/admin/blogs/${id}`, formData).then(
           (data) => {
             console.log(data);
             setLoading(false);
-            toast.success("Created successfly");
+            toast.success("Updated successfly");
             setTimeout(() => {
               navigate("/admin/post-list");
             }, 2000);
           }
         );
-      } else {
-        toast.error("image is required");
-        setLoading(false);
-      }
+      // } else {
+      //   toast.error("image is required");
+      //   setLoading(false);
+      // }
     } catch (err) {
       toast.error("some thing wrong");
       setLoading(false);
@@ -105,6 +106,7 @@ scrollRef.current.scrollIntoView()
   ));
   return (
     <div className="UpdateCategory" ref={scrollRef}>
+      <Notifcation/>
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> Add Post</h3>
         <Breadcrumbs />

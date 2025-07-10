@@ -13,17 +13,19 @@ import { Axios } from "../../../components/Helpers/Axios";
 gsap.registerPlugin(ScrollTrigger);
 
 const LatestBlogs = () => {
-  const [blogs , setBlogs] = useState([]);
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const boxesRef = useRef(null);
   const linkRef = useRef(null);
+  const [blogs , setBlogs] = useState([]);
 useEffect(()=>{
   Axios.get('/blog').then((data)=> {
-    // setBlogs(data.data.data.blogs.data)
-    console.log(data.data.blogs.data)
+    setBlogs(data.data.blogs.data.slice(0,3))
+    // console.log(data.data.blogs.data.slice(0 , 1))
+
   })
 },[])
+console.log(blogs);
   useGSAP(() => {
     gsap.from([textRef.current, boxesRef.current, linkRef.current], {
       opacity: 0,
@@ -44,12 +46,25 @@ useEffect(()=>{
         <p>Latest blogs & news</p>
       </div>
       <div ref={boxesRef} className="boxes flex-wrap flex justify-center items-center gap-10 mt-24">
-        <LatestBlogsCard />
-        <LatestBlogsCard />
-        <LatestBlogsCard />
+      
+      {
+        blogs?.map((data , index)=>(
+          <LatestBlogsCard 
+          key={index}
+          title={data.title}
+          date={data.created_at}
+          description={data.description}
+          image={data.image}
+          slug={data.slug}
+          
+          />
+
+        ))
+      }
+    
       </div>
       <div ref={linkRef} className="flex justify-center items-center w-full mt-10">
-        <Link className="link">All blogs</Link>
+        <Link to='/blogs' className="link">All blogs</Link>
       </div>
     </div>
   );

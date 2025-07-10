@@ -21,83 +21,77 @@ const UpdateStudentsDetails = ({ setLoading }) => {
     age: "",
     bio: "",
   });
-  const [studentLocation , setStudentLocation] = useState({
-    state:'',
-    address:'',
-    country:'',
-    city:'',
-    
-  })
-  const [studentPassword , setStudentPassword] = useState({
-    password : '',
-    password_confirmation:'',
-  })
+  const [studentLocation, setStudentLocation] = useState({
+    state: "",
+    address: "",
+    country: "",
+    city: "",
+  });
+  const [studentPassword, setStudentPassword] = useState({
+    password: "",
+    password_confirmation: "",
+  });
   const { id } = useParams();
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     Axios.get(`/admin/customer-show/${id}`).then((data) => {
-    setLoading(false)
-    const user = data.data.data.user
+      setLoading(false);
+      const user = data.data.data.user;
       setStudent(user);
       setStudentLocation({
-        state:user.state,
-        address:user.address,
-        country:user.country?.slice(0 , 2),
-        city:user.city,
-      })
+        state: user.state,
+        address: user.address,
+        country: user.country?.slice(0, 2),
+        city: user.city,
+      });
       console.log(data);
     });
   }, []);
   console.log(studentLocation);
   // handleInfoUpdate
   const handleInfoUpdate = () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      Axios.put(`/admin/customer-info-update/${id}`, student).then((data) =>{
-
-        
-        setLoading(false)
-        toast.success('Updated Successfly')
-      }
-      
-      );
+      Axios.put(`/admin/customer-info-update/${id}`, student).then((data) => {
+        setLoading(false);
+        toast.success("Updated Successfly");
+      });
     } catch (err) {
-      setLoading(false)
-    }finally{
-      
-      setLoading(false)
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
   // handleLocationUpdate
   const handleLocationUpdate = () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      Axios.put(`/admin/customer-location-update/${id}`, studentLocation).then((data) =>{
-console.log(data);
-        
-        setLoading(false)
-        toast.success('Updated Successfly')
-      }
-      
+      Axios.put(`/admin/customer-location-update/${id}`, studentLocation).then(
+        (data) => {
+          console.log(data);
+
+          setLoading(false);
+          toast.success("Updated Successfly");
+        }
       );
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
     }
   };
   // handlePasswordUpdate
   const handlePasswordUpdate = () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      Axios.put(`/admin/customer-password-change/${id}`, studentPassword).then((data) =>{
-console.log(data);
-        
-        setLoading(false)
-        toast.success('Password change successfully')
-      }
-      
+      Axios.put(`/admin/customer-password-change/${id}`, studentPassword).then(
+        (data) => {
+          console.log(data);
+
+          setLoading(false);
+          toast.success("Password change successfully");
+        }
       );
     } catch (err) {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -147,7 +141,6 @@ console.log(data);
                 id="phone"
                 name="phone"
                 value={student.phone}
-
                 onChange={(e) =>
                   setStudent({ ...student, phone: e.target.value })
                 }
@@ -206,45 +199,72 @@ console.log(data);
           <div className="form-control">
             <label htmlFor="name">Country</label>
             <Select
-  options={formattedCountries}
-  className="DateSelectBox country"
-  classNamePrefix="my"
-  placeholder="Select"
-  value={formattedCountries.find(
-    (country) => country.value === studentLocation.country
-  )}
-  onChange={(selectedOption) =>
-    setStudentLocation({ ...studentLocation, country: selectedOption.value })
-  }
-/>
-
+              options={formattedCountries}
+              className="DateSelectBox country"
+              classNamePrefix="my"
+              placeholder="Select"
+              value={formattedCountries.find(
+                (country) => country.value === studentLocation.country
+              )}
+              onChange={(selectedOption) =>
+                setStudentLocation({
+                  ...studentLocation,
+                  country: selectedOption.value,
+                })
+              }
+            />
           </div>
 
           <div className="flex justify-center items-center md:flex-row md:gap-4 flex-col">
             <div className="form-control">
               <label htmlFor="state">State</label>
               <input
-              value={studentLocation.state}
-              onChange={(e)=>setStudentLocation({...studentLocation , state : e.target.value})}
-              
-              type="text" id="state" name="state" />
+                value={studentLocation.state}
+                onChange={(e) =>
+                  setStudentLocation({
+                    ...studentLocation,
+                    state: e.target.value,
+                  })
+                }
+                type="text"
+                id="state"
+                name="state"
+              />
             </div>{" "}
             <div className="form-control">
               <label htmlFor="city">City</label>
               <input
-              value={studentLocation.city}
-              onChange={(e)=>setStudentLocation({...studentLocation , city : e.target.value})}
-              type="text" id="city" name="city" />
+                value={studentLocation.city}
+                onChange={(e) =>
+                  setStudentLocation({
+                    ...studentLocation,
+                    city: e.target.value,
+                  })
+                }
+                type="text"
+                id="city"
+                name="city"
+              />
             </div>
           </div>
           <div className="form-control ">
             <label htmlFor="address">Address</label>
             <input
-            value={studentLocation.address}
-            onChange={(e)=>setStudentLocation({...studentLocation , address : e.target.value})}
-            type="text" id="address" name="address" />
+              value={studentLocation.address}
+              onChange={(e) =>
+                setStudentLocation({
+                  ...studentLocation,
+                  address: e.target.value,
+                })
+              }
+              type="text"
+              id="address"
+              name="address"
+            />
           </div>
-          <button type="button" onClick={handleLocationUpdate}>Update</button>
+          <button type="button" onClick={handleLocationUpdate}>
+            Update
+          </button>
         </form>
       </div>
 
@@ -256,22 +276,30 @@ console.log(data);
             <div className="form-control">
               <label htmlFor="password">Password</label>
               <input
-              
-              type="password"
-              
-              id="password"
-               name="password"
-               value={studentPassword.password}
-               onChange={(e)=>setStudentPassword({...studentPassword , password : e.target.value})}
-               />
+                type="password"
+                id="password"
+                name="password"
+                value={studentPassword.password}
+                onChange={(e) =>
+                  setStudentPassword({
+                    ...studentPassword,
+                    password: e.target.value,
+                  })
+                }
+              />
             </div>{" "}
             <div className="form-control">
               <label htmlFor="Password-confirmation">
                 Password confirmation
               </label>
               <input
-              value={studentPassword.password_confirmation}
-              onChange={(e)=>setStudentPassword({...studentPassword , password_confirmation : e.target.value})}
+                value={studentPassword.password_confirmation}
+                onChange={(e) =>
+                  setStudentPassword({
+                    ...studentPassword,
+                    password_confirmation: e.target.value,
+                  })
+                }
                 type="password"
                 id="Password-confirmation"
                 name="Password-confirmation"
@@ -279,7 +307,9 @@ console.log(data);
             </div>
           </div>
 
-          <button onClick={handlePasswordUpdate} type="button">Update</button>
+          <button onClick={handlePasswordUpdate} type="button">
+            Update
+          </button>
         </form>
       </div>
     </div>

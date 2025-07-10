@@ -1,21 +1,24 @@
 import React from "react";
+import TransformDate from "../../../components/Helpers/TransformDate";
+import { baseUrl } from "../../../components/Helpers/Axios";
+import { Link } from "react-router-dom";
+import StringSlice from "../../../components/Helpers/StringSlice";
 
-const LatestBlogsCard = () => {
+const LatestBlogsCard = (props) => {
+  console.log(props.image);
   return (
-    <div className="LatestBlogsCard">
+    <Link to={`/blog/${props.slug}`} className="LatestBlogsCard">
       <div className="img">
-        <img src={require("../../../images/Blogs.png")} alt="blog" loading="lazy" />
+        <img src={`${baseUrl}/${props.image}`} alt="blog" loading="lazy" />
       </div>
       <div className="content">
 
-      <p className="date">Creative jul 25 , 2025</p>
-      <h4 className="title">Education technology & mobile learning</h4>
-      <p className="desk">
-        Lorem ipsum dolor sit amet consectetur. Orci id sed est maecenas
-        molestie sagittis.
+      <p className="date">Creative {TransformDate(props.date)}</p>
+      <h4 className="title">{props.title}</h4>
+      <p className="desk" dangerouslySetInnerHTML={{__html : StringSlice(props.description , 35)}}>
       </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

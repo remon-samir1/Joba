@@ -19,7 +19,7 @@ scrollRef.current.scrollIntoView()
   const [postLists, setPostLists] = useState([]);
   const [status, setStatus] = useState("");
   const [showHomePage, setShowHomePage] = useState("");
-  const [ispopuler , setIspopuler] = useState()
+  const [ispopuler , setIspopuler] = useState('')
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
