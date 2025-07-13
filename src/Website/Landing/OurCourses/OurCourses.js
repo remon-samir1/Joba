@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useState } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
+import SkeletonShow from "../../../components/Skeleton/Skeleton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ const OurCourses = () => {
   const headerRef = useRef(null);
   const filtersRef = useRef(null);
   const cardsRef = useRef([]);
+  const [skeleton , setSkeleton] = useState(false)
   const [filter , setFilter] = useState([])
 
   useGSAP(() => {
@@ -60,7 +62,7 @@ const OurCourses = () => {
   }, []);
 
   useEffect(() => {
-    // setLoading(true);
+setSkeleton(true);
     Axios.get("/fetch-courses").then((data) => {
       // setSkeleton(false);
       const courseData = data.data.items.courses.data.slice(-3);
@@ -125,10 +127,14 @@ useEffect(()=>{
         </div>
       </div>
       <div className="boxes flex-col md:flex-row flex justify-center items-center gap-6 px-3 ">
-        {filter?.map((course, index) => (
+        {skeleton ? 
+        <SkeletonShow length={3} height='300px' width='350px' classes='w-full md:w-[400px] h-[350px]'/>
+        :
+        filter?.map((course, index) => (
           <OurCoursesCard
             thumbnail={course.thumbnail}
             title={course.title}
+            slug={course.slug}
             duration={course.duration}
             students={course.enrollments.length}
             lessons={course.lessons.length}

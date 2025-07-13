@@ -131,7 +131,7 @@ const ExploreCourses = () => {
                         alt="student"
                       />
                       <span className="text-textColor text-base">
-                        {course?.instructor.name}
+                        {course?.instructor.user_name}
                       </span>
                     </div>
                     <p className="text-main text-base">{course?.price} EGP</p>

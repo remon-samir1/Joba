@@ -163,7 +163,9 @@ const CourseDetails = () => {
         </div>
         {/* Right Side  */}
         <SideDetails
+        chapters={course}
           languages={course?.languages}
+          levels={course?.levels}
           price={course?.price}
           duration={course?.duration}
           certificate={course?.certificate}

@@ -31,7 +31,7 @@ const MyCoursesCard = (props) => {
           <span className='text-text2 text-[0.8rem]'>{props.completed}%</span>
         </div>
         <div className="w-full h-1 bg-[#E0E0E0] relative mt-3 rounded-md overflow-hidden">
-          <span className={`absolute left-0 h-full bg-[#319F43] w-[${props.completed}%]`}></span>
+          <span className={`absolute left-0 h-full bg-[#319F43] `} style={{width : `${props.completed}%`}}></span>
         </div>
 
         <div className="mt-6 flex items-center">

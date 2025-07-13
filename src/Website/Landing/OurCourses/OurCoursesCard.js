@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { baseUrl } from "../../../components/Helpers/Axios";
 import { formatDuration } from "../../../components/FormatDuration/FormatDuration";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +31,7 @@ const OurCoursesCard = (props) => {
   }, []);
 
   return (
-    <div ref={cardRef} className="OurCoursesCard">
+    <Link to={`/student/course-details/${props.slug}`} ref={cardRef} className="OurCoursesCard">
       <div className="img relative overflow-hidden group">
         <img
           src={`${baseUrl}/${props.thumbnail}`}
@@ -98,7 +99,7 @@ const OurCoursesCard = (props) => {
           <p className="price">{props.price} EGP</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

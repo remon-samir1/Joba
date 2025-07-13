@@ -51,7 +51,7 @@ export default function MyQuiz() {
             >
               <div className="col-span-4">
                 <p className="text-main text-[1.05rem] w-[90%]">
-                {item.quiz.title}
+                {item.quiz?.title}
                 </p>
                 <p className="text-text2 mt-2 text-[1.1rem]">Quiz</p>
               </div>
@@ -68,7 +68,7 @@ export default function MyQuiz() {
               <div className="col-span-2 font-semibold text-gray-800">
                 {item.user_grade}
               </div>
-              <Link to={`/student/quiz-result/${item.quiz.id}`} className="bg-main col-span-2 cursor-pointer flex justify-center items-center rounded-full w-[40px] h-[40px]">
+              <Link to={`/student/quiz-result/${item.quiz?.id}`} className="bg-main col-span-2 cursor-pointer flex justify-center items-center rounded-full w-[40px] h-[40px]">
               <Icon icon="ep:view" width="18" height="18"  style={{color: '#fff'}} />
               </Link>
             

@@ -14,6 +14,17 @@ const Reviews = () => {
       setReviews(data.data.reviews.data)
       console.log(data.data.reviews.data)})
   },[])
+  // handleDelete
+  const handleDelete = (id)=>{
+    try{
+Axios.delete(`/student/reviews/${id}`).then(data =>{
+  console.log(data);
+  // setReviews(reviews.filter(rev => rev.id !== id))
+})
+    }catch(err){
+
+    }
+  }
   return (
     <div className="py-4">
       <div className="flex justify-between items-center ">
@@ -40,6 +51,7 @@ const Reviews = () => {
             <button className="bg-main w-[40px] h-[40px] rounded-full flex justify-center items-center ">
               <Icon
                 icon="iconamoon:trash"
+                onClick={()=>handleDelete(data.id)}
                 width="18"
                 height="18"
                 className="text-white"
@@ -49,7 +61,7 @@ const Reviews = () => {
         </div>
         <div className="mt-4">
           <h3 className="text-base font-semibold text-textColor">
-            Noura Ahmed{" "}
+          {data.user.name}
           </h3>
           <p className="mt-2 w-[90%] text-textColor text-[0.9rem]">
           {data.review}

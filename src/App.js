@@ -65,6 +65,7 @@ import ReqiureAuth from "./Website/Auth/RequireAuth/RequireAuth";
 import QuizExam from "./Dashboard/Student/MyQuiz/QuizExam";
 import QuizResualt from "./Dashboard/Student/MyQuiz/QuizResualt";
 import Blogs from "./Website/Blog/Blogs";
+import Coupon from "./Dashboard/Admin/Coupon/Coupon";
 function App() {
   return (
     <div className="App">
@@ -117,6 +118,7 @@ function App() {
          <Route path="Banned-users" element={<BannedUsers/>} />
          <Route path="Send-bulk-mail" element={<SendbulkMail/>} />
          <Route path="withdraw-method" element={<WithdrawMethod/>} />
+         <Route path="coupon" element={<Coupon/>} />
          <Route path="/admin/withdraw-method/update/:id" element={<UpdateWithdrawMethod/>} />
          <Route path="/admin/withdraw-method/add" element={<AddWithdrawMethod/>} />
          <Route path="withdraw-request" element={<WidthdrawRequest/>} />

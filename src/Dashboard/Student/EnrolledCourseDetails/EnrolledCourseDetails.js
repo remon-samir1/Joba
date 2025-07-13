@@ -17,6 +17,7 @@ import TransformDate from "../../../components/Helpers/TransformDate";
 const EnrolledCourseDetails = () => {
   const [course, setCourse] = useState(null);
   const [play, setPlay] = useState(false);
+  const [lessonId,setLessonId]=useState()
   const [url, setUrl] = useState();
   const [skeleton, setSkeleton] = useState(false);
   const [quizId, setQuizId] = useState("");
@@ -33,6 +34,7 @@ const EnrolledCourseDetails = () => {
       setCourse(data.data);
       setLoading(false);
       setUrl(data.data.course.chapters[0]?.chapter_items[0]?.lesson.file_path);
+      setLessonId(data.data.course.chapters[0]?.chapter_items[0]?.lesson.id);
       setSkeleton(false);
     });
   }, []);
@@ -241,7 +243,7 @@ const EnrolledCourseDetails = () => {
           {tabs === "overview" ? (
             <CourseDetailsOverview data={course?.course.description} />
           ) : tabs === "QA" ? (
-            <QA />
+            <QA id={course?.course.id} lessonId={lessonId}/>
           ) : tabs === "reviews" ? (
             <EnroledCourseReviews id={course?.course.id} />
           ) : (
@@ -251,6 +253,7 @@ const EnrolledCourseDetails = () => {
         {/* Right Side  */}
         <CourseContactDetails
           setType={setType}
+          setLessonId={setLessonId}
           setQuizId={setQuizId}
           data={course?.course.chapters}
           setUrl={setUrl}

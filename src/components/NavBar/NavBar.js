@@ -34,7 +34,7 @@ const NavBar = () => {
         "-=0.5"
       )
       .from(btnsRef.current, { opacity: 0, scale: 0.8, duration: 0.6 }, "-=0.4");
-  }, []);
+  });
 
   useEffect(() => {
     if (menu) {

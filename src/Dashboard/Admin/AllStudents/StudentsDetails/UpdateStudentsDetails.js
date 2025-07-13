@@ -43,6 +43,7 @@ const UpdateStudentsDetails = ({ setLoading }) => {
         address: user.address,
         country: user.country?.slice(0, 2),
         city: user.city,
+        _method:"PUT"
       });
       console.log(data);
     });

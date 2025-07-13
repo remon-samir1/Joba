@@ -1,81 +1,93 @@
-// import { Icon } from "@iconify-icon/react";
-// import React from "react";
-// import { useRef } from "react";
 
-// const QA = () => {
-//   const clickRef = useRef()
-//   return (
-//     <div className="py-3 px-4 bg-white">
-//       <div className="flex items-center justify-between flex-wrap">
-//         <div className="w-[290px]  h-[40px] border border-[#dddd] rounded-full flex items-center justify-between pl-3 pr-1">
-//           <input
-//             type="text"
-//             placeholder="search"
-//             className="appearance-none flex-1 border-none outline-none text-[0.9rem] text-textColor"
-//           />
-//           <div className="w-[32px] h-[32px] rounded-full bg-main flex justify-center items-center">
-//             <Icon
-//               icon="material-symbols-light:search-rounded"
-//               width="20"
-//               height="20"
-//               style={{ color: "#fff" }}
-//             />
-//           </div>
-//         </div>
-//         <div className="flex items-center gap-2">
-//           <span className="text-[0.9rem] text-textColor hidden md:flex">Filters :</span>
-//           <Icon onClick={()=>clickRef.current.click()} className="md:hidden" icon="mage:filter" width="30" height="30" />
-//           <select 
-//           ref={clickRef}
-//             id="filter"
-//             className="w-[125px] h-[35px] px-3   bg-white text-[0.9rem] text-text2 border border-[#dddd] rounded-full"
-//           >
-//             <option value="option" selected aria-disabled>
-//               option
-//             </option>
-//             <option value="option">option</option>
-//             <option value="option">option</option>
-//           </select>
-//         </div>
-//       </div>
-//       <div className="flex items-center justify-between mt-8">
-//         <p className="text-textColor text-[0.95rem] font-semibold">All question</p>
-//         <button className="text-[0.85rem] bg-main text-white px-9 py-3 rounded-3xl main-shadow duration-500">Ask a question</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default QA;
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify-icon/react";
+import { Axios, baseUrl } from "../../../components/Helpers/Axios";
+import { toast } from "react-toastify";
+import Notifcation from "../../../components/Notification";
 
-const QA = () => {
-  const [selectedOption, setSelectedOption] = useState("Select");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef();
 
-  const options = ["Latest", "Popular", "Unanswered"];
 
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setShowDropdown(false);
+
+const QA = (props) => {
+  const [sendQuestion, setSendQuestion] = useState({
+    course_id: props.id,
+    question: "",
+    lesson_id: props.lessonId,
+    description: "",
+  });
+  console.log(sendQuestion);
+  const [questions, setQuestions] = useState([]);
+  const [ask, setAsk] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [change , setChange] = useState(false)
+  const [search , setSearch] = useState('')
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("Latest");
+  const [replyingTo, setReplyingTo] = useState(null);
+  const [replyText, setReplyText] = useState("");
+  // handelSendQuestion
+  const handelSendQuestion = () => {
+    try {
+      setLoading(true)
+      Axios.post("/student/create-question", sendQuestion).then((data) =>{
+
+        console.log(data)
+        setLoading(false)
+      toast.success('Question Created Successfly')
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+      );
+    } catch (err) {
+      setLoading(false)
+      toast.error('Question Does not Created ')
+
+    }
+  };
+  useEffect(() => {
+    setSendQuestion({ ...sendQuestion, question: props.id });
+    setSendQuestion({ ...sendQuestion, lesson_id: props.lessonId });
+    Axios.get(`/student/fetch-lesson-questions?query=${searchTerm}&lesson_id=${sendQuestion.lesson_id}&course_id=${sendQuestion.course_id}`).then((data) =>{
+
+      console.log(data)
+      setQuestions(data.data.view.data)
+    }
+    );
+  }, [change,searchTerm]);
+
+
+  const handleReplySubmit = async (questionId) => {
+    setLoading(true)
+try{
+Axios.post('/student/create-reply' , {
+  reply: replyText,
+  question_id : questionId
+}).then(data=>{
+  toast.success("Reply created successfully")
+  setChange(prev => !prev)
+  setLoading(false)
+  setReplyText('')
+})
+}catch(err){
+  console.log(err);
+}
+  }
 
   return (
-    <div className="py-3 px-4 bg-white">
-      <div className="flex items-center justify-between gap-6 flex-wrap">
+    <div className="py-5 px-6 bg-white font-cairo">
+            {loading && (
+        <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
+        </div>
+      )}
+      <Notifcation/>
+      <div className="flex items-center justify-between gap-6 flex-wrap mb-8">
         {/* Search Box */}
         <div className="md:w-[320px] md:flex-grow-0 flex-1 h-[40px] border border-[#dddd] rounded-full flex items-center justify-between pl-3 pr-1">
           <input
             type="text"
-            placeholder="search"
+            placeholder="Search questions..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="appearance-none flex-1 border-none outline-none text-[0.9rem] text-textColor"
           />
           <div className="w-[32px] h-[32px] rounded-full bg-main flex justify-center items-center">
@@ -87,56 +99,119 @@ const QA = () => {
             />
           </div>
         </div>
-
         {/* Filters */}
-        <div className="flex items-center gap-2 relative mt-3 md:mt-0">
-          <span className="text-[0.9rem] text-textColor hidden md:flex">Filters :</span>
-
-          {/* Desktop Select */}
-          <select className="hidden md:block w-[150px] h-[35px] px-3 bg-white text-[0.9rem] text-text2 border border-[#dddd] rounded-full">
-            <option disabled selected>
-              Select
-            </option>
-            {options.map((opt) => (
-              <option key={opt}>{opt}</option>
-            ))}
+        <div className="flex items-center gap-4">
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="h-[40px] px-4 bg-white text-[0.9rem] text-text2 border border-[#dddd] rounded-full"
+          >
+            <option>Latest</option>
+            <option>Popular</option>
+            <option>Unanswered</option>
           </select>
-
-          {/* Mobile Icon + Dropdown */}
-          <div className="relative md:hidden" ref={dropdownRef}>
-            <Icon
-              onClick={() => setShowDropdown(!showDropdown)}
-              className="cursor-pointer"
-              icon="mage:filter"
-              width="30"
-              height="30"
-            />
-
-            {showDropdown && (
-              <ul className="absolute mt-2 right-0 w-[140px] bg-white border border-gray-300 rounded-xl shadow-md z-50 overflow-hidden">
-                {options.map((opt) => (
-                  <li
-                    key={opt}
-                    onClick={() => {
-                      setSelectedOption(opt);
-                      setShowDropdown(false);
-                    }}
-                    className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
-                  >
-                    {opt}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <button
+            onClick={() => setAsk((prev) => !prev)}
+            className="text-[0.9rem] bg-main text-white px-8 py-2.5 rounded-full main-shadow duration-300 hover:bg-opacity-90"
+          >
+            Ask a question
+          </button>
         </div>
       </div>
+      {ask && (
+        <div className="flex flex-col gap-2 my-4">
+          <label htmlFor="bio" className="text-[0.9rem] text-main font-medium">
+            {" "}
+            Ask Question
+          </label>
+          <textarea
+            required
+            onChange={(e) =>
+              setSendQuestion({
+                ...sendQuestion,
+                description: e.target.value,
+                question: e.target.value,
+              })
+            }
+            placeholder="Question..."
+            id="bio"
+            className="p-3 border border-[#dddd] rounded outline-none focus:border-main text-text2"
+          />
+          <button
+            onClick={handelSendQuestion}
+            className="self-end text-sm text-white bg-main px-5 py-2 rounded main-shadow duration-300 font-medium"
+          >
+            Share
+          </button>
+        </div>
+      )}
+      <div className="space-y-6">
+        {loading && <p>Loading questions...</p>}
+        {error && <p className="text-red-500">{error}</p>}
+        {!loading &&
+          !error &&
+          questions?.map((q) => (
+            <div key={q.id} className="border-b border-gray-200 pb-4">
+              {/* Question */}
+              <div className="flex items-start gap-4">
+                <img src={`${baseUrl}${q.user?.image}`} className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"/>
 
-      {/* Bottom Row */}
-      <div className="flex items-center justify-between mt-8">
-        <p className="text-textColor text-[0.95rem] font-semibold">All questions</p>
-        <button className="text-[0.85rem] bg-main text-white px-9 py-3 rounded-3xl main-shadow duration-500">
-          Ask a question
+                <div>
+                  <p className="font-semibold text-gray-800">{q.user?.name}</p>
+                  <p className="text-gray-600 mt-1">{q.question_title}</p>
+                  <button
+                    onClick={() =>
+                      setReplyingTo(replyingTo === q.id ? null : q.id)
+                    }
+                    className="text-sm text-gray-500 mt-2 hover:underline"
+                  >
+                    Reply
+                  </button>
+                </div>
+              </div>
+
+              {/* Replies */}
+              <div className="ml-14 mt-4 space-y-4">
+                {q.replies.map((reply) => (
+                  <div key={reply.id} className="flex items-start gap-4">
+                    <img src={`${baseUrl}${q.user?.image}`}  className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-gray-800 text-sm">
+                        {reply.user?.name}
+                      </p>
+                      <p className="text-gray-600 mt-0.5 text-sm">
+                        {reply.reply}
+                      </p>
+                
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Reply Input Box */}
+              {replyingTo === q.id && (
+                <div className="ml-14 mt-4 flex items-center gap-3">
+                  <input
+                    type="text"
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
+                    placeholder={`Write a reply to ${q.user.name}...`}
+                    className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none  focus:border-main"
+                  />
+                  <button
+                    onClick={() => handleReplySubmit(q.id)}
+                    className="bg-main text-white px-6 py-2 rounded-full text-sm hover:bg-opacity-90"
+                  >
+                    Post Reply
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+      </div>
+      <div className="text-center mt-8">
+        <button className="text-gray-600 font-semibold hover:underline">
+          Load more...
         </button>
       </div>
     </div>
@@ -144,4 +219,3 @@ const QA = () => {
 };
 
 export default QA;
-

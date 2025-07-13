@@ -9,6 +9,24 @@ import { useContext } from 'react';
 import { CartCh } from '../../../Context/CartContext';
 
 const SideDetails = (props) => {
+  function countQuizItems(course) {
+    let count = 0;
+  
+    if (!course?.chapters?.length) return 0;
+  
+    course.chapters.forEach((chapter) => {
+      if (!chapter?.chapter_items?.length) return;
+  
+      chapter.chapter_items.forEach((item) => {
+        if (item.type === "quiz" || item.quiz?.type === "quiz") {
+          count++;
+        }
+      });
+    });
+  
+    return count;
+  }
+  
   //  handle add to cart
   const [loading , setLoading] = useState(false)
   const cartch = useContext(CartCh)
@@ -58,13 +76,16 @@ const SideDetails = (props) => {
               Level
             </span>
           </div>
-          <div className="flex mt-1 items-center gap-3 flex-wrap border-b border-[#dddd] py-3">
+          <div className="flex mt-1 items-center  gap-3 flex-wrap border-b border-[#dddd] py-3">
+            {
+              props.levels?.map((data ,index)=>(
             <p className="text-[0.9rem] text-white bg-main px-5 py-1 rounded capitalize">
-              Beginner
+              {data.level.name.name}
             </p>
-            <p className="text-[0.9rem] text-white bg-main px-5 py-1 rounded capitalize">
-              Intermediate
-            </p>
+
+              ))
+            }
+          
           </div>
 
           <div className="flex justify-between items-center py-3 border-b border-[#ddd]">
@@ -107,7 +128,7 @@ const SideDetails = (props) => {
                 Quizes
               </span>
             </div>
-            <p className="text-[0.9rem] text-textColor">0</p>
+            <p className="text-[0.9rem] text-textColor">{countQuizItems(props.chapters)}</p>
           </div>
           <div className="flex justify-between items-center py-3 border-b border-[#ddd]">
             <div className="flex items-center gap-2">
@@ -123,7 +144,7 @@ const SideDetails = (props) => {
             </div>
             <p className="text-[0.9rem] text-textColor">{props.certificate == 0 ? 'No' : 'Yes'}</p>
           </div>
-          <div className="flex justify-between items-center py-3 border-b border-[#ddd]">
+          <div className="flex justify-center  items-center gap-3 py-3 border-b border-[#ddd]">
             <div className="flex items-center gap-2">
               <Icon
                 className="text-textColor"
@@ -135,7 +156,7 @@ const SideDetails = (props) => {
                 Language
               </span>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-start gap-3">
 
             {
               props.languages?.map((data,index)=>(

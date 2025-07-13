@@ -31,7 +31,7 @@ const Recents = ({data , link , title , viewAll}) => {
       <Link to={`${link}/${data.id}`} className="item" key={index}>
         <h4>{StringSlice(data.title, 50)}</h4>
         <div className="details">
-          <span>{title === 'Courses' ? data.instructor.name : title === 'Blogs' ? data.author.name : data.name}</span>
+          <span>{title === 'Courses' ? data.instructor.user_name : title === 'Blogs' ? data.author.user_name : data.name}</span>
           <span>{title === "Courses" ? data.is_approved : data.status === 1 ? "Approved" : "Dis Approved" }</span>
           <span>{timeAgo(data.created_at)}</span>
         </div>

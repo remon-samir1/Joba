@@ -82,6 +82,7 @@ const CourseContactDetails = (props) => {
                 <div
                 onClick={()=>{
                   props.setType(course.type)
+                  props.setLessonId(course.lesson.id)
                   props.setUrl(course.lesson?.file_path)
                 props.setQuizId(course?.quiz?.id)
                 
