@@ -64,7 +64,7 @@ const OurCourses = () => {
   useEffect(() => {
 setSkeleton(true);
     Axios.get("/fetch-courses").then((data) => {
-      // setSkeleton(false);
+      setSkeleton(false);
       const courseData = data.data.items.courses.data.slice(-3);
       setCourses(courseData);
      setFilter(courseData)
