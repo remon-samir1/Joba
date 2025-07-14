@@ -23,9 +23,9 @@ const Coupon = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(`/admin/coupon?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-      console.log(data.data.data.categories);
-      setCategories(data.data.data.categories.data);
-      setTotal(data.data.data.categories.total);
+      console.log(data);
+      setCategories(data.data.data);
+      // setTotal(data.data.data.categories.total);
       setLoading(false);
     });
   }, [search,deleted, status]);
@@ -33,36 +33,45 @@ const Coupon = () => {
   // headers of table
   const headers = [
     {
-      title: "Icon",
-      key: "icon",
+      title: "Code",
+      key: "coupon_code",
     },
     {
-      title: "Name",
-      key: "name",
+      title: "Max Items",
+      key: "coupon_max_cart_items",
     },
     {
-      title: "Slug",
-      key: "slug",
+      title: "type",
+      key: "coupon_type",
     },
     {
-      title: "Show at trading",
-      key: "show_at_trending",
+      title: "Min Price",
+      key: "min_price",
+    },
+    {
+      title: "Offer ",
+      key: "offer_percentage",
+    },
+    {
+      title: "End time ",
+      key: "expired_date",
     },
     {
       title: "Status",
       key: "status",
+      type:'show'
     },
   ];
 // status selectbox data
 const statusData = [
   {
     name:'Active',
-    value:1
+    value:'active'
   },
   
   {
     name:'Inactive',
-    value:0
+    value:'inactive'
   }
 ]
 
@@ -90,22 +99,22 @@ const statusData = [
             <span>add new</span>
           </button>
         </div>
-        {/* <div className="overflow-x-auto w-[90vw] md:w-full">
+        <div className="overflow-x-auto w-[90vw] md:w-full">
           <Table
             action
-            sub
-            update
+
+            
             trash
             headers={headers}
             data={categories}
             loading={loading}
-            url='admin/course-category'
+            url='admin/coupon'
             setDeleted={setDeleted}
           />
         </div>
           <div className="flex justify-end p-5 px-10">
           <Pagination total={total} setPage={setPage} itemsPerPage={15}/>
-          </div> */}
+          </div>
       </div>
       {
         showModal && <AddCoupon setShowModal={setShowModal}/>

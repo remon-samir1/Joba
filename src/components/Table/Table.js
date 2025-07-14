@@ -81,7 +81,9 @@ const Table = (props) => {
               id={item.id}
               url={props.url}
             />
-          ) : item2.key === "created_at" || item2.key === "updated_at" ? (
+          ) : item2.key === "created_at" ||
+            item2.key === "updated_at" ||
+            item2.key === "expired_date" ? (
             TransformDate(item[item2.key])
           ) : item2.key === "course" ? (
             item[item2.key]?.title
@@ -155,7 +157,7 @@ const Table = (props) => {
                 {item[item2.key]}
               </span>
             )
-          ) : item2.key === "is_approved" ? 
+          ) : item2.key === "is_approved" ? (
             item[item2.key] === "approved" ? (
               <span className="text-white bg-green-600 py-1 px-4 rounded-3xl">
                 Approved
@@ -164,13 +166,16 @@ const Table = (props) => {
               <span className="text-white bg-red-600 py-1 px-4 rounded-3xl">
                 Disapproved
               </span>
+            ) : (
+              <span className="text-white bg-orange-600 py-1 px-4 rounded-3xl">
+                Draft
+              </span>
             )
-          :  <span className="text-white bg-orange-600 py-1 px-4 rounded-3xl">
-          Draft
-        </span>
-          
-          : (
-            item2.key === 'buyer' ? item[item2.key].name :
+          ) : item2.key === "buyer" ? (
+            item[item2.key].name
+          ) : 
+          item2.key === 'coupon_type' ? item[item2.key] == 1 ? <span  className="text-sm text-white bg-green-600 px-4 py-1 rounded-full">normal</span> : <span  className="text-sm text-white bg-orange-600 px-4 py-1 rounded-full">one time</span> :
+          (
             item[item2.key]
           )}
         </td>
