@@ -69,7 +69,7 @@ const JoinUsCard = ({ title, image }) => {
         <p className="desk">
           Lorem ipsum dolor sit amet consectetur.
         </p>
-        <Link className='link'>Join now</Link>
+        <Link to='/login' className='link'>Join now</Link>
       </div>
       <div ref={imgRef} className="img">
         <img src={require(`../../../images/${image}`)} alt="learn" loading='lazy' />
