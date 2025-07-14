@@ -58,9 +58,9 @@ const Login = () => {
         saveData();
         toast.success(res.data.messege);
         if (res.data.isAdmin) {
-          window.location.pathname = "/admin/main";
+          nav("/admin/main")
         } else {
-          window.location.pathname = "/student/main";
+      nav("/student/main")
         }
         setLaoding(false);
         // nav('/admin/main')
