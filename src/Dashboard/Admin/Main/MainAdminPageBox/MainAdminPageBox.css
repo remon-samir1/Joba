@@ -5,7 +5,8 @@
   gap: 15px;
   padding:0 25px;
   height: 110px;
-  width: 15rem;
+  min-width: 23%;
+  max-width: 16rem;
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #DDD;

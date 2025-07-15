@@ -144,7 +144,7 @@ const SideDetails = (props) => {
             </div>
             <p className="text-[0.9rem] text-textColor">{props.certificate == 0 ? 'No' : 'Yes'}</p>
           </div>
-          <div className="flex justify-center  items-center gap-3 py-3 border-b border-[#ddd]">
+          <div className="flex justify-start  items-center gap-3 py-3 border-b border-[#ddd]">
             <div className="flex items-center gap-2">
               <Icon
                 className="text-textColor"

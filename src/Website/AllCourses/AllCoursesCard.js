@@ -16,7 +16,7 @@ const AllCoursesCard = (props) => {
   };
 
   return (
-    <div style={{boxShadow:'0 4px 8px rgb(0 0 0 / 3%)'}} className="pb-3 min-w-[290px] max-w-[340px] border flex-1 overflow-hidden bg-white rounded-xl mt-3 group transition-transform duration-500">
+    <div style={{boxShadow:'0 4px 8px rgb(0 0 0 / 3%)' , flex:'1 1 30%'}} className="pb-3 min-w-[290px] max-w-[370px] border flex-1 overflow-hidden bg-white rounded-xl mt-3 group transition-transform duration-500">
       <div className="img h-[195px] w-full relative overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -27,8 +27,8 @@ const AllCoursesCard = (props) => {
         <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Link
             to={`/student/course-details/${props.slug}`}
-            className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md"
-          >
+            className="bg-main  text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-bold shadow-md"
+          > 
             Add to Cart
           </Link>
         </div>

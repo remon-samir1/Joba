@@ -7,41 +7,101 @@ import AllCoursesCard from "./AllCoursesCard";
 import { useEffect } from "react";
 import { Axios } from "../../components/Helpers/Axios";
 import SkeletonShow from "../../components/Skeleton/Skeleton";
+import DownFilter from "./DownFilter";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { useRef } from "react";
 
 const AllCourses = () => {
+  const heroTitle = useRef();
+  const heroImage = useRef();
+
+  useGSAP(() => {
+    gsap.from(heroTitle.current, {
+      x: -100,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+    });
+    gsap.from(heroImage.current, {
+      x: 100,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.3,
+    });
+  });
+
   const [openSide, setOpenSide] = useState(false);
   const [courses, setCourses] = useState([]);
-  const [search, setSearch] = useState('');
-  const [skeleton, setSkeleton] = useState('');
+  const [search, setSearch] = useState("");
+  const [skeleton, setSkeleton] = useState("");
+  const [levelId, setLevelId] = useState([]);
+  const [priceMode, setPriceMode] = useState("");
+
+  const [resize, setResize] = useState(window.innerWidth);
+  useEffect(()=>{
+    window.addEventListener('resize',()=>setResize(window.innerWidth))
+    return ()=> window.removeEventListener('resize',()=>setResize(window.innerWidth))
+  },[window.innerWidth])
+
   useEffect(() => {
     setSkeleton(true);
-    
-    Axios.get(`/fetch-courses?search=${search}`).then((data) => {
+
+    Axios.get(
+      `/fetch-courses?search=${search}&level=${levelId}&price=${priceMode}`
+    ).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
       console.log(data);
     });
-  }, [search]);
+  }, [search, levelId, priceMode]);
   return (
     <div>
       <NavBar />
 
       <div className="About bg-main bg-opacity-25 h-[280px] px-[5vh] md:px-[10vh] flex items-center justify-between">
-        <h3 className="text-[3.3rem] text-textColor font-bold">All Courses</h3>
-        <img
-          src={require("../../images/fly.png")}
-          loading="lazy"
-          className="fly"
-        />
-      </div>
-      <div className="flex items-start gap-4 px-[10vh] py-8">
-        {openSide && <SideFilter setSearch={setSearch}/>}
-        <div className="flex-1">
+  <h3
+    ref={heroTitle}
+    className="text-[3.3rem] text-textColor font-bold"
+  >
+    All Courses
+  </h3>
+  <img
+    ref={heroImage}
+    src={require("../../images/fly.png")}
+    loading="lazy"
+    className="fly"
+  />
+</div>
+
+      <div className="flex items-start gap-4 px-[5vh] md:px-[10vh] py-8">
+        {openSide ?
+         resize < 768
+         ?
+        (
+          <DownFilter
+            setOpenSide={setOpenSide}
+            openSide={openSide}
+            setSearch={setSearch}
+            setPriceMode={setPriceMode}
+            setLevelId={setLevelId}
+          />
+        ):
+        <SideFilter
+      
+        setSearch={setSearch}
+        setPriceMode={setPriceMode}
+        setLevelId={setLevelId}
+      />
+      :''
+      }
+        <div className="w-full md:flex-1">
           <div className="flex justify-between items-center gap-10">
             <input
               type="text"
               placeholder="Search"
-              onChange={(e)=>setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               className="outline-none focus:border-b-[#F7CABA]  bg-transparent w-[100%] !border-b border-b-[#ddd] p-3 text-text2  "
             />
             <button
@@ -59,9 +119,8 @@ const AllCourses = () => {
               <span>Filter</span>
             </button>
           </div>
-          <div className="flex items-center mt-6 gap-8 flex-wrap">
-            {
-              skeleton
+          <div className="flex items-center justify-center md:justify-start mt-6 gap-8 flex-wrap">
+            {skeleton
               ? Array.from({ length: 6 }).map((_, index) => (
                   <div
                     key={index}
@@ -70,15 +129,16 @@ const AllCourses = () => {
                     <SkeletonShow length="1" width="100%" height="300px" />
                   </div>
                 ))
-              :
-              courses?.map((data , index)=>(
-                <AllCoursesCard
-                slug={data.slug}
-                instructor_image={data.instructor?.image}
-                instructor_name={data.instructor?.user_name}
-                image={data.thumbnail} price={data.price} title={data.title}/>
-              ))
-            }
+              : courses?.map((data, index) => (
+                  <AllCoursesCard
+                    slug={data.slug}
+                    instructor_image={data.instructor?.image}
+                    instructor_name={data.instructor?.user_name}
+                    image={data.thumbnail}
+                    price={data.price}
+                    title={data.title}
+                  />
+                ))}
           </div>
         </div>
       </div>

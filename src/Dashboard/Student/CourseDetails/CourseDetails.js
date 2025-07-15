@@ -156,7 +156,7 @@ const CourseDetails = () => {
               <CourseDetailsInstructor
                 image={course?.instructor.image}
                 name={course?.instructor.name}
-                bio={course?.instructor.short_bio}
+                bio={course?.instructor.bio}
               />
             )
           )}
