@@ -9,7 +9,7 @@ import Logo from "../Logo/Logo";
 import openMenu from "../../images/joba-menu.svg";
 import closeMenu from "../../images/joba-close-menu.svg";
 
-const NavBar = () => {
+const NavBar = ({classes}) => {
   const navRef = useRef(null);
   const logoRef = useRef(null);
   const linksRef = useRef([]);
@@ -73,7 +73,7 @@ const NavBar = () => {
 
   return (
     <div
-      className="NavBar fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      className={`${classes} NavBar  fixed top-0 left-0 w-full z-50 transition-all duration-300`}
       ref={navRef}
     >
       <div className="logo" ref={logoRef}>
@@ -92,10 +92,10 @@ const NavBar = () => {
       </div>
 
       <div className={`Links ${menu ? "left-0" : "left-[-100%]"}`}>
-        {["Home", "About", "Course content", "Resources", "Support"].map(
+        {["Home", "About", "AllCourses ", "Featuers", "Support"].map(
           (text, index) => (
             <Link
-            to
+            to={`/${text === 'Home' ? '' : text}`}
               key={index}
               onClick={() => setMenu(false)}
               className="link"

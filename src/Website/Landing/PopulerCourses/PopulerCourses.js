@@ -29,10 +29,23 @@ import PopulerCoursesCard from "./PopulerCoursesCard";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PopulerCourses = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // get data
+  // useEffect(() => {
+  //   setLoading(true);
+  //   Axios.get(`/admin/course-category?page=${page}&keyword=${search}& status=${status}`).then((data) => {
+  //     console.log(data.data.data.categories);
+  //     setCategories(data.data.data.categories.data);
+  //     setLoading(false);
+  //   });
+  // }, [search,deleted, status]);
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const bgRef = useRef(null);
@@ -82,7 +95,7 @@ const PopulerCourses = () => {
   return (
     <div ref={containerRef} className="PopulerCourses container mx-auto">
       <div ref={headerRef} className="header">
-        <h3>Populer Courses</h3>
+        <h3>Our Categories</h3>
       </div>
       <div ref={bgRef} className="main-bg">
         <img src={require("../../../images/Populer-bg.png")} alt="PopulerCourses" loading="lazy" />

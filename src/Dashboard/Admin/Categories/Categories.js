@@ -12,12 +12,12 @@ import Notifcation from "../../../components/Notification";
 
 const Categories = () => {
   const [deleted ,setDeleted] = useState(false)
-  const [categories, setCategories] = useState([]);
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
   const [search , setSearch] = useState('')
+  const [categories, setCategories] = useState([]);
   // get data
   useEffect(() => {
     setLoading(true);

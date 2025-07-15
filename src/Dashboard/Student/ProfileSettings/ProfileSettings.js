@@ -75,7 +75,7 @@ const ProfileSettings = () => {
 
       })
     });
-  }, []);
+  }, [])
   return (
     <div>
       <Notifcation />

@@ -4,11 +4,13 @@ import { Icon } from "@iconify-icon/react";
 
 const CourseContactDetails = (props) => {
   const [units, setUnits] = useState([]);
-  const [openUnit, setOpenUnit] = useState(null);
+  const [openUnit, setOpenUnit] = useState(0);
   const contentRefs = useRef([]);
 
   
-
+useEffect(()=>{
+  setOpenUnit(0)
+},[])
   const toggleUnit = (index) => {
     if (openUnit === index) {
       // Close animation
@@ -61,7 +63,7 @@ const CourseContactDetails = (props) => {
               {unit.title}
             </span>
             <div className="flex items-center gap-1">
-<span className="text-[1rem] text-textColor ">0/30 Done</span>
+{/* <span className="text-[1rem] text-textColor ">0/30 Done</span> */}
             <Icon
               icon="fe:arrow-down"
               width="18"

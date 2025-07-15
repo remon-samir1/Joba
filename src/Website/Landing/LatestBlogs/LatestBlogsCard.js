@@ -14,8 +14,8 @@ const LatestBlogsCard = (props) => {
       <div className="content">
 
       <p className="date">Creative {TransformDate(props.date)}</p>
-      <h4 className="title">{props.title}</h4>
-      <p className="desk" dangerouslySetInnerHTML={{__html : StringSlice(props.description , 35)}}>
+      <h4 className="title">{StringSlice(props.title , 30)}</h4>
+      <p className="desk" dangerouslySetInnerHTML={{__html : StringSlice(props.description , 100)}}>
       </p>
       </div>
     </Link>

@@ -58,9 +58,9 @@ const Login = () => {
         saveData();
         toast.success(res.data.messege);
         if (res.data.isAdmin) {
-          nav("/admin/main")
+          window.location.pathname = "/admin/main";
         } else {
-      nav("/student/main")
+          window.location.pathname = "/student/main";
         }
         setLaoding(false);
         // nav('/admin/main')
@@ -132,7 +132,7 @@ const Login = () => {
                 />
                 <label htmlFor="remmember">Remember me</label>
               </div>
-              <Link className="link">Forget password</Link>
+              <Link to='/forget-password' className="link">Forget password</Link>
             </div>
             <button type="submit">Log in</button>
             <p className="seperator">- Or log in with -</p>

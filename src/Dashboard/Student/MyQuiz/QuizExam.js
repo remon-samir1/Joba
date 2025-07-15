@@ -16,8 +16,8 @@ const QuizExam = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    Axios.get(`student/learning/quiz/${id}`).then((data) => {
-
+   Axios.get(`student/learning/quiz/${id}`).then((data) => {
+console.log(data);
       const quizData = data.data.quiz;
       setQuestions(quizData.questions);
       setLoading(false);
@@ -25,11 +25,13 @@ const QuizExam = () => {
       setTimeLeft(Number(quizData.time));
 
 
-      if (data.data?.attempt === data.data?.quiz.attempt) {
-        toast.warn("You Reached The Limit of Attempt");
-        navigate(-1);
-      }
-    });
+
+    }).catch(()=>{
+      toast.warn("You Reached The Limit of Attempt");
+    setTimeout(() => {
+      navigate(-1);
+    }, 3000);
+    })
   }, []);
 
   useEffect(() => {

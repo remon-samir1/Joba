@@ -23,7 +23,19 @@ const Player = ({ url, setPlay }) => {
   const videoRef = useRef();
   const containerRef = useRef();
   const [isClosing, setIsClosing] = useState(false);
-  const source = getPlyrSource(url);
+  const [source , setSource] = useState(getPlyrSource(url))
+  useEffect(()=>{
+    
+    if (url.includes("youtube.com") || url.includes("youtu.be")) {
+      setTimeout(() => {
+      
+        setSource( getPlyrSource(url))
+        }, 3000);
+
+    }
+    setSource( getPlyrSource(url))
+
+  },[])
 
   useEffect(() => {
     gsap.fromTo(

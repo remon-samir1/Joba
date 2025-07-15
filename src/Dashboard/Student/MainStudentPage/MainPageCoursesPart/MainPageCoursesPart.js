@@ -8,6 +8,7 @@ const MainPageCoursesPart = () => {
 //  get data
 const [courses ,setCourses] = useState([])
 const [categories ,setCategories] = useState([])
+const [categoryId ,setCategoryId] = useState('')
 const [skeleton , setSkeleton] = useState(false)
 // useEffect(()=>{
 
@@ -19,11 +20,11 @@ useEffect(()=>{
     setSkeleton(false)
     setCategories(data.data.categories)})
 
-  Axios.get('/student/enrolled-courses').then(data=>{
+  Axios.get(`/student/enrolled-courses?category=${categoryId}`).then(data=>{
     console.log(data.data);
     setSkeleton(false)
     setCourses(data.data.enrolls)})
-},[])
+},[categoryId])
 console.log(courses);
   
 const [resize , setResize] = useState(window.innerWidth)
@@ -57,7 +58,7 @@ console.log(resize);
               )) :
             categories.map((data,index)=>(
 
-          <button key={index} className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
+          <button onClick={()=>setCategoryId(data.id)} key={index} className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
             {data.name}
           </button>
             ))
@@ -95,7 +96,7 @@ console.log(resize);
                 alt="course"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <Link to={`/student/course-details/${course?.course.slug}`} className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md">
+                <Link to={`/student/enrolled-course/${course?.course.slug}`} className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md">
                   Watch Now
                 </Link>
               </div>

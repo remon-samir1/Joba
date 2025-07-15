@@ -103,7 +103,7 @@ const Cart = () => {
                       </span>
                     </div>
                     <span className="text-base  text-main font-bold">
-                      ${item.options.discount_price}
+                      ${item.options.real_price}
                     </span>
                   </div>
                   <button

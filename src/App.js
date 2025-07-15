@@ -66,6 +66,10 @@ import QuizExam from "./Dashboard/Student/MyQuiz/QuizExam";
 import QuizResualt from "./Dashboard/Student/MyQuiz/QuizResualt";
 import Blogs from "./Website/Blog/Blogs";
 import Coupon from "./Dashboard/Admin/Coupon/Coupon";
+import ForgetPassword from "./Website/Auth/ForgetPassword/ForgetPassword";
+import Support from "./Website/Support/Support";
+import About from "./Website/About/About";
+import AllCourses from "./Website/AllCourses/AllCourses";
 function App() {
   return (
     <div className="App">
@@ -73,10 +77,14 @@ function App() {
       <Routes>
       <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Landing />} />
+        <Route path="/Support" element={<Support />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/AllCourses" element={<AllCourses />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
            {/* Admin Dahboard */}
            <Route element={<ReqiureAuth  alowedRole={['admin' , 'student' ]}/>}  >
            <Route element={<ReqiureAuth  alowedRole={['admin' ]}/>}  >

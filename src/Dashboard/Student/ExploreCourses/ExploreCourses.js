@@ -4,22 +4,26 @@ import { Link } from "react-router-dom";
 import { Axios } from "../../../components/Helpers/Axios";
 import SkeletonShow from "../../../components/Skeleton/Skeleton";
 import CustomSelect from "../../../components/CustomSelect/CustomSelect";
+import { useContext } from "react";
+import { StudentSearch } from "../../../Context/StudentSearchContext";
 
 const ExploreCourses = () => {
   const [fav, setFav] = useState(false);
   const [courses, setCourses] = useState([]);
   const [skeleton, setSkeleton] = useState(false);
   const [wait , setWait] = useState(false)
-
+  const StudentSearchContext = useContext(StudentSearch);
+  const studentSearchState = StudentSearchContext.studentSearch;
   // get data
   useEffect(() => {
     setSkeleton(true);
-    Axios.get("/fetch-courses").then((data) => {
+    
+    Axios.get(`/fetch-courses?search=${studentSearchState}`).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
       console.log(data);
     });
-  }, []);
+  }, [studentSearchState]);
 
   const toggleFav = async (slug) => {
     try{
@@ -95,7 +99,7 @@ const ExploreCourses = () => {
                       to={`/student/course-details/${course.slug}`}
                       className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md"
                     >
-                      Watch Now
+                  View Details
                     </Link>
                   </div>
 
