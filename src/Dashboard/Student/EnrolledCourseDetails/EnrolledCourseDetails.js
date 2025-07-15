@@ -77,7 +77,7 @@ const EnrolledCourseDetails = () => {
         </button>
         <Breadcrumbs />
       </div>
-      <div className="flex mt-5 items-start gap-5 flex-col md:flex-row flex-wrap">
+      <div className="flex mt-5 items-start justify-center gap-5 flex-col md:flex-row flex-wrap">
         {/*  center  */}
         <div className="flex-1 pb-12 bg-white rounded-xl">
           {type === "document" ? (

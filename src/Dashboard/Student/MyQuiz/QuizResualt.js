@@ -22,9 +22,10 @@ const QuizResualt = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get("/student/quiz-attempts").then((data) => {
+      console.log(data);
       const quizesData = data.data.quizAttempts.data;
       console.log(quizesData);
-      setQuizes(quizesData.filter((data) => data.quiz.id == id)[0]);
+      setQuizes(quizesData.filter((data) => data.id == id)[0]);
       setLoading(false);
     });
   }, []);

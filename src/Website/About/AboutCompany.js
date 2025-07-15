@@ -96,7 +96,7 @@ const AboutCompany = () => {
   return (
     <>
       <div className="mx-auto px-8 container overflow-hidden">
-        <div className="mt-7 flex justify-between md:flex-row flex-col-reverse ">
+        <div className="mt-7 flex justify-between gap-20  md:flex-row flex-col-reverse ">
           {play && <Player url={video} setPlay={setPlay} />}
           <div className="w-full md:w-[50%] md:mt-0 mt-9">
             <p
