@@ -11,10 +11,17 @@ import JoinUs from './JoinUs/JoinUs';
 import LatestBlogs from './LatestBlogs/LatestBlogs';
 import SudentsSays from './SudentsSays/SudentsSays';
 import Footer from '../../components/Footer/Footer';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 const Landing = () => {
+  const scrollRef = useRef();
+  useEffect(()=>{
+    scrollRef.current.scrollIntoView()
+  },[])
   return (
-    <div >
+    <div ref={scrollRef}>
       <NavBar/>
+      {/* <div></div> */}
       <Hero/>
       <AboutUs/>
       <WhatweOffer/>

@@ -70,6 +70,7 @@ import ForgetPassword from "./Website/Auth/ForgetPassword/ForgetPassword";
 import Support from "./Website/Support/Support";
 import About from "./Website/About/About";
 import AllCourses from "./Website/AllCourses/AllCourses";
+import BecomeInstructor from "./Website/BecomeInstructor/BecomeInstructor";
 function App() {
   return (
     <div className="App">
@@ -77,6 +78,7 @@ function App() {
       <Routes>
       <Route path="*" element={<NotFoundPage />} />
         <Route path="/" element={<Landing />} />
+        <Route path="/BecomeInstructor" element={<BecomeInstructor />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/About" element={<About />} />
         <Route path="/AllCourses" element={<AllCourses />} />

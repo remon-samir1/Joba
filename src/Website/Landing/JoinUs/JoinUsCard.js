@@ -28,7 +28,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const JoinUsCard = ({ title, image }) => {
+const JoinUsCard = ({ title, image , link }) => {
   const cardRef = useRef(null);
   const contentRef = useRef(null);
   const imgRef = useRef(null);
@@ -69,7 +69,7 @@ const JoinUsCard = ({ title, image }) => {
         <p className="desk">
           Lorem ipsum dolor sit amet consectetur.
         </p>
-        <Link to='/login' className='link'>Join now</Link>
+        <Link to={link} className='link'>Join now</Link>
       </div>
       <div ref={imgRef} className="img">
         <img src={require(`../../../images/${image}`)} alt="learn" loading='lazy' />

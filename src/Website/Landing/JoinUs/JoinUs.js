@@ -1,30 +1,4 @@
-// import './JoinUs.css'
-// import React from 'react';
-// import JoinUsCard from './JoinUsCard';
 
-// const JoinUs = () => {
-//   return (
-//     <div className='JoinUs'>
-//         <div className="texts">
-//         <div  className="header">
-//           <h5>Join with us</h5>
-//           <img
-//             src={require("../../../images/orangeArrow.png")}
-//             alt=">>"
-//             loading="lazy"
-//           />
-//         </div>
-//         <p>Which one is suitable for you?</p>
-//       </div>
-//     <div className="boxes mt-20 flex justify-center items-center gap-10">
-//       <JoinUsCard title='learn' image="learn.png"/>
-//       <JoinUsCard title='teach' image="teach.png"/>
-//     </div>
-//     </div>
-//   );
-// }
-
-// export default JoinUs;
 
 import './JoinUs.css';
 import React, { useRef } from 'react';
@@ -65,8 +39,8 @@ const JoinUs = () => {
         <p>Which one is suitable for you?</p>
       </div>
       <div className="boxes flex justify-center items-center gap-10 flex-wrap">
-        <JoinUsCard title='learn' image="learn.png"/>
-        <JoinUsCard title='teach' image="teach.png"/>
+        <JoinUsCard title='learn' image="learn.png" link='/login'/>
+        <JoinUsCard title='teach' image="teach.png" link='/BecomeInstructor'/>
       </div>
     </div>
   );
