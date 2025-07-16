@@ -140,10 +140,11 @@ const QuizResualt = () => {
                   >
                     <input
                       disabled
+                      checked={answer.correct === 1}
                       // className="bg-red-500"
                       type="radio"
                       name={`question-${qIndex}`}
-                      checked={selected}
+                      // checked={selected}
                     />
                     {answer.title}
                   </label>

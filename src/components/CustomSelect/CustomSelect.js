@@ -6,9 +6,9 @@ const CustomSelect = ({ options, label, iconName, onChange , setSort }) => {
   const [selected, setSelected] = useState(label);
 
   const handleSelect = (option) => {
-    setSelected(option.label);
+    setSelected(option.label ?option.label : label );
 
-setSort(option.value)
+setSort(option.value ? option.value : '')
     setIsOpen(false);
   };
 
@@ -27,6 +27,13 @@ setSort(option.value)
 
       {isOpen && (
         <ul className="absolute left-0 top-full w-full bg-white mt-1 rounded shadow z-10">
+            <li
+        
+              className="px-4 whitespace-nowrap py-2 border-b text-center hover:bg-main hover:text-white cursor-pointer transition"
+              onClick={() => handleSelect('')}
+            >
+              {label}
+            </li>
           {options.map((option, index) => (
             <li
               key={index}

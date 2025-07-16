@@ -1,7 +1,7 @@
 import { Icon } from "@iconify-icon/react";
 import React from "react";
 import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { SelectBox } from "../../../components/DropDown/SelectBox";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -70,7 +70,7 @@ const StudentReviewsDetails = () => {
               </div>
             ) : (
               <>
-                <p>{data.course?.title}</p>
+                <Link className="hover:text-main " to={`/student/course-details/${data.course?.slug}`}>{data.course?.title}</Link>
                 <div>
                   <StarRating rating={data?.rating} />
                 </div>

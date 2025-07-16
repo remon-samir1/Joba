@@ -10,9 +10,7 @@ const [courses ,setCourses] = useState([])
 const [categories ,setCategories] = useState([])
 const [categoryId ,setCategoryId] = useState('')
 const [skeleton , setSkeleton] = useState(false)
-// useEffect(()=>{
 
-// },[])
 useEffect(()=>{
   setSkeleton(true)
   Axios.get('/courses').then(data=>{
@@ -20,7 +18,7 @@ useEffect(()=>{
     setSkeleton(false)
     setCategories(data.data.categories)})
 
-  Axios.get(`/student/enrolled-courses?category=${categoryId}`).then(data=>{
+  Axios.get(`/student/enrolled-courses?category_id=${categoryId}`).then(data=>{
     console.log(data.data);
     setSkeleton(false)
     setCourses(data.data.enrolls)})
@@ -45,7 +43,7 @@ console.log(resize);
           <p className="text-[1.2rem] text-textColor">Continue learning</p>
           <div className="flex items-center gap-6 scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
 
-          <button className="bg-[#F6F8FC] text-text2 px-5 whitespace-nowrap py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
+          <button onClick={()=>setCategoryId('')} className={`bg-[#F6F8FC] text-text2 px-5 whitespace-nowrap py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500 ${categoryId === '' && "!border-main !text-main"}`}>
             All Courses
           </button>
           {
@@ -58,7 +56,7 @@ console.log(resize);
               )) :
             categories.map((data,index)=>(
 
-          <button onClick={()=>setCategoryId(data.id)} key={index} className="bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500">
+          <button onClick={()=>setCategoryId(data.id)} key={index} className={`bg-[#F6F8FC] text-text2 px-5 py-3 rounded-lg text-[1rem] border border-[#F6F8FC] hover:border-main hover:text-main duration-500 ${categoryId === data.id && "border-main text-main"}`}>
             {data.name}
           </button>
             ))
@@ -86,6 +84,8 @@ console.log(resize);
           </div>
           ))
           :
+          courses.length === 0 ? <p className="w-full text-center p-6 text-text2">No Courses In This Category </p> :
+
           courses.map((course,index)=>(
 
             <div key={index} className="course-card md:max-w-[300px] group relative w-full flex-1 bg-white p-3 md:p-0 md:bg-transparent transition-transform duration-500 ">
