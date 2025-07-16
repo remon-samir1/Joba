@@ -71,6 +71,7 @@ import Support from "./Website/Support/Support";
 import About from "./Website/About/About";
 import AllCourses from "./Website/AllCourses/AllCourses";
 import BecomeInstructor from "./Website/BecomeInstructor/BecomeInstructor";
+import ResetPassword from "./Website/Auth/ResetPassword/ResetPassword";
 function App() {
   return (
     <div className="App">
@@ -87,6 +88,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
            {/* Admin Dahboard */}
            <Route element={<ReqiureAuth  alowedRole={['admin' , 'student' ]}/>}  >
            <Route element={<ReqiureAuth  alowedRole={['admin' ]}/>}  >

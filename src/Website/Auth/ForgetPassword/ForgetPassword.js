@@ -30,22 +30,21 @@ const ForgetPassword = () => {
     e.preventDefault();
     setLaoding(true);
     try {
-      const res = await Axios.post("/forgot-password", form);
-      if (res.data.status == "We have emailed your password reset link.") {
+      const res = await Axios.post("/forget-password", form);
         console.log(res);
-        const token = res.data.access_token;
-        cookie.set("token", token);
+      if(res.data === "Email does not exist"){
+        toast.error(res.data)
+      }else{
 
-        toast.success(res.data.status);
-  
-        setLaoding(false);
-  
-        console.log(res);
-      } else {
-        console.log(res);
-        toast.error('email Not Found');
-        setLaoding(false);
+        toast.success(res.data.messege);
       }
+  
+
+  
+        setLaoding(false);
+  
+        console.log(res);
+    
     } catch (err) {
       toast.error("There is some think wrong !");
       setLaoding(false);
@@ -57,20 +56,13 @@ const ForgetPassword = () => {
       {laoding && <Loading />}
       <Notifcation />
       <div className="Login">
-        <div className="main  ">
+        <div className="main">
           <div className="logo ">
             <Logo />
           </div>
-
-          <form
-            className="form-box !w-[90%] md:!w-[50%]"
-            onSubmit={handelSubmit}
-          >
-            <h2>Forget Password</h2>
-            <p className="!text-base">
-              Enter your email address and we will sent you a link to reset your
-              password
-            </p>
+          <form className="form-box" onSubmit={handelSubmit}>
+            <h2>Forget your password ?</h2>
+            <p className="text-center">Don’t worry, happens to all of us. Enter your email below to recover your password</p>
             <div className="inputs">
               <div className="input">
                 <input
@@ -82,12 +74,29 @@ const ForgetPassword = () => {
                   required
                 />
               </div>
+            
             </div>
-            <div className="options"></div>
-            <button type="submit">Send Resst Link</button>
+            <button type="submit">Submit</button>
+            <p className="seperator">- Or log in with -</p>
+            <div className="providers">
+              <Link className="link">
+                <img src={google} alt="google" loading="lazy" />
+                <span>Google</span>
+              </Link>
+              <Link className="link">
+                <img src={facebook} alt="facebook" loading="lazy" />
+                <span>Facebook</span>
+              </Link>
+            </div>
+            <p className="redirect">
+              Don't have an account?{" "}
+              <Link className="link" to="/register">
+                sign up
+              </Link>
+            </p>
           </form>
 
-          {/* <div className="content">
+          <div className="content">
             <img src={logo} alt="juba" loading="lazy" />
             <h2>
               Welcome to <br className="hidden md:block" />
@@ -97,7 +106,7 @@ const ForgetPassword = () => {
               Lorem ipsum dolor sit amet consectetur. Condimentum aliquam
               sagittis senectus purus fames.{" "}
             </p>
-          </div> */}
+          </div>
         </div>
       </div>
     </>
