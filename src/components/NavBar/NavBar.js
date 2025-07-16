@@ -121,7 +121,7 @@ const NavBar = ({classes}) => {
         {
           token ?
           <>
-          <Link to={user === 'admin' ? '/admin/main' : '/student/main'} className="link">
+          <Link to={user === 'admin' ? '/admin/main' : '/student'} className="link">
         My Dashboard
         </Link>
         <button onClick={handlLogout}  className="link">
@@ -145,7 +145,7 @@ const NavBar = ({classes}) => {
         {
           token ?
           <>
-          <Link to={user === 'admin' ? '/admin/main' : '/student/main'} className="link">
+          <Link to={user === 'admin' ? '/admin/main' : '/student'} className="link">
         My Dashboard
         </Link>
         <button onClick={handlLogout}  className="link">

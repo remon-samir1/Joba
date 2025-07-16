@@ -60,7 +60,7 @@ const Login = () => {
         if (res.data.isAdmin) {
           window.location.pathname = "/admin/main";
         } else {
-          window.location.pathname = "/student/main";
+          window.location.pathname = "/student";
         }
         setLaoding(false);
         // nav('/admin/main')

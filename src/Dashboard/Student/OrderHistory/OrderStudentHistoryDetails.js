@@ -66,7 +66,7 @@ useEffect(()=>{
 
       <div className="boxes flex justify-start items-center gap-8 mt-8">
       
-        <div className="flex justify-start items-end h-[344px] gap-3 flex-col w-full md:w-[50%] bg-white">
+        <div className="flex justify-start items-end h-[344px] gap-3 flex-col w-full md:w-[100%] bg-white">
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">subtotal</p>
             <p className="text-base text-textColor mt-1 font-semibold">

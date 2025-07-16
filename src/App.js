@@ -148,7 +148,7 @@ function App() {
 
           <Route path="/student" element={<StudentDashboard/>}>
           <Route path="cart" element={<Cart/>}/>
-          <Route path="main" element={<MainStudentPage/>}/>
+          <Route path="/student" element={<MainStudentPage/>}/>
           <Route path="explore" element={<ExploreCourses/>}/>
           <Route path="course-details/:id" element={<CourseDetails/>}/>
           <Route path="order-history" element={<OrderStudentHistory/>}/>
