@@ -16,7 +16,7 @@ const AllCoursesCard = (props) => {
   };
 
   return (
-    <div style={{boxShadow:'0 4px 8px rgb(0 0 0 / 3%)' , flex:'1 1 30%'}} className="pb-3 min-w-[290px] max-w-[370px] border flex-1 overflow-hidden bg-white rounded-xl mt-3 group transition-transform duration-500">
+    <Link   to={`/student/course-details/${props.slug}`} style={{boxShadow:'0 4px 8px rgb(0 0 0 / 3%)' , flex:'1 1 30%'}} className="pb-3 min-w-[290px] max-w-[370px] border flex-1 overflow-hidden bg-white rounded-xl mt-3 group transition-transform duration-500">
       <div className="img h-[195px] w-full relative overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -57,7 +57,7 @@ const AllCoursesCard = (props) => {
           {props.price}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
