@@ -142,7 +142,7 @@ useEffect(()=>{
             reviews={course.reviews.length}
             instructor_image={course.instructor.image}
             instructor_name={course.instructor.user_name}
-            price={course.discount ? course.discount : course.price}
+            price={ course.price}
             key={index}
             forwardRef={(el) => (cardsRef.current[index] = el)}
           />
