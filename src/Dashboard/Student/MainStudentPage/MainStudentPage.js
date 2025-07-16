@@ -6,6 +6,7 @@ import book from "../../../images/book.svg";
 import MainPageCoursesPart from "./MainPageCoursesPart/MainPageCoursesPart";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
+import OrderStudentHistory from "../OrderHistory/OrderStudentHistory";
 
 const MainStudentPage = () => {
   const [data,setData]= useState() 
@@ -56,6 +57,7 @@ useEffect(()=>{
         </div>
       </div>
       <MainPageCoursesPart/>
+      <OrderStudentHistory/>
     </div>
   );
 };

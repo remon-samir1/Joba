@@ -69,7 +69,7 @@ const Hero = () => {
           <img src={require('../../../images/Hero.webp')} alt="image" />
         </div>
           <div className="details">
-            <Link className="link" ref={buttonRef}>
+            <Link to='/About' className="link" ref={buttonRef}>
               <span>Learn more</span>
               <MdOutlineKeyboardDoubleArrowRight className="icon" />
             </Link>

@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import openMenu from "../../images/joba-menu.svg";
 import closeMenu from "../../images/joba-close-menu.svg";
@@ -105,7 +105,7 @@ const NavBar = ({classes}) => {
       <div className={`Links ${menu ? "left-0" : "left-[-100%]"}`}>
         {["Home", "About", "AllCourses ", "Support"].map(
           (text, index) => (
-            <Link
+            <NavLink
             to={`/${text === 'Home' ? '' : text}`}
               key={index}
               onClick={() => setMenu(false)}
@@ -113,7 +113,7 @@ const NavBar = ({classes}) => {
               ref={(el) => (linksRef.current[index] = el)}
             >
               {text}
-            </Link>
+            </NavLink>
           )
         )}
 
@@ -121,7 +121,7 @@ const NavBar = ({classes}) => {
         {
           token ?
           <>
-          <Link to={user === 'admin' ? 'admin/main' : 'student/main'} className="link">
+          <Link to={user === 'admin' ? '/admin/main' : '/student/main'} className="link">
         My Dashboard
         </Link>
         <button onClick={handlLogout}  className="link">
@@ -145,7 +145,7 @@ const NavBar = ({classes}) => {
         {
           token ?
           <>
-          <Link to={user === 'admin' ? 'admin/main' : 'student/main'} className="link">
+          <Link to={user === 'admin' ? '/admin/main' : '/student/main'} className="link">
         My Dashboard
         </Link>
         <button onClick={handlLogout}  className="link">

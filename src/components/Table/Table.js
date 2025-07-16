@@ -226,7 +226,7 @@ const Table = (props) => {
 
           {props.viewStudent && (
             <Link
-              to={`view/${item.id}`}
+              to={`/student/order-history/view/${item.id}`}
               className="w-7 h-7 bg-[#F15A24] bg-opacity-30 flex justify-center items-center rounded-full"
             >
               <Icon

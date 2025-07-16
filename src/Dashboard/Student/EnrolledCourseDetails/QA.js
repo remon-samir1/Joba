@@ -1,12 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify-icon/react";
 import { Axios, baseUrl } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
-
-
-
 
 const QA = (props) => {
   const [sendQuestion, setSendQuestion] = useState({
@@ -20,66 +16,69 @@ const QA = (props) => {
   const [ask, setAsk] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [change , setChange] = useState(false)
-  const [search , setSearch] = useState('')
+  const [change, setChange] = useState(false);
+  const [search, setSearch] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("Latest");
   const [replyingTo, setReplyingTo] = useState(null);
   const [replyText, setReplyText] = useState("");
   // handelSendQuestion
   const handelSendQuestion = () => {
+    setLoading(true);
     try {
-      setLoading(true)
-      Axios.post("/student/create-question", sendQuestion).then((data) =>{
-
-        console.log(data)
-        setLoading(false)
-      toast.success('Question Created Successfly')
+      if(sendQuestion.lesson_id !== undefined){
+        
+        Axios.post("/student/create-question", sendQuestion).then((data) => {
+          console.log(data);
+          setLoading(false);
+          toast.success("Question Created Successfly");
+        });
+      }else{
+        setLoading(false);
+        toast.warn('there is no lessons to add questions')
       }
-      );
     } catch (err) {
-      setLoading(false)
-      toast.error('Question Does not Created ')
-
+      setLoading(false);
+      toast.error("Question Does not Created ");
     }
   };
   useEffect(() => {
     setSendQuestion({ ...sendQuestion, question: props.id });
     setSendQuestion({ ...sendQuestion, lesson_id: props.lessonId });
-    Axios.get(`/student/fetch-lesson-questions?query=${searchTerm}&lesson_id=${sendQuestion.lesson_id}&course_id=${sendQuestion.course_id}`).then((data) =>{
-
-      console.log(data)
-      setQuestions(data.data.view.data)
-    }
-    );
-  }, [change,searchTerm]);
-
+    Axios.get(
+      `/student/fetch-lesson-questions?query=${searchTerm}&lesson_id=${sendQuestion.lesson_id}&course_id=${sendQuestion.course_id}`
+    ).then((data) => {
+      setLoading(false)
+      console.log(data);
+      setQuestions(data.data.view.data);
+    });
+  }, [change, searchTerm]);
 
   const handleReplySubmit = async (questionId) => {
-    setLoading(true)
-try{
-Axios.post('/student/create-reply' , {
-  reply: replyText,
-  question_id : questionId
-}).then(data=>{
-  toast.success("Reply created successfully")
-  setChange(prev => !prev)
-  setLoading(false)
-  setReplyText('')
-})
-}catch(err){
-  console.log(err);
-}
-  }
+    setLoading(true);
+    try {
+      Axios.post("/student/create-reply", {
+        reply: replyText,
+        question_id: questionId,
+      }).then((data) => {
+        toast.success("Reply created successfully");
+        setChange((prev) => !prev);
+        setLoading(false);
+        setReplyText("");
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="py-5 px-6 bg-white font-cairo">
-            {loading && (
+      {loading && (
         <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
         </div>
       )}
-      <Notifcation/>
+      <Notifcation />
       <div className="flex items-center justify-between gap-6 flex-wrap mb-8">
         {/* Search Box */}
         <div className="md:w-[320px] md:flex-grow-0 flex-1 h-[40px] border border-[#dddd] rounded-full flex items-center justify-between pl-3 pr-1">
@@ -154,7 +153,10 @@ Axios.post('/student/create-reply' , {
             <div key={q.id} className="border-b border-gray-200 pb-4">
               {/* Question */}
               <div className="flex items-start gap-4">
-                <img src={`${baseUrl}${q.user?.image}`} className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"/>
+                <img
+                  src={`${baseUrl}${q.user?.image}`}
+                  className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"
+                />
 
                 <div>
                   <p className="font-semibold text-gray-800">{q.user?.name}</p>
@@ -174,7 +176,10 @@ Axios.post('/student/create-reply' , {
               <div className="ml-14 mt-4 space-y-4">
                 {q.replies.map((reply) => (
                   <div key={reply.id} className="flex items-start gap-4">
-                    <img src={`${baseUrl}${q.user?.image}`}  className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0" />
+                    <img
+                      src={`${baseUrl}${q.user?.image}`}
+                      className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"
+                    />
                     <div>
                       <p className="font-semibold text-gray-800 text-sm">
                         {reply.user?.name}
@@ -182,7 +187,6 @@ Axios.post('/student/create-reply' , {
                       <p className="text-gray-600 mt-0.5 text-sm">
                         {reply.reply}
                       </p>
-                
                     </div>
                   </div>
                 ))}
@@ -210,9 +214,7 @@ Axios.post('/student/create-reply' , {
           ))}
       </div>
       <div className="text-center mt-8">
-        <button className="text-gray-600 font-semibold hover:underline">
-          Load more...
-        </button>
+
       </div>
     </div>
   );

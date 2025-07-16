@@ -13,6 +13,7 @@ import { StudentSearch } from "../../../Context/StudentSearchContext";
 const StudentTopBar = () => {
   const cartch = useContext(CartCh);
   const cartChange = cartch.cartChange;
+  const [name, setName] = useState()
   //  cart notification
   const [cart, setCart] = useState();
   useEffect(() => {
@@ -20,7 +21,9 @@ const StudentTopBar = () => {
       console.log(data);
       setCart(data.data.products.length);
     });
+    Axios.get("/student/setting").then(data => setName(data.data.user.name))
   }, [cartChange]);
+
   const StudentSearchContext = useContext(StudentSearch);
   const studentSearchState = StudentSearchContext.studentSearch;
   const setStudentSearchState = StudentSearchContext.setStudentSearch;
@@ -69,7 +72,7 @@ const StudentTopBar = () => {
           </div>
         </div>
         <div className="name">
-          <p>Welcome ,Jay Johnson</p>
+          <p>Welcome ,{name}</p>
           <p className="text-[1rem] text-text2 mt-4">
             Learn at the comfort of your own home
           </p>
@@ -78,7 +81,7 @@ const StudentTopBar = () => {
       <div className="StudentTopBar">
         <div className="hidden md:flex flex-col items-start justify-start">
           <h3 className="text-[1.5rem] text-textColor font-bold capitalize">
-            Welcome ,Jay Johnson
+            Welcome ,{name}
           </h3>
           <p className="text-[1rem] text-text2 mt-4">
             Learn at the comfort of your own home

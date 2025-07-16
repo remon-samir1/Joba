@@ -6,12 +6,16 @@ import { Icon } from "@iconify-icon/react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import { useState } from "react";
+import SkeletonShow from "../../../components/Skeleton/Skeleton";
 
 const Reviews = () => {
   const [reviews , setReviews] = useState([])
+  const [skeleton , setSkeleton] = useState(false)
   useEffect(()=>{
+    setSkeleton(true)
     Axios.get('/student/reviews').then(data=>{
       setReviews(data.data.reviews.data)
+      setSkeleton(false)
       console.log(data.data.reviews.data)})
   },[])
   // handleDelete
@@ -32,7 +36,14 @@ Axios.delete(`/student/reviews/${id}`).then(data =>{
         <Breadcrumbs />
       </div>
       {/* Review Card */}
-    {reviews.map((data,index)=>(
+    {    skeleton ? 
+        <SkeletonShow
+         height='150px' classes='mt-4' width='100%' length='3'/>
+
+        :
+      
+      
+    reviews.map((data,index)=>(
         <div key={index} className="px-4 py-3 mt-4 bg-white border border-[#dddd] rounded">
         <div className="flex justify-between items-center">
           <StarRating rating={3} />

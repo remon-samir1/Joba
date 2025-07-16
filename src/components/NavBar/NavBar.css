@@ -24,7 +24,9 @@
   font-weight: 600;
   text-decoration: none;
 }
-
+.NavBar .Links .link.active{
+  color: var(--main-color);
+}
 .NavBar .Links .link:hover {
   color: var(--main-color);
 }

@@ -12,18 +12,26 @@ const ExploreCourses = () => {
   const [courses, setCourses] = useState([]);
   const [skeleton, setSkeleton] = useState(false);
   const [wait , setWait] = useState(false)
+  const [lvls , setLvls] = useState([])
+  const [sort , setSort] = useState('')
+  const [level , setLevel] = useState('')
+console.log(sort);
   const StudentSearchContext = useContext(StudentSearch);
   const studentSearchState = StudentSearchContext.studentSearch;
   // get data
   useEffect(() => {
     setSkeleton(true);
     
-    Axios.get(`/fetch-courses?search=${studentSearchState}`).then((data) => {
+    Axios.get(`/fetch-courses?search=${studentSearchState}&level=${level}&htl_or_lth_price=${sort}`).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
       console.log(data);
     });
-  }, [studentSearchState]);
+    Axios.get("admin/course-level").then((data) => {
+      setLvls(data.data.data.courseLevels.data);
+      setSkeleton(false);
+    });
+  }, [studentSearchState , sort , level]);
 
   const toggleFav = async (slug) => {
     try{
@@ -51,24 +59,26 @@ const ExploreCourses = () => {
         <CustomSelect
           label="Level"
           iconName="solar:chart-bold"
-          options={[
-            { label: "Beginning", value: "Beginning" },
-            { label: "Medium", value: "Medium" },
-            { label: "Advanced", value: "advanced" },
-          ]}
-          // onChange={(value) => setLevelFilter(value)}
+          options={lvls?.map((data, index) => ({
+            label: data.name.name,
+            value: data.id
+          }))
+          
+    
+          }
+          setSort={setLevel}
+
         />
 
         <CustomSelect
           label="Filter"
           iconName="mage:filter-fill"
           options={[
-            { label: "Recommended", value: "Recommended" },
-            { label: " High rating", value: "High rating" },
-            { label: "High to low price", value: "High to low price" },
-            { label: "Low to high price", value: "Low to high price" },
+      
+            { label: "High to low price", value: "asc" },
+            { label: "Low to high price", value: "desc" },
           ]}
-          // onChange={(value) => setFilter(value)}
+          setSort={setSort}
         />
       </div>
 

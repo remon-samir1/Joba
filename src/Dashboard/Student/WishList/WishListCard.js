@@ -2,20 +2,25 @@ import { Icon } from '@iconify-icon/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Axios } from '../../../components/Helpers/Axios';
+import { useState } from 'react';
+import { AiOutlineLoading } from "react-icons/ai";
 
 const WishListCard = (props) => {
+  const [spinner , setSpinner] = useState(false)
   const toggleFav = async (slug) => {
+    setSpinner(true)
     try{
       
 
     await Axios.get(`/wishlist/${slug}`).then((data)=>{ 
       props.setWait(prev=> !prev)
       console.log(data);
-    
-    }
+    setSpinner(false)
+  }
   
-    )
-    }catch(err){
+  )
+}catch(err){
+      setSpinner(false)
       console.log(err);
     }
   };
@@ -62,9 +67,14 @@ const WishListCard = (props) => {
             />
             <span className="text-textColor text-base">{props.instructor_name}</span>
           </div>
-          <div className="cursor-pointer w-[35px] h-[35px] rounded-full flex justify-center items-center bg-main bg-opacity-30">
+          <button disabled={spinner}  className="cursor-pointer w-[35px] h-[35px] rounded-full flex justify-center items-center bg-main bg-opacity-30">
+        {
+          spinner ?
+          <AiOutlineLoading className="load-icon text-main" />:
           <Icon onClick={()=>toggleFav(props.slug)} className='text-main' icon="iconamoon:trash-light" width="24" height="24" />
-          </div>
+        }
+
+          </button>
       </div>
     </div>
     

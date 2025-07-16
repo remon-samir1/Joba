@@ -14,7 +14,9 @@ const Cart = () => {
   const [products, setProductus] = useState([]);
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinner] = useState(false);
-
+  const cartch = useContext(CartCh);
+const setCartShopping = cartch.setCartChange 
+const cartShopping = cartch.cartChange 
   const [values, setValues] = useState();
   useEffect(() => {
     setLoading(true);
@@ -24,7 +26,7 @@ const Cart = () => {
       setProductus(data.data.products);
       setValues(data.data);
     });
-  }, []);
+  }, [cartShopping]);
   console.log(products);
   // handleRemoveItem
   const handleRemoveItem = (id) => {
@@ -32,6 +34,7 @@ const Cart = () => {
     try {
       Axios.get(`remove-cart-item/${id}`).then((data) => {
         console.log(data);
+        setCartShopping(prev => !prev)
         toast.success("item deleted successfly");
         setSpinner(false);
         setProductus(products.filter((data) => data.options.rowId != id));

@@ -7,18 +7,25 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
+import TransformDate from "../../../components/Helpers/TransformDate";
+import { useRef } from "react";
 const OrderStudentHistoryDetails = () => {
+  const scrollRef = useRef(null)
 //  get data
 const {id} = useParams()
 const [data , setData] = useState([]);
 useEffect(()=>{
-  Axios.get(`/student/order-details/${id}`).then(data=>console.log(data.data.order))
+
+  scrollRef.current.scrollIntoView()
+  Axios.get(`/student/order-details/${id}`).then(data=>{
+    setData(data.data.order)
+    console.log(data.data.order)})
 },[])
 
 
 
   return (
-    <div className="OrderDetails">
+    <div ref={scrollRef} className="OrderDetails">
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-textColor text-xl"> Order details</h3>
         <Breadcrumbs />
@@ -37,18 +44,18 @@ useEffect(()=>{
               <p>Paymentn Status:</p>
             </div>
             <div className="data">
-              <p>6 / 1 /2004</p>
-              <p> magdy</p>
-              <p>(484) 817-2760 x305</p>
-              <p>Lamar_Hermann@hotmail.com</p>
-              <p>681 W Walnut Street, New Juniorton 90516</p>
-              <p>Free</p>
-              <p>Paid</p>
+              <p>{TransformDate(data?.created_at)}</p>
+              <p> {data?.buyer?.name}</p>
+              <p>{data?.buyer?.phone}</p>
+              <p>{data?.buyer?.email}</p>
+              <p>{data?.buyer?.address}</p>
+              <p>{data?.payment_method}</p>
+              <p>{data?.payment_status}</p>
             </div>
           </div>
           <div className="flex justify-center items-center">
             <p className="text-base font-bold text-textColor whitespace-nowrap">Order Id:</p>
-            <p className="text-base font-bold text-textColor whitespace-nowrap">#gmnsci</p>
+            <p className="text-base font-bold text-textColor whitespace-nowrap">{data?.invoice_id}</p>
           </div>
         </div>
       </div>
@@ -63,25 +70,25 @@ useEffect(()=>{
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">subtotal</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-              0.00 EGP
+            {data?.subTotal} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">Getway charge</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-              0.00 EGP
+        {data?.gateway_charge} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1">
             <p className=" text-[#999999] text-[12px]  ">Discount</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-              0.00 EGP
+            {data?.discount} {data?.payable_currency}
             </p>
           </div>
           <div className="w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">Total</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-              0.00 EGP
+          {data?.paid_amount}  {data?.payable_currency}
             </p>
           </div>
         </div>
