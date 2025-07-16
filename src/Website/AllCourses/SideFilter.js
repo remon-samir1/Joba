@@ -5,8 +5,9 @@ import SkeletonShow from "../../components/Skeleton/Skeleton";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const SideFilter = ({ setSearch, setLevelId, setPriceMode }) => {
+const SideFilter = ({ setSearch, setLevelId, setPriceMode ,setCategoryId}) => {
   const [lvls, setLvls] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [skeleton, setSkeleton] = useState("");
   const containerRef = useRef();
 
@@ -25,6 +26,10 @@ const SideFilter = ({ setSearch, setLevelId, setPriceMode }) => {
       setLvls(data.data.data.courseLevels.data);
       setSkeleton(false);
     });
+    Axios.get('/courses').then(data =>{
+      setCategories(data.data.categories)
+      setSkeleton(false);
+      console.log(data)})
   }, []);
 
   const prices = [
@@ -45,14 +50,32 @@ const SideFilter = ({ setSearch, setLevelId, setPriceMode }) => {
       />
 
       <Section title="Courses" icon="hugeicons:menu-square" />
-      {Array.from({ length: 4 }).map((_, index) => (
-        <CheckItem key={index} name="bussines" label="bussines" />
-      ))}
+      {skeleton
+        ? Array.from({ length: 3 }).map((_, index) => (
+            <div key={index} className="min-w-80 max-w-[340px] flex-1 p-3 mt-3 md:p-0">
+              <SkeletonShow length="1" width="60%" height="10px" />
+            </div>
+          ))
+        : categories?.map((data) => (
+            <CheckItem
+              key={data.id}
+              name={data.name}
+              label={data.name}
+              value={data.id}
+              onChange={(e) => {
+                const id = e.target.value;
+                const checked = e.target.checked;
+                setCategoryId((prev) =>
+                  checked ? [...prev, id] : prev.filter((item) => item !== id)
+                );
+              }}
+            />
+          ))}
 
       <Section title="Levels" icon="ic:round-layers" />
       {skeleton
         ? Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="min-w-80 max-w-[340px] flex-1 p-3 md:p-0">
+            <div key={index} className="min-w-80 max-w-[340px] flex-1 mt-3 p-3 md:p-0">
               <SkeletonShow length="1" width="60%" height="10px" />
             </div>
           ))

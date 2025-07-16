@@ -6,6 +6,7 @@ import { Icon } from "@iconify-icon/react";
 import exploreCourse from '../../images/note-2.svg'
 import Cookies from "cookie-universal";
 
+
 import {
   mangeBlogs,
   mangeContents,
@@ -18,10 +19,13 @@ import { Menu } from "../../Context/MenuContext";
 import { WindowSize } from "../../Context/WindowSizeContext";
 
 const SideBar = (props) => {
-  // handelLogout
-  // const handelLogout = ()=>{
-  //   Cookies.delete()
-  // }
+  const cookie = Cookies();
+
+  function handlLogout() {
+    cookie.remove("token");
+    window.location.pathname = "/";
+
+}
   const menu = useContext(Menu);
   const isOpen = menu.isOpen;
   const setIsOpen = menu.setIsOpen;
@@ -216,14 +220,15 @@ const SideBar = (props) => {
         </NavLink>
 
     
-        <NavLink
-          to="/"
+        <button
+      
+          
           className="text-red-600 focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
-          onClick={() => setIsOpen(false)}
+          onClick={handlLogout}
           >
           <Icon icon="solar:logout-2-outline" width="24" height="24" />
           <span>Logout account</span>
-        </NavLink>
+        </button>
       </div>
         }
       </div>

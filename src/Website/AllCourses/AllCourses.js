@@ -37,6 +37,7 @@ const AllCourses = () => {
   const [search, setSearch] = useState("");
   const [skeleton, setSkeleton] = useState("");
   const [levelId, setLevelId] = useState([]);
+  const [categoryId, setCategoryId] = useState([]);
   const [priceMode, setPriceMode] = useState("");
 
   const [resize, setResize] = useState(window.innerWidth);
@@ -49,13 +50,13 @@ const AllCourses = () => {
     setSkeleton(true);
 
     Axios.get(
-      `/fetch-courses?search=${search}&level=${levelId}&price=${priceMode}`
+      `/fetch-courses?search=${search}&level=${levelId}&price=${priceMode}&category=${categoryId}`
     ).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
       console.log(data);
     });
-  }, [search, levelId, priceMode]);
+  }, [search, levelId, priceMode , categoryId]);
   return (
     <div>
       <NavBar />
@@ -81,6 +82,7 @@ const AllCourses = () => {
          ?
         (
           <DownFilter
+          setCategoryId={setCategoryId}
             setOpenSide={setOpenSide}
             openSide={openSide}
             setSearch={setSearch}
@@ -89,6 +91,7 @@ const AllCourses = () => {
           />
         ):
         <SideFilter
+        setCategoryId={setCategoryId}
       
         setSearch={setSearch}
         setPriceMode={setPriceMode}

@@ -8,8 +8,15 @@ import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import openMenu from "../../images/joba-menu.svg";
 import closeMenu from "../../images/joba-close-menu.svg";
+import { useContext } from "react";
+import { User } from "../../Context/UserContext";
+import Cookies from "cookie-universal";
 
 const NavBar = ({classes}) => {
+  const userContext = useContext(User)
+  const user = userContext.userC
+  const cookie = Cookies();
+  const token = cookie.get("token");
   const navRef = useRef(null);
   const logoRef = useRef(null);
   const linksRef = useRef([]);
@@ -18,7 +25,11 @@ const NavBar = ({classes}) => {
   const [menu, setMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+   function handlLogout() {
+      cookie.remove("token");
+      window.location.pathname = "/";
 
+  }
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.from(navRef.current, {
@@ -107,22 +118,51 @@ const NavBar = ({classes}) => {
         )}
 
         <div className="btns md:!hidden flex" ref={btnsRef}>
-          <Link to="/login" className="link">
-            Sign In
-          </Link>
-          <Link to="/register" className="link">
-            Sign Up
-          </Link>
-        </div>
-      </div>
-
-      <div className="btns hidden md:flex" ref={btnsRef}>
-        <Link to="/login" className="link">
+        {
+          token ?
+          <>
+          <Link to={user === 'admin' ? 'admin/main' : 'student/main'} className="link">
+        My Dashboard
+        </Link>
+        <button onClick={handlLogout}  className="link">
+        Logout
+        </button>
+          </>
+          :
+          <>
+              <Link to="/login" className="link">
           Sign In
         </Link>
         <Link to="/register" className="link">
           Sign Up
         </Link>
+          </>
+        }
+        </div>
+      </div>
+
+      <div className="btns hidden md:flex" ref={btnsRef}>
+        {
+          token ?
+          <>
+          <Link to={user === 'admin' ? 'admin/main' : 'student/main'} className="link">
+        My Dashboard
+        </Link>
+        <button onClick={handlLogout}  className="link">
+        Logout
+        </button>
+          </>
+          :
+          <>
+              <Link to="/login" className="link">
+          Sign In
+        </Link>
+        <Link to="/register" className="link">
+          Sign Up
+        </Link>
+          </>
+        }
+    
       </div>
     </div>
   );

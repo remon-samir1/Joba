@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../../images/register-logo.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoEyeOffOutline } from "react-icons/io5";
 import google from "../../../images/google.svg";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import Loading from "../../../components/Loading/Loading";
 const ResetPassword = () => {
   const [laoding, setLaoding] = useState(false);
-
+const nav = useNavigate()
   const [form, setForm] = useState({
     password: "",
     password_confirmation: "",
@@ -22,17 +22,18 @@ const ResetPassword = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  const {token} = useParams()
+  const {id} = useParams()
   const handelSubmit = async (e) => {
     e.preventDefault();
     setLaoding(true);
     try {
-      const res = await Axios.post(`/reset-password-store/${token}`, form).then((data) => {
+      const res = await Axios.post(`/reset-password-store/${id}`, form).then((data) => {
         console.log(data);
-        // toast.success(
-        //   "A verification link has been sent to your mail, please verify and enjoy our service"
-        // );
-
+    toast.success(data.data.messege)
+    setTimeout(() => {
+      
+      nav('/login')
+    }, 2000);
         setLaoding(false);
       });
     } catch (err) {
@@ -60,6 +61,7 @@ const ResetPassword = () => {
               <div className="input">
                 <input
                   onChange={handleChange}
+                  required
                   name="password"
                   value={form.password}
                   type={hidePass ? "password" : "text"}
@@ -80,6 +82,7 @@ const ResetPassword = () => {
               <div className="input">
                 <input
                   onChange={handleChange}
+                  required
                   name="password_confirmation"
                   value={form.password_confirmation}
                   type={hidePass ? "password" : "text"}

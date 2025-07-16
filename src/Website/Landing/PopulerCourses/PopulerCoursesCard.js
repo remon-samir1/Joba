@@ -1,47 +1,14 @@
-// import React from "react";
-
-// const PopulerCoursesCard = () => {
-//   return (
-//     <div className="PopulerCoursesCard">
-//       <img
-//         className="bg"
-//         src={require("../../../images/ourcourses-img.png")}
-//         alt="populercourses"
-//         loading="lazy"
-//       />
-//       <div className="icon">
-//         <img
-//           src={require("../../../images/populerCourse-icon.png")}
-//           alt="category"
-//           loading="lazy"
-//         />
-//       </div>
-//       <div className="content">
-//         <h4>Ui/Ux design</h4>
-//         <div className="lesson">
-//           <img
-//             src={require("../../../images/book.png")}
-//             alt="book"
-//             loading="lazy"
-//           />
-//           <span>20 Lessons</span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PopulerCoursesCard;
 
 
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { baseUrl } from "../../../components/Helpers/Axios";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PopulerCoursesCard = () => {
+const PopulerCoursesCard = ({title , icon , image , courses}) => {
   const cardRef = useRef(null);
 
   useGSAP(() => {
@@ -63,26 +30,26 @@ const PopulerCoursesCard = () => {
     <div ref={cardRef} className="PopulerCoursesCard">
       <img
         className="bg"
-        src={require("../../../images/ourcourses-img.png")}
+        src={image ? `${baseUrl}/${image}` : require("../../../images/ourcourses-img.png")}
         alt="populercourses"
         loading="lazy"
       />
       <div className="icon">
         <img
-          src={require("../../../images/populerCourse-icon.png")}
+          src={`${baseUrl}/${icon}`}
           alt="category"
           loading="lazy"
         />
       </div>
       <div className="content">
-        <h4>Ui/Ux design</h4>
+        <h4>{title}</h4>
         <div className="lesson">
           <img
             src={require("../../../images/book.png")}
             alt="book"
             loading="lazy"
           />
-          <span>20 Lessons</span>
+          <span>{courses} Courses</span>
         </div>
       </div>
     </div>

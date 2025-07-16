@@ -5,11 +5,16 @@ import Cookies from "cookie-universal";
 import { Axios } from "../../../components/Helpers/Axios";
 import ForbiddenPage from "../ErrorsPages/ForbiddenPage";
 import Loading from "../../../components/Loading/Loading";
+import { useContext } from "react";
+import { User } from "../../../Context/UserContext";
 
 const ReqiureAuth = ({ alowedRole }) => {
   const nav = useNavigate();
   //user
-  const [user, setUser] = useState("");
+  const userContext = useContext(User)
+  const user = userContext.userC
+  const setUser = userContext.setUserC
+  // const [user, setUser] = useState("");
   // cookie & token
   const cookie = Cookies();
   const token = cookie.get("token");

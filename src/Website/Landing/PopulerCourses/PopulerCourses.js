@@ -1,27 +1,4 @@
-// import React from 'react';
-// import './PopulerCourses.css'
-// import PopulerCoursesCard from './PopulerCoursesCard';
-// const PopulerCourses = () => {
-//   return (
-//     <div className='PopulerCourses container mx-auto'>
-//       <div className="header">
-//         <h3>Populer Courses</h3>
-//       </div>
-//       <div className="bg">
-//         <img src={require('../../../images/Populer-bg.png')} alt="PopulerCourses" loading='lazy' />
 
-//       </div>
-//       <div className="boxes">
-//         <PopulerCoursesCard/>
-//         <PopulerCoursesCard/>
-//         <PopulerCoursesCard/>
-//         <PopulerCoursesCard/>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default PopulerCourses;
 
 import React, { useRef } from "react";
 import "./PopulerCourses.css";
@@ -30,22 +7,24 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState } from "react";
+import { Axios } from "../../../components/Helpers/Axios";
+import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PopulerCourses = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [skeleton, setSkeleton] = useState("");
 
-  // get data
-  // useEffect(() => {
-  //   setLoading(true);
-  //   Axios.get(`/admin/course-category?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-  //     console.log(data.data.data.categories);
-  //     setCategories(data.data.data.categories.data);
-  //     setLoading(false);
-  //   });
-  // }, [search,deleted, status]);
+
+  useEffect(() => {
+  
+    Axios.get('/courses').then(data =>{
+      setCategories(data.data.categories)
+      setSkeleton(false);
+      console.log(data.data.categories.slice(-4))})
+  }, []);
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const bgRef = useRef(null);
@@ -101,8 +80,8 @@ const PopulerCourses = () => {
         <img src={require("../../../images/Populer-bg.png")} alt="PopulerCourses" loading="lazy" />
       </div>
       <div className="boxes">
-        {[...Array(4)].map((_, index) => (
-          <PopulerCoursesCard key={index} forwardRef={(el) => (cardsRef.current[index] = el)} />
+        {categories.map((data, index) => (
+          <PopulerCoursesCard key={index} forwardRef={(el) => (cardsRef.current[index] = el)}  title={data.title} icon={data.icon} courses={data.courses.length} image={data.courses[0].thumbnail}/>
         ))}
       </div>
     

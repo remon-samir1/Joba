@@ -9,9 +9,12 @@ import MenuContext from "./Context/MenuContext";
 import WindowSizeContext from "./Context/WindowSizeContext";
 import CartContext from "./Context/CartContext";
 import StudentSearchContext from "./Context/StudentSearchContext";
+import UserContext from "./Context/UserContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <UserContext>
+
     <WindowSizeContext>
       <CartContext>
         <MenuContext>
@@ -24,5 +27,7 @@ root.render(
         </MenuContext>
       </CartContext>
     </WindowSizeContext>
+    </UserContext>
+
   </React.StrictMode>
 );
