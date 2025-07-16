@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../../images/register-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoEyeOffOutline } from "react-icons/io5";
 import google from "../../../images/google.svg";
@@ -19,6 +19,7 @@ const Register = () => {
     password: "",
     password_confirmation: "",
   });
+  const nav = useNavigate()
   const [hidePass, setHidePass] = useState(true);
   const [agree, setAgree] = useState(false);
   console.log(form);
@@ -31,10 +32,17 @@ const Register = () => {
     try {
       const res = await Axios.post("/register", form).then((data) => {
         console.log(data);
+        setForm({    name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",})
+
         toast.success(
           "A verification link has been sent to your mail, please verify and enjoy our service"
         );
-
+setTimeout(() => {
+  nav('/login')
+}, 2000);
         setLaoding(false);
       });
     } catch (err) {
@@ -128,7 +136,7 @@ const Register = () => {
                 </label>
               </div>
             </div>
-            <button type="submit">Sign in</button>
+            <button type="submit">Sign up</button>
             <p className="seperator">- Or log in with -</p>
             <div className="providers">
               <Link className="link">

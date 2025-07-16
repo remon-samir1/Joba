@@ -96,7 +96,7 @@ const OurCoursesCard = (props) => {
             />
             <span className="name">{props.instructor_name}</span>
           </div>
-          <p className="price">{props.price} EGP</p>
+          <p className="price">{props.price} </p>
         </div>
       </div>
     </Link>
