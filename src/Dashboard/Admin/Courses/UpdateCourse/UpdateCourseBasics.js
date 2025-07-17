@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 // import "../Addcourse.css";
 import StringSlice from "../../../../components/Helpers/StringSlice";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import { Axios } from "../../../../components/Helpers/Axios";
+import { Axios, baseUrl } from "../../../../components/Helpers/Axios";
 import Notifcation from "../../../../components/Notification";
-import { useEffect } from "react";
+
 const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
   const navigate = useNavigate();
   const [laoding, setLoading] = useState(true);
+  const [videoSource, setVideoSource] = useState("youtube");
 
   const [form, setForm] = useState({
     title: "",
@@ -20,70 +21,67 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
     discount: "",
     description: "",
   });
+
   const { id } = useParams();
+  const thubmRef = useRef(null);
+  const pathRef = useRef(null);
+
   useEffect(() => {
     setLoading(true);
     Axios.get("admin/courses").then((data) => {
-      // data.filter(course => course.id ===id)
-      setForm(data.data.data.courses.data.filter((prev) => prev.id == id)[0]);
-      setSlug(
-        data.data.data.courses.data.filter((prev) => prev.id == id)[0].slug
-      );
+      const currentCourse = data.data.data.courses.data.find((c) => c.id == id);
+      setForm(currentCourse);
+      setSlug(currentCourse.slug);
       setLoading(false);
     });
   }, []);
-  console.log(form);
-  const [videoSource, setVideoSource] = useState("youtube");
-console.log(form);
-  const thubmRef = useRef(null);
-  const pathRef = useRef(null);
-  const urlToFile = async (imageUrl, fileName, mimeType = "image/jpeg") => {
-    const response = await fetch(imageUrl);
+
+  const urlToFile = async (imageUrl, fileName, mimeType = "image/jepg") => {
+    const fullUrl = imageUrl.startsWith("http")
+      ? imageUrl
+      : `${baseUrl.replace(/\/$/, "")}/${imageUrl.replace(/^\//, "")}`;
+      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const response = await fetch( fullUrl );
+    if (!response.ok) throw new Error("Failed to fetch image");
     const blob = await response.blob();
     return new File([blob], fileName, { type: mimeType });
   };
-  
+
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
-    // const newFile = new File();
+    setLoading(true);
 
     const formData = new FormData();
-
     formData.append("title", form.title);
     formData.append("id", id);
     formData.append("edit_mode", 1);
-    if (typeof form.thumbnail === "string") {
-      const fileFromUrl = await urlToFile(form.thumbnail, "thumbnail.jpg");
-      formData.append("thumbnail", fileFromUrl);
-    } else {
-      formData.append("thumbnail", form.thumbnail);
-    }
-    
-    formData.append("seo_description", form.description);
-    formData.append("demo_video_storage", form.demo_video_storage);
-    formData.append("external_path", form.demo_video_source);
-    formData.append("upload_path", form.upload_path);
-    formData.append("price", form.price);
-    formData.append("instructor", form.price);
 
-    formData.append("discount_price", form.discount);
-    formData.append("description", form.description);
     try {
-      console.log("test");
-      const res = await Axios.post("/admin/courses/create", formData).then(
-        (data) => {
-          console.log(data);
-          toast.success("Updated successfly");
-          setLoading(false);
-          // setCourseId(data.data.course_id)
-          setPage('more')
-        }
-      );
-    } catch (err) {
-      toast.error("some thing wrong");
+      let thumbnailFile;
+      if (typeof form.thumbnail === "string") {
+        thumbnailFile = await urlToFile(form.thumbnail, "thumbnail.png", "image/jpeg");
+      } else {
+        thumbnailFile = form.thumbnail;
+      }
+
+      formData.append("thumbnail", thumbnailFile);
+      formData.append("seo_description", form.description);
+      formData.append("demo_video_storage", form.demo_video_storage);
+      formData.append("external_path", form.demo_video_source);
+      formData.append("upload_path", form.upload_path);
+      formData.append("price", form.price);
+      formData.append("instructor", form.price);
+      formData.append("discount_price", form.discount);
+      formData.append("description", form.description);
+
+      const res = await Axios.post("/admin/courses/create", formData);
+      toast.success("Updated successfully");
       setLoading(false);
-      console.log(err);
+      setPage("more");
+    } catch (err) {
+      toast.error("Something went wrong");
+      setLoading(false);
+      console.error(err);
     }
   };
 
@@ -93,7 +91,6 @@ console.log(form);
       {laoding && (
         <div className="fixed h-screen overflow-hidden bg-white bg-opacity-50 z-50 inset-0"></div>
       )}
-      {/* <h3 className="text-[#000000] text-base font-semibold">Add course</h3> */}
       <form className="p-5 bg-white" onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="title">Title</label>
@@ -111,24 +108,17 @@ console.log(form);
           <div className="input" onClick={() => thubmRef.current.click()}>
             <div>choose</div>
             <p>
-              {form.thumbnail &&
-                typeof form.thumbnail !== "string" &&
-                form.thumbnail.name}
+              {form.thumbnail && typeof form.thumbnail !== "string"
+                ? form.thumbnail.name
+                : StringSlice(form.thumbnail, 20)}
             </p>
-
             <input
               disabled={laoding}
               ref={thubmRef}
               accept="image/*"
               hidden
               type="file"
-              id="title"
-              className="!flex-1"
-              onChange={(e) => {
-                console.log(e);
-
-                setForm({ ...form, thumbnail: e.target.files[0] });
-              }}
+              onChange={(e) => setForm({ ...form, thumbnail: e.target.files[0] })}
             />
           </div>
         </div>
@@ -170,9 +160,7 @@ console.log(form);
                   accept="video/*"
                   required
                   type="file"
-                  value={form.upload_path}
                   id="path"
-                  className="!flex-1"
                   onChange={(e) =>
                     setForm({ ...form, upload_path: e.target.files[0] })
                   }
@@ -194,12 +182,12 @@ console.log(form);
           </div>
         </div>
 
-        <div className="flex justify-center items-center md:gap-4 flex-col md:flex-row ">
+        <div className="flex justify-center items-center md:gap-4 flex-col md:flex-row">
           <div className="form-control relative">
             <label htmlFor="price">Price</label>
             <input
               disabled={laoding}
-              type="number"
+              type="text"
               id="price"
               value={form.price}
               required

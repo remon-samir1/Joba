@@ -11,18 +11,20 @@ const ExploreCourses = () => {
   const [fav, setFav] = useState(false);
   const [courses, setCourses] = useState([]);
   const [skeleton, setSkeleton] = useState(false);
-  const [wait , setWait] = useState(false)
-  const [lvls , setLvls] = useState([])
-  const [sort , setSort] = useState('')
-  const [level , setLevel] = useState('')
-console.log(sort);
+  const [wait, setWait] = useState(false);
+  const [lvls, setLvls] = useState([]);
+  const [sort, setSort] = useState("");
+  const [level, setLevel] = useState("");
+  console.log(sort);
   const StudentSearchContext = useContext(StudentSearch);
   const studentSearchState = StudentSearchContext.studentSearch;
   // get data
   useEffect(() => {
     setSkeleton(true);
-    
-    Axios.get(`/fetch-courses?search=${studentSearchState}&level=${level}&htl_or_lth_price=${sort}`).then((data) => {
+
+    Axios.get(
+      `/fetch-courses?search=${studentSearchState}&level=${level}&htl_or_lth_price=${sort}`
+    ).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
       console.log(data);
@@ -31,24 +33,24 @@ console.log(sort);
       setLvls(data.data.data.courseLevels.data);
       setSkeleton(false);
     });
-  }, [studentSearchState , sort , level]);
+  }, [studentSearchState, sort, level]);
 
   const toggleFav = async (slug) => {
-    try{
-      setWait(true)
+    try {
+      setWait(true);
 
-    await Axios.get(`/wishlist/${slug}`).then(()=>{ 
-      setWait(false)
-      // console.log(data);
-      setCourses((prevCourses) =>
-    prevCourses.map((course) =>
-      course.slug === slug
-        ? { ...course, is_favorite: !course.is_favorite }
-        : course
-    ))}
-  
-    )
-    }catch(err){
+      await Axios.get(`/wishlist/${slug}`).then(() => {
+        setWait(false);
+        // console.log(data);
+        setCourses((prevCourses) =>
+          prevCourses.map((course) =>
+            course.slug === slug
+              ? { ...course, is_favorite: !course.is_favorite }
+              : course
+          )
+        );
+      });
+    } catch (err) {
       console.log(err);
     }
   };
@@ -61,20 +63,15 @@ console.log(sort);
           iconName="solar:chart-bold"
           options={lvls?.map((data, index) => ({
             label: data.name.name,
-            value: data.id
-          }))
-          
-    
-          }
+            value: data.id,
+          }))}
           setSort={setLevel}
-
         />
 
         <CustomSelect
           label="Filter"
           iconName="mage:filter-fill"
           options={[
-      
             { label: "High to low price", value: "asc" },
             { label: "Low to high price", value: "desc" },
           ]}
@@ -92,7 +89,10 @@ console.log(sort);
                 <SkeletonShow length="1" width="100%" height="200px" />
               </div>
             ))
-          : courses.map((course, index) => (
+          :
+          courses.length === 0 ? <p className="text-center p-11 text-text2 w-full ">No Courses By this Name</p> :
+          
+          courses.map((course, index) => (
               <div
                 key={index}
                 className="p-3 min-w-80 max-w-[340px] flex-1 bg-white rounded-xl mt-3 group transition-transform duration-500"
@@ -109,21 +109,20 @@ console.log(sort);
                       to={`/student/course-details/${course.slug}`}
                       className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md"
                     >
-                  View Details
+                      View Details
                     </Link>
                   </div>
 
                   <div
-                    onClick={()=>toggleFav(course?.slug)}
+                    onClick={() => toggleFav(course?.slug)}
                     className="cursor-pointer w-[35px] h-[35px] flex justify-center items-center rounded-full backdrop-brightness-90 backdrop-blur-0 absolute top-2 right-2 bg-[rgba(255,255,255,0.6)]"
                   >
                     <Icon
                       className="text-white"
                       icon={
-                        wait?
-                        'line-md:loading-loop'
-                        :
-                        course.is_favorite
+                        wait
+                          ? "line-md:loading-loop"
+                          : course.is_favorite
                           ? "material-symbols-light:favorite"
                           : "material-symbols-light:favorite-outline"
                       }
@@ -134,9 +133,12 @@ console.log(sort);
                 </div>
 
                 <div className="mt-3">
-                  <h3 className="text-[1.1rem] text-textColor transition-all duration-300">
+                  <Link
+                    to={`/student/course-details/${course.slug}`}
+                    className="text-[1.1rem] text-textColor hover:text-main  transition-all duration-300"
+                  >
                     {course?.title}
-                  </h3>
+                  </Link>
                   <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-2">
                       <img
@@ -148,7 +150,7 @@ console.log(sort);
                         {course?.instructor.user_name}
                       </span>
                     </div>
-                    <p className="text-main text-base">{course?.price} </p>
+                    <p className="text-main text-base uppercase">{course?.price} </p>
                   </div>
                 </div>
               </div>

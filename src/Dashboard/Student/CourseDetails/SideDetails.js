@@ -59,7 +59,7 @@ const SideDetails = (props) => {
               {" "}
               This course Fee :
             </p>
-            <p className="text-white font-bold text-[1.5rem] mt-4">{props.price}</p>
+            <p className="text-white font-bold text-[1.5rem] mt-4 uppercase">{props.price }</p>
           </div>
           <p className="text-textColor text-[1.3rem] mt-4">Course includes :</p>
           <div className="flex items-center gap-2 text-textColor mt-4">

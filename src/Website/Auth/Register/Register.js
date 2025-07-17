@@ -19,7 +19,7 @@ const Register = () => {
     password: "",
     password_confirmation: "",
   });
-  const nav = useNavigate()
+  const nav = useNavigate();
   const [hidePass, setHidePass] = useState(true);
   const [agree, setAgree] = useState(false);
   console.log(form);
@@ -32,17 +32,19 @@ const Register = () => {
     try {
       const res = await Axios.post("/register", form).then((data) => {
         console.log(data);
-        setForm({    name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",})
+        setForm({
+          name: "",
+          email: "",
+          password: "",
+          password_confirmation: "",
+        });
 
         toast.success(
           "A verification link has been sent to your mail, please verify and enjoy our service"
         );
-setTimeout(() => {
-  nav('/login')
-}, 2000);
+        setTimeout(() => {
+          nav("/login");
+        }, 2000);
         setLaoding(false);
       });
     } catch (err) {

@@ -15,15 +15,15 @@ const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const cartch = useContext(CartCh);
-const setCartShopping = cartch.setCartChange 
-const cartShopping = cartch.cartChange 
+  const setCartShopping = cartch.setCartChange;
+  const cartShopping = cartch.cartChange;
   const [values, setValues] = useState();
   useEffect(() => {
     setLoading(true);
     Axios.get("/cart").then((data) => {
       console.log(data);
       setLoading(false);
-      setProductus(data.data.products);
+      setProductus(Object.values(data.data.products));
       setValues(data.data);
     });
   }, [cartShopping]);
@@ -34,7 +34,7 @@ const cartShopping = cartch.cartChange
     try {
       Axios.get(`remove-cart-item/${id}`).then((data) => {
         console.log(data);
-        setCartShopping(prev => !prev)
+        setCartShopping((prev) => !prev);
         toast.success("item deleted successfly");
         setSpinner(false);
         setProductus(products.filter((data) => data.options.rowId != id));
@@ -70,7 +70,7 @@ const cartShopping = cartch.cartChange
         {/* Cards of  Courses */}
         <div className="flex items-center gap-3 mt-5 flex-wrap  justify-start">
           {/* Card */}
-          {products.length === 0 ? (
+          {products?.length === 0 ? (
             <div className="flex justify-center p-6 w-full">
               <p className="text-center text-text2 font-bold text-base">
                 No items in Cart
@@ -106,7 +106,7 @@ const cartShopping = cartch.cartChange
                       </span>
                     </div>
                     <span className="text-base  text-main font-bold">
-                      ${item.options.real_price}
+                      {/* {item.price} */}
                     </span>
                   </div>
                   <button

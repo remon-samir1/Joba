@@ -19,7 +19,9 @@ const StudentTopBar = () => {
   useEffect(() => {
     Axios.get("/cart").then((data) => {
       console.log(data);
-      setCart(data.data.products.length);
+      const product = data.data.products;
+      const arr = Object.values(product);
+      setCart(arr.length);
     });
     Axios.get("/student/setting").then(data => setName(data.data.user.name))
   }, [cartChange]);

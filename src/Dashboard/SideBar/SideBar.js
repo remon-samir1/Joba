@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import "./SideBar.css";
 import Logo from "../../components/Logo/Logo";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { Icon } from "@iconify-icon/react";
 import exploreCourse from '../../images/note-2.svg'
 import Cookies from "cookie-universal";
@@ -40,6 +40,8 @@ const SideBar = (props) => {
       document.body.style.overflow = "auto";
     }
   },[isOpen])
+  const {url} = useParams()
+  console.log(window.location.pathname);
   return (
     <div>
     {
@@ -143,14 +145,14 @@ const SideBar = (props) => {
         
                 //  Student Links
                 <div className="links">
-        <NavLink
-          to="main"
-          className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
+        <Link
+          to=""
+          className={`focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 ${window.location.pathname === '/student' && 'active'}`}
           onClick={() => setIsOpen(false)}
           >
           <Icon icon="hugeicons:home-02" width="24" height="24" />
           <span>Dashboard</span>
-        </NavLink>
+        </Link>
         <NavLink
           to="explore"
           className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52 link"
@@ -184,7 +186,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >  
   <Icon icon="material-symbols:favorite-outline"  width="24" height="24" />
-          <span>Wish list</span>
+          <span>Wishlist</span>
           
           </NavLink>
         <NavLink

@@ -71,7 +71,7 @@ const Login = () => {
         setLaoding(false);
       }
     } catch (err) {
-      toast.error("There is some think wrong !");
+      toast.error(err.response.data.email);
       setLaoding(false);
       console.log(err);
     }

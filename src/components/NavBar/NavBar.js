@@ -103,7 +103,7 @@ const NavBar = ({classes}) => {
       </div>
 
       <div className={`Links ${menu ? "left-0" : "left-[-100%]"}`}>
-        {["Home", "About", "AllCourses ", "Support"].map(
+        {["Home", "About", "Courses ", "Support"].map(
           (text, index) => (
             <NavLink
             to={`/${text === 'Home' ? '' : text}`}
