@@ -274,8 +274,9 @@ const CertificateBuilder = () => {
     formData.append("_method", "PUT");
 
     try {
-      await Axios.post("/admin/certificate-builder/1", formData);
+      await Axios.post("/admin/certificate-builder/1", formData).then(data=>console.log(data));
       setLaoding(false);
+      setChange((prev) => !prev);
     } catch (err) {
       console.log(err);
       setChange((prev) => !prev);
@@ -283,7 +284,6 @@ const CertificateBuilder = () => {
     }
   };
 
-  // ⬇️ مواضع العناصر
   const defaultPositions = {
     title: { x: 100, y: 100 },
     sub_title: { x: 100, y: 150 },
