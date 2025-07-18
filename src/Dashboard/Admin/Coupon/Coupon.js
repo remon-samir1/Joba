@@ -81,7 +81,7 @@ const statusData = [
     <Notifcation/>
     <div className="Categories">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-textColor text-xl"> Categories</h3>
+        <h3 className="font-bold text-textColor text-xl"> Coupon</h3>
         <Breadcrumbs />
       </div>
       <div className="filters">
@@ -106,7 +106,7 @@ const statusData = [
             
             trash
             headers={headers}
-            data={categories}
+            data={categories.reverse()}
             loading={loading}
             url='admin/coupon'
             setDeleted={setDeleted}

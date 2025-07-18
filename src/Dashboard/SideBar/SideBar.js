@@ -95,7 +95,7 @@ const SideBar = (props) => {
             className="focus:bg-main hover:bg-main text-base hover:text-white focus:text-white text-textColor px-2 py-3 rounded-lg flex items-center justify-start gap-3 w-52"
             onClick={() => setIsOpen(false)}
             >
-            <Icon icon="ph:certificate-light" width="24" height="24" />
+            <Icon icon="mdi:coupon-outline" width="24" height="24" />
             <span>Coupon</span>
           </NavLink>
           <NavLink

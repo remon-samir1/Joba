@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { baseUrl } from "../../../components/Helpers/Axios";
 import { formatDuration } from "../../../components/FormatDuration/FormatDuration";
 import { Link } from "react-router-dom";
-
+import defaultImage from '../../../images/juba.svg'
 gsap.registerPlugin(ScrollTrigger);
 
 const OurCoursesCard = (props) => {
@@ -37,6 +37,10 @@ const OurCoursesCard = (props) => {
           src={`${baseUrl}/${props.thumbnail}`}
           alt="courses"
           loading="lazy"
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src = defaultImage;
+          }}
         />
          <div className="shine-overlay"></div>
         {/* <Icon icon="mdi-light:heart" width="24" height="24" className="icon" /> */}
@@ -93,6 +97,10 @@ const OurCoursesCard = (props) => {
             src={`${baseUrl}/${props.instructor_image}`}
               alt="trainer-image"
               loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null; 
+                e.target.src = defaultImage;
+              }}
             />
             <span className="name">{props.instructor_name}</span>
           </div>

@@ -4,6 +4,7 @@ import AddLessons from "./AddLessons";
 import AddDocument from "./AddDocument";
 import AddQuiz from "./AddQuiz";
 import AddQuestion from "./AddQuestion";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 import { Icon } from "@iconify-icon/react";
 import { Axios } from "../../../../components/Helpers/Axios";
@@ -13,6 +14,22 @@ import SortChaptersModal from "./SortChaptersModal";
 import { useParams } from "react-router-dom";
 
 const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
+  const handleItemDragEnd = (result, chapterId) => {
+    if (!result.destination) return;
+
+    setChapters((prevChapters) =>
+      prevChapters.map((chapter) => {
+        if (chapter.id !== chapterId) return chapter;
+
+        const items = Array.from(chapter.chapter_items);
+        const [movedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, movedItem);
+
+        return { ...chapter, chapter_items: items };
+      })
+    );
+  };
+
   const [chapters, setChapters] = useState([]);
   const [change, setChange] = useState(false);
   const [showChapterModal, setShowChapterModal] = useState(false);
@@ -20,6 +37,7 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
   const [showDocumentModal, setShowDocumentModal] = useState(false);
   const [showQuestionModal, setShowQuestionModal] = useState(false);
   const [showSortModal, setShowSortModal] = useState(false);
+  const [openQuizIds, setOpenQuizIds] = useState([]);
 
   const [currentQuizId, setCurrentQuizId] = useState(null);
   const [selectedQuestionForEdit, setSelectedQuestionForEdit] = useState(null);
@@ -136,6 +154,13 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
       setLoading(false);
     }
   };
+  const toggleQuizQuestions = (quizId) => {
+    setOpenQuizIds((prev) =>
+      prev.includes(quizId)
+        ? prev.filter((id) => id !== quizId)
+        : [...prev, quizId]
+    );
+  };
 
   // Delete lesson/document/quiz function
   const deleteChapterItem = async (id) => {
@@ -183,8 +208,8 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
   // Edit lesson/document/quiz item handler
   const editChapterItem = (chapterId, item, type) => {
     setSelectedChapterId(chapterId);
-    setSelectedLessonIndex(item.id); 
-    setEditMode(true); 
+    setSelectedLessonIndex(item.id);
+    setEditMode(true);
     if (type === "lesson") {
       setShowLessonModal(true);
     } else if (type === "document") {
@@ -348,7 +373,10 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
                           />
                         )}
                       </div>
-                      <span>
+                      <span
+                        onClick={() => toggleQuizQuestions(item.quiz?.id)}
+                        className="cursor-pointer hover:underline"
+                      >
                         {item.title || (item.quiz && item.quiz.title)}
                       </span>
                     </div>
@@ -414,7 +442,13 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
 
                   {/* Render Quiz Questions if item is a quiz and has questions */}
                   {item.type === "quiz" && item.quiz?.questions?.length > 0 && (
-                    <div className=" mt-2 space-y-1">
+                    <div
+                      className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                        openQuizIds.includes(item.quiz.id)
+                          ? "max-h-[1000px] opacity-100"
+                          : "max-h-0 opacity-0"
+                      } ml-12 mt-2   pl-4 space-y-1`}
+                    >
                       {item.quiz.questions.map((question, qIdx) => (
                         <div
                           key={question.id || qIdx}
@@ -434,9 +468,8 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
 
                           <div className="flex gap-2">
                             <button
-                              onClick={
-                                () =>
-                                  editQuestionHandler(item.quiz.id, question) 
+                              onClick={() =>
+                                editQuestionHandler(item.quiz.id, question)
                               }
                               className="w-6 h-6 bg-yellow-400 flex justify-center items-center rounded"
                             >
@@ -448,8 +481,7 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
                               />
                             </button>
                             <button
-                              onClick={() => deleteQuestion(question.id)
-                              }
+                              onClick={() => deleteQuestion(question.id)}
                               className="w-6 h-6 bg-red-600 flex justify-center items-center rounded"
                             >
                               <Icon
@@ -513,7 +545,7 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
           course_id={courseId}
           lessonModalRef={lessonModalRef}
           setShowLessonModal={setShowLessonModal}
-          setChange={setChange} 
+          setChange={setChange}
           editMode={editMode}
           defaultLesson={
             editMode && selectedLessonIndex !== null
@@ -540,7 +572,6 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
           selectedChapterId={selectedChapterId}
           setChange={setChange}
           editMode={editMode}
-
           defaultDocument={
             editMode && selectedLessonIndex !== null
               ? chapters
@@ -562,7 +593,7 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
           courseId={courseId}
           setShowQuizModal={setShowQuizModal}
           selectedChapterId={selectedChapterId}
-          setChange={setChange} 
+          setChange={setChange}
           editMode={editMode}
           defaultQuiz={
             editMode && selectedLessonIndex !== null

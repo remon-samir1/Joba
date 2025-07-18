@@ -7,50 +7,50 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 const CertificateBuilder = () => {
   const [certificate, setCertificate] = useState([]);
-  const [laoding , setLaoding] = useState(false)
-  const [change , setChange] = useState(false)
-  
-  useEffect(() => {
-    setLaoding(true)
-    Axios.get("/admin/certificate-builder").then((data) =>
-    {
-      setLaoding(false)
+  const [laoding, setLaoding] = useState(false);
+  const [change, setChange] = useState(false);
 
-      setCertificate(data.data.data.certificate)
-      console.log(data)
-    }
-    );
+  useEffect(() => {
+    setLaoding(true);
+    Axios.get("/admin/certificate-builder").then((data) => {
+      setLaoding(false);
+
+      setCertificate(data.data.data.certificate);
+      console.log(data);
+    });
   }, [change]);
 
   console.log(certificate);
-  const [form , setForm] = useState({
-    title:'',
-    sub_title:'',
-    description:""
-  })
+  const [form, setForm] = useState({
+    title: "",
+    sub_title: "",
+    description: "",
+  });
   console.log(form);
-  const hanleSubmit =async (e)=>{
-    e.preventDefault()
-    setLaoding(true)
-    const formData = new FormData()
-    formData.append('title' , form.title)
-    formData.append('sub_title' , form.sub_title)
-    formData.append('description' , form.description)
-    formData.append('background' , bg)
-    formData.append('signature' , signature)
-    formData.append('_method' , 'PUT')
+  const hanleSubmit = async (e) => {
+    e.preventDefault();
+    setLaoding(true);
+    const formData = new FormData();
+    formData.append("title", form.title);
+    formData.append("sub_title", form.sub_title);
+    formData.append("description", form.description);
+    formData.append("background", bg);
+    formData.append("signature", signature);
+    formData.append("_method", "PUT");
     console.log(formData);
-    try{
-await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
-  console.log(data);
-  setLaoding(false)})
-    }
-    catch(err){
+    try {
+      await Axios.post("/admin/certificate-builder/1", formData).then(
+        (data) => {
+          console.log(data);
+          setLaoding(false);
+        }
+      );
+    } catch (err) {
       console.log(err);
-      setChange(prev => !prev)
-      setLaoding(false)
+      setChange((prev) => !prev);
+      setLaoding(false);
     }
-  }
+  };
 
   const clickBg = useRef(null);
   const clickSignature = useRef(null);
@@ -110,13 +110,20 @@ await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
             </div>
             <div className="form-control">
               <label htmlFor="title">Title</label>
-              <input type="text" id="title" placeholder="[student-name]" onChange={(e)=>setForm({...form,title:e.target.value})}/>
+              <input
+                type="text"
+                id="title"
+                placeholder="[student-name]"
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+              />
             </div>
 
             <div className="form-control">
               <label htmlFor="sub-title">Sub title</label>
               <input
-              onChange={(e)=>setForm({...form,sub_title:e.target.value})}
+                onChange={(e) =>
+                  setForm({ ...form, sub_title: e.target.value })
+                }
                 type="text"
                 id="sub-title"
                 placeholder="for completing[course]"
@@ -125,7 +132,9 @@ await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
             <div className="form-control">
               <label htmlFor="Description">Description</label>
               <textarea
-              onChange={(e)=>setForm({...form,description:e.target.value})}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
                 id="Description"
                 placeholder="Description"
                 className="h-[200px]"
@@ -173,12 +182,11 @@ await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
         </div>
 
         <div
-  style={{
-    background: `url(https://goba.sunmedagency.com/${certificate?.background}) center / cover no-repeat`,
-  }}
-  className="w-full md:flex-1 bg-white text-center px-5 py-8"
->
-
+          style={{
+            background: `url(https://goba.sunmedagency.com/${certificate?.background}) center / cover no-repeat`,
+          }}
+          className="w-full md:flex-1 bg-white text-center px-5 py-8"
+        >
           <h2 className="text-xl text-main font-semibold">
             Certificate Competition
           </h2>
@@ -204,5 +212,3 @@ await Axios.post("/admin/certificate-builder/1" , formData).then(data=>{
 };
 
 export default CertificateBuilder;
-
-

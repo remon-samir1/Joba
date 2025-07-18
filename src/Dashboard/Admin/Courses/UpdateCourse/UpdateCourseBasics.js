@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 // import "../Addcourse.css";
 import StringSlice from "../../../../components/Helpers/StringSlice";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { Form, useNavigate, useParams } from "react-router-dom";
 import { Axios, baseUrl } from "../../../../components/Helpers/Axios";
 import Notifcation from "../../../../components/Notification";
 
@@ -32,16 +32,31 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
       const currentCourse = data.data.data.courses.data.find((c) => c.id == id);
       setForm(currentCourse);
       setSlug(currentCourse.slug);
+      console.log(data);
       setLoading(false);
     });
   }, []);
-
+  function currencyToNumber(str) {
+    if (typeof str !== 'string') return NaN;
+  
+    // أرقام عربية إلى إنجليزية (اختياري)
+    const arabicNums = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    str = str.replace(/[٠-٩]/g, d => arabicNums.indexOf(d).toString());
+  
+    const cleaned = str
+      .replace(/[^\d.,-]/g, '')   
+      .replace(/,/g, '');        
+  
+    const result = parseFloat(cleaned);
+    return isNaN(result) ? null : result;
+  }
+  
   const urlToFile = async (imageUrl, fileName, mimeType = "image/jepg") => {
     const fullUrl = imageUrl.startsWith("http")
       ? imageUrl
       : `${baseUrl.replace(/\/$/, "")}/${imageUrl.replace(/^\//, "")}`;
-      const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    const response = await fetch( fullUrl );
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const response = await fetch(fullUrl);
     if (!response.ok) throw new Error("Failed to fetch image");
     const blob = await response.blob();
     return new File([blob], fileName, { type: mimeType });
@@ -58,24 +73,25 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
 
     try {
       let thumbnailFile;
-      if (typeof form.thumbnail === "string") {
-        thumbnailFile = await urlToFile(form.thumbnail, "thumbnail.png", "image/jpeg");
-      } else {
-        thumbnailFile = form.thumbnail;
-      }
+      // if (typeof form.thumbnail !== "string") {
+      // }
+      formData.append("thumbnail", form.thumbnail);
 
-      formData.append("thumbnail", thumbnailFile);
       formData.append("seo_description", form.description);
       formData.append("demo_video_storage", form.demo_video_storage);
       formData.append("external_path", form.demo_video_source);
       formData.append("upload_path", form.upload_path);
-      formData.append("price", form.price);
+      formData.append(
+        "price",
+        form.price === "FREE" ? 0 : currencyToNumber(form.price)
+      );
       formData.append("instructor", form.price);
       formData.append("discount_price", form.discount);
       formData.append("description", form.description);
 
       const res = await Axios.post("/admin/courses/create", formData);
       toast.success("Updated successfully");
+      console.log(res);
       setLoading(false);
       setPage("more");
     } catch (err) {
@@ -118,7 +134,9 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
               accept="image/*"
               hidden
               type="file"
-              onChange={(e) => setForm({ ...form, thumbnail: e.target.files[0] })}
+              onChange={(e) =>
+                setForm({ ...form, thumbnail: e.target.files[0] })
+              }
             />
           </div>
         </div>
@@ -189,7 +207,7 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
               disabled={laoding}
               type="text"
               id="price"
-              value={form.price}
+              value={form.price === "FREE" ? 0 : currencyToNumber(form.price)}
               required
               onChange={(e) => setForm({ ...form, price: e.target.value })}
             />

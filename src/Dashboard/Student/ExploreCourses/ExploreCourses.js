@@ -6,7 +6,7 @@ import SkeletonShow from "../../../components/Skeleton/Skeleton";
 import CustomSelect from "../../../components/CustomSelect/CustomSelect";
 import { useContext } from "react";
 import { StudentSearch } from "../../../Context/StudentSearchContext";
-
+import defaultImage from '../../../images/juba.svg'
 const ExploreCourses = () => {
   const [fav, setFav] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -100,8 +100,12 @@ const ExploreCourses = () => {
                 <div className="img h-[165px] w-full relative rounded overflow-hidden">
                   <img
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    src={`https://goba.sunmedagency.com/${course?.thumbnail}`}
+                    src={course?.thumbnail ? `https://goba.sunmedagency.com/${course?.thumbnail}` : defaultImage}
                     alt="course"
+                    onError={(e) => {
+                      e.target.onerror = null; 
+                      e.target.src = defaultImage;
+                    }}
                   />
 
                   <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

@@ -13,7 +13,7 @@ import Player from "../../../components/Player/Player";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
-
+import defaultImage from '../../../images/juba.svg'
 const EnrolledCourseDetails = () => {
   const [course, setCourse] = useState(null);
   const [play, setPlay] = useState(false);
@@ -149,6 +149,10 @@ const EnrolledCourseDetails = () => {
                 src={`https://goba.sunmedagency.com/${course?.course.thumbnail}`}
                 alt="course"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.onerror = null; 
+                  e.target.src = defaultImage;
+                }}
               />
             </div>
           )}

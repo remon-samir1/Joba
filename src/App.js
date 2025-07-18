@@ -73,6 +73,7 @@ import AllCourses from "./Website/AllCourses/AllCourses";
 import BecomeInstructor from "./Website/BecomeInstructor/BecomeInstructor";
 import ResetPassword from "./Website/Auth/ResetPassword/ResetPassword";
 import Verify from "./Website/Auth/Verify/Verify";
+import AddStudent from "./Dashboard/Admin/AllStudents/AddStudent";
 function App() {
   return (
     <div className="App">
@@ -122,6 +123,7 @@ function App() {
          <Route path="/admin/order-history/view/:id" element={<OrderDetails/>} />
          <Route path="Pending-payment" element={<PendingPayment/>} />
          <Route path="All-Students" element={<AllStudents/>} />
+         <Route path="All-Students/add" element={<AddStudent/>} />
          <Route path="/admin/All-Students/view/:id" element={<StudentsDetails/>} />
          <Route path="/admin/active-users/view/:id" element={<StudentsDetails/>} />
          <Route path="/admin/Non-verified/view/:id" element={<StudentsDetails/>} />

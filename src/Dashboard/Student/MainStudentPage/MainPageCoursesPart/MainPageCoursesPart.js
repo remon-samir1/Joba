@@ -97,7 +97,7 @@ const MainPageCoursesPart = () => {
             <p className="w-full text-center p-6 text-text2">No Courses </p>
             <Link
               className="text-white bg-main px-5 py-2 rounded main-shadow duration-300"
-              to="/student/explore-courses"
+              to="/student/explore"
             >
             Explore Courses
             </Link>

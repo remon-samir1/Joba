@@ -85,10 +85,10 @@ scrollRef.current.scrollIntoView()
       <div className="table my-8 bg-white">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
           <h4 className="text-main text-base ">All Students</h4>
-          {/* <Link className="flex justify-between gap-2 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500">
+          <Link to='add' className="flex justify-between gap-2 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500">
             <FaPlus />
-            <span>add new</span>
-          </Link> */}
+            <span>add Student</span>
+          </Link>
         </div>
         <div className="overflow-x-auto w-[90vw] md:w-full">
           <Table

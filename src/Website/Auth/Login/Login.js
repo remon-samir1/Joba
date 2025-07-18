@@ -71,7 +71,7 @@ const Login = () => {
         setLaoding(false);
       }
     } catch (err) {
-      toast.error(err.response.data.email);
+      toast.error(err.response?.data?.email || 'Internal Server error');
       setLaoding(false);
       console.log(err);
     }

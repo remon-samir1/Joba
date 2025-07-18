@@ -21,8 +21,9 @@ const PopulerCourses = () => {
   useEffect(() => {
   
     Axios.get('/courses').then(data =>{
-      setCategories(data.data.categories)
+      setCategories(data.data.categories.slice(-4))
       setSkeleton(false);
+
       console.log(data.data.categories.slice(-4))})
   }, []);
   const containerRef = useRef(null);
@@ -81,7 +82,7 @@ const PopulerCourses = () => {
       </div>
       <div className="boxes">
         {categories.map((data, index) => (
-          <PopulerCoursesCard key={index} forwardRef={(el) => (cardsRef.current[index] = el)}  title={data.title} icon={data.icon} courses={data.courses.length} image={data.courses[0].thumbnail}/>
+          <PopulerCoursesCard key={index} forwardRef={(el) => (cardsRef.current[index] = el)} id={data.id}  title={data.name} icon={data.icon} courses={data.courses.length} image={data.courses[0]?.thumbnail}/>
         ))}
       </div>
     

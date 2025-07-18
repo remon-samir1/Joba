@@ -4,7 +4,7 @@ import { Axios } from "../../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import Notifcation from "../../../../components/Notification";
 import { useRef } from "react";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 
 const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
   const [category, setCategory] = useState();
@@ -29,8 +29,11 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
   const [langs, setLangs] = useState([]);
   const scrollRef = useRef();
   useEffect(() => {
-    Axios.get("admin/course-level").then((data) =>
+    Axios.get("admin/course-level").then((data) =>{
+
       setLvls(data.data.data.courseLevels.data)
+      console.log(data);
+    }
     );
   }, []);
   useEffect(() => {
@@ -165,7 +168,6 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
           <div className="flex-1 flex flex-col md:justify-start justify-between items-start gap-5">
             <label>Q&A</label>
             <label>Completion Certificate</label>
-            <label>Patner instructor</label>
           </div>
           <div className="flex-1 flex flex-col items-end md:items-start gap-5">
             <ToggleButton
@@ -178,12 +180,12 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
                 setForm((prev) => ({ ...prev, certificate: value }))
               }
             />
-            <ToggleButton
+            {/* <ToggleButton
               data={form.partner_instructor}
               setData={(value) =>
                 setForm((prev) => ({ ...prev, Patner_instructor: value }))
-              }
-            />
+              } */}
+            {/* /> */}
           </div>
         </div>
 

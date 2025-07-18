@@ -11,14 +11,15 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 50px;
+  
+  gap: 30vh;
 }
 .OrderDetails .details .hedaers , .OrderDetails .details .data{
   display: flex;
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
 } 
 .OrderDetails .details .hedaers p, .OrderDetails .details .data p{
 font-size: 1rem;

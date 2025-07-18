@@ -14,7 +14,9 @@ const MyCourses = () => {
 
     Axios.get("/student/enrolled-courses").then((data) => {
       setSkeleton(false);
+
       setCourses(data.data.enrolls);
+      console.log(data.data.enrolls);
     });
   }, []);
   return (

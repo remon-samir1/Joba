@@ -10,6 +10,7 @@ import WindowSizeContext from "./Context/WindowSizeContext";
 import CartContext from "./Context/CartContext";
 import StudentSearchContext from "./Context/StudentSearchContext";
 import UserContext from "./Context/UserContext";
+import CategoryIdContext from "./Context/CategoryIdContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -19,9 +20,12 @@ root.render(
       <CartContext>
         <MenuContext>
           <StudentSearchContext>
+            <CategoryIdContext>
+
           <BrowserRouter>
             <App />
           </BrowserRouter>
+            </CategoryIdContext>
           </StudentSearchContext>
             
         </MenuContext>

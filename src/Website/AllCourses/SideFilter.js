@@ -5,7 +5,7 @@ import SkeletonShow from "../../components/Skeleton/Skeleton";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const SideFilter = ({ setSearch, setLevelId, setPriceMode ,setCategoryId}) => {
+const SideFilter = ({ setSearch, setLevelId, setPriceMode,categoryId ,setCategoryId}) => {
   const [lvls, setLvls] = useState([]);
   const [categories, setCategories] = useState([]);
   const [skeleton, setSkeleton] = useState("");
@@ -58,10 +58,12 @@ const SideFilter = ({ setSearch, setLevelId, setPriceMode ,setCategoryId}) => {
           ))
         : categories?.map((data) => (
             <CheckItem
+            title='category'
+            categoryId={categoryId}
               key={data.id}
               name={data.name}
               label={data.name}
-              value={data.id}
+              value={ data.id}
               onChange={(e) => {
                 const id = e.target.value;
                 const checked = e.target.checked;
@@ -101,7 +103,7 @@ const SideFilter = ({ setSearch, setLevelId, setPriceMode ,setCategoryId}) => {
           key={data.value}
           name={data.name}
           label={data.name}
-          value={data.value}
+          value={ data.value}
           onChange={(e) => {
             const id = e.target.value;
             const checked = e.target.checked;
@@ -122,9 +124,11 @@ const Section = ({ title, icon }) => (
   </div>
 );
 
-const CheckItem = ({ name, label, value = "", onChange }) => (
+const CheckItem = ({ name, label,value = "", title,categoryId,onChange }) => (
   <div className="flex items-center gap-2 mt-4">
     <input
+    
+     
       className="accent-main w-[18px] h-[18px]"
       type="checkbox"
       name={name}

@@ -10,19 +10,17 @@ import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
 import { useRef } from "react";
 const OrderStudentHistoryDetails = () => {
-  const scrollRef = useRef(null)
-//  get data
-const {id} = useParams()
-const [data , setData] = useState([]);
-useEffect(()=>{
-
-  scrollRef.current.scrollIntoView()
-  Axios.get(`/student/order-details/${id}`).then(data=>{
-    setData(data.data.order)
-    console.log(data.data.order)})
-},[])
-
-
+  const scrollRef = useRef(null);
+  //  get data
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    scrollRef.current.scrollIntoView();
+    Axios.get(`/student/order-details/${id}`).then((data) => {
+      setData(data.data.order);
+      console.log(data.data.order);
+    });
+  }, []);
 
   return (
     <div ref={scrollRef} className="OrderDetails">
@@ -54,8 +52,12 @@ useEffect(()=>{
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <p className="text-base font-bold text-textColor whitespace-nowrap">Order Id:</p>
-            <p className="text-base font-bold text-textColor whitespace-nowrap">{data?.invoice_id}</p>
+            <p className="text-base font-bold text-textColor whitespace-nowrap">
+              Order Id:
+            </p>
+            <p className="text-base font-bold text-textColor whitespace-nowrap">
+              {data?.invoice_id}
+            </p>
           </div>
         </div>
       </div>
@@ -65,39 +67,44 @@ useEffect(()=>{
       </div>
 
       <div className="boxes flex justify-start items-center gap-8 mt-8">
-      
         <div className="flex justify-start items-end h-[344px] gap-3 flex-col w-full md:w-[100%] bg-white">
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">subtotal</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-            {data?.subTotal} {data?.payable_currency}
+              {data?.subTotal} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">Getway charge</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-        {data?.gateway_charge} {data?.payable_currency}
+              {data?.gateway_charge} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1">
             <p className=" text-[#999999] text-[12px]  ">Discount</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-            {data?.discount} {data?.payable_currency}
+              {data?.discount} {data?.payable_currency}
             </p>
           </div>
           <div className="w-full text-end px-5 py-1 ">
             <p className=" text-[#999999] text-[12px]  ">Total</p>
             <p className="text-base text-textColor mt-1 font-semibold">
-          {data?.paid_amount}  {data?.payable_currency}
+              {data?.paid_amount} {data?.payable_currency}
             </p>
           </div>
         </div>
       </div>
       <div className="flex justify-end my-8">
-   <button onClick={()=> window.print()} className="text-white bg-btnColor px-8 py-2 rounded border-btnColor flex justify-center items-center gap-2 hover:scale-105 duration-500">
-   <Icon icon="material-symbols:print-outline"  style={{color: '#fff'}} />
-    <span>Print</span>
-    </button>
+        <button
+          onClick={() => window.print()}
+          className="text-white bg-btnColor px-8 py-2 rounded border-btnColor flex justify-center items-center gap-2 hover:scale-105 duration-500"
+        >
+          <Icon
+            icon="material-symbols:print-outline"
+            style={{ color: "#fff" }}
+          />
+          <span>Print</span>
+        </button>
       </div>
     </div>
   );

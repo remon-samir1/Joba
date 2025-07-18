@@ -87,7 +87,7 @@ const Curriculum = (props) => {
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-textColor text-[0.9rem] font-semibold">
-                      {formatDuration(course.lesson?.duration)}
+                      {course.type === 'lesson' ? formatDuration(course.lesson?.duration) : course.type === 'quiz'? formatDuration(course.quiz?.time) : ''}
                     </span>
                     <Icon
                       className="text-main"

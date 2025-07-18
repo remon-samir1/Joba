@@ -13,115 +13,117 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import Pagination from "../../../components/Pagination/Pagination";
 import { useRef } from "react";
+import { useContext } from "react";
+import { Category } from "../../../Context/CategoryIdContext";
 
 const Courses = () => {
+
   const scrollRef = useRef(null);
-  useEffect(()=>{
-scrollRef.current.scrollIntoView()
-  },[])
+
+  useEffect(() => {
+    scrollRef.current.scrollIntoView();
+  }, []);
 
   const [deleted, setDeleted] = useState(false);
-const [courses, setCourses] = useState([]);
-const [category, setCategory] = useState();
-const [categoryId , setCategoryId] = useState('');
-const [selectedDate, setSelectedDate] = useState(0);
-const [status, setStatus] = useState('');
-const [approved, setApproved] = useState('');
-const [loading, setLoading] = useState(false);
-const [page, setPage] = useState(1);
-const [total, setTotal] = useState();
-const [search, setSearch] = useState("");
-// get data
-useEffect(() => {
-  setLoading(true);
-  Axios.get(
-    `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&category=${categoryId}`
-  ).then((data) => {
-    console.log(data.data.data.courses);
-    setCourses(data.data.data.courses.data);
-    setTotal(data.data.data.courses.total);
-    setLoading(false);
+  const [courses, setCourses] = useState([]);
+  const [category, setCategory] = useState();
+  const [categoryId, setCategoryId] = useState("");
+  const [selectedDate, setSelectedDate] = useState(0);
+  const [status, setStatus] = useState("");
+  const [approved, setApproved] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState();
+  const [search, setSearch] = useState("");
+
+  // get data
+  useEffect(() => {
+    setLoading(true);
+    Axios.get(
+      `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&category=${categoryId}`
+    ).then((data) => {
+      console.log(data.data.data.courses);
+      setCourses(data.data.data.courses.data);
+      setTotal(data.data.data.courses.total);
+      setLoading(false);
+    });
+  }, [search, deleted, selectedDate, status, approved, categoryId, page]);
+  useEffect(() => {
+    Axios.get(`/admin/course-category`).then((data) => {
+      setCategory(data.data.data.categories.data);
+    });
+  }, []);
+  console.log(category);
+  const categoryData = category?.map((data, index) => {
+    return {
+      name: data.name,
+      value: data.id,
+    };
   });
-}, [search, deleted,selectedDate,status,approved,categoryId,page]);
-useEffect(()=>{
-  Axios.get(`/admin/course-category`).then(data=>{
-    setCategory(data.data.data.categories.data);
+  console.log(categoryData);
+  // headers of table
+  const headers = [
+    {
+      title: "Type",
+      key: "type",
+    },
+    {
+      title: "Title",
+      key: "title",
+    },
 
-  })
-},[])
-console.log(category);
-const categoryData =  category?.map((data,index)=>{
-  
-    return{
-      name:data.name,
-      value:data.id
-    }
-  
-})
-console.log(categoryData);
-// headers of table
-const headers = [
-  {
-    title: "Type",
-    key: "type",
-  },
-  {
-    title: "Title",
-    key: "title",
-  },
+    {
+      title: "Price",
+      key: "price",
+    },
+    {
+      title: "Students",
+      key: "enrollments_count",
+    },
+    {
+      title: "Created date",
+      key: "created_at",
+    },
+    {
+      title: "Updated date",
+      key: "updated_at",
+    },
+    {
+      title: "Status",
+      key: "status",
+    },
+    {
+      title: "Approve",
+      key: "is_approved",
+    },
+  ];
+  // status selectbox data
+  const statusData = [
+    {
+      name: "Active",
+      value: "active",
+    },
 
-  {
-    title: "Price",
-    key: "price",
-  },
-  {
-    title: "Students",
-    key: "enrollments_count",
-  },
-  {
-    title: "Created date",
-    key: "created_at",
-  },
-  {
-    title: "Updated date",
-    key: "updated_at",
-  },
-  {
-    title: "Status",
-    key: "status",
-  },
-  {
-    title: "Approve",
-    key: "is_approved",
-  },
-];
-// status selectbox data
-const statusData = [
-  {
-    name:'Active',
-    value:"active"
-  },
-  
-  {
-    name:'Inactive',
-    value:"inactive"
-  },
-  {
-    name:'Draft',
-    value:"is_draft"
-  }
-]
-const approvedData = [
-  {
-    name:'Approved',
-    value:"approved"
-  },
-  
-  {
-    name:'Disapproved',
-    value:"disapproved"
-  }
-]
+    {
+      name: "Inactive",
+      value: "inactive",
+    },
+    {
+      name: "Draft",
+      value: "is_draft",
+    },
+  ];
+  const approvedData = [
+    {
+      name: "Approved",
+      value: "approved",
+    },
+
+    {
+      name: "Disapproved",
+      value: "disapproved",
+    },
+  ];
   return (
     <div className="Courses" ref={scrollRef}>
       <div className="flex justify-between items-center">
@@ -135,11 +137,26 @@ const approvedData = [
           onchange={(e) => setSearch(e.target.value)}
         />
 
-        <DateInput setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
-        <SelectBox title="Category" data={categoryData} onChange={(e)=>setCategoryId(e.target.value)}/>
-      
-        <SelectBox title="Status" data={statusData} onChange={(e)=> setStatus(e.target.value)}/>
-        <SelectBox title="Approval status" data={approvedData} onChange={(e)=> setApproved(e.target.value)}/>
+        <DateInput
+          setSelectedDate={setSelectedDate}
+          selectedDate={selectedDate}
+        />
+        <SelectBox
+          title="Category"
+          data={categoryData}
+          onChange={(e) => setCategoryId(e.target.value)}
+        />
+
+        <SelectBox
+          title="Status"
+          data={statusData}
+          onChange={(e) => setStatus(e.target.value)}
+        />
+        <SelectBox
+          title="Approval status"
+          data={approvedData}
+          onChange={(e) => setApproved(e.target.value)}
+        />
       </div>
       <div className="table my-8 bg-white ">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
@@ -153,22 +170,22 @@ const approvedData = [
           </Link>
         </div>
         <div className="overflow-auto table-container">
-        <Table
+          <Table
             action
             update
             trash
             headers={headers}
             data={courses}
             loading={loading}
-            url='admin/courses/status-update'
-            delurl='/admin/courses/delete'
+            url="admin/courses/status-update"
+            delurl="/admin/courses/delete"
             setDeleted={setDeleted}
             setData={setCourses}
           />
         </div>
         <div className="flex justify-end p-5 px-10">
-          <Pagination total={total} setPage={setPage} itemsPerPage={15}/>
-          </div>
+          <Pagination total={total} setPage={setPage} itemsPerPage={15} />
+        </div>
       </div>
     </div>
   );

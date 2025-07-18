@@ -1,19 +1,17 @@
+import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import React from "react";
-import { useRef } from "react";
-import { useState } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import { AiOutlineLoading } from "react-icons/ai";
 import Notifcation from "../../../components/Notification";
-import DateInput from "../../../components/DateInput/DateInput";
 import DatePicker from "react-datepicker";
 
 const AddCoupon = ({ setShowModal }) => {
   const modalRef = useRef();
   const tlRef = useRef();
- const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   useGSAP(() => {
     tlRef.current = gsap.from(modalRef.current, {
       y: -100,
@@ -35,40 +33,46 @@ const AddCoupon = ({ setShowModal }) => {
       },
     });
   };
-  const [form, setForm] = useState({
-    coupon_count: "",
-    coupon_code: "",
-    coupon_max_cart_items: "",
-    coupon_type: "",
-    offer_percentage: "",
 
+  const [form, setForm] = useState({
+    coupon_count: 1,
+    coupon_code: "{code}",
+    coupon_max_cart_items: "",
+    coupon_type: 0,
+    offer_percentage: 0,
     min_price: "",
     expired_date: "",
     status: "",
   });
-  // handleSubmit
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+
+    if (!form.expired_date) {
+      toast.error("Please select an expiration date");
+      return;
+    }
+
+    setLoading(true);
     try {
-      Axios.post("/admin/coupon", form).then((data) =>{
-        toast.success('Created Successfly')
-        setLoading(false)
-        setShowModal(false)
-        console.log(data)});
+      Axios.post("/admin/coupon", form).then((data) => {
+        toast.success("Created Successfully");
+        setLoading(false);
+        setShowModal(false);
+        console.log(data);
+      });
     } catch (err) {
       console.log(err);
-      setLoading(false)
-
+      setLoading(false);
     }
   };
-  console.log(form);
+
   return (
-    <div className="addLesson fixed   inset-0 min-h-screen overflow-auto flex items-center justify-center bg-black bg-opacity-30 z-50">\
-    <Notifcation/>
+    <div className="addLesson fixed inset-0 min-h-screen overflow-auto flex items-center justify-center bg-black bg-opacity-30 z-50">
+      <Notifcation />
       <div
         ref={modalRef}
-        className="bg-white custom-scrollbar p-6  h-[95vh] overflow-auto rounded shadow-lg w-[90%] md:w-[40%]"
+        className="bg-white custom-scrollbar p-6 h-[95vh] overflow-auto rounded shadow-lg w-[90%] md:w-[40%]"
       >
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-textColor">
@@ -81,12 +85,12 @@ const AddCoupon = ({ setShowModal }) => {
             &times;
           </button>
         </div>
+
         <form onSubmit={handleSubmit}>
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Coupons Count
-            </label>
+            <label className="text-textColor">Coupons Count</label>
             <input
+              required
               value={form.coupon_count}
               onChange={(e) =>
                 setForm({ ...form, coupon_count: e.target.value })
@@ -97,17 +101,16 @@ const AddCoupon = ({ setShowModal }) => {
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
             />
           </div>
+
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Coupons Code
-            </label>
+            <label className="text-textColor">Coupons Code</label>
             <input
+              required
               value={form.coupon_code}
               onChange={(e) =>
                 setForm({ ...form, coupon_code: e.target.value })
               }
               disabled={loading}
-
               type="text"
               placeholder="Coupon Code"
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
@@ -116,17 +119,16 @@ const AddCoupon = ({ setShowModal }) => {
               {'use "{code}" if u gonna use prefix/suffix'}
             </p>
           </div>
+
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Max Cart Items
-            </label>
+            <label className="text-textColor">Max Cart Items</label>
             <input
+              required
               value={form.coupon_max_cart_items}
               onChange={(e) =>
                 setForm({ ...form, coupon_max_cart_items: e.target.value })
               }
               disabled={loading}
-
               type="number"
               placeholder="Max Cart Items"
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
@@ -135,46 +137,41 @@ const AddCoupon = ({ setShowModal }) => {
           </div>
 
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Coupons type
-            </label>
+            <label className="text-textColor">Coupons type</label>
             <select
+              required
               value={form.coupon_type}
               disabled={loading}
-
               onChange={(e) =>
                 setForm({ ...form, coupon_type: e.target.value })
               }
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
-              name="type"
-              id="type"
             >
+              <option value="">Select type</option>
               <option value="1">normal</option>
               <option value="0">one time</option>
             </select>
           </div>
+
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Minimum purchase price
-            </label>
+            <label className="text-textColor">Minimum purchase price</label>
             <input
+              required
               value={form.min_price}
               disabled={loading}
-
               onChange={(e) => setForm({ ...form, min_price: e.target.value })}
               type="number"
               placeholder="Minimum purchase price"
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
             />
           </div>
+
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Offer(%){" "}
-            </label>
+            <label className="text-textColor">Offer(%)</label>
             <input
+              required
               value={form.offer_percentage}
               disabled={loading}
-
               onChange={(e) =>
                 setForm({ ...form, offer_percentage: e.target.value })
               }
@@ -183,59 +180,42 @@ const AddCoupon = ({ setShowModal }) => {
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
             />
           </div>
+
           <div className="mt-4 flex flex-col">
-            <label className="text-textColor" htmlFor="">
-              End time{" "}
-            </label>
+            <label className="text-textColor">End time</label>
             <DatePicker
-      
-      selected={form.expired_date}
-      onChange={(data) => setForm({...form , expired_date : data})}
-    
-      className="w-full text-text2 !block outline-none p-2 border rounded mt-3 focus:border-main"
-      dateFormat="yyyy-MM-dd"
-      placeholderText="Date"
-    />
-
-            {/* <input
-              disabled={loading}
-
-              value={form.expired_date}
-              onChange={(e) =>
-                setForm({ ...form, expired_date: e.target.value })
-              }
-              type="number"
-              placeholder="End time "
-              className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
-            /> */}
+              selected={form.expired_date}
+              onChange={(date) => setForm({ ...form, expired_date: date })}
+              className="w-full text-text2 !block outline-none p-2 border rounded mt-3 focus:border-main"
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Date"
+            />
           </div>
+
           <div className="mt-4">
-            <label className="text-textColor" htmlFor="">
-              Status{" "}
-            </label>
+            <label className="text-textColor">Status</label>
             <select
+              required
               value={form.status}
               disabled={loading}
-
               onChange={(e) => setForm({ ...form, status: e.target.value })}
               className="w-full text-text2 outline-none p-2 border rounded mt-3 focus:border-main"
-              name="status"
-              id="status"
             >
+              <option value="">Select status</option>
               <option value="active">active</option>
               <option value="inactive">inactive</option>
             </select>
           </div>
+
           <button
             type="submit"
-            className="text-white w-20 px-5 py-2 rounded bg-main mt-4"
+            className="text-white text-center w-20 px-5 py-2 rounded bg-main mt-4"
           >
-            {
-              loading ?
+            {loading ? (
               <AiOutlineLoading className="load-icon text-white" />
-              : "Save"
-            }
-            
+            ) : (
+              "Save"
+            )}
           </button>
         </form>
       </div>

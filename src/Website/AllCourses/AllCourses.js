@@ -11,6 +11,8 @@ import DownFilter from "./DownFilter";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
+import { Category } from "../../Context/CategoryIdContext";
+import { useContext } from "react";
 
 const AllCourses = () => {
   const heroTitle = useRef();
@@ -37,9 +39,11 @@ const AllCourses = () => {
   const [search, setSearch] = useState("");
   const [skeleton, setSkeleton] = useState("");
   const [levelId, setLevelId] = useState([]);
-  const [categoryId, setCategoryId] = useState([]);
+  // const [categoryId, setCategoryId] = useState([]);
   const [priceMode, setPriceMode] = useState("");
-
+  const CategoryContext = useContext(Category);
+  const setCategoryId = CategoryContext.setcategoryId
+  const categoryId = CategoryContext.categoryId
   const [resize, setResize] = useState(window.innerWidth);
   useEffect(()=>{
     window.addEventListener('resize',()=>setResize(window.innerWidth))
@@ -92,7 +96,7 @@ const AllCourses = () => {
         ):
         <SideFilter
         setCategoryId={setCategoryId}
-      
+        categoryId={categoryId}
         setSearch={setSearch}
         setPriceMode={setPriceMode}
         setLevelId={setLevelId}
@@ -134,7 +138,9 @@ const AllCourses = () => {
                 ))
               : courses?.map((data, index) => (
                   <AllCoursesCard
+                  key={index}
                     slug={data.slug}
+                    description={data.description}
                     instructor_image={data.instructor?.image}
                     instructor_name={data.instructor?.user_name}
                     image={data.thumbnail}
