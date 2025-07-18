@@ -22,7 +22,7 @@ const EnrolledCourseDetails = () => {
   const [skeleton, setSkeleton] = useState(false);
   const [quizId, setQuizId] = useState("");
   const [loading, setLoading] = useState(true);
-
+console.log(url);
   const [type, setType] = useState(false);
   const { id } = useParams();
   console.log(quizId);
@@ -129,7 +129,9 @@ const EnrolledCourseDetails = () => {
           ) : (
             <div className="w-full h-[18.5rem] relative rounded-xl overflow-hidden">
               <div
-                onClick={() => setPlay(true)}
+                onClick={() =>{
+                  
+                  setPlay(true)}}
                 style={{
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25))",

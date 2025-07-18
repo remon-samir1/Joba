@@ -26,16 +26,17 @@ const QA = (props) => {
   const handelSendQuestion = () => {
     setLoading(true);
     try {
-      if(sendQuestion.lesson_id !== undefined){
-        
+      if (sendQuestion.lesson_id !== undefined) {
         Axios.post("/student/create-question", sendQuestion).then((data) => {
           console.log(data);
           setLoading(false);
           toast.success("Question Created Successfly");
+        setChange((prev) => !prev);
+
         });
-      }else{
+      } else {
         setLoading(false);
-        toast.warn('there is no lessons to add questions')
+        toast.warn("there is no lessons to add questions");
       }
     } catch (err) {
       setLoading(false);
@@ -48,7 +49,7 @@ const QA = (props) => {
     Axios.get(
       `/student/fetch-lesson-questions?query=${searchTerm}&lesson_id=${sendQuestion.lesson_id}&course_id=${sendQuestion.course_id}`
     ).then((data) => {
-      setLoading(false)
+      setLoading(false);
       console.log(data);
       setQuestions(data.data.view.data);
     });
@@ -213,9 +214,7 @@ const QA = (props) => {
             </div>
           ))}
       </div>
-      <div className="text-center mt-8">
-
-      </div>
+      <div className="text-center mt-8"></div>
     </div>
   );
 };

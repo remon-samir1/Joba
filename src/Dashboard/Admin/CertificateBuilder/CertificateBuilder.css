@@ -1,6 +1,35 @@
-.CertificateBuilder{
+/* CertificateBox.css */
 
+.certificate-container {
+  padding: 20px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  flex: 1;
+  direction: rtl;
+  font-family: Arial, sans-serif;
 }
+
+.certificate-box {
+  position: relative;
+  background-color: white;
+
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.certificate-item {
+  position: absolute;
+  background-color: #e0eaff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: move;
+  user-select: none;
+}
+
 .CertificateBuilder .details{
   background-color: #fff;
   /* width: 22vw; */

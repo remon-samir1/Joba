@@ -36,6 +36,8 @@ const MyCourses = () => {
         <MyCoursesCard
           key={index}
           image={course?.course.thumbnail}
+          students={course.students}
+          lessons={course.lessons}
           id={course?.course.id}
           slug={course?.course.slug}
           instructor_name={course?.course.instructor.user_name}

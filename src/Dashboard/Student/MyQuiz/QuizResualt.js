@@ -77,7 +77,7 @@ const QuizResualt = () => {
             : "You have failed in quiz"}
         </p>
         <Link
-          to="/student/main"
+          to="/student"
           className="text-white main-shadow duration-300 text-base bg-main px-5 py-3 rounded-3xl "
         >
           Go back to dashboard

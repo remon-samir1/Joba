@@ -7,10 +7,6 @@ const CourseContactDetails = (props) => {
   const [openUnit, setOpenUnit] = useState(0);
   const contentRefs = useRef([]);
 
-  
-useEffect(()=>{
-  setOpenUnit(0)
-},[])
   const toggleUnit = (index) => {
     if (openUnit === index) {
       // Close animation
@@ -43,36 +39,36 @@ useEffect(()=>{
     }
   };
 
+  
   return (
     <div className="bg-white py-3 w-full md:w-[340px]">
       <h3 className="text-textColor text-[1.1rem] font-semibold p-4">
         Course Contact
       </h3>
       {props.data?.map((unit, index) => (
-        <div
-          key={index}
-          className="cursor-pointer"
-        >
+        <div key={index} className="cursor-pointer">
           <div
-            onClick={() =>{
-              
-              toggleUnit(index)}}
-            className="flex justify-between items-center  p-4 bg-[#F15A24] bg-opacity-20" 
+            onClick={() => {
+              toggleUnit(index);
+            }}
+            className="flex justify-between items-center  p-4 bg-[#F15A24] bg-opacity-20"
           >
             <span className="text-[1rem] text-textColor font-semibold ">
               {unit.title}
             </span>
             <div className="flex items-center gap-1">
-{/* <span className="text-[1rem] text-textColor ">0/30 Done</span> */}
-            <Icon
-              icon="fe:arrow-down"
-              width="18"
-              height="18"
-              className={`transform transition duration-300 ${
-                openUnit === index ? "-rotate-[180deg] text-textColor" : "rotate-0 text-textColor"
-              }`}
+              {/* <span className="text-[1rem] text-textColor ">0/30 Done</span> */}
+              <Icon
+                icon="fe:arrow-down"
+                width="18"
+                height="18"
+                className={`transform transition duration-300 ${
+                  openUnit === index
+                    ? "-rotate-[180deg] text-textColor"
+                    : "rotate-0 text-textColor"
+                }`}
               />
-              </div>
+            </div>
           </div>
 
           <div
@@ -82,22 +78,37 @@ useEffect(()=>{
             {unit.chapter_items.length > 0 ? (
               unit.chapter_items.map((course, cIndex) => (
                 <div
-                onClick={()=>{
-                  props.setType(course.type)
-                  props.setLessonId(course.lesson.id)
-                  props.setUrl(course.lesson?.file_path)
-                props.setQuizId(course?.quiz?.id)
-                
-                }}
+                  onClick={() => {
+                    props.setType(course.type);
+                    props.setLessonId(course.lesson.id);
+                    props.setUrl(course.lesson?.file_path);
+                    props.setQuizId(course?.quiz?.id);
+                  }}
                   key={cIndex}
-                  className={`flex justify-between p-3 hover:bg-gray-100 my-1 ${course.lesson?.file_path && props.url === course.lesson?.file_path  && '!bg-main !text-white'}`} 
+                  className={`flex justify-between p-3 hover:bg-gray-100 my-1 ${
+                    course.lesson?.file_path &&
+                    props.url === course.lesson?.file_path &&
+                    "!bg-main !text-white"
+                  }`}
                 >
                   <div className="flex items-center gap-2">
-                    <div className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${course.lesson?.file_path && props.url === course.lesson?.file_path && '!bg-white !text-main'}`}>
+                    <div
+                      className={`flex rounded items-center justify-center w-[35px] h-[35px] bg-[#F1F1F1] ${
+                        course.lesson?.file_path &&
+                        props.url === course.lesson?.file_path &&
+                        "!bg-white !text-main"
+                      }`}
+                    >
                       {cIndex + 1}
                     </div>
-                  
-                    <span className={`text-textColor text-[0.9rem] font-semibold ${course.lesson?.file_path &&  props.url === course.lesson?.file_path && ' !text-white'}`}>
+
+                    <span
+                      className={`text-textColor text-[0.9rem] font-semibold ${
+                        course.lesson?.file_path &&
+                        props.url === course.lesson?.file_path &&
+                        " !text-white"
+                      }`}
+                    >
                       {" "}
                       {course.lesson?.title}
                     </span>
@@ -106,7 +117,6 @@ useEffect(()=>{
                     <span className="text-textColor text-[0.9rem] font-semibold">
                       {course.duration}
                     </span>
-                
                   </div>
                 </div>
               ))

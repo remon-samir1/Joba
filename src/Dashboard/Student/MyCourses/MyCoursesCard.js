@@ -4,6 +4,7 @@ import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { formatDuration } from "../../../components/FormatDuration/FormatDuration";
 import { baseUrl } from "../../../components/Helpers/Axios";
+import defaultImage from '../../../images/juba.svg'
 const MyCoursesCard = (props) => {
   return (
     <Link
@@ -15,6 +16,10 @@ const MyCoursesCard = (props) => {
           src={`https://goba.sunmedagency.com/${props.image}`}
           alt="course"
           loading="lazy"
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src = defaultImage;
+          }}
           className="w-full h-full object-cover"
         />
       </div>
@@ -61,7 +66,7 @@ const MyCoursesCard = (props) => {
               width="16"
               height="16"
             />
-            <span className="text-[0.7rem] text-text2 ">36 Lessons</span>
+            <span className="text-[0.7rem] text-text2 ">{props.lessons} Lessons</span>
           </div>
           <div className="flex items-center gap-3 px-5 border-x border-x-[#ddd]">
             <Icon
@@ -81,7 +86,7 @@ const MyCoursesCard = (props) => {
               width="16"
               height="16"
             />
-            <span className="text-[0.7rem] text-text2 ">100 Students</span>
+            <span className="text-[0.7rem] text-text2 ">{props.students} Students</span>
           </div>
         </div>
       </div>
