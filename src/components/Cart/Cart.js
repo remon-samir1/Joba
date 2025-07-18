@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import Notifcation from "../Notification";
 import { useContext } from "react";
 import { CartCh } from "../../Context/CartContext";
-
+import defaultImage from '../../images/juba.svg'
 const Cart = () => {
   const [products, setProductus] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -88,6 +88,10 @@ const Cart = () => {
                     alt="course"
                     loading="lazy"
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = defaultImage;
+                    }}
                   />
                 </div>
                 <div className="p-4  ">
@@ -106,7 +110,7 @@ const Cart = () => {
                       </span>
                     </div>
                     <span className="text-base  text-main font-bold">
-                      {/* {item.price} */}
+                      {item.price}
                     </span>
                   </div>
                   <button

@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
-
+import defaultImage from '../../../images/juba.svg'
 const CourseDetails = () => {
   const [course, setCourse] = useState([]);
   const [count, setCount] = useState();
@@ -57,6 +57,10 @@ const CourseDetails = () => {
             <img
               src={`https://goba.sunmedagency.com/${course?.thumbnail}`}
               alt="course"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = defaultImage;
+              }}
               className="w-full h-full object-cover"
             />
           </div>

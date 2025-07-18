@@ -33,5 +33,5 @@ root.render(
     </WindowSizeContext>
     </UserContext>
 
-  </React.StrictMode>
+  </React.StrictMode> 
 );

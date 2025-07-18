@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Axios } from "../../../../components/Helpers/Axios";
 import SkeletonShow from "../../../../components/Skeleton/Skeleton";
-
+import defaultImage from '../../../../images/juba.svg'
 const MainPageCoursesPart = () => {
   //  get data
   const [courses, setCourses] = useState([]);
@@ -113,6 +113,10 @@ const MainPageCoursesPart = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   src={`https://goba.sunmedagency.com/${course?.course.thumbnail}`}
                   alt="course"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = defaultImage;
+                  }}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Link

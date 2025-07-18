@@ -365,14 +365,12 @@ const handleDragEnd = async (event) => {
       [id]: updatedPosition,
     };
 
-    // حفظ محلي
     localStorage.setItem("certificate_positions", JSON.stringify(updated));
 
-    // إرسال للـ API
     Axios.post("/admin/certificate-builder/item/update", {
-      id,
-      x: newX,
-      y: newY,
+      element_id : id,
+      x_position: newX,
+      y_position: newY,
     }).then(data=>{
       console.log(data);
       toast.success('Updated Successfly')
