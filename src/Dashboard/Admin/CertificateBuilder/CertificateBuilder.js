@@ -219,6 +219,8 @@ import Breadcrumbs from "../../../components/Breadcrumbs/Breadcrumbs";
 import { Axios } from "../../../components/Helpers/Axios";
 import { LuSave } from "react-icons/lu";
 import { DndContext, useDraggable, useSensor, useSensors, PointerSensor } from "@dnd-kit/core";
+import Notifcation from "../../../components/Notification";
+import { toast } from "react-toastify";
 
 const DraggableElement = ({ id, children, position }) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
@@ -258,6 +260,7 @@ const CertificateBuilder = () => {
     setLaoding(true);
     Axios.get("/admin/certificate-builder").then((data) => {
       setLaoding(false);
+      console.log(data.data.data.certificate);
       setCertificate(data.data.data.certificate);
     });
   }, [change]);
@@ -277,6 +280,8 @@ const CertificateBuilder = () => {
       await Axios.post("/admin/certificate-builder/1", formData).then(data=>console.log(data));
       setLaoding(false);
       setChange((prev) => !prev);
+      toast.success('Updated Successfly')
+
     } catch (err) {
       console.log(err);
       setChange((prev) => !prev);
@@ -296,26 +301,93 @@ const CertificateBuilder = () => {
     return saved ? JSON.parse(saved) : defaultPositions;
   });
 
-  const handleDragEnd = (event) => {
-    const { delta, active } = event;
+  // const handleDragEnd = async (event) => {
+  //   const { delta, active } = event;
+  //   const id = active.id;
+  
+  //   setPositions((prev) => {
+  //     const current = prev[id];
+  //     const updatedPosition = {
+  //       x: current.x + delta.x,
+  //       y: current.y + delta.y,
+  //     };
+  
+  //     console.log(id);
+  //     const updated = {
+  //       ...prev,
+  //       [id]: updatedPosition,
+  //     };
+  
+  //     localStorage.setItem("certificate_positions", JSON.stringify(updated));
+  
+  //     Axios.post("/admin/certificate-builder/item/update", {
+  //       id,
+  //       x: updatedPosition.x,
+  //       y: updatedPosition.y,
+  //     }).then(data=>{
+  //       toast.success('Updated Successfly')
+  //     }).catch((err) => console.error("Failed to sync position:", err));
+  
+  //     return updated;
+  //   });
+  // };
+     
 
-    setPositions((prev) => {
-      const updated = {
-        ...prev,
-        [active.id]: {
-          x: prev[active.id].x + delta.x,
-          y: prev[active.id].y + delta.y,
-        },
-      };
-      localStorage.setItem("certificate_positions", JSON.stringify(updated));
-      return updated;
-    });
-  };
+
+  const boxRef = useRef(null); // أضف فوق في المكون
+
+const handleDragEnd = async (event) => {
+  const { delta, active } = event;
+  const id = active.id;
+
+  const box = boxRef.current;
+  if (!box) return;
+
+  const boxRect = box.getBoundingClientRect();
+  const maxX = boxRect.width - 150; // أقصى عرض تقريبي للعنصر
+  const maxY = boxRect.height - 80; // أقصى ارتفاع تقريبي للعنصر
+
+  setPositions((prev) => {
+    const current = prev[id];
+
+    // الموضع الجديد
+    let newX = current.x + delta.x;
+    let newY = current.y + delta.y;
+
+    // قيد الحدود داخل البوكس
+    newX = Math.max(0, Math.min(newX, maxX));
+    newY = Math.max(0, Math.min(newY, maxY));
+
+    const updatedPosition = { x: newX, y: newY };
+
+    const updated = {
+      ...prev,
+      [id]: updatedPosition,
+    };
+
+    // حفظ محلي
+    localStorage.setItem("certificate_positions", JSON.stringify(updated));
+
+    // إرسال للـ API
+    Axios.post("/admin/certificate-builder/item/update", {
+      id,
+      x: newX,
+      y: newY,
+    }).then(data=>{
+      console.log(data);
+      toast.success('Updated Successfly')
+    }).catch((err) => console.error("Failed to sync position:", err));
+
+    return updated;
+  });
+};
+
 
   const sensors = useSensors(useSensor(PointerSensor));
 
   return (
     <div className="CertificateBuilder">
+      <Notifcation/>
       {laoding && (
         <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>
@@ -414,6 +486,7 @@ const CertificateBuilder = () => {
         </div>
 
         <div
+         ref={boxRef}
           className="w-full md:flex-1 bg-white text-center px-5 py-8 relative overflow-hidden"
           style={{
             background: ` #fff url(https://goba.sunmedagency.com/${certificate?.background}) center / cover no-repeat`,
