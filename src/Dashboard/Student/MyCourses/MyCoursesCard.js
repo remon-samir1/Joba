@@ -20,7 +20,7 @@ const MyCoursesCard = (props) => {
             e.target.onerror = null; 
             e.target.src = defaultImage;
           }}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       </div>
       <div className="flex-1">
@@ -44,7 +44,7 @@ const MyCoursesCard = (props) => {
           </div>
           <div className="flex items-center gap-1">
             <FaStar color="#F1AC4D" />
-            <span className="text-[0.9rem] text-textColor">4.8 Reviews</span>
+            <span className="text-[0.9rem] text-textColor">{props.reviews} Reviews</span>
           </div>
         </div>
         <div className="flex items-center justify-between mt-6">

@@ -15,6 +15,7 @@ const MyCourses = () => {
     Axios.get("/student/enrolled-courses").then((data) => {
       setSkeleton(false);
 
+
       setCourses(data.data.enrolls);
       console.log(data.data.enrolls);
     });
@@ -39,6 +40,7 @@ const MyCourses = () => {
           students={course.students}
           lessons={course.lessons}
           id={course?.course.id}
+          reviews={course?.course.reviews[0]?.rating}
           slug={course?.course.slug}
           instructor_name={course?.course.instructor.user_name}
           instructor_image={course?.course.instructor.image}
