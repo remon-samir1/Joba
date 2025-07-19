@@ -31,7 +31,7 @@ const OurCoursesCard = (props) => {
   }, []);
 
   return (
-    <Link to={`/student/course-details/${props.slug}`} ref={cardRef} className="OurCoursesCard">
+    <Link to={`/course-view/${props.slug}`} ref={cardRef} className="OurCoursesCard">
       <div className="img relative overflow-hidden group">
         <img
           src={`${baseUrl}/${props.thumbnail}`}

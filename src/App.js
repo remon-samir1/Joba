@@ -74,6 +74,7 @@ import BecomeInstructor from "./Website/BecomeInstructor/BecomeInstructor";
 import ResetPassword from "./Website/Auth/ResetPassword/ResetPassword";
 import Verify from "./Website/Auth/Verify/Verify";
 import AddStudent from "./Dashboard/Admin/AllStudents/AddStudent";
+import CourseView from "./Dashboard/Student/CourseDetails/CourseView";
 function App() {
   return (
     <div className="App">
@@ -85,6 +86,7 @@ function App() {
         <Route path="/Support" element={<Support />} />
         <Route path="/About" element={<About />} />
         <Route path="/Courses" element={<AllCourses />} />
+        <Route path="/Course-view/:id" element={<CourseView />} />
         <Route path="/blog/:id" element={<Blog />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />

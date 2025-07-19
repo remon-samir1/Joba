@@ -18,7 +18,7 @@ const AllCoursesCard = (props) => {
 
   return (
     <Link
-      to={`/student/course-details/${props.slug}`}
+      to={`/Course-view/${props.slug}`}
       style={{ boxShadow: "0 4px 8px rgb(0 0 0 / 3%)", flex: "1 1 30%" }}
       className="pb-3 min-w-[290px] max-w-[370px] h-[370px] border flex-1 overflow-hidden bg-white rounded-xl mt-3 group transition-transform duration-500"
     >
