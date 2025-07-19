@@ -41,7 +41,7 @@ const CourseView = () => {
   return (
     <div ref={scrollRef}>
       <NavBar />
-      <div className="my-5 px-[10vh]">
+      <div className="my-5 md:px-[10vh]">
         {loading && (
           <div className="fixed h-screen bg-white bg-opacity-50 z-50 inset-0 flex items-center justify-center">
             <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>{" "}
