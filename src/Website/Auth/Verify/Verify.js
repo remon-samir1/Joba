@@ -27,11 +27,7 @@ const Verify = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const { id } = useParams();
-  useEffect(() => {
-    
-      handelSubmit()
-  
-  }, []);
+
   const handelSubmit = async (e) => {
     console.log(id);
     setLaoding(true);
