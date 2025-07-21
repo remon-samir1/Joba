@@ -6,13 +6,17 @@ import Cookies from "cookie-universal";
 
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoEyeOffOutline } from "react-icons/io5";
-import google from "../../../images/google.svg";
-import facebook from "../../../images/facebook.svg";
+
 import Logo from "../../../components/Logo/Logo";
 import { Axios } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
 import Loading from "../../../components/Loading/Loading";
+
+// providers
+import Providers from "../../../components/Providers/Providers"
+// endProviders
+
 const Login = () => {
   const [hidePass, setHidePass] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
@@ -136,7 +140,7 @@ const Login = () => {
             </div>
             <button type="submit">Log in</button>
             <p className="seperator">- Or log in with -</p>
-            <div className="providers">
+            {/* <div className="providers">
               <Link className="link">
                 <img src={google} alt="google" loading="lazy" />
                 <span>Google</span>
@@ -145,7 +149,8 @@ const Login = () => {
                 <img src={facebook} alt="facebook" loading="lazy" />
                 <span>Facebook</span>
               </Link>
-            </div>
+            </div> */}
+            <Providers />
             <p className="redirect">
               Don't have an account?{" "}
               <Link className="link" to="/register">

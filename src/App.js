@@ -73,6 +73,7 @@ import AllCourses from "./Website/AllCourses/AllCourses";
 import BecomeInstructor from "./Website/BecomeInstructor/BecomeInstructor";
 import ResetPassword from "./Website/Auth/ResetPassword/ResetPassword";
 import Verify from "./Website/Auth/Verify/Verify";
+import Provider from "./Website/Auth/Provider/Provider";
 import AddStudent from "./Dashboard/Admin/AllStudents/AddStudent";
 import CourseView from "./Dashboard/Student/CourseDetails/CourseView";
 function App() {
@@ -94,6 +95,7 @@ function App() {
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/reset-password/:id" element={<ResetPassword />} />
         <Route path="/verify/:id" element={<Verify />} />
+        <Route path="/providers/:provider/:token" element={<Provider />} />
            {/* Admin Dahboard */}
            <Route element={<ReqiureAuth  alowedRole={['admin' , 'student' ]}/>}  >
            <Route element={<ReqiureAuth  alowedRole={['admin' ]}/>}  >
