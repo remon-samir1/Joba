@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./About.css";
 import NavBar from "../../components/NavBar/NavBar";
 import AboutUs from "../Landing/AboutUS/AboutUs";
@@ -6,10 +6,18 @@ import AboutCompany from "./AboutCompany";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const { t , i18n} = useTranslation()
+
+  const sccrollRef = useRef(null);
+
+  useEffect(()=>{
+sccrollRef.current.scrollIntoView()
+  },[])
   const titleRef = useRef();
   const flyRef = useRef();
   const aboutUsRef = useRef();
@@ -47,7 +55,7 @@ const About = () => {
   });
 
   return (
-    <div>
+    <div ref={sccrollRef}>
       <NavBar />
 
       <div className="About bg-main bg-opacity-25 h-[280px] px-[5vh] md:px-[10vh] flex items-center justify-between">
@@ -55,7 +63,7 @@ const About = () => {
           ref={titleRef}
           className="text-[3.3rem] text-textColor font-bold"
         >
-          About
+          {t("About")}
         </h3>
         <img
           ref={flyRef}

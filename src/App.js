@@ -76,6 +76,7 @@ import Verify from "./Website/Auth/Verify/Verify";
 import Provider from "./Website/Auth/Provider/Provider";
 import AddStudent from "./Dashboard/Admin/AllStudents/AddStudent";
 import CourseView from "./Dashboard/Student/CourseDetails/CourseView";
+import PaymentStatus from "./components/PaymentStatus/PaymentStatus";
 function App() {
   return (
     <div className="App">
@@ -86,6 +87,7 @@ function App() {
         <Route path="/BecomeInstructor" element={<BecomeInstructor />} />
         <Route path="/Support" element={<Support />} />
         <Route path="/About" element={<About />} />
+        <Route path="/payment-status" element={<PaymentStatus />} />
         <Route path="/Courses" element={<AllCourses />} />
         <Route path="/Course-view/:id" element={<CourseView />} />
         <Route path="/blog/:id" element={<Blog />} />

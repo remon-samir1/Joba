@@ -9,10 +9,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PopulerCourses = () => {
+  const { t , i18n} = useTranslation()
+
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [skeleton, setSkeleton] = useState("");
@@ -75,7 +78,7 @@ const PopulerCourses = () => {
   return (
     <div ref={containerRef} className="PopulerCourses container mx-auto">
       <div ref={headerRef} className="header">
-        <h3>Our Categories</h3>
+        <h3>{t("Our Categories")}</h3>
       </div>
       <div ref={bgRef} className="main-bg">
         <img src={require("../../../images/Populer-bg.png")} alt="PopulerCourses" loading="lazy" />

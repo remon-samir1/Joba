@@ -7,10 +7,13 @@ import { useGSAP } from "@gsap/react";
 import { useState } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import SkeletonShow from "../../../components/Skeleton/Skeleton";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const OurCourses = () => {
+  const { t , i18n} = useTranslation()
+
   const [courses, setCourses] = useState([]);
   const [category, setCategory] = useState([]);
   const [categoryId, setCategoryId] = useState('');
@@ -86,9 +89,9 @@ useEffect(()=>{
     <div ref={containerRef} className="OurCourses container mx-auto">
       <div ref={headerRef} className="header">
         <div className="texts">
-          <p>welcome to our property</p>
-          <h4>
-            Our <span>featured</span> courses
+          <p>{t("welcome to our property")}</p>
+          <h4 className="flex gap-2 items-center" style={{flexDirection : i18n.language === 'ar' ? "row-reverse" : "row"}}>
+            {t("Our")} <span>{t("featured")}</span> {t("courses ")}
           </h4>
         </div>
         <div className="img">

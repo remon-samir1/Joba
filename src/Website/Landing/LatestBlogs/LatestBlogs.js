@@ -9,10 +9,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const LatestBlogs = () => {
+  const { t , i18n} = useTranslation()
+  
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const boxesRef = useRef(null);
@@ -43,7 +46,7 @@ console.log(blogs);
   return (
     <div ref={sectionRef} className="LatestBlogs">
       <div ref={textRef} className="texts">
-        <p>Latest blogs & news</p>
+        <p>{t("Latest blogs & news")}</p>
       </div>
       <div ref={boxesRef} className="boxes flex-wrap flex justify-center items-center gap-10 mt-24">
       
@@ -64,7 +67,7 @@ console.log(blogs);
     
       </div>
       <div ref={linkRef} className="flex justify-center items-center w-full mt-10">
-        <Link to='/blogs' className="link">All blogs</Link>
+        <Link to='/blogs' className="link">{t("All blogs")}</Link>
       </div>
     </div>
   );

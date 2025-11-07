@@ -4,11 +4,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./AboutUs.css";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutUs = () => {
   const aboutRef = useRef(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -74,7 +76,7 @@ const AboutUs = () => {
       <div className="data">
         <div className="content">
           <div className="header">
-            <h4>about us</h4>
+            <h4>{t("about us")}</h4>
             <img
               src={require("../../../images/orangeArrow.png")}
               alt=">>>"
@@ -82,46 +84,54 @@ const AboutUs = () => {
             />
           </div>
           <p className="title">
-            Lorem ipsum dolor sit amet consectetur. Neque tristique purus
-            volutpat adipiscing.
+            {t("From Science to Application… From Passion to Mastery")}
           </p>
           <p className="description">
-            Lorem ipsum dolor sit amet consectetur. Neque tristique purus
-            volutpat adipiscing.
+            <p>
+              {t(
+                "Joba Natural Hub Academy was founded as the educational and scientific branch of Joba Natural for Cosmetics, serving as a trusted Arabic reference in professional cosmetics formulation training. We believe that true beauty starts with scientific understanding. That’s why our programs combine solid academic foundations with real industrial experience, bridging theory and practice seamlessly. At Joba Academy, we offer comprehensive online courses covering every aspect of cosmetics manufacturing — supervised by Dr.Mohamed Ouda, expert in applied industry practice, and Dr.Mohamed Salah, specialist in academic cosmetic chemistry. Our mission is to empower you to turn your passion into a profession and your profession into sustainable success built on science, quality, and mastery."
+              )}
+            </p>
           </p>
         </div>
         <div className="flexiable">
           <img
-            src={require("../../../images/FlexabileClasses.png")}
+            src={i18n.language === 'ar' ? require("../../../images/FlexabileClasses-ar.png") : require("../../../images/FlexabileClasses.png")}
             alt="juba"
             loading="lazy"
           />
           <span>
-            Lorem ipsum dolor sit amet consectetur. Laoreet suspendisse facilisi
-            vulputate ullamcorper nunc.
+            {t(
+              "At Joba Academy, we are more than just an educational platform — we are your dedicated partner on the journey to mastering the art and science of cosmetics manufacturing.We provide an integrated blend of knowledge, practical application, and continuous support, along with real industry opportunities that empower you to start with confidence and achieve excellence in your field."
+            )}
           </span>
         </div>
         <div className="details">
-          {[...Array(4)].map((_, index) => (
+          {[
+            t("Trusted Scientific Content"),
+            t("Hands-on Practical Training"),
+            t("Continuous Post-Course Support"),
+            t("Real Industry Opportunities"),
+          ].map((data, index) => (
             <div className="detail" key={index}>
               <img
                 src={require("../../../images/checkd.png")}
                 alt="check"
                 loading="lazy"
               />
-              <span>Lorem ipsum dolor</span>
+              <span>{data}</span>
             </div>
           ))}
         </div>
         <div className="img responsive">
-        <img
-          src={require("../../../images/AbouUs.png")}
-          alt="about-us"
-          loading="lazy"
-        />
-      </div>
-        <Link className="link">
-          <span>Discover more</span>
+          <img
+            src={require("../../../images/AbouUs.png")}
+            alt="about-us"
+            loading="lazy"
+          />
+        </div>
+        <Link to='/about' className="link">
+          <span>{t("Discover more")}</span>
           <MdOutlineKeyboardDoubleArrowRight className="icon" />
         </Link>
       </div>

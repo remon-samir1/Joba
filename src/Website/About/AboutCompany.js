@@ -10,28 +10,31 @@ import commuincate from "../../images/commuincate.png";
 import quality from "../../images/quality.png";
 import pro from "../../images/pro.png";
 import Footer from "../../components/Footer/Footer";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AboutCompany = () => {
+  const { t , i18n} = useTranslation()
+
   const boxes = [
     {
-      title: "Commitment and credibility",
+      title: t("Trusted Scientific Content"),
       image: commuincate,
       description:
-        "We are fully committed to the best performance standards, and the formation of long-term relationships with success partners.",
+        t("Courses are built on solid academic foundations, supervised by top experts in cosmetic chemistry and applied formulation"),
     },
     {
-      title: "The quality",
+      title: t("Hands-on Practical Training"),
       image: quality,
       description:
-        "We are fully committed to the best performance standards, and the formation of long-term relationships with success partners.",
+        t("Learn real formulation techniques through practical sessions inside actual laboratories and production facilities"),
     },
     {
-      title: "Professionalism ",
+      title: t("Continuous Post-Course Support"),
       image: pro,
       description:
-        "We are fully committed to the best performance standards, and the formation of long-term relationships with success partners.",
+        t("We stay with you even after the course ends — offering ongoing mentorship and consultancy for your own projects"),
     },
   ];
 
@@ -103,14 +106,13 @@ const AboutCompany = () => {
               style={{ letterSpacing: "2px" }}
               className="text-[1.1rem] text-text2 uppercase"
             >
-              About our company
+              {t("CEO's Message - Dr. Mohammed Odeh")}
             </p>
-            <h4 className="text-[1.3rem] md:text-[2rem] mt-3 text-main font-bold md:w-[90%]">
-              Lorem ipsum dolor sit amet consectetur. Viverra malesuada id urna
+            <h4 className="text-[0.9rem] md:text-[1.1rem] mt-3 text-main font-bold md:w-[90%]">
+              {t("In a world that’s constantly evolving, true knowledge remains the power that creates real impact.That’s why Joba Natural Hub Academy was founded — to be the gateway where science meets application in the beauty industry.")}
             </h4>
             <p className="text-text2 text-[1.2rem] mt-3">
-              Lorem ipsum dolor sit amet consectetur. Velit sed vitae velit
-              malesuada neque lectus ultrices tincidunt.
+            {t("From the very first day of founding Joba Natural Hub, our vision was clear: to redefine education in the world of cosmetics manufacturing. Over the years, I have met countless people filled with passion for this field, yet lacking structured scientific knowledge and true practical experience. That’s why we created Joba Academy — a platform that bridges precise academic science with extensive industrial practice, empowering learners to transform their passion into a professional career. At Joba, we believe that beauty is never accidental; it is crafted through science, creativity, and an unwavering commitment to quality.Our vision is to become the leading Arabic reference for education and manufacturing in the cosmetics industry, built on solid scientific foundations that meet global standards.")}
             </p>
             <div>
               <div className="flex items-center mt-5">
@@ -120,7 +122,7 @@ const AboutCompany = () => {
                     active === "vision" && "!bg-main text-white"
                   }`}
                 >
-                  Our vision
+                  {t("Our vision")}
                 </button>
                 <button
                   onClick={() => setActive("mission")}
@@ -128,7 +130,7 @@ const AboutCompany = () => {
                     active === "mission" && "!bg-main text-white"
                   }`}
                 >
-                  Our mission
+                  {t("Our mission")}
                 </button>
               </div>
               {active === "vision" ? (
@@ -142,9 +144,7 @@ const AboutCompany = () => {
                     />
                   </div>
                   <p className="text-base text-textColor font-medium">
-                    Lorem ipsum dolor sit amet consectetur. Cras mattis purus
-                    quisque egestas. Enim lectus ridiculus parturient blandit
-                    consequat amet arcu ante.
+                  {t("We teach you how to create beauty through science, and empower you to achieve success through mastery.")}
                   </p>
                 </div>
               ) : (
@@ -158,9 +158,7 @@ const AboutCompany = () => {
                     />
                   </div>
                   <p className="text-base text-textColor font-medium">
-                    mission dolor sit amet consectetur. Cras mattis purus quisque
-                    egestas. Enim lectus ridiculus parturient blandit consequat
-                    amet arcu ante.
+                {t("At Joba Academy, our mission is to empower individuals to transform their passion for cosmetics into a professional career built on science and hands-on expertise. We strive to deliver comprehensive education that combines precise academic knowledge with real industrial practice — nurturing a new generation of professionals capable of innovation, excellence, and global-standard production.")}
                   </p>
                 </div>
               )}
@@ -186,7 +184,7 @@ const AboutCompany = () => {
               ref={headingRef}
               className="text-[2rem] text-textColor font-bold"
             >
-              Our Value
+              {t("Our Value")}
             </h3>
             <img
               ref={underlineRef}

@@ -9,8 +9,9 @@ import { toast } from "react-toastify";
 import Notifcation from "../Notification";
 import { useContext } from "react";
 import { CartCh } from "../../Context/CartContext";
-import defaultImage from '../../images/juba.svg'
+import defaultImage from "../../images/juba.svg";
 const Cart = () => {
+
   const [products, setProductus] = useState([]);
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinner] = useState(false);
@@ -27,7 +28,20 @@ const Cart = () => {
       setValues(data.data);
     });
   }, [cartShopping]);
-  console.log(products);
+  const hanldeCheckOut = async () => {
+    try {
+      setLoading(true);
+      Axios.get("/pay-via-paymob").then(
+        (data) => {
+        
+          (window.location.href = data.data.link)}
+      );
+    } catch (err) {
+      console.log(err);
+      setLoading(false)
+
+    }
+  };
   // handleRemoveItem
   const handleRemoveItem = (id) => {
     setSpinner(id);
@@ -171,12 +185,12 @@ const Cart = () => {
           <span className="text-base text-textColor">Total </span>
           <span className="text-base text-textColor">{values?.total}</span>
         </div>
-        <Link
-          to="/student/payment"
+        <button
+          onClick={hanldeCheckOut}
           className="main-shadow inline-block text-center duration-500 mt-10 w-full p-3 text-base rounded text-white bg-main"
         >
           Checkout
-        </Link>
+        </button>
       </div>
     </div>
   );

@@ -5,8 +5,11 @@ import { useGSAP } from "@gsap/react";
 import { Link } from "react-router-dom";
 import image from "../../../images/Hero.svg";
 import "./Hero.css";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t, i18n } = useTranslation();
+
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const headingRef = useRef(null);
@@ -56,21 +59,23 @@ const Hero = () => {
     <div className="Hero" ref={heroRef}>
       <div className="data px-4 md:px-12 mx-auto" ref={bgRef}>
         <div className="content" ref={contentRef}>
-
           <h2 ref={headingRef}>
-            Take your time <br /> <span>and learn from anywhere</span>
+            {t("Joba Academy")} <br />{" "}
+            <span>
+              {t("— Where Science Meets Practice in the World of Beauty.")}
+            </span>
           </h2>
           <p ref={paragraphRef}>
-            Lorem ipsum dolor sit amet consectetur. Laoreet suspendisse facilisi
-            vulputate ullamcorper nunc. Amet amet nunc varius vel Lorem ipsum
-            dolor sit amet.
+            {t(
+              "At Joba Natural Hub Academy, we offer a comprehensive learning experience that bridges precise academic knowledge with real-world practical expertise. Through carefully designed online courses, you’ll master the art and science of cosmetics formulation — from selecting raw materials to developing finished, market-ready products — under the supervision of leading experts in the industry."
+            )}
           </p>
           <div className="img" ref={imageRef}>
-          <img src={require('../../../images/Hero.webp')} alt="image" />
-        </div>
+            <img src={require("../../../images/Hero.webp")} alt="image" />
+          </div>
           <div className="details">
-            <Link to='/About' className="link" ref={buttonRef}>
-              <span>Learn more</span>
+            <Link to="/About" className="link" ref={buttonRef}>
+              <span>{t("Learn more")}</span>
               <MdOutlineKeyboardDoubleArrowRight className="icon" />
             </Link>
             <img
@@ -81,7 +86,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="img" ref={imageRef}>
-          <img src={require('../../../images/Hero.webp')} alt="image" />
+          <img src={require("../../../images/Hero.webp")} alt="image" />
         </div>
       </div>
     </div>

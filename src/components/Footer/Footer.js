@@ -7,24 +7,26 @@ import { TfiFacebook } from "react-icons/tfi";
 import { FaTwitter } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
 import logo from '../../images/white-logo.svg';
+import { useTranslation } from "react-i18next";
 const Footer = () => {
+  const { t , i18n} = useTranslation()
+
   return (
     <div className="footer">
       
       <div className="content">
         <div className="list2 list order-2">
-          <h4>Quick Links</h4>
+          <h4>{t("Quick Links")}</h4>
           <div className="Links">
-            <Link to="">Course content</Link>
-            <Link to="">Resource</Link>
-            <Link to="">Support</Link>
-            <Link to="">About</Link>
+            <Link to="/Courses">{t("Courses")}</Link>
+            <Link to="/Support">{t("Support")}</Link>
+            <Link to="/About">{t("About")}</Link>
           </div>
         </div>
         <div className="list2 list order-2">
-          <h4>Support</h4>
+          <h4>{t("Support")}</h4>
           <div className="Links">
-            <Link to="">Contact us</Link>
+            <Link to="">{t("Contact us")}</Link>
             <Link>
               <BsTelephone className="icon" />
               <span>1-415-386-9789 x429</span>
@@ -54,16 +56,14 @@ const Footer = () => {
           width={100}
           className="juba"
         />
-            <h4>Get in touch</h4>
+            <h4>{t("Get in Touch – We’re Here to Support Your Learning Journey")}</h4>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Tempor purus in feugiat
-              turpis. Egestas quis in lectus imperdiet amet mi et condimentum
-              leo. Lorem posuere eu tincidunt vel pharetra.
+            {t("We’re always happy to hear from you regarding course details, consultancy services, or private manufacturing inquiries. The Joba Natural Hub Academy team is here to guide you every step of the way in your journey through the world of professional cosmetics manufacturing. Feel free to contact us by phone, email, or visit our main office in Nasr City, Cairo.")}
             </p>
             <div className="subscribe">
             <img src={require('../../images/email.png')} alt="email" className="icon" loading="lazy" />
                <input type="email" placeholder="Enter your email" />
-               <button>Subscribe</button>
+              <button>{t("Subscribe")}</button>
             </div>
           </div>
       </div>

@@ -6,6 +6,7 @@ import { Axios } from "../../components/Helpers/Axios";
 import SkeletonShow from "../../components/Skeleton/Skeleton";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useTranslation } from "react-i18next";
 
 const DownFilter = ({ setSearch, setLevelId, setPriceMode,setCategoryId ,setOpenSide, openSide }) => {
   const [lvls, setLvls] = useState([]);
@@ -13,6 +14,7 @@ const DownFilter = ({ setSearch, setLevelId, setPriceMode,setCategoryId ,setOpen
   const containerRef = useRef();
   const [animateOut, setAnimateOut] = useState(false);
   const [categories, setCategories] = useState([]);
+  const { t, i18n } = useTranslation();
 
   const filterBtnRef = useRef();
 
@@ -51,6 +53,7 @@ const DownFilter = ({ setSearch, setLevelId, setPriceMode,setCategoryId ,setOpen
   };
 
   const handleFilterClick = () => {
+
 
     gsap.fromTo(
       filterBtnRef.current,

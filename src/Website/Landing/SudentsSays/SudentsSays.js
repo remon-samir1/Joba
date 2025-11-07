@@ -5,10 +5,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { Axios, baseUrl } from "../../../components/Helpers/Axios";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SudentsSays = () => {
+  const { t , i18n} = useTranslation()
+
   const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const directionRef = useRef("next");
@@ -102,7 +105,7 @@ const SudentsSays = () => {
     
 
       <div className="content">
-        <h3 className="header">What our students say about us</h3>
+        <h3 className="header">{t("What our students say about us")}</h3>
 
         <div className="text" ref={textRef}>
           <img src={require("../../../images/point.png")} loading="lazy" />

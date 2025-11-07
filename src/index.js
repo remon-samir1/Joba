@@ -4,6 +4,7 @@ import "./index.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import App from "./App";
+import "./i18n";
 import { BrowserRouter } from "react-router-dom";
 import MenuContext from "./Context/MenuContext";
 import WindowSizeContext from "./Context/WindowSizeContext";
@@ -23,6 +24,7 @@ root.render(
             <CategoryIdContext>
 
           <BrowserRouter>
+          
             <App />
           </BrowserRouter>
             </CategoryIdContext>

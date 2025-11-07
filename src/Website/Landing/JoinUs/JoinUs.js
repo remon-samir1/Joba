@@ -6,11 +6,13 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import JoinUsCard from './JoinUsCard';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const JoinUs = () => {
   const sectionRef = useRef(null);
+  const { t , i18n} = useTranslation()
 
   useGSAP(() => {
     gsap.from(sectionRef.current, {
@@ -29,14 +31,14 @@ const JoinUs = () => {
     <div ref={sectionRef} className='JoinUs'>
       <div className="texts">
         <div className="header">
-          <h5>Join with us</h5>
+          <h5>{t("Join with us")}</h5>
           <img
             src={require("../../../images/orangeArrow.png")}
             alt=">>"
             loading="lazy"
           />
         </div>
-        <p>Which one is suitable for you?</p>
+        <p>{t("Which one is suitable for you?")}</p>
       </div>
       <div className="boxes flex justify-center items-center gap-10 flex-wrap">
         <JoinUsCard title='learn' image="learn.png" link='/login'/>

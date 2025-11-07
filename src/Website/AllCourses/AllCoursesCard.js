@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { Axios } from "../../components/Helpers/Axios";
 import defaultImage from "../../images/juba.svg";
 import StringSlice from "../../components/Helpers/StringSlice";
+import { useTranslation } from "react-i18next";
 const AllCoursesCard = (props) => {
+  const { t , i18n} = useTranslation()
+
   const toggleFav = async (slug) => {
     try {
       await Axios.get(`/wishlist/${slug}`).then((data) => {
@@ -42,7 +45,7 @@ const AllCoursesCard = (props) => {
             to={`/student/course-details/${props.slug}`}
             className="bg-main  text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-bold shadow-md"
           >
-            Add to Cart
+            {t("Add to Cart")}
           </Link>
         </div>
       </div>

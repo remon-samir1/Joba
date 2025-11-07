@@ -9,14 +9,16 @@ import { useEffect } from "react";
 import { Axios } from "../../components/Helpers/Axios";
 import { useState } from "react";
 const TopBar = () => {
-  const [admin , setAdmin] = useState([])
-  useEffect(()=>{
-    Axios.get('admin/edit-profile').then(data=>setAdmin(data.data.data.admin))
-  },[])
+  const [admin, setAdmin] = useState([]);
+  useEffect(() => {
+    Axios.get("admin/edit-profile").then((data) =>
+      setAdmin(data.data.data.admin)
+    );
+  }, []);
   console.log(admin);
-  const menu = useContext(Menu)
-  const setIsOpen = menu.setIsOpen
-  const isOpen = menu.isOpen
+  const menu = useContext(Menu);
+  const setIsOpen = menu.setIsOpen;
+  const isOpen = menu.isOpen;
 
   return (
     <div className="parant-topbar">
@@ -28,7 +30,7 @@ const TopBar = () => {
             width={32}
             height={32}
             className="text-main cursor-pointer"
-            onClick={()=>setIsOpen(prev => !prev)}
+            onClick={() => setIsOpen((prev) => !prev)}
           />
         </div>
         <div className="name">
@@ -57,13 +59,15 @@ const TopBar = () => {
             />
             <span>visit website</span>
           </Link>
-          <Link className="link" to='/admin/profile'>
+          <Link className="link" to="/admin/profile">
             <div className="icon-container">
-              {
- admin
-  &&
-                <img className="w-full h-full object-cover" src={`https://goba.sunmedagency.com/${admin?.image}`} alt="" />
-              }
+              {admin && (
+                <img
+                  className="w-full h-full object-cover"
+                  src={`https://goba.sunmedagency.com/${admin?.image}`}
+                  alt=""
+                />
+              )}
             </div>
             <span>{admin?.user_name}</span>
           </Link>
