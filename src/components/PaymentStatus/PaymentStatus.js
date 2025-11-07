@@ -16,7 +16,7 @@ useEffect(() => {
     setSuccess(isSuccess);
 
     if (isSuccess) {
-      Axios.post('/pay-via-free-gateway').then(res => console.log(res));
+      Axios.post('/paymob-success').then(res => console.log(res));
     }
   }
 
