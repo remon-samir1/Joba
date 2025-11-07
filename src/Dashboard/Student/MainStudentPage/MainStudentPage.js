@@ -7,8 +7,11 @@ import MainPageCoursesPart from "./MainPageCoursesPart/MainPageCoursesPart";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import OrderStudentHistory from "../OrderHistory/OrderStudentHistory";
+import { useTranslation } from "react-i18next";
 
 const MainStudentPage = () => {
+  const { t, i18n } = useTranslation();
+
   const [data,setData]= useState() 
   //  get data
 useEffect(()=>{
@@ -18,26 +21,26 @@ useEffect(()=>{
     {
       img: award1,
       value: data?.completed_courses,
-      title: "Compelete Courses",
+      title: t("Compelete Courses"),
       bg: "#F2F8FF",
     },
     {
       img: book,
       value: data?.ongoing_courses,
-      title: "Ongoing Courses",
+      title: t("Ongoing Courses"),
       bg: "#F0FEF9",
     },
     {
       img: award2,
       value: data?.advance_certificate,
-      title: "Advance certificate",
+      title: t("Advance certificate"),
       bg: "#F6F2FF",
     },
   ];
   return (
     <div className="MainStudentPage mt-8">
       <div className="overview">
-        <h3 className="text-[1.1rem] text-textColor">Learning overview</h3>
+        <h3 className="text-[1.1rem] text-textColor">{t("Learning overview")}</h3>
         <div className="boxes flex items-center gap-4 mt-5 flex-col md:flex-row">
           {cardsData.map((data, index) => (
             <div

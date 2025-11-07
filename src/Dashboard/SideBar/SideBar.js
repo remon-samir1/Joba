@@ -17,8 +17,11 @@ import {
 import DropDownSideBar from "../../components/DropDown/DropDownSideBar";
 import { Menu } from "../../Context/MenuContext";
 import { WindowSize } from "../../Context/WindowSizeContext";
+import { useTranslation } from "react-i18next";
 
 const SideBar = (props) => {
+  const { t, i18n } = useTranslation();
+
   const cookie = Cookies();
 
   function handlLogout() {
@@ -151,7 +154,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >
           <Icon icon="hugeicons:home-02" width="24" height="24" />
-          <span>Dashboard</span>
+          <span>{t("Dashboard")}</span>
         </Link>
         <NavLink
           to="explore"
@@ -159,7 +162,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >  
     <Icon icon="charm:cards" width="24" height="24" />
-          <span>Explore Course</span>
+          <span>{t("Explore Courses")}</span>
           
           </NavLink>
         <NavLink
@@ -168,7 +171,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >  
   <Icon icon="solar:book-outline"  width="24" height="24" />
-          <span>My Course</span>
+          <span>{t("My Course")}</span>
           
           </NavLink>
         <NavLink
@@ -177,7 +180,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >  
   <Icon icon="iconamoon:history" width="24" height="24" />
-          <span>Order History</span>
+          <span>{t("Order History")}</span>
           
           </NavLink>
         <NavLink
@@ -186,7 +189,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >  
   <Icon icon="material-symbols:favorite-outline"  width="24" height="24" />
-          <span>Wishlist</span>
+          <span>{t("Wishlist")}</span>
           
           </NavLink>
         <NavLink
@@ -195,7 +198,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
         >  
   <Icon icon="ic:outline-reviews" width="24" height="24" />
-          <span>Reviews</span>
+          <span>{t("Reviews")}</span>
           
           </NavLink>
         <NavLink
@@ -204,13 +207,13 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
         >  
   <Icon icon="material-symbols:quiz-outline-rounded" width="24" height="24" />
-          <span>My Quiz attempts</span>
+          <span>{t("My Quiz attempts")}</span>
           
           </NavLink>
 
     
 
-        <p className="text-gray-400 mt-12">system</p>
+        <p className="text-gray-400 mt-12">{t("system")}</p>
 
         <NavLink
           to="profile"
@@ -218,7 +221,7 @@ const SideBar = (props) => {
           onClick={() => setIsOpen(false)}
           >
           <Icon icon="gg:profile" width="24" height="24" />
-        <span>Profile Setting</span>
+        <span>{t("Profile Setting")}</span>
         </NavLink>
 
     
@@ -229,7 +232,7 @@ const SideBar = (props) => {
           onClick={handlLogout}
           >
           <Icon icon="solar:logout-2-outline" width="24" height="24" />
-          <span>Logout account</span>
+          <span>{t("Logout account")}</span>
         </button>
       </div>
         }

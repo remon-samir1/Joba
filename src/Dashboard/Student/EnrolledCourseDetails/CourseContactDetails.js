@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { Icon } from "@iconify-icon/react";
+import { useTranslation } from "react-i18next";
 
 const CourseContactDetails = (props) => {
+  const { t, i18n } = useTranslation();
+
   const [units, setUnits] = useState([]);
   const [openUnit, setOpenUnit] = useState(0);
   const contentRefs = useRef([]);
@@ -43,7 +46,7 @@ const CourseContactDetails = (props) => {
   return (
     <div className="bg-white py-3 w-full md:w-[340px]">
       <h3 className="text-textColor text-[1.1rem] font-semibold p-4">
-        Course Contact
+        {t("Course Contact")}
       </h3>
       {props.data?.map((unit, index) => (
         <div key={index} className="cursor-pointer">
@@ -122,7 +125,7 @@ const CourseContactDetails = (props) => {
               ))
             ) : (
               <div style={{ padding: "10px", color: "#888" }}>
-                No courses yet
+                {t("No courses yet")}
               </div>
             )}
           </div>

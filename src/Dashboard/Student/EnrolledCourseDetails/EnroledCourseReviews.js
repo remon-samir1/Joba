@@ -5,8 +5,11 @@ import { Axios, baseUrl } from "../../../components/Helpers/Axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
+import { useTranslation } from "react-i18next";
 
 const EnroledCourseReviews = ({ id }) => {
+  const { t, i18n } = useTranslation();
+
   const [loading, setLoading] = useState(false);
   const [change, setChange] = useState(false);
   const [form, setForm] = useState({
@@ -56,7 +59,7 @@ const EnroledCourseReviews = ({ id }) => {
       )}
       {reviews.length === 0 ? (
         <div className="flex justify-center items-center py-5">
-          <p className="text-base text-text2">No Reviews yet</p>
+          <p className="text-base text-text2">{t("No Reviews yet")}</p>
         </div>
       ) : (
         reviews?.map((data, index) => (
@@ -87,10 +90,10 @@ const EnroledCourseReviews = ({ id }) => {
       )}
 
       <form className="mt-6" onSubmit={handleAddReview}>
-        <h4 className="text-[0.9rem] text-textColor">Write a reviews</h4>
+        <h4 className="text-[0.9rem] text-textColor">{t("Write a reviews")}</h4>
         <div className="mt-8">
           <label className="text-[0.9rem] text-textColor" htmlFor="rating">
-            Rating
+            {t("Rating")}
           </label>
           <input
             max={5}
@@ -104,7 +107,7 @@ const EnroledCourseReviews = ({ id }) => {
         </div>
         <div className="mt-8">
           <label className="text-[0.9rem] text-textColor" htmlFor="review">
-            Reveiw
+            {t("Reveiw")}
           </label>
           <textarea
             required
@@ -119,7 +122,7 @@ const EnroledCourseReviews = ({ id }) => {
           type="submit"
           className="text-white bg-main text-base px-5 py-2 rounded-lg mt-4 main-shadow duration-500"
         >
-          Submit
+          {t("Submit")}
         </button>
       </form>
     </div>

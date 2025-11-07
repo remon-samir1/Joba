@@ -1,3 +1,5 @@
+
+
 export const mangeContents=[
   {
     name:'Courses',

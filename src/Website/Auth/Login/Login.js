@@ -13,11 +13,12 @@ import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
 import Loading from "../../../components/Loading/Loading";
 
-// providers
 import Providers from "../../../components/Providers/Providers"
-// endProviders
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t, i18n } = useTranslation();
+
   const [hidePass, setHidePass] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
   const [laoding, setLaoding] = useState(false);
@@ -84,19 +85,21 @@ const Login = () => {
     <>
       {laoding && <Loading />}
       <Notifcation />
-      <div className="Login">
+      <div
+      style={{direction : i18n.language === 'ar' ? "rtl" :"ltr"}}
+      className="Login">
         <div className="main">
           <div className="logo ">
             <Logo />
           </div>
           <form className="form-box" onSubmit={handelSubmit}>
-            <h2>Welcome back</h2>
-            <p>Enter your email and password to login to your account.</p>
+            <h2>{t("Welcome back")}</h2>
+            <p>{t("Enter your email and password to login to your account.")}</p>
             <div className="inputs">
               <div className="input">
                 <input
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t("Email Address")}
                   name="email"
                   value={form.email}
                   onChange={handleChange}
@@ -107,7 +110,7 @@ const Login = () => {
                 <input
                   type={hidePass ? "password" : "text"}
                   className="appearance-none"
-                  placeholder="Password"
+                  placeholder={t("Password")}
                   name="password"
                   value={form.password}
                   onChange={handleChange}
@@ -115,12 +118,12 @@ const Login = () => {
                 />
                 {hidePass ? (
                   <IoEyeOffOutline
-                    className="icon"
+                    className={`icon ${i18n.language === 'ar' ? "!left-[10%]" :"!left-[90%]"}`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 ) : (
                   <MdOutlineRemoveRedEye
-                    className="icon"
+                    className={`icon ${i18n.language === 'ar' ? "!left-[10%]" :"!left-[90%]"}`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 )}
@@ -134,12 +137,12 @@ const Login = () => {
                   id="remmember"
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                <label htmlFor="remmember">Remember me</label>
+                <label htmlFor="remmember">{t("Remember me")}</label>
               </div>
-              <Link to='/forget-password' className="link">Forget password</Link>
+              <Link to='/forget-password' className="link">{t("Forget password")}</Link>
             </div>
-            <button type="submit">Log in</button>
-            <p className="seperator">- Or log in with -</p>
+            <button type="submit">{t("Log in")}</button>
+            <p className="seperator">- {t("Or log in with")} -</p>
             {/* <div className="providers">
               <Link className="link">
                 <img src={google} alt="google" loading="lazy" />
@@ -152,9 +155,9 @@ const Login = () => {
             </div> */}
             <Providers />
             <p className="redirect">
-              Don't have an account?{" "}
+              {t("Don't have an account?")}{" "}
               <Link className="link" to="/register">
-                sign up
+                {t("sign up")}
               </Link>
             </p>
           </form>
@@ -162,13 +165,13 @@ const Login = () => {
           <div className="content">
             <img src={logo} alt="juba" loading="lazy" />
             <h2>
-              Welcome to <br className="hidden md:block" />
-              Juba academy
+              {t("Welcome to")} <br className="hidden md:block" />
+              {t("Juba academy")}
             </h2>
-            <p>
+            {/* <p>
               Lorem ipsum dolor sit amet consectetur. Condimentum aliquam
               sagittis senectus purus fames.{" "}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

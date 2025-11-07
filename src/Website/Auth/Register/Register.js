@@ -10,8 +10,10 @@ import { Axios } from "../../../components/Helpers/Axios";
 import Notifcation from "../../../components/Notification";
 import { toast } from "react-toastify";
 import Loading from "../../../components/Loading/Loading";
+import { useTranslation } from "react-i18next";
 const Register = () => {
   const [laoding, setLaoding] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const [form, setForm] = useState({
     name: "",
@@ -57,14 +59,16 @@ const Register = () => {
     <>
       {laoding && <Loading />}
       <Notifcation />
-      <div className="Login">
+      <div style={{direction : i18n.language === 'ar' ? "rtl" :"ltr"}} className={`Login`}>
         <div className="main register">
           <div className="logo">
             <Logo />
           </div>
           <form className="form-box" onSubmit={handelSubmit}>
-            <h2>Welcome back</h2>
-            <p>Enter your email and password to login to your account.</p>
+            <h2>{t("Welcome back")}</h2>
+            <p>
+              {t("Enter your email and password to login to your account.")}
+            </p>
             <div className="inputs">
               <div className="input">
                 <input
@@ -72,7 +76,7 @@ const Register = () => {
                   name="name"
                   value={form.name}
                   type="text"
-                  placeholder="User name"
+                  placeholder={t("User name")}
                 />
               </div>
               <div className="input">
@@ -81,7 +85,7 @@ const Register = () => {
                   name="email"
                   value={form.email}
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t("Email Address")}
                 />
               </div>
               <div className="input">
@@ -90,16 +94,20 @@ const Register = () => {
                   name="password"
                   value={form.password}
                   type={hidePass ? "password" : "text"}
-                  placeholder="Password"
+                  placeholder={t("Password")}
                 />
                 {hidePass ? (
                   <IoEyeOffOutline
-                    className="icon"
+                    className={`icon ${
+                      i18n.language === "ar" ? "!left-[10%]" : "!left-[90%]"
+                    }`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 ) : (
                   <MdOutlineRemoveRedEye
-                    className="icon"
+                    className={`icon ${
+                      i18n.language === "ar" ? "!left-[10%]" : "!left-[90%]"
+                    }`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 )}
@@ -110,16 +118,20 @@ const Register = () => {
                   name="password_confirmation"
                   value={form.password_confirmation}
                   type={hidePass ? "password" : "text"}
-                  placeholder="confirm Password "
+                  placeholder={t("confirm Password")}
                 />
                 {hidePass ? (
                   <IoEyeOffOutline
-                    className="icon"
+                  className={`icon ${
+                    i18n.language === "ar" ? "!left-[10%]" : "!left-[90%]"
+                  }`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 ) : (
                   <MdOutlineRemoveRedEye
-                    className="icon"
+                  className={`icon ${
+                    i18n.language === "ar" ? "!left-[10%]" : "!left-[90%]"
+                  }`}
                     onClick={() => setHidePass((prev) => !prev)}
                   />
                 )}
@@ -134,26 +146,26 @@ const Register = () => {
                   id="remmember"
                 />
                 <label htmlFor="remmember">
-                  agree <span>terms & condition</span>
+                  {t("agree")} <span>{t("terms & condition")}</span>
                 </label>
               </div>
             </div>
-            <button type="submit">Sign up</button>
-            <p className="seperator">- Or log in with -</p>
+            <button type="submit">{("Sign up")}</button>
+            <p className="seperator">- {t("Or log in with")} -</p>
             <div className="providers">
               <Link className="link">
                 <img src={google} alt="google" loading="lazy" />
                 <span>Google</span>
               </Link>
-              <Link className="link">
+              {/* <Link className="link">
                 <img src={facebook} alt="facebook" loading="lazy" />
                 <span>Facebook</span>
-              </Link>
+              </Link> */}
             </div>
             <p className="redirect">
-              Do you have an account?{" "}
+              {t("Do you have an account?")}{" "}
               <Link className="link" to="/login">
-                sign in
+                {t("sign in")}
               </Link>
             </p>
           </form>
@@ -161,13 +173,13 @@ const Register = () => {
           <div className="content">
             <img src={logo} alt="juba" loading="lazy" />
             <h2>
-              Sign up to <br className="hidden md:block" />
-              Juba academy
+              {t("Sign up to")} <br className="hidden md:block" />
+              {t("Juba academy")}
             </h2>
-            <p>
+            {/* <p>
               Lorem ipsum dolor sit amet consectetur. Condimentum aliquam
               sagittis senectus purus fames.{" "}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

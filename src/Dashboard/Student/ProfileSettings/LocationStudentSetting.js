@@ -3,6 +3,7 @@ import Select from "react-select";
 import countries from "world-countries";
 import { Axios } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const LocationStudentSetting = ({
   studentLocation,
@@ -13,6 +14,8 @@ const LocationStudentSetting = ({
     value: country.cca2,
     label: country.name.common,
   }));
+  const { t, i18n } = useTranslation();
+
   // handleSubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,13 +43,13 @@ const LocationStudentSetting = ({
             htmlFor="country"
             className="text-[0.9rem] text-textColor font-medium"
           >
-            Country
+            {t("Country")}
           </label>
           <Select
             options={formattedCountries}
             className="DateSelectBox country"
             classNamePrefix="my"
-            placeholder="Select"
+            placeholder={t("Select")}
             value={formattedCountries.find(
               (country) => country.value === studentLocation.country
             )}
@@ -64,7 +67,7 @@ const LocationStudentSetting = ({
             htmlFor="State"
             className="text-[0.9rem] text-textColor font-medium"
           >
-            State
+            {t("State")}
           </label>
           <input
             value={studentLocation.state}
@@ -72,7 +75,7 @@ const LocationStudentSetting = ({
               setStudentLocation({ ...studentLocation, state: e.target.value })
             }
             type="text"
-            placeholder="State"
+            placeholder={t("State")}
             id="State"
             className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
           />
@@ -82,7 +85,7 @@ const LocationStudentSetting = ({
             htmlFor="City"
             className="text-[0.9rem] text-textColor font-medium"
           >
-            City
+            {t("City")}
           </label>
           <input
             value={studentLocation.city}
@@ -90,7 +93,7 @@ const LocationStudentSetting = ({
               setStudentLocation({ ...studentLocation, city: e.target.value })
             }
             type="text"
-            placeholder="City"
+            placeholder={t("City")}
             id="name"
             className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
           />
@@ -102,7 +105,7 @@ const LocationStudentSetting = ({
           htmlFor="address"
           className="text-[0.9rem] text-textColor font-medium"
         >
-          Address
+          {t("Address")}
         </label>
         <input
           value={studentLocation.address}
@@ -110,7 +113,7 @@ const LocationStudentSetting = ({
             setStudentLocation({ ...studentLocation, address: e.target.value })
           }
           type="text"
-          placeholder="Address"
+          placeholder={t("Address")}
           id="address"
           className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
         />
@@ -119,7 +122,7 @@ const LocationStudentSetting = ({
         type="submit"
         className="text-white bg-main py-2 px-8 rounded mt-6 main-shadow duration-500"
       >
-        Update
+        {t("Update")}
       </button>
     </form>
   );

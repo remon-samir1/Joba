@@ -8,8 +8,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import Notifcation from "../../../components/Notification";
+import { useTranslation } from "react-i18next";
 
 const ProfileSettings = () => {
+  const { t, i18n } = useTranslation();
+
   const [page, setPage] = useState("profile");
   const [formProfile, setFormProfile] = useState({
     name: "",
@@ -91,7 +94,7 @@ const ProfileSettings = () => {
             page === "profile" && "!text-main !border-main"
           } `}
         >
-          Profile
+          {t("Profile")}
         </button>
         <button
           onClick={() => setPage("biography")}
@@ -99,7 +102,7 @@ const ProfileSettings = () => {
             page === "biography" && "!text-main !border-main"
           } `}
         >
-          Biography
+          {t("Biography")}
         </button>
         <button
           onClick={() => setPage("location")}
@@ -107,7 +110,7 @@ const ProfileSettings = () => {
             page === "location" && "!text-main !border-main"
           } `}
         >
-          Location
+          {t("Location")}
         </button>
         <button
           onClick={() => setPage("password")}
@@ -115,7 +118,7 @@ const ProfileSettings = () => {
             page === "password" && "!text-main !border-main"
           } `}
         >
-          Password
+          {t("Password")}
         </button>
         <button
           onClick={() => setPage("social")}
@@ -123,7 +126,7 @@ const ProfileSettings = () => {
             page === "social" && "!text-main !border-main"
           } `}
         >
-          Social
+          {t("Social")}
         </button>
       </div>
 

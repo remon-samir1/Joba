@@ -9,7 +9,10 @@ import attemptImage from "../../../images/attemp.svg";
 import marksImage from "../../../images/marks.svg";
 import passedImage from "../../../images/passed.svg";
 import passedQuizImage from "../../../images/PassedQuiz.svg";
+import { useTranslation } from "react-i18next";
 const QuizResualt = () => {
+  const { t, i18n } = useTranslation();
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -40,22 +43,22 @@ const QuizResualt = () => {
     {
       icon: minimumImage,
       degree: quizes?.quiz?.total_mark + "/" + quizes?.user_grade,
-      name: "Minimum marks",
+      name: t("Minimum marks"),
     },
     {
       icon: attemptImage,
       degree: quizes?.quiz?.attempt,
-      name: "Attempts",
+      name: t("Attempts"),
     },
     {
       icon: marksImage,
       degree: quizes?.user_grade,
-      name: "Your Marks",
+      name: t("Your Marks"),
     },
     {
       icon: passedImage,
       degree: quizes?.status,
-      name: "Result",
+      name: t("Result"),
     },
   ];
 
@@ -80,7 +83,7 @@ const QuizResualt = () => {
           to="/student"
           className="text-white main-shadow duration-300 text-base bg-main px-5 py-3 rounded-3xl "
         >
-          Go back to dashboard
+          {t("Go back to dashboard")}
         </Link>
       </div>
       <div className="flex items-center mt-4 justify-between gap-4 md:flex-row flex-col flex-wrap">

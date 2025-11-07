@@ -63,7 +63,7 @@ const NavBar = ({ classes }) => {
   useEffect(() => {
     document.documentElement.setAttribute(
       "dir",
-      i18n.language === "ar" ? "rtl" : "ltr"
+      currentLang === "ar" ? "rtl" : "ltr"
     );
   }, [i18n.language]);
   useGSAP(() => {

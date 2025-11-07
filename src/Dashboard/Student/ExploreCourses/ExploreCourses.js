@@ -7,6 +7,7 @@ import CustomSelect from "../../../components/CustomSelect/CustomSelect";
 import { useContext } from "react";
 import { StudentSearch } from "../../../Context/StudentSearchContext";
 import defaultImage from '../../../images/juba.svg'
+import { useTranslation } from "react-i18next";
 const ExploreCourses = () => {
   const [fav, setFav] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -15,6 +16,8 @@ const ExploreCourses = () => {
   const [lvls, setLvls] = useState([]);
   const [sort, setSort] = useState("");
   const [level, setLevel] = useState("");
+  const { t, i18n } = useTranslation();
+
   console.log(sort);
   const StudentSearchContext = useContext(StudentSearch);
   const studentSearchState = StudentSearchContext.studentSearch;
@@ -59,7 +62,7 @@ const ExploreCourses = () => {
     <div>
       <div className="flex justify-end items-center gap-4 pr-3">
         <CustomSelect
-          label="Level"
+          label={t("Level")}
           iconName="solar:chart-bold"
           options={lvls?.map((data, index) => ({
             label: data.name.name,
@@ -69,11 +72,11 @@ const ExploreCourses = () => {
         />
 
         <CustomSelect
-          label="Filter"
+          label={t("Filter")}
           iconName="mage:filter-fill"
           options={[
-            { label: "High to low price", value: "asc" },
-            { label: "Low to high price", value: "desc" },
+            { label: t("High to low price"), value: "asc" },
+            { label: t("Low to high price"), value: "desc" },
           ]}
           setSort={setSort}
         />
@@ -90,7 +93,7 @@ const ExploreCourses = () => {
               </div>
             ))
           :
-          courses.length === 0 ? <p className="text-center p-11 text-text2 w-full ">No Courses By this Name</p> :
+          courses.length === 0 ? <p className="text-center p-11 text-text2 w-full ">{t("No Courses")}</p> :
           
           courses.map((course, index) => (
               <div
@@ -113,7 +116,7 @@ const ExploreCourses = () => {
                       to={`/student/course-details/${course.slug}`}
                       className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md"
                     >
-                      View Details
+                      {t("View Details")}
                     </Link>
                   </div>
 

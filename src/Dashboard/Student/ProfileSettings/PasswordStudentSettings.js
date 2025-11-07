@@ -2,8 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const PasswordStudentSettings = ({setLoading}) => {
+  const { t, i18n } = useTranslation();
+
   const [form, setForm] = useState({
     current_password: "",
     password: "",
@@ -30,19 +33,19 @@ const PasswordStudentSettings = ({setLoading}) => {
   };
   return (
     <form onSubmit={handleSubmit} className="bg-white mt-6 p-4">
-      <h4 className="text-base text-main py-4">Change password</h4>
+      <h4 className="text-base text-main py-4">{t("Change password")}</h4>
       <div className="flex flex-col gap-2 mt-4  ">
         <label
           htmlFor="currnet"
           className="text-[0.9rem] text-textColor font-medium"
         >
-          Current password
+          {t("Current password")}
         </label>
         <input
       required
       onChange={(e)=>setForm({...form , current_password : e.target.value})}
           type="password"
-          placeholder="Current password"
+          placeholder={t("Current password")}
           id="currnet"
           className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
         />
@@ -52,7 +55,7 @@ const PasswordStudentSettings = ({setLoading}) => {
           htmlFor="new"
           className="text-[0.9rem] text-textColor font-medium"
         >
-          New password
+          {t("New password")}
         </label>
         <input
         required
@@ -60,7 +63,7 @@ const PasswordStudentSettings = ({setLoading}) => {
         onChange={(e)=>setForm({...form , password : e.target.value})}
 
           type="password"
-          placeholder="New password"
+          placeholder={t("New password")}
           id="new"
           className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
         />
@@ -70,14 +73,14 @@ const PasswordStudentSettings = ({setLoading}) => {
           htmlFor="confirm"
           className="text-[0.9rem] text-textColor font-medium"
         >
-          Confirm new password
+          {t("Confirm new password")}
         </label>
         <input
         required
           type="password"
         onChange={(e)=>setForm({...form , password_confirmation : e.target.value})}
 
-          placeholder="Confirm new password"
+          placeholder={t("Confirm new password")}
           id="confirm"
           className="p-3 border border-[#dddd] rounded-lg outline-none focus:border-main text-text2"
         />
@@ -86,7 +89,7 @@ const PasswordStudentSettings = ({setLoading}) => {
         type="submit"
         className="text-white bg-main py-2 px-8 rounded mt-6 main-shadow duration-500"
       >
-        Update
+        {t("Update")}
       </button>
     </form>
   );

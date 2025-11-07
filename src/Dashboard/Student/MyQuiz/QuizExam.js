@@ -5,8 +5,11 @@ import { Axios } from "../../../components/Helpers/Axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Notifcation from "../../../components/Notification";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const QuizExam = () => {
+  const { t, i18n } = useTranslation();
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -105,22 +108,22 @@ const QuizExam = () => {
     {
       icon: "game-icons:graduate-cap",
       degree: "50/100",
-      name: "Minimum marks",
+      name: t("Minimum marks"),
     },
     {
       icon: "quill:paper",
       degree: values ? `${values.attempt}/${values.quiz.attempt}` : "--",
-      name: "Attempts",
+      name: t("Attempts"),
     },
     {
       icon: "mage:message-question-mark-round",
       degree: `${questions.length}`,
-      name: "Questions",
+      name: t("Questions"),
     },
     {
       icon: "stash:stopwatch",
       degree: formatTime(timeLeft),
-      name: "Remained time",
+      name: t("Remained time"),
     },
   ];
 
@@ -142,10 +145,10 @@ const QuizExam = () => {
             className="text-green-500"
           />
           <p className="text-2xl font-bold text-green-600">
-            You have already passed this quiz
+            {t("You have already passed this quiz")}
           </p>
           <p className="text-base text-gray-600">
-            You cannot retake this quiz again.
+            {t("You cannot retake this quiz again.")}
           </p>
         </div>
       ) : (
@@ -182,9 +185,7 @@ const QuizExam = () => {
               className="text-[#C79307]"
             />
             <p className="text-[#C79307] text-[0.9rem]">
-              Please note that you have to complete all the questions and submit
-              before remaining time. The form will be submitted automatically if
-              remaining time ends.
+              {t("Please note that you have to complete all the questions and submit before remaining time. The form will be submitted automatically if remaining time ends")}.
             </p>
           </div>
 
@@ -218,7 +219,7 @@ const QuizExam = () => {
               onClick={() => handleSubmit()}
               className="bg-main main-shadow text-white px-6 py-2 rounded-full mt-4"
             >
-              Submit
+              {t("Submit")}
             </button>
           </div>
         </>

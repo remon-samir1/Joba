@@ -9,7 +9,10 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 const OrderStudentHistoryDetails = () => {
+  const { t, i18n } = useTranslation();
+
   const scrollRef = useRef(null);
   //  get data
   const { id } = useParams();
@@ -25,21 +28,23 @@ const OrderStudentHistoryDetails = () => {
   return (
     <div ref={scrollRef} className="OrderDetails">
       <div className="flex justify-between items-center">
-        <h3 className="font-bold text-textColor text-xl"> Order details</h3>
+        <h3 className="font-bold text-textColor text-xl">
+          {t("Order details")}
+        </h3>
         <Breadcrumbs />
       </div>
       <div className="invoices">
-        <h4>invoices</h4>
+        <h4>{t("invoices")}</h4>
         <div className="flex justify-between md:flex-nowrap flex-wrap gap-4 items-start w-full">
           <div className="details">
             <div className="hedaers">
-              <p>Order date:</p>
-              <p>Billed to:</p>
-              <p>Phone Number:</p>
-              <p>Email:</p>
-              <p>Address:</p>
-              <p>Paymentn Method:</p>
-              <p>Paymentn Status:</p>
+              <p>{t("Order date:")}</p>
+              <p>{t("Billed to:")}</p>
+              <p>{t("Phone Number:")}</p>
+              <p>{t("Email:")}</p>
+              <p>{t("Address:")}</p>
+              <p>{t("Paymentn Method:")}</p>
+              <p>{t("Paymentn Status:")}</p>
             </div>
             <div className="data">
               <p>{TransformDate(data?.created_at)}</p>
@@ -53,7 +58,7 @@ const OrderStudentHistoryDetails = () => {
           </div>
           <div className="flex justify-center items-center">
             <p className="text-base font-bold text-textColor whitespace-nowrap">
-              Order Id:
+              {t("Order Id:")}
             </p>
             <p className="text-base font-bold text-textColor whitespace-nowrap">
               {data?.invoice_id}
@@ -69,25 +74,27 @@ const OrderStudentHistoryDetails = () => {
       <div className="boxes flex justify-start items-center gap-8 mt-8">
         <div className="flex justify-start items-end h-[344px] gap-3 flex-col w-full md:w-[100%] bg-white">
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
-            <p className=" text-[#999999] text-[12px]  ">subtotal</p>
+            <p className=" text-[#999999] text-[12px]  ">{t("subtotal")}</p>
             <p className="text-base text-textColor mt-1 font-semibold">
               {data?.subTotal} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1 ">
-            <p className=" text-[#999999] text-[12px]  ">Getway charge</p>
+            <p className=" text-[#999999] text-[12px]  ">
+              {t("Getway charge")}
+            </p>
             <p className="text-base text-textColor mt-1 font-semibold">
               {data?.gateway_charge} {data?.payable_currency}
             </p>
           </div>
           <div className=" border-b border-b-borderColor w-full text-end px-5 py-1">
-            <p className=" text-[#999999] text-[12px]  ">Discount</p>
+            <p className=" text-[#999999] text-[12px]  ">{t("Discount")}</p>
             <p className="text-base text-textColor mt-1 font-semibold">
               {data?.discount} {data?.payable_currency}
             </p>
           </div>
           <div className="w-full text-end px-5 py-1 ">
-            <p className=" text-[#999999] text-[12px]  ">Total</p>
+            <p className=" text-[#999999] text-[12px]  ">{t("Total")}</p>
             <p className="text-base text-textColor mt-1 font-semibold">
               {data?.paid_amount} {data?.payable_currency}
             </p>
@@ -103,7 +110,7 @@ const OrderStudentHistoryDetails = () => {
             icon="material-symbols:print-outline"
             style={{ color: "#fff" }}
           />
-          <span>Print</span>
+          <span>{t("Print")}</span>
         </button>
       </div>
     </div>

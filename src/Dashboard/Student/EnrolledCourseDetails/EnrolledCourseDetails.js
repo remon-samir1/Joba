@@ -14,7 +14,10 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
 import defaultImage from '../../../images/juba.svg'
+import { useTranslation } from "react-i18next";
 const EnrolledCourseDetails = () => {
+  const { t, i18n } = useTranslation();
+
   const [course, setCourse] = useState(null);
   const [play, setPlay] = useState(false);
   const [lessonId,setLessonId]=useState()
@@ -73,7 +76,7 @@ console.log(url);
             width="24"
             height="24"
           />
-          Back
+          {t("Back")}
         </button>
         <Breadcrumbs />
       </div>
@@ -91,16 +94,16 @@ console.log(url);
                   height={80}
                 />
                 <h3 className="text-[1.1rem] font-bold text-textColor">
-                  Document
+                  {t("Document")}
                 </h3>
                 <p className="text-text2 text-sm">
-                  Please download the document for mor information
+                  {t("Please download the document for mor information")}
                 </p>
                 <button
                   onClick={() => downloadFile(url)}
                   className="text-white main-shadow mt-2 bg-main text-base px-5 py-2 rounded-full"
                 >
-                  Download
+                  {t("Download")}
                 </button>
               </div>
             </div>
@@ -116,13 +119,13 @@ console.log(url);
                 />
                 <h3 className="text-[1.1rem] font-bold text-textColor">Quiz</h3>
                 <p className="text-text2 text-sm">
-                  Please go to quiz page for mor information
+                  {t("Please go to quiz page for mor information")}
                 </p>
                 <Link
                   to={`/student/quiz-exam/${quizId}`}
                   className="text-white main-shadow mt-2 bg-main text-base px-5 py-2 rounded-full"
                 >
-                  Start Quiz
+                  {t("Start Quiz")}
                 </Link>
               </div>
             </div>
@@ -194,7 +197,7 @@ console.log(url);
                 />
 
                 <span className="text-textColor text-base">
-                  {course?.course.enrollments.length} Student
+                  {course?.course.enrollments.length} {t("Student")}
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -206,7 +209,7 @@ console.log(url);
                 />
 
                 <span className="text-textColor text-base">
-                  {course?.course.reviews_count} Reviews
+                  {course?.course.reviews_count} {t("Reviews")}
                 </span>
               </div>
             </div>
@@ -218,7 +221,7 @@ console.log(url);
                 tabs === "overview" && "!text-white !bg-main"
               }`}
             >
-              Overview
+              {t("Overview")}
             </button>
             <button
               onClick={() => setTabs("QA")}
@@ -226,7 +229,7 @@ console.log(url);
                 tabs === "QA" && "!text-white !bg-main"
               }`}
             >
-              Q&A
+              {t("Q&A")}
             </button>
             <button
               onClick={() => setTabs("Annoucement")}
@@ -234,7 +237,7 @@ console.log(url);
                 tabs === "Annoucement" && "!text-white !bg-main"
               }`}
             >
-              Annoucement
+              {t("Annoucement")}
             </button>
             <button
               onClick={() => setTabs("reviews")}
@@ -242,7 +245,7 @@ console.log(url);
                 tabs === "reviews" && "!text-white !bg-main"
               }`}
             >
-              Reviews
+              {t("Reviews")}
             </button>
           </div>
 

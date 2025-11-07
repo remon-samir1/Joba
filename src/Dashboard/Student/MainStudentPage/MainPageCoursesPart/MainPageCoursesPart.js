@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { Axios } from "../../../../components/Helpers/Axios";
 import SkeletonShow from "../../../../components/Skeleton/Skeleton";
 import defaultImage from '../../../../images/juba.svg'
+import { useTranslation } from "react-i18next";
 const MainPageCoursesPart = () => {
+  const { t, i18n } = useTranslation();
+
   //  get data
   const [courses, setCourses] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -42,7 +45,7 @@ const MainPageCoursesPart = () => {
     <div className="MainPageCoursesPart mt-8 ">
       <div className="flex items-center justify-between ">
         <div className="flex items-start md:items-center  gap-6 flex-col md:flex-row justify-start">
-          <p className="text-[1.2rem] text-textColor">Continue learning</p>
+          <p className="text-[1.2rem] text-textColor">{t("Continue learning")}</p>
           <div className="flex items-center gap-6 scrollbar-hide overflow-scroll md:w-auto md:overflow-hidden w-[90vw]">
             <button
               onClick={() => setCategoryId("")}
@@ -50,7 +53,7 @@ const MainPageCoursesPart = () => {
                 categoryId === "" && "!border-main !text-main"
               }`}
             >
-              All Courses
+              {t("All Courses")}
             </button>
             {skeleton
               ? Array.from({ length: "3" }).map((_, index) => (
@@ -74,7 +77,7 @@ const MainPageCoursesPart = () => {
               to="/student/explore"
               className="text-main text-[1.05rem] flex items-center gap-2 pr-4 whitespace-nowrap"
             >
-              See all courses
+              {t("See all courses")}
               <Icon
                 className="text-main"
                 icon="mingcute:arrow-right-line"
@@ -94,12 +97,12 @@ const MainPageCoursesPart = () => {
           ))
         ) : courses.length === 0 ? (
           <div className="flex w-full py-12 justify-center items-center flex-col">
-            <p className="w-full text-center p-6 text-text2">No Courses </p>
+            <p className="w-full text-center p-6 text-text2">{t("No Courses")}</p>
             <Link
               className="text-white bg-main px-5 py-2 rounded main-shadow duration-300"
               to="/student/explore"
             >
-            Explore Courses
+            {t("Explore Courses")}
             </Link>
           </div>
         ) : (
@@ -123,7 +126,7 @@ const MainPageCoursesPart = () => {
                     to={`/student/enrolled-course/${course?.course.slug}`}
                     className="bg-main text-white px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 text-sm font-semibold shadow-md"
                   >
-                    Watch Now
+                    {t("Watch Now")}
                   </Link>
                 </div>
               </div>

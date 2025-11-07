@@ -12,7 +12,10 @@ import { useEffect } from "react";
 import { Axios } from "../../../components/Helpers/Axios";
 import TransformDate from "../../../components/Helpers/TransformDate";
 import defaultImage from '../../../images/juba.svg'
+import { useTranslation } from "react-i18next";
 const CourseDetails = () => {
+  const { t, i18n } = useTranslation();
+
   const [course, setCourse] = useState([]);
   const [count, setCount] = useState();
   const [loading, setLoading] = useState(false);
@@ -47,7 +50,7 @@ const CourseDetails = () => {
           width="24"
           height="24"
         />
-        Back
+        {t("Back")}
       </button>
 
       <div className="flex mt-5  items-start gap-5 md:flex-row flex-col">
@@ -98,7 +101,7 @@ const CourseDetails = () => {
                   className="text-main"
                 />
 
-                <span className="text-textColor text-base">12 Student</span>
+                <span className="text-textColor text-base">12 {t("Student")}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Icon
@@ -109,7 +112,7 @@ const CourseDetails = () => {
                 />
 
                 <span className="text-textColor text-base">
-                  {course?.reviews_count} Reviews
+                  {course?.reviews_count} {t("Reviews")}
                 </span>
               </div>
             </div>
@@ -121,7 +124,7 @@ const CourseDetails = () => {
                 tabs === "overview" && "!text-white !bg-main"
               }`}
             >
-              Overview
+              {t("Overview")}
             </button>
             <button
               onClick={() => setTabs("curriculum")}
@@ -129,7 +132,7 @@ const CourseDetails = () => {
                 tabs === "curriculum" && "!text-white !bg-main"
               }`}
             >
-              Curriculum
+              {("Curriculum")}
             </button>
             <button
               onClick={() => setTabs("instructor")}
@@ -137,7 +140,7 @@ const CourseDetails = () => {
                 tabs === "instructor" && "!text-white !bg-main"
               }`}
             >
-              Instructors
+              {t("Instructors")}
             </button>
             <button
               onClick={() => setTabs("reviews")}
@@ -145,7 +148,7 @@ const CourseDetails = () => {
                 tabs === "reviews" && "!text-white !bg-main"
               }`}
             >
-              Reviews
+              {t("Reviews")}
             </button>
           </div>
 

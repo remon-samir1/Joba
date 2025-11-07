@@ -3,8 +3,10 @@ import { Icon } from "@iconify-icon/react";
 import { Axios, baseUrl } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
+import { useTranslation } from "react-i18next";
 
 const QA = (props) => {
+  
   const [sendQuestion, setSendQuestion] = useState({
     course_id: props.id,
     question: "",
@@ -12,6 +14,8 @@ const QA = (props) => {
     description: "",
   });
   console.log(sendQuestion);
+  const { t, i18n } = useTranslation();
+
   const [questions, setQuestions] = useState([]);
   const [ask, setAsk] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -85,7 +89,7 @@ const QA = (props) => {
         <div className="md:w-[320px] md:flex-grow-0 flex-1 h-[40px] border border-[#dddd] rounded-full flex items-center justify-between pl-3 pr-1">
           <input
             type="text"
-            placeholder="Search questions..."
+            placeholder={t("Search questions...")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="appearance-none flex-1 border-none outline-none text-[0.9rem] text-textColor"
@@ -106,15 +110,15 @@ const QA = (props) => {
             onChange={(e) => setFilter(e.target.value)}
             className="h-[40px] px-4 bg-white text-[0.9rem] text-text2 border border-[#dddd] rounded-full"
           >
-            <option>Latest</option>
-            <option>Popular</option>
-            <option>Unanswered</option>
+            <option>{t("Latest")}</option>
+            <option>{t("Popular")}</option>
+            <option>{t("Unanswered")}</option>
           </select>
           <button
             onClick={() => setAsk((prev) => !prev)}
             className="text-[0.9rem] bg-main text-white px-8 py-2.5 rounded-full main-shadow duration-300 hover:bg-opacity-90"
           >
-            Ask a question
+            {t("Ask a question")}
           </button>
         </div>
       </div>
@@ -122,7 +126,7 @@ const QA = (props) => {
         <div className="flex flex-col gap-2 my-4">
           <label htmlFor="bio" className="text-[0.9rem] text-main font-medium">
             {" "}
-            Ask Question
+            {t("Ask Question")}
           </label>
           <textarea
             required
@@ -141,7 +145,7 @@ const QA = (props) => {
             onClick={handelSendQuestion}
             className="self-end text-sm text-white bg-main px-5 py-2 rounded main-shadow duration-300 font-medium"
           >
-            Share
+            {t("Share")}
           </button>
         </div>
       )}
@@ -168,7 +172,7 @@ const QA = (props) => {
                     }
                     className="text-sm text-gray-500 mt-2 hover:underline"
                   >
-                    Reply
+                    {t("Reply")}
                   </button>
                 </div>
               </div>

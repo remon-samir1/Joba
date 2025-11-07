@@ -10,7 +10,10 @@ import StarRating from "../../../components/StarRating/StarRating";
 import { toast } from "react-toastify";
 import SkeletonShow from "../../../components/Skeleton/Skeleton";
 import TransformDate from "../../../components/Helpers/TransformDate";
+import { useTranslation } from "react-i18next";
 const StudentReviewsDetails = () => {
+  const { t, i18n } = useTranslation();
+
   const [data, setData] = useState([]);
   const [btnLoading, setBtnLoading] = useState(false);
   const [skeleton, setSkeleton] = useState(true);
@@ -30,13 +33,13 @@ const StudentReviewsDetails = () => {
   return (
     <div className="UpdateCategory">
       <div className="flex items-center justify-between mt-4">
-        <h3 className="text-base text-textColor">Review Details</h3>
+        <h3 className="text-base text-textColor">{t("Review Details")}</h3>
         <Breadcrumbs/>
       </div>
     
       <div className="bg-white my-4">
         <div className="flex justify-between mb-4 items-center border-b p-4  border-borderColor">
-          <h4 className="text-main text-base ">Courses</h4>
+          <h4 className="text-main text-base ">{t("Courses")}</h4>
           <button
             onClick={() => navigate(-1)}
             className="flex justify-between gap-1 items-center text-white bg-main py-2 px-4 rounded-md link border border-main duration-500 hover:bg-white hover:text-main"
@@ -47,16 +50,16 @@ const StudentReviewsDetails = () => {
               height={20}
               className="hover:bg-white hover:text-main"
             />
-            <span>Back</span>
+            <span>{t("Back")}</span>
           </button>
         </div>
         <div className="CourseReviewDetails">
           <div className="titles">
-            <p>Course</p>
-            <p>Rating</p>
-            <p>Review</p>
-            <p>Date</p>
-            <p>Status</p>
+            <p>{t("Course")}</p>
+            <p>{t("Rating")}</p>
+            <p>{t("Review")}</p>
+            <p>{t("Date")}</p>
+            <p>{t("Status")}</p>
           </div>
           <div className="details flex-1">
             {skeleton ? (

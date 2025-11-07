@@ -10,7 +10,10 @@ import { Axios } from "../../../components/Helpers/Axios";
 import { useState } from "react";
 import { CartCh } from "../../../Context/CartContext";
 import { StudentSearch } from "../../../Context/StudentSearchContext";
+import { useTranslation } from "react-i18next";
 const StudentTopBar = () => {
+  const { t, i18n } = useTranslation();
+
   const cartch = useContext(CartCh);
   const cartChange = cartch.cartChange;
   const [name, setName] = useState()
@@ -74,24 +77,24 @@ const StudentTopBar = () => {
           </div>
         </div>
         <div className="name">
-          <p>Welcome ,{name}</p>
+          <p>{t("Welcome")} ,{name}</p>
           <p className="text-[1rem] text-text2 mt-4">
-            Learn at the comfort of your own home
+            {t("Learn at the comfort of your own home")}
           </p>
         </div>
       </div>
       <div className="StudentTopBar">
         <div className="hidden md:flex flex-col items-start justify-start">
           <h3 className="text-[1.5rem] text-textColor font-bold capitalize">
-            Welcome ,{name}
+            {t("Welcome")} ,{name}
           </h3>
           <p className="text-[1rem] text-text2 mt-4">
-            Learn at the comfort of your own home
+            {t("Learn at the comfort of your own home")}
           </p>
         </div>
         <div className="hidden md:flex items-center gap-5">
           <SearchBar
-            placeholder="Search course here"
+            placeholder={t("Search course here")}
             value={studentSearchState}
             onchange={(e) => {
               nav("/student/explore");

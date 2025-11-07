@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Axios } from '../../../components/Helpers/Axios';
 import Table from '../../../components/Table/Table';
+import { useTranslation } from 'react-i18next';
 
 const OrderStudentHistory = () => {
   const [deleted ,setDeleted] = useState(false)
@@ -12,6 +13,8 @@ const OrderStudentHistory = () => {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState();
   const [search , setSearch] = useState('')
+  const { t, i18n } = useTranslation();
+
   // get data
   useEffect(() => {
     setLoading(true);
@@ -26,31 +29,31 @@ const OrderStudentHistory = () => {
   // headers of table
   const headers = [
     {
-      title: "Invoices",
+      title: t("Invoices"),
       key: "invoice_id",
     },
     {
-      title: "Paid",
+      title: t("Paid"),
       key: "paid_amount",
     },
     {
-      title: "Gateway",
+      title: t("Gateway"),
       key: "payment_method",
     },
   
     {
-      title: "Status",
+      title: t("Status"),
       key: "status",
       type:'text'
     },
     {
-      title: "Payment",
+      title: t("Payment"),
       key: "payment_status",
     },
   ];
   return (
     <div className='mt-5'>
-      <h3 className='text-[1.2rem] text-textColor font-semibold'>Order History</h3>
+      <h3 className='text-[1.2rem] text-textColor font-semibold'>{("Order History")}</h3>
         <div className="overflow-x-auto w-[90vw] md:w-full mt-6">
           <Table
             action
