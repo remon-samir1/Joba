@@ -6,6 +6,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { TfiFacebook } from "react-icons/tfi";
 import { FaTwitter } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
+import { FaTiktok } from "react-icons/fa";
 import logo from '../../images/white-logo.svg';
 import { useTranslation } from "react-i18next";
 const Footer = () => {
@@ -27,22 +28,22 @@ const Footer = () => {
           <h4>{t("Support")}</h4>
           <div className="Links">
             <Link to="">{t("Contact us")}</Link>
-            <Link>
+            <a href='https://wa.me/201010817171' target="_blank">
               <BsTelephone className="icon" />
-              <span>1-415-386-9789 x429</span>
-            </Link>
-            <Link>
+              <span>01010817171</span>
+            </a>
+            <a href="mailto:info@jobaacademy.com" target="_blank">
               <MdOutlineMail className="icon" />
-              <span>Gabriel.Predovic16@yahoo.com</span>
-            </Link>
+              <span>info@jobaacademy.com</span>
+            </a>
             <div className="social-media">
-              <a href="#">
+              <a href="https://www.facebook.com/Jobanaturalh" target="_blank">
                 <TfiFacebook className="icon" />
               </a>
-              <a href="#">
-                <FaTwitter className="icon" />
+              <a href="https://www.tiktok.com/@jobanaturalhub"  target="_blank">
+                <FaTiktok className="icon" />
               </a>
-              <a href="#">
+              <a href="https://www.instagram.com/jobanatural" target="_blank">
                 <ImInstagram className="icon" />
               </a>
             </div>
@@ -82,3 +83,9 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+
+
+
+
