@@ -13,6 +13,7 @@ import { Axios } from "../../../components/Helpers/Axios";
 import { toast } from "react-toastify";
 import Notifcation from "../../../components/Notification";
 import Loading from "../../../components/Loading/Loading";
+import Providers from "../../../components/Providers/Providers";
 const ForgetPassword = () => {
   const [hidePass, setHidePass] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
@@ -78,16 +79,7 @@ const ForgetPassword = () => {
             </div>
             <button type="submit">Submit</button>
             <p className="seperator">- Or log in with -</p>
-            <div className="providers">
-              <Link className="link">
-                <img src={google} alt="google" loading="lazy" />
-                <span>Google</span>
-              </Link>
-              <Link className="link">
-                <img src={facebook} alt="facebook" loading="lazy" />
-                <span>Facebook</span>
-              </Link>
-            </div>
+            <Providers/>
             <p className="redirect">
               Don't have an account?{" "}
               <Link className="link" to="/register">

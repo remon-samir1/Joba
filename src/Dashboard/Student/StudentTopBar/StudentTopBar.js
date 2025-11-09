@@ -102,14 +102,14 @@ const StudentTopBar = () => {
             }}
           />
           <div className="user">
-            <div className="icon-container">
+            {/* <div className="icon-container">
               <Icon
                 className="icon"
                 icon="mingcute:notification-line"
                 width="24"
                 height="24"
               />
-            </div>
+            </div> */}
             <Link className="link">
               <Link to="/student/profile" className="icon-container">
                 <Icon

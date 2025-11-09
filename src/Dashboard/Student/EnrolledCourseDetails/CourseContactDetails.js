@@ -7,8 +7,13 @@ const CourseContactDetails = (props) => {
   const { t, i18n } = useTranslation();
 
   const [units, setUnits] = useState([]);
-  const [openUnit, setOpenUnit] = useState(0);
+  const [openUnit, setOpenUnit] = useState(null);
   const contentRefs = useRef([]);
+  // useEffect(()=>{
+  //   setTimeout(() => {
+  //     setOpenUnit(0)
+  //   }, 2000);
+  // },[])
 
   const toggleUnit = (index) => {
     if (openUnit === index) {
@@ -66,7 +71,7 @@ const CourseContactDetails = (props) => {
                 width="18"
                 height="18"
                 className={`transform transition duration-300 ${
-                  openUnit === index
+                  openUnit == index
                     ? "-rotate-[180deg] text-textColor"
                     : "rotate-0 text-textColor"
                 }`}

@@ -16,7 +16,7 @@ const PaymentStatus = () => {
 
       if (isSuccess) {
         Axios.get("/paymob-success").then((data) => {
-          setSuccess(data.data.status);
+          setSuccess(data.data.success === true);
           console.log(data);
         });
       }

@@ -188,7 +188,7 @@ const NavBar = ({ classes }) => {
         <Link
           ref={(el) => (linksRef.current[4] = el)}
           to="/student/cart"
-          className="icon-container mt-2 relative z-50"
+          className="icon-container hidden md:inline-block mt-2 relative z-50"
         >
           {/* { 
             cart !== null &&
