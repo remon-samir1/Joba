@@ -19,8 +19,8 @@ export default function MyQuiz() {
       setQuizes(data.data.quizAttempts.data);
     setLoading(false)
 
-      console.log(data);
-      console.log(data.data.quizAttempts.data);
+      //data);
+      //data.data.quizAttempts.data);
     });
   }, []);
   function formatDateTime(isoString) {
@@ -43,7 +43,7 @@ export default function MyQuiz() {
   
 
   
-  console.log(quizes);
+  //quizes);
   return (
     <div className="p-6">
           {loading && (

@@ -21,7 +21,7 @@ const OrderStudentHistoryDetails = () => {
     scrollRef.current.scrollIntoView();
     Axios.get(`/student/order-details/${id}`).then((data) => {
       setData(data.data.order);
-      console.log(data.data.order);
+      //data.data.order);
     });
   }, []);
 

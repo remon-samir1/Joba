@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 gsap.registerPlugin(ScrollTrigger);
 
 const JoinUs = () => {
+  
   const sectionRef = useRef(null);
   const { t , i18n} = useTranslation()
 
@@ -41,8 +42,8 @@ const JoinUs = () => {
         <p>{t("Which one is suitable for you?")}</p>
       </div>
       <div className="boxes flex justify-center items-center gap-10 flex-wrap">
-        <JoinUsCard title='learn' image="learn.png" link='/login'/>
-        <JoinUsCard title='teach' image="teach.png" link='/BecomeInstructor'/>
+        <JoinUsCard title={t('learn')} image="learn.png" link='/login'/>
+        <JoinUsCard title={t('teach')} image="teach.png" link='/BecomeInstructor'/>
       </div>
     </div>
   );

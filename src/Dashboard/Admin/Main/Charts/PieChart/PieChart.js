@@ -43,7 +43,7 @@ const CustomPieChart = (props) => {
       setData(props.data?.weekly_data )
     }
   },[filter , props.data])
-console.log(filter);
+//filter);
   return (
     <>
       <div className="flex justify-end mb-3">

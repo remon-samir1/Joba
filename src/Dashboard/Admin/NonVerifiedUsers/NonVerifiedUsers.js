@@ -42,7 +42,7 @@ catch(err){
     Axios.get(
       `admin/all-customers?page=${page}&keyword=${search}& status=${status}`
     ).then((data) => {
-      console.log(data.data);
+      //data.data);
       setData(
         data.data.data.users.data.filter(
           (data) => data.email_verified_at == null

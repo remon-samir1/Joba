@@ -57,7 +57,7 @@ const Login = () => {
     try {
       const res = await Axios.post("/user-login", form);
       if (res.data.status == "success") {
-        console.log(res);
+        //res);
         const token = res.data.access_token;
         cookie.set("token", token);
         saveData();
@@ -69,16 +69,16 @@ const Login = () => {
         }
         setLaoding(false);
         // nav('/admin/main')
-        console.log(res);
+        //res);
       } else {
-        console.log(res);
+        //res);
         toast.error(res.data.messege);
         setLaoding(false);
       }
     } catch (err) {
       toast.error(err.response?.data?.email || 'Internal Server error');
       setLaoding(false);
-      console.log(err);
+      //err);
     }
   };
   return (

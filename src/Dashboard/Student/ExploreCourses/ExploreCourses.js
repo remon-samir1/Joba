@@ -18,7 +18,7 @@ const ExploreCourses = () => {
   const [level, setLevel] = useState("");
   const { t, i18n } = useTranslation();
 
-  console.log(sort);
+  //sort);
   const StudentSearchContext = useContext(StudentSearch);
   const studentSearchState = StudentSearchContext.studentSearch;
   // get data
@@ -30,7 +30,7 @@ const ExploreCourses = () => {
     ).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
-      console.log(data);
+      //data);
     });
     Axios.get("admin/course-level").then((data) => {
       setLvls(data.data.data.courseLevels.data);
@@ -44,7 +44,7 @@ const ExploreCourses = () => {
 
       await Axios.get(`/wishlist/${slug}`).then(() => {
         setWait(false);
-        // console.log(data);
+        // //data);
         setCourses((prevCourses) =>
           prevCourses.map((course) =>
             course.slug === slug
@@ -54,7 +54,7 @@ const ExploreCourses = () => {
         );
       });
     } catch (err) {
-      console.log(err);
+      //err);
     }
   };
 

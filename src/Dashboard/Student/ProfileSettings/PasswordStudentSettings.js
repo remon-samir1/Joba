@@ -20,13 +20,13 @@ const PasswordStudentSettings = ({setLoading}) => {
     try {
       await Axios.put("/student/setting/password", form).then(
         (data) => {
-          console.log(data);
+          //data);
           toast.success("Updated Successfly");
           setLoading(false);
         }
       );
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error(err.response.data.message);
     }

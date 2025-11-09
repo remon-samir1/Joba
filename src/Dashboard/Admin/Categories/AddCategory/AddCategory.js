@@ -19,7 +19,7 @@ const AddCategory = () => {
     showAtTraeding:0 ,
     status: 0,
   });
-  console.log(form);
+  //form);
   const click = useRef(null);
   const navigate = useNavigate();
   const showAtTraedingData = [
@@ -59,7 +59,7 @@ const AddCategory = () => {
   if (form.icon) {
     const res = await Axios.post("/admin/course-category", formData).then(
       (data) => {
-        console.log(data);
+        //data);
           setLoading(false)
         toast.success('Created successfly')
         setTimeout(() => {
@@ -78,7 +78,7 @@ const AddCategory = () => {
   }catch(err){
     toast.error("some thing wrong");
      setLoading(false)
-     console.log(err);
+     //err);
   } 
   };
   return (

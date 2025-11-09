@@ -20,14 +20,14 @@ const CourseDetails = () => {
   const [count, setCount] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  console.log(id);
+  //id);
   useEffect(() => {
     setLoading(true);
     Axios.get(`/course/${id}`).then((data) => {
       setLoading(false);
       setCourse(data.data.course);
       setCount(data.data);
-      console.log(data.data);
+      //data.data);
     });
   }, []);
 

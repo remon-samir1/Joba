@@ -24,7 +24,7 @@ const BannedUsers = () => {
     setLoading(true);
     Axios.get(`admin/all-customers?page=${page}&keyword=${search}& verified=${status}`).then(
       (data) => {
-        console.log(data.data);
+        //data.data);
         setData(data.data.data.users.data.filter(data=> data.is_banned !== 'no'));
         setTotal(data.data.data.users.total);
         setLoading(false);

@@ -43,10 +43,10 @@ const SideDetails = (props) => {
         toast.success(data.data.message);
         setLoading(false);
         setCartChange((prev) => !prev);
-        console.log(data);
+        //data);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
 
       toast.success(err.message);

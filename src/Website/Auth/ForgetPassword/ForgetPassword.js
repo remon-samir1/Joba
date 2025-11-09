@@ -31,7 +31,7 @@ const ForgetPassword = () => {
     setLaoding(true);
     try {
       const res = await Axios.post("/forget-password", form);
-        console.log(res);
+        //res);
       if(res.data === "Email does not exist"){
         toast.error(res.data)
       }else{
@@ -43,12 +43,12 @@ const ForgetPassword = () => {
   
         setLaoding(false);
   
-        console.log(res);
+        //res);
     
     } catch (err) {
       toast.error("There is some think wrong !");
       setLaoding(false);
-      console.log(err);
+      //err);
     }
   };
   return (

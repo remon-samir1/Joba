@@ -29,7 +29,7 @@ const Verify = () => {
   const { id } = useParams();
 
   const handelSubmit = async (e) => {
-    console.log(id);
+    //id);
     setLaoding(true);
     try {
       const res = await Axios.get(`/user-verification/${id}`).then(()=>{
@@ -40,16 +40,16 @@ const Verify = () => {
           toast.success(res.data.messege);
         }
       })
-      console.log(res);
+      //res);
   
 
       setLaoding(false);
 
-      console.log(res);
+      //res);
     } catch (err) {
       toast.error("There is some think wrong !");
       setLaoding(false);
-      console.log(err);
+      //err);
     }
   };
   return (

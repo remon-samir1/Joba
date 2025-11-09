@@ -25,15 +25,15 @@ const EnrolledCourseDetails = () => {
   const [skeleton, setSkeleton] = useState(false);
   const [quizId, setQuizId] = useState("");
   const [loading, setLoading] = useState(true);
-console.log(url);
+//url);
   const [type, setType] = useState(false);
   const { id } = useParams();
-  console.log(quizId);
+  //quizId);
   useEffect(() => {
     setSkeleton(true);
     setLoading(true);
     Axios.get(`/course/${id}`).then((data) => {
-      console.log(data);
+      //data);
       setCourse(data.data);
       setLoading(false);
       setUrl(data.data.course.chapters[0]?.chapter_items[0]?.lesson.file_path);
@@ -42,7 +42,7 @@ console.log(url);
     });
   }, []);
 
-  console.log(course?.course?.chapters[1]?.chapter_items[0].type);
+  //course?.course?.chapters[1]?.chapter_items[0].type);
   const [tabs, setTabs] = useState("overview");
   const downloadFile = (filePath) => {
     const fileUrl = `${process.env.REACT_APP_BASE_URL}/${filePath}`;

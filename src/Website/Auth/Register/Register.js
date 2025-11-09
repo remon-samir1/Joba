@@ -11,6 +11,7 @@ import Notifcation from "../../../components/Notification";
 import { toast } from "react-toastify";
 import Loading from "../../../components/Loading/Loading";
 import { useTranslation } from "react-i18next";
+import Providers from "../../../components/Providers/Providers";
 const Register = () => {
   const [laoding, setLaoding] = useState(false);
   const { t, i18n } = useTranslation();
@@ -24,7 +25,7 @@ const Register = () => {
   const nav = useNavigate();
   const [hidePass, setHidePass] = useState(true);
   const [agree, setAgree] = useState(false);
-  console.log(form);
+  //form);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -33,7 +34,7 @@ const Register = () => {
     setLaoding(true);
     try {
       const res = await Axios.post("/register", form).then((data) => {
-        console.log(data);
+        //data);
         setForm({
           name: "",
           email: "",
@@ -50,7 +51,7 @@ const Register = () => {
         setLaoding(false);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLaoding(false);
       toast.error(err.response.data.message);
     }
@@ -152,16 +153,7 @@ const Register = () => {
             </div>
             <button type="submit">{("Sign up")}</button>
             <p className="seperator">- {t("Or log in with")} -</p>
-            <div className="providers">
-              <Link className="link">
-                <img src={google} alt="google" loading="lazy" />
-                <span>Google</span>
-              </Link>
-              {/* <Link className="link">
-                <img src={facebook} alt="facebook" loading="lazy" />
-                <span>Facebook</span>
-              </Link> */}
-            </div>
+          <Providers/>
             <p className="redirect">
               {t("Do you have an account?")}{" "}
               <Link className="link" to="/login">

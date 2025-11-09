@@ -17,7 +17,7 @@ const MyCourses = () => {
 
 
       setCourses(data.data.enrolls);
-      console.log(data.data.enrolls);
+      //data.data.enrolls);
     });
   }, []);
   return (

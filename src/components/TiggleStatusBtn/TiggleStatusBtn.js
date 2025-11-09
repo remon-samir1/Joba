@@ -20,39 +20,35 @@ export default function ToggleStatusButton(props) {
         props.url === "admin/course-level/" ||
         props.url ==='admin/course-sub-category'
       ) {
-        await Axios.put(`/${props.url}/status-update/${props.id}`).then(
-          (data) => console.log(data)
-        );
+        await Axios.put(`/${props.url}/status-update/${props.id}`)
       } else if (props.url === "admin/course-review") {
-        await Axios.put(`/${props.url}/${props.id}`, { status: isActive }).then(
-          (data) => console.log(data)
-        );
+        await Axios.put(`/${props.url}/${props.id}`, { status: isActive })
       }else if(props.url === 'admin/customer-status-update' ){
         await Axios.post(`/${props.url}/${props.id} `
         , {
            status: props.data =='active' ? 'inactive' : 'active',
           _method: "PUT",
-        }).then((data) => console.log(data));
+        })
       }else if(props.url === 'admin/courses/status-update'){
         await Axios.post(`/${props.url}/${props.id} `
         , {
           status: props.data =='active' ? 'inactive' : 'active',
       
-        }).then((data) => console.log(data));
+        })
       }
       
       else {
         await Axios.post(`/${props.url}/status-update/${props.id} `, {
           _method: "PUT",
-        }).then((data) => console.log(data));
+        })
       }
       toast.success("Status updated successfly");
     } catch (err) {
-      console.log(err);
+      //err);
       toast.error("Status not updated ");
     }
   };
-console.log(isActive);
+//isActive);
   return (
     <button
       onClick={handleUpdate}

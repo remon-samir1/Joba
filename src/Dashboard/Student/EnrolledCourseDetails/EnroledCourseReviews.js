@@ -23,14 +23,14 @@ const EnroledCourseReviews = ({ id }) => {
     Axios.get("/student/reviews").then((data) => {
       setLoading(false);
       setReviews(data.data.reviews.data.filter((rev) => rev.course_id == id));
-      console.log(data);
+      //data);
     });
   }, [change]);
-  console.log(id);
+  //id);
   // useEffect(()=>{
-  //   Axios.get(`/student/fetch-reviews/${id}`).then(data=>console.log(data))
+  //   Axios.get(`/student/fetch-reviews/${id}`).then(data=>//data))
   // },[change])
-  // console.log(id);
+  // //id);
   //  handle add Review
   const handleAddReview = (e) => {
     e.preventDefault();
@@ -38,13 +38,13 @@ const EnroledCourseReviews = ({ id }) => {
     try {
       Axios.post("/student/add-review", form).then((data) => {
         toast.success(data.data.messege);
-        console.log(data);
+        //data);
         setForm({ rating: "", review: "", course_id: id });
         setLoading(false);
         setChange((prev) => !prev);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error("Review Was not Created");
     }

@@ -33,10 +33,10 @@ const AddPost = () => {
 useEffect(()=>{
   Axios.get(`/admin/blog-category`).then(data=>{
     setCategory(data.data.data.data);
-console.log(data.data.data.data);
+//data.data.data.data);
   })
 },[])
-console.log(form);
+//form);
 const categoryData =  category?.map((data,index)=>(
   
  <option value={data.id}>{data.name}</option>
@@ -62,7 +62,7 @@ const categoryData =  category?.map((data,index)=>(
       setLoading(true);
       if (form.image) {
         const res = await Axios.post("/admin/blogs", formData).then((data) => {
-          console.log(data);
+          //data);
           setLoading(false);
           toast.success("Created successfly");
           setTimeout(() => {
@@ -76,7 +76,7 @@ const categoryData =  category?.map((data,index)=>(
     } catch (err) {
       toast.error("some thing wrong");
        setLoading(false)
-      console.log(err);
+      //err);
     }
   };
 

@@ -18,7 +18,7 @@ const Payment = () => {
     Axios.get("./checkout").then((data) => {
       setDetails(data.data);
       setLoading(false)
-      console.log(data);
+      //data);
     });
   }, []);
 const nav=useNavigate()
@@ -26,7 +26,7 @@ const nav=useNavigate()
     try {
       setLoading(true);
       const res = await Axios.post("/pay-via-free-gateway");
-      console.log(res);
+      //res);
       if (res.data.messege === 'Payment successful.') {
         toast.success(res.data.messege)
         setTimeout(() => {

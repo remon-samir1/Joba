@@ -42,7 +42,7 @@ const Courses = () => {
     Axios.get(
       `/admin/courses?page=${page}&keyword=${search}&date=${selectedDate}&status=${status}&approve_status=${approved}&category=${categoryId}`
     ).then((data) => {
-      console.log(data.data.data.courses);
+      //data.data.data.courses);
       setCourses(data.data.data.courses.data);
       setTotal(data.data.data.courses.total);
       setLoading(false);
@@ -53,14 +53,14 @@ const Courses = () => {
       setCategory(data.data.data.categories.data);
     });
   }, []);
-  console.log(category);
+  //category);
   const categoryData = category?.map((data, index) => {
     return {
       name: data.name,
       value: data.id,
     };
   });
-  console.log(categoryData);
+  //categoryData);
   // headers of table
   const headers = [
     {

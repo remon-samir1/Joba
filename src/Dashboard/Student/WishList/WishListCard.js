@@ -14,14 +14,14 @@ const WishListCard = (props) => {
 
     await Axios.get(`/wishlist/${slug}`).then((data)=>{ 
       props.setWait(prev=> !prev)
-      console.log(data);
+      //data);
     setSpinner(false)
   }
   
   )
 }catch(err){
       setSpinner(false)
-      console.log(err);
+      //err);
     }
   };
 

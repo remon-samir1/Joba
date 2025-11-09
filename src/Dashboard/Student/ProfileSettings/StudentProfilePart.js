@@ -28,7 +28,7 @@ const StudentProfilePart = ({ form, setForm, setLoading }) => {
         setLoading(false);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error("something was wrong!");
     }

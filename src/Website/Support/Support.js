@@ -114,7 +114,7 @@ const Support = () => {
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-t-main border-gray-200 h-12 w-12 mb-4 animate-spin"></div>
         </div>
       )}
-      <NavBar classes="!bg-[#fafafa] md:!bg-white" />
+      <NavBar classes="!bg-[#fafafa] " />
       <div className="flex md:flex-row flex-col-reverse items-start gap-[10%] px-4 md:px-12 pt-[7vh]">
         <form
           onSubmit={handleSubmit}

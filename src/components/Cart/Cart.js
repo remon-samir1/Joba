@@ -22,7 +22,7 @@ const Cart = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get("/cart").then((data) => {
-      console.log(data);
+      //data);
       setLoading(false);
       setProductus(Object.values(data.data.products));
       setValues(data.data);
@@ -33,11 +33,12 @@ const Cart = () => {
       setLoading(true);
       Axios.get("/pay-via-paymob").then(
         (data) => {
-        
-          (window.location.href = data.data.link)}
+        console.log(data);
+          (window.location.href = data.data.link)
+        }
       );
     } catch (err) {
-      console.log(err);
+      //perr);
       setLoading(false)
 
     }
@@ -47,14 +48,14 @@ const Cart = () => {
     setSpinner(id);
     try {
       Axios.get(`remove-cart-item/${id}`).then((data) => {
-        console.log(data);
+        //data);
         setCartShopping((prev) => !prev);
         toast.success("item deleted successfly");
         setSpinner(false);
         setProductus(products.filter((data) => data.options.rowId != id));
       });
     } catch (err) {
-      console.log(err);
+      //err);
     }
   };
   const nav = useNavigate();

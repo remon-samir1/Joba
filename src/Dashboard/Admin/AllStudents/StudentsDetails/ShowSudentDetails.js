@@ -35,7 +35,7 @@ const nav = useNavigate()
     
       setLoading(false)})
   },[])
-  console.log(student);
+  //student);
 
   // handle send verify link
   const handleSendVerifyLink = async()=>{
@@ -43,12 +43,11 @@ const nav = useNavigate()
 try{
   await Axios.post(`/admin/send-verify-request/${id}`).then(data=>{
     toast.success(data.data.messege)
-    console.log(data.data.messege)})
+})
     setLoading(false)
 }
 
 catch(err){
-  console.log(err);
   toast.error(err.message)
   setLoading(false)
 }
@@ -59,12 +58,12 @@ catch(err){
 try{
   await Axios.post(`/admin/send-mial-to-customer/${id}`).then(data=>{
     toast.success(data.data.messege)
-    console.log(data.data.messege)})
+  })
 
 }
 
 catch(err){
-  console.log(err);
+  //err);
   toast.error(err.message)
 }
   }
@@ -73,7 +72,7 @@ catch(err){
     setLoading(true)
     try{
 Axios.delete(`/admin/customer-delete/${id}`).then(data=>{
-  console.log(data)
+  //data)
  toast.error(data.data.messege)
  setLoading(false)
  if(data.data.messege === 'User deleted successfully'){
@@ -83,7 +82,7 @@ toast.success('User deleted successfully')
  }
 })
     }catch(err){
-console.log(err);
+//err);
 setLoading(false)
     }
   }

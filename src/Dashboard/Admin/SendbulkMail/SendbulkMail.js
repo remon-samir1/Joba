@@ -12,7 +12,7 @@ const SendbulkMail = () => {
     subject:'',
     description:''
   });
-  console.log(form);
+  //form);
   // handle submit
   const handleSubmit = async(e) => {
     setLaoding(true)
@@ -24,7 +24,7 @@ await Axios.post('/admin/send-bulk-mail-to-all' , form).then(data => {
   setLaoding(false)})
     }
     catch(err){
-      console.log(err);
+      //err);
       toast.error(err.messege)
       setLaoding(false)
     }

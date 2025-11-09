@@ -25,14 +25,14 @@ const QuizResualt = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get("/student/quiz-attempts").then((data) => {
-      console.log(data);
+      //data);
       const quizesData = data.data.quizAttempts.data;
-      console.log(quizesData);
+      //quizesData);
       setQuizes(quizesData.filter((data) => data.id == id)[0]);
       setLoading(false);
     });
   }, []);
-  console.log(quizes);
+  //quizes);
   const formatTime = (seconds) => {
     const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
     const secs = String(seconds % 60).padStart(2, "0");

@@ -15,7 +15,7 @@ const WishList = () => {
     Axios.get("/wishlist").then((data) => {
       setSkeleton(false);
       setData(data.data.wishlistCourses.data);
-      console.log(data.data.wishlistCourses.data);
+      //data.data.wishlistCourses.data);
     });
   }, [wait]);
   return (

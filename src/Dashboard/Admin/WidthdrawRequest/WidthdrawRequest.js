@@ -23,7 +23,7 @@ const WidthdrawRequest = () => {
     setLoading(true);
     Axios.get(`/admin/withdraw-method?page=${page}&keyword=${search}& status=${status}`).then(
       (data) => {
-        console.log(data.data);
+        //data.data);
         // setData(data.data.methods.data);
         // setTotal(data.data.methods.total);
         setLoading(false);

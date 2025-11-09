@@ -19,7 +19,7 @@ const OrderStudentHistory = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(`/student/orders?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-      console.log(data.data);
+      //data.data);
       setCategories(data.data.orders.data);
       // setTotal(data.data.data.order.total);
       setLoading(false);

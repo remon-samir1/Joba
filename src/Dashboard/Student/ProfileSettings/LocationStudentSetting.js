@@ -24,13 +24,13 @@ const LocationStudentSetting = ({
     try {
       await Axios.put("/student/setting/address", studentLocation).then(
         (data) => {
-          console.log(data);
+          //data);
           toast.success("Updated Successfly");
           setLoading(false);
         }
       );
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error("something was wrong!");
     }

@@ -18,7 +18,7 @@ const AddCategory = () => {
     slug: "",
     status: 0,
   });
-  console.log(form);
+  //form);
   const click = useRef(null);
   const navigate = useNavigate();
   const {id} = useParams();
@@ -49,7 +49,7 @@ const AddCategory = () => {
 
       const res = await Axios.post(`/admin/blog-category`, formData).then(
         (data) => {
-          console.log(data);
+          //data);
           setLoading(false);
           toast.success("Created successfly");
           setTimeout(() => {
@@ -60,7 +60,7 @@ const AddCategory = () => {
     } catch (err) {
       toast.error("some thing wrong");
       setLoading(false);
-      console.log(err);
+      //err);
     }
   };
   return (

@@ -26,7 +26,7 @@ const UpdateCategory = () => {
   const navigate = useNavigate();
   const {id} = useParams();
   
-  console.log(form);
+  //form);
   const showAtTraedingData = [
     {
       name: "No",
@@ -53,13 +53,13 @@ const UpdateCategory = () => {
     Axios.get(`admin/course-category/${id}`).then((data)=>{
     setForm(data.data.data.category);
      setDisabled(false)
-    console.log(data.data.data.category);
+    //data.data.data.category);
     })
   },[])
   //    Form Data
   
 
-  // console.log(formData);
+  // //formData);
   //        Send Data
   const handleSubmit = async (e) => {
     
@@ -83,7 +83,7 @@ try{
       (data) => {
           setDisabled(false)
 
-          console.log(data);
+          //data);
         toast.success('Upadated successfly')
         setTimeout(() => {
           
@@ -99,7 +99,7 @@ try{
     }
   }catch(err){
     toast.error("some thing wrong");
-    console.log(err);
+    //err);
     setDisabled(false)
 
      

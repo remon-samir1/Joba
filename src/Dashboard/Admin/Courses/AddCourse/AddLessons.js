@@ -28,8 +28,8 @@ const AddLessons = ({
     selectedChapterId || (chapters.length > 0 ? chapters[0].id : "")
   );
   const pathRef = useRef(null);
-  // console.log(videoFile);
-console.log(preview);
+  // //videoFile);
+//preview);
   useEffect(() => {
     if (source === "upload") {
       setVideoType("video");
@@ -37,7 +37,7 @@ console.log(preview);
       setVideoType("video");
     }
   }, [source]);
-console.log(defaultLesson);
+//defaultLesson);
   useEffect(() => {
     if (defaultLesson) {
       setLessonTitle(defaultLesson?.title );
@@ -68,20 +68,20 @@ if(editMode){
     lessonData.append("link_path", videoLink);
     lessonData.append("duration", duration.trim());
 lessonData.append("description", description.trim());
-console.log(selectedChapter);
+//selectedChapter);
   try{
     if(editMode){
 
       Axios.post('admin/course-chapter/lesson/update' , lessonData).then((data)=>{
       setChange(prev=>!prev)
-      console.log(data);
+      //data);
       setShowLessonModal(false)
       })
     }else{
       
       Axios.post('admin/course-chapter/lesson/create' , lessonData).then((data)=>{
         setChange(prev=>!prev)
-        console.log(data);
+        //data);
         setShowLessonModal(false)
       })
     }

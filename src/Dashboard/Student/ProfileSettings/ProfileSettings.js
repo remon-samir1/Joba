@@ -47,7 +47,7 @@ const ProfileSettings = () => {
     setLoading(true);
     Axios.get("/student/setting").then((data) => {
       setLoading(false);
-      console.log(data);
+      //data);
       setFormProfile({
         name: data.data.user.name,
         email: data.data.user.email,

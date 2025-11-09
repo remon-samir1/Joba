@@ -15,7 +15,7 @@ const TopBar = () => {
       setAdmin(data.data.data.admin)
     );
   }, []);
-  console.log(admin);
+  //admin);
   const menu = useContext(Menu);
   const setIsOpen = menu.setIsOpen;
   const isOpen = menu.isOpen;

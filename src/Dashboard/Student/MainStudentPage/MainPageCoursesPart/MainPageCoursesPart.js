@@ -23,13 +23,13 @@ const MainPageCoursesPart = () => {
 
     Axios.get(`/student/enrolled-courses?category_id=${categoryId}`).then(
       (data) => {
-        console.log(data.data);
+        //data.data);
         setSkeleton(false);
         setCourses(data.data.enrolls);
       }
     );
   }, [categoryId]);
-  console.log(courses);
+  //courses);
 
   const [resize, setResize] = useState(window.innerWidth);
   useEffect(() => {
@@ -39,7 +39,7 @@ const MainPageCoursesPart = () => {
       window.removeEventListener("resize", () => setResize(window.innerWidth));
     };
   }, [window.innerWidth]);
-  console.log(resize);
+  //resize);
 
   return (
     <div className="MainPageCoursesPart mt-8 ">

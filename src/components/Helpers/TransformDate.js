@@ -5,6 +5,6 @@ const TransformDate = (date) => {
  const getDay = getDate.getDate().toString().padStart(2 , '0');
  return `${getFullYear}-${getMonth}-${getDay}`
 };
-console.log(TransformDate);
+//TransformDate);
 
 export default TransformDate;

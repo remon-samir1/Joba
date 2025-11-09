@@ -17,7 +17,7 @@
 //   const handleDelete = async (id, parent_id) => {
 //     setLoadDelete(id);
 //     try {
-//       console.log(id);
+//       //id);
 
 //       await Axios.post(
 //         `${props.delurl ? props.delurl : props.url}/${id}/${
@@ -28,7 +28,7 @@
 //         }
 //       ).then((data) => {
 //         setLoadDelete(false);
-//         console.log(data);
+//         //data);
 //         props.setDeleted((prev) => !prev);
 //         // props.setData(props.data.filter(prev=> prev.id !== id))
 //         if (data.data.status == "error") {
@@ -41,7 +41,7 @@
 //       });
 //     } catch (err) {
 //       toast.success(err);
-//       console.log(err);
+//       //err);
 //       setLoadDelete(false);
 //     }
 //   };
@@ -350,7 +350,7 @@ const Table = (props) => {
       });
     } catch (err) {
       toast.error("There is some thing wrong in delete");
-      console.log(err);
+      //err);
       setLoadDelete(false);
     }
   };

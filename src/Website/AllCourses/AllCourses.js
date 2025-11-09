@@ -63,7 +63,7 @@ const AllCourses = () => {
     ).then((data) => {
       setSkeleton(false);
       setCourses(data.data.items.courses.data);
-      console.log(data);
+      //data);
     });
   }, [search, levelId, priceMode, categoryId]);
   return (

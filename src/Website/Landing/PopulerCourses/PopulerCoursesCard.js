@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const PopulerCoursesCard = ({ title, icon, image, courses, id }) => {
   const CategoryContext = useContext(Category);
   const setCategoryId = CategoryContext.setcategoryId;
-  console.log(CategoryContext);
+  //CategoryContext);
   const nav = useNavigate();
   const handleFilter = () => {
     setCategoryId(id);

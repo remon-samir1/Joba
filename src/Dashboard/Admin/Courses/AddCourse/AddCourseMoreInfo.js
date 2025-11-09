@@ -24,7 +24,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
     levels: [],
     languages: [],
   });
-  console.log(form);
+  //form);
   const [lvls, setLvls] = useState([]);
   const [langs, setLangs] = useState([]);
   const scrollRef = useRef();
@@ -32,7 +32,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
     Axios.get("admin/course-level").then((data) =>{
 
       setLvls(data.data.data.courseLevels.data)
-      console.log(data);
+      //data);
     }
     );
   }, []);
@@ -41,7 +41,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
       setLangs(data.data.data.courseLanguages.data);
     });
   }, []);
-  console.log(lvls);
+  //lvls);
 
   useEffect(() => {
     scrollRef.current.scrollIntoView();
@@ -52,7 +52,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
     });
   }, []);
   const handleCheckboxChange = (type, value, checked) => {
-    console.log(type);
+    //type);
     const id = typeof value === "object" ? value.id : value;
     setForm((prevForm) => {
       const updatedArray = checked
@@ -96,7 +96,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
             }
           : form
       ).then((data) => {
-        console.log(data);
+        //data);
         setLoading(false);
         // setPage("content");
         if(edit){
@@ -112,12 +112,12 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
       setLoading(false);
     }
   };
-  console.log(slug);
+  //slug);
   useEffect(() => {
     if (edit) {
       setLoading(true);
       Axios.get(`course/${slug}`).then((data) => {
-        console.log(data.data.course);
+        //data.data.course);
 
         const course = data.data.course;
 
@@ -130,7 +130,7 @@ const AddCourseMoreInfo = ({ course_id, edit, setPage, slug }) => {
       });
     }
   }, []);
-  // console.log(form);
+  // //form);
   return (
     <div className="AddCoourse">
       <div ref={scrollRef} />

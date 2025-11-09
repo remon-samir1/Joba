@@ -19,13 +19,13 @@ const MainAdminPage = () => {
   const [data , setData] = useState()
 useEffect(()=>{
   Axios.get('/admin/dashboard').then(data=>{
-    console.log(data.data.data);
+    //data.data.data);
     setLineChartData(data.data.data.line_chart);
     setPieChartData(data.data.data.pie_chart);
     setData(data.data.data)
     })
 },[])
-console.log(data)
+//data)
  const MainAdminPageBoxData = [
   {
     icon: "iconoir:simple-cart",
@@ -70,7 +70,7 @@ console.log(data)
 ];
 
 
-console.log(data?.monthly_data);
+//data?.monthly_data);
   const menu = useContext(WindowSize);
 
   return (

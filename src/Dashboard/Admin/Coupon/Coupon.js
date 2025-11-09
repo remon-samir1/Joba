@@ -23,7 +23,7 @@ const Coupon = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(`/admin/coupon?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-      console.log(data);
+      //data);
       setCategories(data.data.data);
       // setTotal(data.data.data.categories.total);
       setLoading(false);

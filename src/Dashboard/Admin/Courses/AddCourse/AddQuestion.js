@@ -8,10 +8,10 @@ const AddQuestion = ({ setShowQuestionModal, quizId, setChange, initialData }) =
   const [grade, setGrade] = useState(initialData?.grade || "");
   const [answers, setAnswers] = useState(
     initialData?.answers && initialData.answers.length > 0
-      ? initialData.answers.map(ans => ({ ...ans, localId: ans.id || Date.now() })) // استخدام localId للحفاظ على id لـ React keys
+      ? initialData.answers.map(ans => ({ ...ans, localId: ans.id || Date.now() })) 
       : [{ localId: Date.now(), title: "", correct: false }]
   );
-console.log(answers);
+//answers);
   const [isEditMode, setIsEditMode] = useState(!!initialData); 
 
   const handelSubmit = async (e) => {
@@ -53,17 +53,17 @@ console.log(answers);
     try {
       let response;
       if (isEditMode) {
-        response = await Axios.put(`/admin/course-chapter/quiz-question/update/${initialData.id}`, payload).then(data=>console.log(data));
+        response = await Axios.put(`/admin/course-chapter/quiz-question/update/${initialData.id}`, payload)
         toast.success("Question Updated Successfly");
 
       } else {
-        response = await Axios.post(`/admin/course-chapter/quiz-question/create/${quizId}`, payload).then(data=>console.log(data));
+        response = await Axios.post(`/admin/course-chapter/quiz-question/create/${quizId}`, payload)
         toast.success("Question Created Successfly");
       }
       setChange(prev => !prev); 
       setShowQuestionModal(false); 
     } catch (err) {
-      console.log(err);
+      //err);
       console.error("create error", err.response ? err.response.data : err.message);
       toast.error("some think wrong " + (err.response?.data?.message || err.message));
     }

@@ -20,7 +20,7 @@ const AddCategory = () => {
     code:'EN',
     _method:'PUT'
   });
-  console.log(form);
+  //form);
   const click = useRef(null);
   const navigate = useNavigate();
   const {id} = useParams();
@@ -31,7 +31,7 @@ const AddCategory = () => {
         {setForm(data.data.data.data.find(obj => obj.id == id))
         setLoading(false)
         })
-      console.log(form);
+      //form);
   },[])
   const statusData = [
     {
@@ -62,7 +62,7 @@ const AddCategory = () => {
 
       const res = await Axios.put(`/admin/blog-category/${id}`, formData).then(
         (data) => {
-          console.log(data);
+          //data);
           setLoading(false);
           toast.success("Updated successfly");
           setTimeout(() => {
@@ -73,7 +73,7 @@ const AddCategory = () => {
     } catch (err) {
       toast.error("some thing wrong");
       setLoading(false);
-      console.log(err);
+      //err);
     }
   };
   return (

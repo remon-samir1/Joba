@@ -13,7 +13,7 @@ const QA = (props) => {
     lesson_id: props.lessonId,
     description: "",
   });
-  console.log(sendQuestion);
+  //sendQuestion);
   const { t, i18n } = useTranslation();
 
   const [questions, setQuestions] = useState([]);
@@ -32,7 +32,7 @@ const QA = (props) => {
     try {
       if (sendQuestion.lesson_id !== undefined) {
         Axios.post("/student/create-question", sendQuestion).then((data) => {
-          console.log(data);
+          //data);
           setLoading(false);
           toast.success("Question Created Successfly");
         setChange((prev) => !prev);
@@ -54,7 +54,7 @@ const QA = (props) => {
       `/student/fetch-lesson-questions?query=${searchTerm}&lesson_id=${sendQuestion.lesson_id}&course_id=${sendQuestion.course_id}`
     ).then((data) => {
       setLoading(false);
-      console.log(data);
+      //data);
       setQuestions(data.data.view.data);
     });
   }, [change, searchTerm]);
@@ -72,7 +72,7 @@ const QA = (props) => {
         setReplyText("");
       });
     } catch (err) {
-      console.log(err);
+      //err);
     }
   };
 

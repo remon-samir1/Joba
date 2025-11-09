@@ -44,7 +44,7 @@ const SideBar = (props) => {
     }
   },[isOpen])
   const {url} = useParams()
-  console.log(window.location.pathname);
+  //window.location.pathname);
   return (
     <div>
     {

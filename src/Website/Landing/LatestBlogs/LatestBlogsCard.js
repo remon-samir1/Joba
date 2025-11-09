@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import StringSlice from "../../../components/Helpers/StringSlice";
 import defaultImage from '../../../images/juba.svg'
 const LatestBlogsCard = (props) => {
-  console.log(props.image);
+  //props.image);
   return (
     <Link to={`/blog/${props.slug}`} className="LatestBlogsCard">
       <div className="img">

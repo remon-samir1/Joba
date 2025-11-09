@@ -30,7 +30,7 @@ scrollRef.current.scrollIntoView()
     Axios.get(
       `/admin/blogs?keyword=${search}&status=${status}&show_homepage=${showHomePage}&is_popular=${ispopuler}`
     ).then((data) => {
-      console.log(data);
+      //data);
       setPostLists(data.data.data.posts.data);
       setTotal(data.data.data.posts.total);
       setLoading(false);
@@ -97,7 +97,7 @@ scrollRef.current.scrollIntoView()
       value: 0,
     },
   ];
-  console.log(status);
+  //status);
   return (
     <>
       <Notifcation />

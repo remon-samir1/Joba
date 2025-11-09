@@ -12,10 +12,10 @@ const AllCoursesCard = (props) => {
     try {
       await Axios.get(`/wishlist/${slug}`).then((data) => {
         props.setWait((prev) => !prev);
-        console.log(data);
+        //data);
       });
     } catch (err) {
-      console.log(err);
+      //err);
     }
   };
 

@@ -31,20 +31,20 @@ scrollRef.current.scrollIntoView()
   useEffect(() => {
     setLoading(true);
     Axios.get(`/admin/blogs`).then((data) => {
-      // console.log(data);
+      // //data);
       setForm(data.data.data.posts.data.filter((data) => data.id == id)[0]);
       setLoading(false);
     });
   }, []);
-  console.log(form);
+  //form);
   //  get post category
   useEffect(() => {
     Axios.get(`/admin/blog-category`).then((data) => {
       setCategory(data.data.data.data);
-      console.log(data.data.data.data);
+      //data.data.data.data);
     });
   }, []);
-  console.log(form);
+  //form);
 
   const click = useRef(null);
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ scrollRef.current.scrollIntoView()
   const [showHomePage, setShowHomePage] = useState(0);
   const [isPopular, setIsPopular] = useState(0);
   const [status, setStatus] = useState(0);
-  console.log(form);
+  //form);
 
   // handleSubmit function
   const handleSubmit = async (e) => {
@@ -81,7 +81,7 @@ scrollRef.current.scrollIntoView()
       
         const res = await Axios.post(`/admin/blogs/${id}`, formData).then(
           (data) => {
-            console.log(data);
+            //data);
             setLoading(false);
             toast.success("Updated successfly");
             setTimeout(() => {
@@ -96,7 +96,7 @@ scrollRef.current.scrollIntoView()
     } catch (err) {
       toast.error("some thing wrong");
       setLoading(false);
-      console.log(err);
+      //err);
     }
   };
   const categoryData = category?.map((data, index) => (

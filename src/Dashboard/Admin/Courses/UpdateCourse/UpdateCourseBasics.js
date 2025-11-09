@@ -32,7 +32,7 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
       const currentCourse = data.data.data.courses.data.find((c) => c.id == id);
       setForm(currentCourse);
       setSlug(currentCourse.slug);
-      console.log(data);
+      //data);
       setLoading(false);
     });
   }, []);
@@ -91,7 +91,7 @@ const UpdateCourseBasics = ({ setPage, setCourseId, setSlug }) => {
 
       const res = await Axios.post("/admin/courses/create", formData);
       toast.success("Updated successfully");
-      console.log(res);
+      //res);
       setLoading(false);
       setPage("more");
     } catch (err) {

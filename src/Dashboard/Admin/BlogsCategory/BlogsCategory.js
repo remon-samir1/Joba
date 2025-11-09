@@ -22,12 +22,12 @@ const BlogsCategory = () => {
     Axios.get(
       `/admin/blog-category?page=${page}&keyword=${search}&status=${status}`
     ).then((data) => {
-      console.log(data.data.data.data);
+      //data.data.data.data);
       setBlogsCategory(data.data.data.data);
       setLoading(false);
     });
   }, [search, deleted, status]);
-console.log(status);
+//status);
   // headers of table
   const headers = [
     {
@@ -58,7 +58,7 @@ console.log(status);
       value: 0,
     },
   ];
-  console.log(status);
+  //status);
   return (
     <>
       <Notifcation />

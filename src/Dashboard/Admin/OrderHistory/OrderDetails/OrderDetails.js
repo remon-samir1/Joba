@@ -54,22 +54,22 @@ const OrderDetails = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(`admin/orders`).then((data) => {
-      console.log(data);
+      //data);
       const OrderData = data.data.orders.data.filter((data) => data.id == id)[0]
       setOrder(OrderData);
       setStatusUpdate({...statusUpdate , payment_status : OrderData.payment_status , order_status : OrderData.status})
       setLoading(false);
     });
   }, []);
-  console.log(statusUpdate);
+  //statusUpdate);
   const handleStautsUpdate = async()=>{
     setLoading(true)
     try{
 await Axios.post(`/admin/update-order/${order?.id}` , statusUpdate).then(data=>{
   toast.success('Order Updated Successfly')
-  console.log(data)})
+})
     }catch(err){
-console.log(err);
+//err);
     }finally{
       setLoading(false)
     }

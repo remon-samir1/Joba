@@ -72,7 +72,7 @@ setSkeleton(true);
       setCourses(courseData);
      setFilter(courseData)
       setCategory(data.data.items.courses.data);
-      console.log(data.data.items.courses.data);
+      //data.data.items.courses.data);
   
     });
   }, []);
@@ -145,7 +145,7 @@ useEffect(()=>{
             reviews={course.reviews.length}
             instructor_image={course.instructor.image}
             instructor_name={course.instructor.user_name}
-            price={ course.price}
+            price={course.price}
             key={index}
             forwardRef={(el) => (cardsRef.current[index] = el)}
           />

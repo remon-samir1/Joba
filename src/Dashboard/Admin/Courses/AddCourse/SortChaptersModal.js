@@ -23,7 +23,7 @@ const SortChaptersModal = ({ chapters, onClose, onSorted ,courseId,setShowSortMo
 
   const handleSave = async () => {
     const payload = orderedChapters.map((ch) => ch.id);
-console.log(payload);
+//payload);
 const formData = new FormData();
 formData.append('chapter_ids' , payload)
     try {
@@ -35,7 +35,7 @@ formData.append('chapter_ids' , payload)
 
       });
     } catch (err) {
-      console.log(err);
+      //err);
       toast.error("Failed to sort chapters");
     }
   };

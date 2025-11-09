@@ -23,7 +23,7 @@ const Levels = () => {
     Axios.get(
       `/admin/course-level?page=${page}&keyword=${search}& status=${status}`
     ).then((data) => {
-      console.log(data.data.data);
+      //data.data.data);
       setLevels(data.data.data.courseLevels.data);
       setTotal(data.data.data.courseLevels.total);
       setLoading(false);
@@ -59,7 +59,7 @@ const Levels = () => {
       value: 0,
     },
   ];
-  console.log(status);
+  //status);
   return (
     <>
       <Notifcation />

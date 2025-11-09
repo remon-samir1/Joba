@@ -36,8 +36,8 @@ const QuizExam = () => {
         const hasPassed = thisQuizAttempts.some(
           (a) => a.user_grade >= quizData.pass_mark
         );
-        console.log(hasPassed);
-        console.log(thisQuizAttempts);
+        //hasPassed);
+        //thisQuizAttempts);
         if (hasPassed) {
           setAlreadyPassed(true);
           setLoading(false);

@@ -16,13 +16,14 @@ const Reviews = () => {
     Axios.get('/student/reviews').then(data=>{
       setReviews(data.data.reviews.data)
       setSkeleton(false)
-      console.log(data.data.reviews.data)})
+      //data.data.reviews.data)
+    })
   },[])
   // handleDelete
   const handleDelete = (id)=>{
     try{
 Axios.delete(`/student/reviews/${id}`).then(data =>{
-  console.log(data);
+  //data);
   // setReviews(reviews.filter(rev => rev.id !== id))
 })
     }catch(err){

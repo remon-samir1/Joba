@@ -21,7 +21,7 @@ const StudentTopBar = () => {
   const [cart, setCart] = useState();
   useEffect(() => {
     Axios.get("/cart").then((data) => {
-      console.log(data);
+      //data);
       const product = data.data.products;
       const arr = Object.values(product);
       setCart(arr.length);
@@ -37,7 +37,7 @@ const StudentTopBar = () => {
   const setIsOpen = menu.setIsOpen;
   const isOpen = menu.isOpen;
 
-  console.log(studentSearchState);
+  //studentSearchState);
   const nav = useNavigate();
   return (
     <div className="parant-topbar">

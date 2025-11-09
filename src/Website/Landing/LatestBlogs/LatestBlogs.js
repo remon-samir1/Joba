@@ -24,11 +24,11 @@ const LatestBlogs = () => {
 useEffect(()=>{
   Axios.get('/blog').then((data)=> {
     setBlogs(data.data.blogs.data.slice(0,3))
-    // console.log(data.data.blogs.data.slice(0 , 1))
+    // //data.data.blogs.data.slice(0 , 1))
 
   })
 },[])
-console.log(blogs);
+//blogs);
   useGSAP(() => {
     gsap.from([textRef.current, boxesRef.current, linkRef.current], {
       opacity: 0,

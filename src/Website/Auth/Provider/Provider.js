@@ -49,16 +49,16 @@ const Provider = () => {
     //       toast.success(res.data.messege);
     //     }
     //   })
-    //   console.log(res);
+    //   //res);
   
 
     //   setLaoding(false);
 
-    //   console.log(res);
+    //   //res);
     // } catch (err) {
     //   toast.error("There is some think wrong !");
     //   setLaoding(false);
-    //   console.log(err);
+    //   //err);
     // }
   };
   return (

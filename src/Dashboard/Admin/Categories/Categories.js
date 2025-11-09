@@ -22,7 +22,7 @@ const Categories = () => {
   useEffect(() => {
     setLoading(true);
     Axios.get(`/admin/course-category?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-      console.log(data.data.data.categories);
+      //data.data.data.categories);
       setCategories(data.data.data.categories.data);
       setTotal(data.data.data.categories.total);
       setLoading(false);

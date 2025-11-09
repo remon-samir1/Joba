@@ -21,7 +21,7 @@ const NavBar = ({ classes }) => {
   useEffect(() => {
     Axios.get("/cart")
       .then((data) => {
-        console.log(data);
+        //data);
         const product = data.data.products;
         const arr = Object.values(product);
         setCart(arr.length);

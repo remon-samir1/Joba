@@ -36,7 +36,7 @@ const DownFilter = ({ setSearch, setLevelId, setPriceMode,setCategoryId ,setOpen
     Axios.get('/courses').then(data =>{
       setCategories(data.data.categories)
       setSkeleton(false);
-      console.log(data)})
+    })
   }, []);
 
   const handleClose = () => {

@@ -26,7 +26,7 @@ const Blogs = () => {
       setSkeleton(false)
     });
   }, []);
-  console.log(blogs);
+  //blogs);
   // handleFilter
   useEffect(() => {
     if (search !== "") {
@@ -39,7 +39,7 @@ const Blogs = () => {
     }
   }, [search, blogs]);
 
-  console.log(search);
+  //search);
 
   const scrollRef = useRef(null);
   const cardsRef = useRef([]);

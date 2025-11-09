@@ -14,12 +14,12 @@ const BiographyStudentSettings = ({form , setForm , setLoading}) => {
 
     try {
       await Axios.put("/student/setting/bio", form).then((data) => {
-        console.log(data);
+        //data);
         toast.success("Updated Successfly");
         setLoading(false);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error("something was wrong!");
     }

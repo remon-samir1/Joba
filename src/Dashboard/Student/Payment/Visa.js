@@ -16,7 +16,7 @@ const Visa = () => {
       [name]: value,
     }));
   };
-  console.log(formData);
+  //formData);
 
   const formatCardNumber = (value) => {
     const cleanedValue = value.replace(/\D/g, "").slice(0, 16);

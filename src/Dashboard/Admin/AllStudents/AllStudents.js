@@ -27,7 +27,7 @@ scrollRef.current.scrollIntoView()
     setLoading(true);
     Axios.get(`admin/all-customers?page=${page}&keyword=${search}&status=${status}`).then(
       (data) => {
-        console.log(data.data);
+        //data.data);
         setData(data.data.data.users.data);
         setTotal(data.data.data.users.total);
         setLoading(false);

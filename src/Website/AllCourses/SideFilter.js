@@ -29,7 +29,7 @@ const SideFilter = ({ setSearch, setLevelId, setPriceMode,categoryId ,setCategor
     Axios.get('/courses').then(data =>{
       setCategories(data.data.categories)
       setSkeleton(false);
-      console.log(data)})
+    })
   }, []);
 
   const prices = [

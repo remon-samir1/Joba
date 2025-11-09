@@ -36,7 +36,7 @@ const ReqiureAuth = ({ alowedRole }) => {
     });
   }, []);
   
-  console.log(user);
+  //user);
   
   return token ? (
     user === "" ? (

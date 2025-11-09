@@ -41,7 +41,7 @@ const AddWithdrawMethod = () => {
       formData.append("status", form.status);
 
       const res = await Axios.post(`/admin/withdraw-method`, formData);
-      console.log(res);
+      //res);
       toast.success("Created successfully");
 
       setTimeout(() => {

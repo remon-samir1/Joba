@@ -24,7 +24,7 @@ const CourseView = () => {
   const [count, setCount] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-  console.log(id);
+  //id);
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const CourseView = () => {
       setLoading(false);
       setCourse(data.data.course);
       setCount(data.data);
-      console.log(data.data);
+      //data.data);
     });
   }, []);
 

@@ -21,12 +21,12 @@ const SubCategory = () => {
   const [total, setTotal] = useState();
   const [search , setSearch] = useState('')
   const {id} =useParams()
-  console.log(id);
+  //id);
   // get data
   useEffect(() => {
     setLoading(true);
     Axios.get(`/admin/course-sub-category/${id}?page=${page}&keyword=${search}& status=${status}`).then((data) => {
-      console.log(data);
+      //data);
       setCategories(data.data.message.categories.data);
       setParentName(data.data.message.parentCategory.name);
       

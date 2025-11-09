@@ -27,7 +27,7 @@ const PopulerCourses = () => {
       setCategories(data.data.categories.slice(-4))
       setSkeleton(false);
 
-      console.log(data.data.categories.slice(-4))})
+    })
   }, []);
   const containerRef = useRef(null);
   const headerRef = useRef(null);

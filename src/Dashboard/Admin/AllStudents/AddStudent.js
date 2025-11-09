@@ -18,7 +18,7 @@ const AddStudent = () => {
     password_confirmation: "",
 
   });
-  console.log(form);
+  //form);
   const click = useRef(null);
   const navigate = useNavigate();
   const {id} = useParams();
@@ -32,7 +32,7 @@ const AddStudent = () => {
     setLoading(true);
     try {
       const res = await Axios.post("/register", form).then((data) => {
-        console.log(data);
+        //data);
         setForm({
           name: "",
           email: "",
@@ -49,7 +49,7 @@ const AddStudent = () => {
         setLoading(false);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
       toast.error(err.response.data.message);
     }

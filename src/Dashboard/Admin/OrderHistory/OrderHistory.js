@@ -25,7 +25,7 @@ const OrderHistory = () => {
     setLoading(true);
     Axios.get(`/admin/orders?page=${page}&keyword=${search}`)
       .then((data) => {
-        console.log(data.data);
+        //data.data);
         const OrdersData = data.data.orders.data;
 
         if (status !== "") {
@@ -46,7 +46,7 @@ const OrderHistory = () => {
         setLoading(false);
       });
   }, [search, deleted, status, page, payment]);
-  console.log(orders);
+  //orders);
   // headers of table
   const headers = [
     {

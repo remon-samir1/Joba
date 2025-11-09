@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const AddSubCategory = () => {
   const {id} =useParams()
-  console.log(id);
+  //id);
   const [laoding , setLoading] = useState(false)
   const [form, setForm] = useState({
     icon: null,
@@ -21,7 +21,7 @@ const AddSubCategory = () => {
     showAtTraeding:0 ,
     status: 0,
   });
-  console.log(form);
+  //form);
   const click = useRef(null);
   const navigate = useNavigate();
   const showAtTraedingData = [
@@ -61,7 +61,7 @@ const AddSubCategory = () => {
   if (form.icon) {
     const res = await Axios.post(`/admin/course-sub-category/${id}/store`, formData).then(
       (data) => {
-        console.log(data);
+        //data);
           setLoading(false)
         toast.success('Created successfly')
         setTimeout(() => {
@@ -80,7 +80,7 @@ const AddSubCategory = () => {
   }catch(err){
     toast.error("some thing wrong");
      setLoading(false)
-     console.log(err);
+     //err);
   } 
   };
   return (

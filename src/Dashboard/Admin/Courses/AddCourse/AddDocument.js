@@ -63,14 +63,14 @@ const AddDocument = ({
 
       if(editMode){
         Axios.post(`/admin/course-chapter/lesson/update`, formData).then((res) => {
-    console.log(res);
+    //res);
     setChange(prev=>!prev)
     setLoading(false)
   });
 }else{
 
   Axios.post(`/admin/course-chapter/lesson/create`, formData).then((res) => {
-    console.log(res);
+    //res);
     setChange(prev=>!prev)
 
   });
@@ -78,7 +78,7 @@ const AddDocument = ({
     setShowDocumentModal(false)
     setEditMode(false)
   }catch(err){
-    console.log(err);
+    //err);
     setLoading(false)
   }
   }

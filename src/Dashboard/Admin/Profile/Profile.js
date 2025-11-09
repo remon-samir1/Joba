@@ -24,7 +24,7 @@ useEffect(()=>{
     setForm(data.data.data.admin)
     toast.success('Updated Successfly')
     setLoading(false)
-    console.log(data.data.data.admin)})
+  })
 },[change])
 // handleUpdate
 const handleUpdate = async(e)=>{
@@ -44,9 +44,8 @@ const handleUpdate = async(e)=>{
 await Axios.post('admin/profile-update' ,formData ).then(data=> {
   setLoading(false)
   setChange(prev=>!prev)
-  console.log(data)})
+})
   }catch(err){
-   console.log(err)
   }
 }
 

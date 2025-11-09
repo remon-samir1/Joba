@@ -45,10 +45,10 @@ const UpdateStudentsDetails = ({ setLoading }) => {
         city: user.city,
         _method:"PUT"
       });
-      console.log(data);
+      //data);
     });
   }, []);
-  console.log(studentLocation);
+  //studentLocation);
   // handleInfoUpdate
   const handleInfoUpdate = () => {
     setLoading(true);
@@ -69,7 +69,7 @@ const UpdateStudentsDetails = ({ setLoading }) => {
     try {
       Axios.put(`/admin/customer-location-update/${id}`, studentLocation).then(
         (data) => {
-          console.log(data);
+          //data);
 
           setLoading(false);
           toast.success("Updated Successfly");
@@ -85,7 +85,7 @@ const UpdateStudentsDetails = ({ setLoading }) => {
     try {
       Axios.put(`/admin/customer-password-change/${id}`, studentPassword).then(
         (data) => {
-          console.log(data);
+          //data);
 
           setLoading(false);
           toast.success("Password change successfully");

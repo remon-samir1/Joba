@@ -53,13 +53,13 @@ const AddQuiz = ({
 try{
   if(editMode){
     Axios.post(`/admin/course-chapter/lesson/update`, quizData).then((res) => {
-console.log(res);
+//res);
 setChange(prev=>!prev)
 });
 }else{
 
 Axios.post(`/admin/course-chapter/lesson/create`, quizData).then((res) => {
-console.log(res);
+//res);
 setChange(prev=>!prev)
 });
 }
@@ -75,7 +75,7 @@ setChange(prev=>!prev)
     setTotalMark("");
     setPassMark("");
   };
-console.log(courseId);
+//courseId);
   return (
     <div className="fixed inset-0 max-h-screen overflow-auto flex items-center justify-center bg-black bg-opacity-30 z-50">
       <div

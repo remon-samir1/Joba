@@ -24,7 +24,7 @@ const PostComments = () => {
     Axios.get(
       `/admin/blog-comment?keyword=${search}&post=${post}&status=${status}`
     ).then((data) => {
-      console.log(data);
+      //data);
       setData(data.data.data.comments.data);
       setTotal(data.data.data.comments.total);
       setLoading(false);
@@ -78,7 +78,7 @@ const PostComments = () => {
       value: 'language',
     },
   ];
-  console.log(status);
+  //status);
   return (
     <>
       <Notifcation />

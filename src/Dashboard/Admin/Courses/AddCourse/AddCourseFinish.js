@@ -12,10 +12,10 @@ const AddCourseFinish = ({courseId , edit, slug }) => {
     if (edit) {
       setLoading(true);
       Axios.get(`course/${slug}`).then((data) => {
-        console.log(data.data.course);
+        //data.data.course);
 
         const course = data.data.course;
-console.log(course);
+//course);
         setForm({
           ...form,
           message_for_reviewer:course.message_for_reviewer,
@@ -34,18 +34,18 @@ console.log(course);
     is_approved : '',
     status : 'active',
 });
-console.log(form);
+//form);
 const handleSubmit=async(e)=>{
   e.preventDefault();
   setLoading(true);
   try{
   await  Axios.post('admin/courses' , form).then(data=>{
-    console.log(data);
+    //data);
     toast.success('updated successfly');
   });
     setLoading(false)
   }catch(err){
-    console.log(err);
+    //err);
     setLoading(false)
 
   }

@@ -22,7 +22,7 @@ const Blog = () => {
         setBlog(data.data.blogs.data.filter((data) => data.slug == id)[0]);
         setBlogs(data.data.blogs.data.filter((data) => data.slug != id));
         setLoading(false);
-        // console.log(data.data.blogs.data.slice(0 , 1))
+        // //data.data.blogs.data.slice(0 , 1))
       })
       .catch(() => setLoading(false));
   }, [id]);

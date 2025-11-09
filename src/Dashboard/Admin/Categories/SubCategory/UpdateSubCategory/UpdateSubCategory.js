@@ -28,7 +28,7 @@ const parentId = parts[parts.indexOf('sub-Category') + 1];
   const navigate = useNavigate();
   const {id} = useParams();
   
-  console.log(form);
+  //form);
   const showAtTraedingData = [
     {
       name: "No",
@@ -49,21 +49,21 @@ const parentId = parts[parts.indexOf('sub-Category') + 1];
       value: true,
     },
   ];
-console.log(parentId);
+//parentId);
   useEffect(()=>{
     setDisabled(true)
     Axios.get(`admin/course-sub-category/${parentId}`).then((data)=>{
-      console.log(data.data.message.categories.data);
+      //data.data.message.categories.data);
       const resData = data.data.message.categories.data
     setForm(resData.filter(data => data.id == id)[0]);
      setDisabled(false)
     })
   },[])
-  console.log(form);
+  //form);
   //    Form Data
   
 
-  // console.log(formData);
+  // //formData);
   //        Send Data
   const handleSubmit = async (e) => {
     
@@ -87,7 +87,7 @@ try{
       (data) => {
           setDisabled(false)
 
-          console.log(data);
+          //data);
         toast.success('Upadated successfly')
         setTimeout(() => {
           
@@ -103,7 +103,7 @@ try{
     }
   }catch(err){
     toast.error("some thing wrong");
-    console.log(err);
+    //err);
     setDisabled(false)
 
      

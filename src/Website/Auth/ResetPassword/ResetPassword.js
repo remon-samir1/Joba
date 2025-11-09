@@ -18,7 +18,7 @@ const nav = useNavigate()
     password_confirmation: "",
   });
   const [hidePass, setHidePass] = useState(true);
-  console.log(form);
+  //form);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -28,7 +28,7 @@ const nav = useNavigate()
     setLaoding(true);
     try {
       const res = await Axios.post(`/reset-password-store/${id}`, form).then((data) => {
-        console.log(data);
+        //data);
     toast.success(data.data.messege)
     setTimeout(() => {
       
@@ -37,7 +37,7 @@ const nav = useNavigate()
         setLaoding(false);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLaoding(false);
       toast.error(err.response.data.message);
     }

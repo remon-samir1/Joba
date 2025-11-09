@@ -59,10 +59,10 @@ const AddCoupon = ({ setShowModal }) => {
         toast.success("Created Successfully");
         setLoading(false);
         setShowModal(false);
-        console.log(data);
+        //data);
       });
     } catch (err) {
-      console.log(err);
+      //err);
       setLoading(false);
     }
   };

@@ -23,7 +23,7 @@ const CourseReview = () => {
     Axios.get(
       `/admin/course-review?page=${page}&keyword=${search}& status=${status}`
     ).then((data) => {
-      console.log(data.data.data);
+      //data.data.data);
       setCourseReview(data.data.data.reviews.data);
       setTotal(data.data.data.reviews.total);
       setLoading(false);
@@ -63,7 +63,7 @@ const CourseReview = () => {
       value: 'inactive',
     },
   ];
-  console.log(status);
+  //status);
   return (
     <>
       <Notifcation />

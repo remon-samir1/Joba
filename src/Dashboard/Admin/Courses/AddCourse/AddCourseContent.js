@@ -53,7 +53,7 @@ const AddCourseContent = ({ courseId, setCourseId, edit, slug }) => {
   const lessonModalRef = useRef();
 
   // Fetch chapters based on courseId or slug
-  console.log(chapters);
+  //chapters);
   useEffect(() => {
     setLoading(true);
     if (edit && slug) {

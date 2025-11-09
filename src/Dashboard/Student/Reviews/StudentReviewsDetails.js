@@ -22,7 +22,7 @@ const StudentReviewsDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     Axios.get(`/student/reviews/${id}`).then((data) => {
-      console.log(data);
+      //data);
       setData(data.data.review);
       setSkeleton(false)
 

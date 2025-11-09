@@ -38,11 +38,11 @@ const CourseReviewDetails = () => {
       } catch (err) {
         setBtnLoading(false);
         toast.error("Updated Failed");
-        console.log(err);
+        //err);
       }
     }
   };
-  // console.log(data);
+  // //data);
   const statusData = [
     {
       name: "Approved",

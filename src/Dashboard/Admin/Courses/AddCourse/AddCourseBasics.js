@@ -41,9 +41,9 @@ const AddCourseBasics = ({setPage , setCourseId}) => {
     formData.append("discount_price", form.discount);
     formData.append("description", form.description);
     try {
-      console.log('test');
+      //'test');
       const res = await Axios.post("/admin/courses/create", formData).then((data) => {
-        console.log(data);
+        //data);
         toast.success('Created successfly');
         setLoading(false)
         setCourseId(data.data.course_id)
@@ -52,7 +52,7 @@ const AddCourseBasics = ({setPage , setCourseId}) => {
     } catch(err) {
       toast.error("some thing wrong");
       setLoading(false);
-  console.log(err);
+  //err);
     } 
   };
 
@@ -84,7 +84,7 @@ const AddCourseBasics = ({setPage , setCourseId}) => {
               id="title"
               className="!flex-1"
               onChange={(e) =>{
-                console.log(e)
+                //e)
 
                 setForm({ ...form, thumbnail: e.target.files[0] })
               }}

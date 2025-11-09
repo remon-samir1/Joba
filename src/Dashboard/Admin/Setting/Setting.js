@@ -33,8 +33,8 @@ const Setting = () => {
     });
     setForm(newForm);
   };
-  console.log(update);
-  console.log(form);
+  //update);
+  //form);
   //  handleSocialUpdate
   const handleSocialUpdate = async () => {
     try {
@@ -42,8 +42,8 @@ const Setting = () => {
         .map((id) => {
           const matchedItem = form.find((data) => data.id === id);
           if (!matchedItem) return null;
-          console.log(matchedItem.link);
-          console.log(matchedItem.name);
+          //matchedItem.link);
+          //matchedItem.name);
           return Axios.post(`/admin/social-link/${id}`, {
             link: matchedItem.link,
             name: matchedItem.name,
@@ -53,7 +53,7 @@ const Setting = () => {
         .filter(Boolean);
 
       const responses = await Promise.all(requests);
-      console.log("All updates successful:", responses);
+      //"All updates successful:", responses);
     } catch (err) {
       console.error("Update failed:", err);
     }
